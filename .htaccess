@@ -1,0 +1,3 @@
+ErrorDocument 404 https://localhost/catechesis/erro404.php
+ErrorDocument 400 https://localhost/catechesis/erro500.html
+ErrorDocument 500 https://localhost/catechesis/erro500.html

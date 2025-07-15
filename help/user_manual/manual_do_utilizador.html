@@ -1,0 +1,4442 @@
+<!DOCTYPE html>
+<html lang="pt_PT">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <meta content="ie=edge" http-equiv="x-ua-compatible"/>
+  <meta content="Copy to clipboard" name="lang:clipboard.copy"/>
+  <meta content="Copied to clipboard" name="lang:clipboard.copied"/>
+  <meta content="en" name="lang:search.language"/>
+  <meta content="True" name="lang:search.pipeline.stopwords"/>
+  <meta content="True" name="lang:search.pipeline.trimmer"/>
+  <meta content="No matching documents" name="lang:search.result.none"/>
+  <meta content="1 matching document" name="lang:search.result.one"/>
+  <meta content="# matching documents" name="lang:search.result.other"/>
+  <meta content="[\s\-]+" name="lang:search.tokenizer"/>
+  <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&amp;display=fallback" rel="stylesheet"/>
+  <style>
+   body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+  </style>
+  <link href="_static/stylesheets/application.css" rel="stylesheet"/>
+  <link href="_static/stylesheets/application-palette.css" rel="stylesheet"/>
+  <link href="_static/stylesheets/application-fixes.css" rel="stylesheet"/>
+  <link href="_static/fonts/material-icons.css" rel="stylesheet"/>
+  <meta content="blue" name="theme-color"/>
+  <script src="_static/javascripts/modernizr.js">
+  </script>
+  <title>
+   Manual do Utilizador — Manuais do CatecheSis
+  </title>
+  <link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
+  <link href="_static/material.css" rel="stylesheet" type="text/css"/>
+  <link href="_static/copybutton.css" rel="stylesheet" type="text/css"/>
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js">
+  </script>
+  <script src="_static/jquery.js">
+  </script>
+  <script src="_static/underscore.js">
+  </script>
+  <script src="_static/doctools.js">
+  </script>
+  <script src="_static/clipboard.min.js">
+  </script>
+  <script src="_static/copybutton.js">
+  </script>
+  <script src="_static/translations.js">
+  </script>
+  <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js">
+  </script>
+  <link href="_static/AF_CatecheSis_Logo_Broswer.png" rel="shortcut icon"/>
+  <link href="genindex.html" rel="index" title="Índice"/>
+  <link href="search.html" rel="search" title="Pesquisar"/>
+  <link href="manual_de_instalacao.html" rel="next" title="Manual de Instalação"/>
+  <link href="index.html" rel="prev" title="Manuais do CatecheSis"/>
+ </head>
+ <body data-md-color-accent="black" data-md-color-primary="blue" dir="ltr">
+  <svg class="md-svg">
+   <defs data-children-count="0">
+    <svg height="448" id="__github" viewbox="0 0 416 448" width="416" xmlns="http://www.w3.org/2000/svg">
+     <path d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z" fill="currentColor">
+     </path>
+    </svg>
+   </defs>
+  </svg>
+  <input class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+  <input class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+  <label class="md-overlay" data-md-component="overlay" for="__drawer">
+  </label>
+  <a class="md-skip" href="#manual_do_utilizador" tabindex="1">
+   Skip to content
+  </a>
+  <header class="md-header" data-md-component="header" style="background-color: #008fcf; color: #f3e9e7;">
+   <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+     <div class="md-flex__cell md-flex__cell--shrink">
+      <a class="md-header-nav__button md-logo" href="index.html" title="Manuais do CatecheSis">
+       <img alt="Manuais do CatecheSis logo" height="26" src="_static/AF_CatecheSis_Logo_Navbar.png"/>
+      </a>
+     </div>
+     <div class="md-flex__cell md-flex__cell--shrink">
+      <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer">
+      </label>
+     </div>
+     <div class="md-flex__cell md-flex__cell--stretch">
+      <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+       <span class="md-header-nav__topic">
+        Manuais do CatecheSis
+       </span>
+       <span class="md-header-nav__topic">
+        Manual do Utilizador
+       </span>
+      </div>
+     </div>
+     <div class="md-flex__cell md-flex__cell--shrink">
+      <label class="md-icon md-icon--search md-header-nav__button" for="__search">
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+       <label class="md-search__overlay" for="__search">
+       </label>
+       <div class="md-search__inner" role="search">
+        <form action="search.html" class="md-search__form" method="get" name="search">
+         <input autocapitalize="off" autocomplete="off" class="md-search__input" data-md-component="query" data-md-state="active" name="q" placeholder="Search" spellcheck="false" type="text"/>
+         <label class="md-icon md-search__icon" for="__search">
+         </label>
+         <button class="md-icon md-search__icon" data-md-component="reset" tabindex="-1" type="reset">
+          
+         </button>
+        </form>
+        <div class="md-search__output">
+         <div class="md-search__scrollwrap" data-md-scrollfix="">
+          <div class="md-search-result" data-md-component="result">
+           <div class="md-search-result__meta">
+            Type to start searching
+           </div>
+           <ol class="md-search-result__list">
+           </ol>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <script src="_static/javascripts/version_dropdown.js">
+     </script>
+     <script>
+      var json_loc = ""versions.json"",
+        target_loc = "../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+     </script>
+    </div>
+   </nav>
+  </header>
+  <div class="md-container">
+   <main class="md-main">
+    <div class="md-main__inner md-grid" data-md-component="container">
+     <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" style="margin-top: 50px;">
+      <div class="md-sidebar__scrollwrap">
+       <div class="md-sidebar__inner">
+        <nav class="md-nav md-nav--primary" data-md-level="0">
+         <label class="md-nav__title md-nav__title--site" for="__drawer">
+          <a class="md-nav__button md-logo" href="index.html" title="Manuais do CatecheSis">
+           <img alt=" logo" height="48" src="_static/AF_CatecheSis_Logo_Navbar.png" width="48"/>
+          </a>
+          <a href="index.html" title="Manuais do CatecheSis">
+           Manuais do CatecheSis
+          </a>
+         </label>
+         <ul class="md-nav__list">
+          <li class="md-nav__item">
+           <input class="md-toggle md-nav__toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+           <label class="md-nav__link md-nav__link--active" for="__toc">
+            Manual do Utilizador
+           </label>
+           <a class="md-nav__link md-nav__link--active" href="#">
+            Manual do Utilizador
+           </a>
+           <nav class="md-nav md-nav--secondary">
+            <label class="md-nav__title" for="__toc">
+             Contents
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix="">
+             <li class="md-nav__item">
+              <a class="md-nav__link" href="#manual-do-utilizador--page-root">
+               Manual do Utilizador
+              </a>
+              <nav class="md-nav">
+               <ul class="md-nav__list">
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#conceitos-basicos">
+                  1. Conceitos básicos
+                 </a>
+                 <nav class="md-nav">
+                  <ul class="md-nav__list">
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#utilizar-os-menus">
+                     1.1 Utilizar os menus
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#tipos-de-contas">
+                     1.2 Tipos de contas
+                    </a>
+                    <nav class="md-nav">
+                     <ul class="md-nav__list">
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#qual-e-o-meu-tipo-de-conta">
+                        1.2.1 Qual é o meu tipo de conta?
+                       </a>
+                      </li>
+                     </ul>
+                    </nav>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#editar-dados-no-catechesis">
+                     1.3 Editar dados no Catechesis
+                    </a>
+                   </li>
+                  </ul>
+                 </nav>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#efectuar-uma-tarefa">
+                  2. Efectuar uma tarefa
+                 </a>
+                 <nav class="md-nav">
+                  <ul class="md-nav__list">
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#modificar-os-dados-da-minha-conta">
+                     2.1 Modificar os dados da minha conta
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#consultar-as-fichas-dos-meus-catequizandos">
+                     2.2 Consultar as fichas dos meus catequizandos
+                    </a>
+                    <nav class="md-nav">
+                     <ul class="md-nav__list">
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#opcao-1">
+                        2.2.1 Opção 1
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#opcao-2">
+                        2.2.2 Opção 2
+                       </a>
+                      </li>
+                     </ul>
+                    </nav>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#procurar-e-consultar-a-ficha-de-um-catequizando">
+                     2.3 Procurar e consultar a ficha de um catequizando
+                    </a>
+                    <nav class="md-nav">
+                     <ul class="md-nav__list">
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#procurar-por-nome-data-de-nascimento">
+                        2.3.1 Procurar por nome / data de nascimento
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#procurar-por-ano-catecismo">
+                        2.3.2 Procurar por ano / catecismo
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#procurar-por-catequista">
+                        2.3.3 Procurar por catequista
+                       </a>
+                      </li>
+                     </ul>
+                    </nav>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#consultar-o-arquivo-acerca-de-um-catequizando">
+                     2.4 Consultar o arquivo acerca de um catequizando
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#imprimir-folha-de-presencas-fichas-de-catequizandos-ou-fichas-de-pre-inscricao">
+                     2.5 Imprimir folha de presenças, fichas de catequizandos ou fichas de pré-inscrição
+                    </a>
+                    <nav class="md-nav">
+                     <ul class="md-nav__list">
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#para-o-meu-grupo-de-catequese">
+                        2.5.1 Para o meu grupo de catequese
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#para-outro-grupo-de-catequese">
+                        2.5.2 Para outro grupo de catequese
+                       </a>
+                      </li>
+                     </ul>
+                    </nav>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#registar-o-aproveitamento-dos-catequizandos">
+                     2.6 Registar o aproveitamento dos catequizandos
+                    </a>
+                    <nav class="md-nav">
+                     <ul class="md-nav__list">
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#registar-o-aproveitamento-dos-meus-catequizandos">
+                        2.6.1 Registar o aproveitamento dos meus catequizandos
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#abrir-fechar-o-periodo-de-avaliacao">
+                        2.6.2 Abrir/fechar o período de avaliação
+                       </a>
+                      </li>
+                     </ul>
+                    </nav>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#gerar-listagens-de-catequizandos">
+                     2.7 Gerar listagens de catequizandos
+                    </a>
+                    <nav class="md-nav">
+                     <ul class="md-nav__list">
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#listar-baptismos">
+                        2.7.1 Listar baptismos
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#listar-primeiras-comunhoes">
+                        2.7.2 Listar primeiras comunhões
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#listar-profissoes-de-fe">
+                        2.7.3 Listar profissões de fé
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#listar-confirmacoes">
+                        2.7.4 Listar confirmações
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#listar-escuteiros">
+                        2.7.5 Listar escuteiros
+                       </a>
+                      </li>
+                     </ul>
+                    </nav>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#consultar-imprimir-sacramentos-de-todos-os-catequizandos">
+                     2.8 Consultar/Imprimir sacramentos de todos os catequizandos
+                    </a>
+                    <nav class="md-nav">
+                     <ul class="md-nav__list">
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#os-meus-catequizandos">
+                        2.8.1 Os meus catequizandos
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#pesquisa-por-ano-catecismo">
+                        2.8.2 Pesquisa por ano/catecismo
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#pesquisa-por-catequista">
+                        2.8.3 Pesquisa por catequista
+                       </a>
+                      </li>
+                     </ul>
+                    </nav>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#utilizar-as-ferramentas-de-apoio-a-decisao">
+                     2.9 Utilizar as ferramentas de apoio à decisão
+                    </a>
+                    <nav class="md-nav">
+                     <ul class="md-nav__list">
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#listar-catequizandos-elegiveis-para-baptismo">
+                        2.9.1 Listar catequizandos elegíveis para Baptismo
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#listar-catequizandos-elegiveis-para-primeira-comunhao">
+                        2.9.2 Listar catequizandos elegíveis para Primeira Comunhão
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#listar-catequizandos-elegiveis-para-crisma">
+                        2.9.3 Listar catequizandos elegíveis para Crisma
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#listar-catequizandos-com-dados-inconsistentes">
+                        2.9.4 Listar catequizandos com dados inconsistentes
+                       </a>
+                      </li>
+                     </ul>
+                    </nav>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#consultar-estatisticas-acerca-da-catequese-paroquial">
+                     2.10 Consultar estatísticas acerca da catequese paroquial
+                    </a>
+                    <nav class="md-nav">
+                     <ul class="md-nav__list">
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#numero-de-catequizandos-por-catequista">
+                        2.10.1 Número de catequizandos por catequista
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#desistencias">
+                        2.10.2 Desistências
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#percursos-catequeticos-completos">
+                        2.10.3 Percursos catequéticos completos
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#percentagem-de-catequizandos-residentes-na-paroquia">
+                        2.10.4 Percentagem de catequizandos residentes na paróquia
+                       </a>
+                      </li>
+                     </ul>
+                    </nav>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#criar-uma-sessao-de-catequese-virtual">
+                     2.11 Criar uma sessão de Catequese Virtual
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#inscrever-um-catequizando">
+                     2.12 Inscrever um catequizando
+                    </a>
+                    <nav class="md-nav">
+                     <ul class="md-nav__list">
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#inscrever-um-novo-catequizando-offline">
+                        2.12.1 Inscrever um novo catequizando (offline)
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#inscrever-um-irmao">
+                        2.12.2 Inscrever um irmão
+                       </a>
+                      </li>
+                     </ul>
+                    </nav>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#renovar-matriculas">
+                     2.13 Renovar matrículas
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#atribuir-um-catequizando-a-um-grupo-de-catequese">
+                     2.14 Atribuir um catequizando a um grupo de catequese
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#gerir-inscricoes-online">
+                     2.15 Gerir inscrições online
+                    </a>
+                    <nav class="md-nav">
+                     <ul class="md-nav__list">
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#abrir-fechar-as-inscricoes-online">
+                        2.15.1 Abrir/fechar as inscrições online
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#visualizar-pedidos-de-novas-inscricoes">
+                        2.15.2 Visualizar pedidos de novas inscrições
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#visualizar-pedidos-de-renovacao-de-matricula">
+                        2.15.3 Visualizar pedidos de renovação de matrícula
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#aprovar-renovacoes">
+                        2.15.4 Aprovar renovações
+                       </a>
+                      </li>
+                     </ul>
+                    </nav>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#criar-e-gerir-grupos-de-catequese">
+                     2.16 Criar e gerir grupos de catequese
+                    </a>
+                    <nav class="md-nav">
+                     <ul class="md-nav__list">
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#criar-grupos-para-um-novo-ano-catequetico">
+                        2.16.1 Criar grupos para um novo ano catequético
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#adicionar-remover-grupos-num-ano-catequetico-existente">
+                        2.16.2 Adicionar/remover grupos num ano catequético existente
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#definir-os-catequistas-para-um-grupo-de-catequese">
+                        2.16.3 Definir os catequistas para um grupo de catequese
+                       </a>
+                      </li>
+                     </ul>
+                    </nav>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#criar-e-gerir-utilizadores-e-catequistas">
+                     2.17 Criar e gerir utilizadores e catequistas
+                    </a>
+                    <nav class="md-nav">
+                     <ul class="md-nav__list">
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#criar-uma-nova-conta-de-utilizador-catequista">
+                        2.17.1 Criar uma nova conta de utilizador / catequista
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#modificar-a-conta-de-um-utilizador">
+                        2.17.2 Modificar a conta de um utilizador
+                       </a>
+                      </li>
+                     </ul>
+                    </nav>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#alterar-configuracoes-do-catechesis">
+                     2.18 Alterar configurações do Catechesis
+                    </a>
+                    <nav class="md-nav">
+                     <ul class="md-nav__list">
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#dados-da-conta">
+                        2.18.1 Dados da conta
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#inscricoes-online">
+                        2.18.2 Inscrições online
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#aproveitamento-dos-catequizandos">
+                        2.18.3 Aproveitamento dos catequizandos
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#catequese-operacionalizacao">
+                        2.18.4 Catequese (operacionalização)
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#integracao-com-nextcloud">
+                        2.18.5 Integração com Nextcloud
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#personalizar-pagina-publica">
+                        2.18.6 Personalizar página pública
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#dados-da-paroquia">
+                        2.18.7 Dados da paróquia
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#protecao-de-dados-rgpd">
+                        2.18.8 Proteção de dados (RGPD)
+                       </a>
+                      </li>
+                     </ul>
+                    </nav>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#monitorizar-os-acessos-ao-catechesis">
+                     2.19 Monitorizar os acessos ao CatecheSis
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#manter-o-catechesis-atualizado">
+                     2.20 Manter o CatecheSis atualizado
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#notificacao-de-atualizacao">
+                     2.20.1 Notificação de atualização
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#verificar-manualmente-a-existencia-de-atualizacoes">
+                     2.20.2 Verificar manualmente a existência de atualizações
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#utilizar-o-assistente-de-atualizacao">
+                     2.20.3 Utilizar o Assistente de Atualização
+                    </a>
+                   </li>
+                  </ul>
+                 </nav>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#requisitos-de-sistema">
+                  3. Requisitos de sistema
+                 </a>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#problemas-conhecidos">
+                  4. Problemas conhecidos
+                 </a>
+                 <nav class="md-nav">
+                  <ul class="md-nav__list">
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#imprimir-fichas-e-arquivo-de-catequizandos">
+                     1.
+                     <em>
+                      Imprimir fichas e arquivo de catequizandos
+                     </em>
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#imprimir-listagens">
+                     2.
+                     <em>
+                      Imprimir listagens
+                     </em>
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#imprimir-estatisticas">
+                     3.
+                     <em>
+                      Imprimir estatísticas
+                     </em>
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#as-cores-dos-paineis-e-botoes-nao-aparecem-nas-paginas-impressas">
+                     4.
+                     <em>
+                      As cores dos painéis e botões não aparecem nas páginas impressas
+                     </em>
+                    </a>
+                   </li>
+                  </ul>
+                 </nav>
+                </li>
+               </ul>
+              </nav>
+             </li>
+             <li class="md-nav__item">
+              <a class="md-nav__extra_link" href="_sources/manual_do_utilizador.md.txt">
+               Exibir Fonte
+              </a>
+             </li>
+            </ul>
+           </nav>
+           <ul class="md-nav__list">
+            <li class="md-nav__item">
+             <a class="md-nav__link" href="#conceitos-basicos">
+              1. Conceitos básicos
+             </a>
+            </li>
+            <li class="md-nav__item">
+             <a class="md-nav__link" href="#efectuar-uma-tarefa">
+              2. Efectuar uma tarefa
+             </a>
+            </li>
+            <li class="md-nav__item">
+             <a class="md-nav__link" href="#requisitos-de-sistema">
+              3. Requisitos de sistema
+             </a>
+            </li>
+            <li class="md-nav__item">
+             <a class="md-nav__link" href="#problemas-conhecidos">
+              4. Problemas conhecidos
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="md-nav__item">
+           <a class="md-nav__link" href="manual_de_instalacao.html">
+            Manual de Instalação
+           </a>
+          </li>
+          <li class="md-nav__item">
+           <span class="md-nav__link caption" style="margin-top: 30px;">
+            <span class="caption-text">
+             Links Uteis
+            </span>
+           </span>
+          </li>
+          <li class="md-nav__item">
+           <a class="md-nav__link" href="https://catechesis.org.pt">
+            CatecheSis
+           </a>
+          </li>
+         </ul>
+        </nav>
+       </div>
+      </div>
+     </div>
+     <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+      <div class="md-sidebar__scrollwrap">
+       <div class="md-sidebar__inner">
+        <nav class="md-nav md-nav--secondary">
+         <label class="md-nav__title" for="__toc">
+          Contents
+         </label>
+         <ul class="md-nav__list" data-md-scrollfix="">
+          <li class="md-nav__item">
+           <a class="md-nav__link" href="#manual-do-utilizador--page-root">
+            Manual do Utilizador
+           </a>
+           <nav class="md-nav">
+            <ul class="md-nav__list">
+             <li class="md-nav__item">
+              <a class="md-nav__link" href="#conceitos-basicos">
+               1. Conceitos básicos
+              </a>
+              <nav class="md-nav">
+               <ul class="md-nav__list">
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#utilizar-os-menus">
+                  1.1 Utilizar os menus
+                 </a>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#tipos-de-contas">
+                  1.2 Tipos de contas
+                 </a>
+                 <nav class="md-nav">
+                  <ul class="md-nav__list">
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#qual-e-o-meu-tipo-de-conta">
+                     1.2.1 Qual é o meu tipo de conta?
+                    </a>
+                   </li>
+                  </ul>
+                 </nav>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#editar-dados-no-catechesis">
+                  1.3 Editar dados no Catechesis
+                 </a>
+                </li>
+               </ul>
+              </nav>
+             </li>
+             <li class="md-nav__item">
+              <a class="md-nav__link" href="#efectuar-uma-tarefa">
+               2. Efectuar uma tarefa
+              </a>
+              <nav class="md-nav">
+               <ul class="md-nav__list">
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#modificar-os-dados-da-minha-conta">
+                  2.1 Modificar os dados da minha conta
+                 </a>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#consultar-as-fichas-dos-meus-catequizandos">
+                  2.2 Consultar as fichas dos meus catequizandos
+                 </a>
+                 <nav class="md-nav">
+                  <ul class="md-nav__list">
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#opcao-1">
+                     2.2.1 Opção 1
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#opcao-2">
+                     2.2.2 Opção 2
+                    </a>
+                   </li>
+                  </ul>
+                 </nav>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#procurar-e-consultar-a-ficha-de-um-catequizando">
+                  2.3 Procurar e consultar a ficha de um catequizando
+                 </a>
+                 <nav class="md-nav">
+                  <ul class="md-nav__list">
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#procurar-por-nome-data-de-nascimento">
+                     2.3.1 Procurar por nome / data de nascimento
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#procurar-por-ano-catecismo">
+                     2.3.2 Procurar por ano / catecismo
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#procurar-por-catequista">
+                     2.3.3 Procurar por catequista
+                    </a>
+                   </li>
+                  </ul>
+                 </nav>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#consultar-o-arquivo-acerca-de-um-catequizando">
+                  2.4 Consultar o arquivo acerca de um catequizando
+                 </a>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#imprimir-folha-de-presencas-fichas-de-catequizandos-ou-fichas-de-pre-inscricao">
+                  2.5 Imprimir folha de presenças, fichas de catequizandos ou fichas de pré-inscrição
+                 </a>
+                 <nav class="md-nav">
+                  <ul class="md-nav__list">
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#para-o-meu-grupo-de-catequese">
+                     2.5.1 Para o meu grupo de catequese
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#para-outro-grupo-de-catequese">
+                     2.5.2 Para outro grupo de catequese
+                    </a>
+                   </li>
+                  </ul>
+                 </nav>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#registar-o-aproveitamento-dos-catequizandos">
+                  2.6 Registar o aproveitamento dos catequizandos
+                 </a>
+                 <nav class="md-nav">
+                  <ul class="md-nav__list">
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#registar-o-aproveitamento-dos-meus-catequizandos">
+                     2.6.1 Registar o aproveitamento dos meus catequizandos
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#abrir-fechar-o-periodo-de-avaliacao">
+                     2.6.2 Abrir/fechar o período de avaliação
+                    </a>
+                   </li>
+                  </ul>
+                 </nav>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#gerar-listagens-de-catequizandos">
+                  2.7 Gerar listagens de catequizandos
+                 </a>
+                 <nav class="md-nav">
+                  <ul class="md-nav__list">
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#listar-baptismos">
+                     2.7.1 Listar baptismos
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#listar-primeiras-comunhoes">
+                     2.7.2 Listar primeiras comunhões
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#listar-profissoes-de-fe">
+                     2.7.3 Listar profissões de fé
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#listar-confirmacoes">
+                     2.7.4 Listar confirmações
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#listar-escuteiros">
+                     2.7.5 Listar escuteiros
+                    </a>
+                   </li>
+                  </ul>
+                 </nav>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#consultar-imprimir-sacramentos-de-todos-os-catequizandos">
+                  2.8 Consultar/Imprimir sacramentos de todos os catequizandos
+                 </a>
+                 <nav class="md-nav">
+                  <ul class="md-nav__list">
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#os-meus-catequizandos">
+                     2.8.1 Os meus catequizandos
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#pesquisa-por-ano-catecismo">
+                     2.8.2 Pesquisa por ano/catecismo
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#pesquisa-por-catequista">
+                     2.8.3 Pesquisa por catequista
+                    </a>
+                   </li>
+                  </ul>
+                 </nav>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#utilizar-as-ferramentas-de-apoio-a-decisao">
+                  2.9 Utilizar as ferramentas de apoio à decisão
+                 </a>
+                 <nav class="md-nav">
+                  <ul class="md-nav__list">
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#listar-catequizandos-elegiveis-para-baptismo">
+                     2.9.1 Listar catequizandos elegíveis para Baptismo
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#listar-catequizandos-elegiveis-para-primeira-comunhao">
+                     2.9.2 Listar catequizandos elegíveis para Primeira Comunhão
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#listar-catequizandos-elegiveis-para-crisma">
+                     2.9.3 Listar catequizandos elegíveis para Crisma
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#listar-catequizandos-com-dados-inconsistentes">
+                     2.9.4 Listar catequizandos com dados inconsistentes
+                    </a>
+                   </li>
+                  </ul>
+                 </nav>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#consultar-estatisticas-acerca-da-catequese-paroquial">
+                  2.10 Consultar estatísticas acerca da catequese paroquial
+                 </a>
+                 <nav class="md-nav">
+                  <ul class="md-nav__list">
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#numero-de-catequizandos-por-catequista">
+                     2.10.1 Número de catequizandos por catequista
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#desistencias">
+                     2.10.2 Desistências
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#percursos-catequeticos-completos">
+                     2.10.3 Percursos catequéticos completos
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#percentagem-de-catequizandos-residentes-na-paroquia">
+                     2.10.4 Percentagem de catequizandos residentes na paróquia
+                    </a>
+                   </li>
+                  </ul>
+                 </nav>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#criar-uma-sessao-de-catequese-virtual">
+                  2.11 Criar uma sessão de Catequese Virtual
+                 </a>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#inscrever-um-catequizando">
+                  2.12 Inscrever um catequizando
+                 </a>
+                 <nav class="md-nav">
+                  <ul class="md-nav__list">
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#inscrever-um-novo-catequizando-offline">
+                     2.12.1 Inscrever um novo catequizando (offline)
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#inscrever-um-irmao">
+                     2.12.2 Inscrever um irmão
+                    </a>
+                   </li>
+                  </ul>
+                 </nav>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#renovar-matriculas">
+                  2.13 Renovar matrículas
+                 </a>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#atribuir-um-catequizando-a-um-grupo-de-catequese">
+                  2.14 Atribuir um catequizando a um grupo de catequese
+                 </a>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#gerir-inscricoes-online">
+                  2.15 Gerir inscrições online
+                 </a>
+                 <nav class="md-nav">
+                  <ul class="md-nav__list">
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#abrir-fechar-as-inscricoes-online">
+                     2.15.1 Abrir/fechar as inscrições online
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#visualizar-pedidos-de-novas-inscricoes">
+                     2.15.2 Visualizar pedidos de novas inscrições
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#visualizar-pedidos-de-renovacao-de-matricula">
+                     2.15.3 Visualizar pedidos de renovação de matrícula
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#aprovar-renovacoes">
+                     2.15.4 Aprovar renovações
+                    </a>
+                   </li>
+                  </ul>
+                 </nav>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#criar-e-gerir-grupos-de-catequese">
+                  2.16 Criar e gerir grupos de catequese
+                 </a>
+                 <nav class="md-nav">
+                  <ul class="md-nav__list">
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#criar-grupos-para-um-novo-ano-catequetico">
+                     2.16.1 Criar grupos para um novo ano catequético
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#adicionar-remover-grupos-num-ano-catequetico-existente">
+                     2.16.2 Adicionar/remover grupos num ano catequético existente
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#definir-os-catequistas-para-um-grupo-de-catequese">
+                     2.16.3 Definir os catequistas para um grupo de catequese
+                    </a>
+                   </li>
+                  </ul>
+                 </nav>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#criar-e-gerir-utilizadores-e-catequistas">
+                  2.17 Criar e gerir utilizadores e catequistas
+                 </a>
+                 <nav class="md-nav">
+                  <ul class="md-nav__list">
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#criar-uma-nova-conta-de-utilizador-catequista">
+                     2.17.1 Criar uma nova conta de utilizador / catequista
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#modificar-a-conta-de-um-utilizador">
+                     2.17.2 Modificar a conta de um utilizador
+                    </a>
+                   </li>
+                  </ul>
+                 </nav>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#alterar-configuracoes-do-catechesis">
+                  2.18 Alterar configurações do Catechesis
+                 </a>
+                 <nav class="md-nav">
+                  <ul class="md-nav__list">
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#dados-da-conta">
+                     2.18.1 Dados da conta
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#inscricoes-online">
+                     2.18.2 Inscrições online
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#aproveitamento-dos-catequizandos">
+                     2.18.3 Aproveitamento dos catequizandos
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#catequese-operacionalizacao">
+                     2.18.4 Catequese (operacionalização)
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#integracao-com-nextcloud">
+                     2.18.5 Integração com Nextcloud
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#personalizar-pagina-publica">
+                     2.18.6 Personalizar página pública
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#dados-da-paroquia">
+                     2.18.7 Dados da paróquia
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#protecao-de-dados-rgpd">
+                     2.18.8 Proteção de dados (RGPD)
+                    </a>
+                   </li>
+                  </ul>
+                 </nav>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#monitorizar-os-acessos-ao-catechesis">
+                  2.19 Monitorizar os acessos ao CatecheSis
+                 </a>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#manter-o-catechesis-atualizado">
+                  2.20 Manter o CatecheSis atualizado
+                 </a>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#notificacao-de-atualizacao">
+                  2.20.1 Notificação de atualização
+                 </a>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#verificar-manualmente-a-existencia-de-atualizacoes">
+                  2.20.2 Verificar manualmente a existência de atualizações
+                 </a>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#utilizar-o-assistente-de-atualizacao">
+                  2.20.3 Utilizar o Assistente de Atualização
+                 </a>
+                </li>
+               </ul>
+              </nav>
+             </li>
+             <li class="md-nav__item">
+              <a class="md-nav__link" href="#requisitos-de-sistema">
+               3. Requisitos de sistema
+              </a>
+             </li>
+             <li class="md-nav__item">
+              <a class="md-nav__link" href="#problemas-conhecidos">
+               4. Problemas conhecidos
+              </a>
+              <nav class="md-nav">
+               <ul class="md-nav__list">
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#imprimir-fichas-e-arquivo-de-catequizandos">
+                  1.
+                  <em>
+                   Imprimir fichas e arquivo de catequizandos
+                  </em>
+                 </a>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#imprimir-listagens">
+                  2.
+                  <em>
+                   Imprimir listagens
+                  </em>
+                 </a>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#imprimir-estatisticas">
+                  3.
+                  <em>
+                   Imprimir estatísticas
+                  </em>
+                 </a>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#as-cores-dos-paineis-e-botoes-nao-aparecem-nas-paginas-impressas">
+                  4.
+                  <em>
+                   As cores dos painéis e botões não aparecem nas páginas impressas
+                  </em>
+                 </a>
+                </li>
+               </ul>
+              </nav>
+             </li>
+            </ul>
+           </nav>
+          </li>
+          <li class="md-nav__item">
+           <a class="md-nav__extra_link" href="_sources/manual_do_utilizador.md.txt">
+            Exibir Fonte
+           </a>
+          </li>
+          <li class="md-nav__item" id="searchbox">
+          </li>
+         </ul>
+        </nav>
+       </div>
+      </div>
+     </div>
+     <div class="md-content">
+      <article class="md-content__inner md-typeset" role="main">
+       <section id="manual-do-utilizador">
+        <h1 id="manual-do-utilizador--page-root">
+         Manual do Utilizador
+         <a class="headerlink" href="#manual-do-utilizador--page-root" title="Link permanente para este título">
+          ¶
+         </a>
+        </h1>
+        <style>
+         .info {
+  margin-bottom: 15px;
+  padding: 4px 12px;
+  background-color: #e7f3fe;
+  border-left: 6px solid #2196F3;
+}
+        </style>
+        <p>
+         Este manual destina-se a todos os utilizadores do CatecheSis.
+        </p>
+        <section id="conceitos-basicos">
+         <h2 id="conceitos-basicos">
+          1. Conceitos básicos
+          <a class="headerlink" href="#conceitos-basicos" title="Link permanente para este título">
+           ¶
+          </a>
+         </h2>
+         <section id="utilizar-os-menus">
+          <h3 id="utilizar-os-menus">
+           1.1 Utilizar os menus
+           <a class="headerlink" href="#utilizar-os-menus" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           A interface do CatecheSis apresenta permanentemente, no topo, uma barra de menus. Utilize os menus para efectuar tarefas e aceder às diversas funcionalidades do CatecheSis.
+          </p>
+          <p>
+           A sua localização atual está assinalada com uma tonalidade diferente.
+          </p>
+          <p>
+           <img alt="_images/1.1_utilizar_menus_1.png" src="_images/1.1_utilizar_menus_1.png"/>
+          </p>
+          <center>
+           <i>
+            - Página Principal do CatecheSis -
+           </i>
+          </center>
+          <p>
+           No canto superior direito é apresentada a imagem de perfil do utilizador autenticado (por omissão, um círculo com as suas iniciais). Clicando sobre esta é apresentada a opção
+           <em>
+            Terminar sessão
+           </em>
+           .
+          </p>
+          <div class="info">
+           <p>
+            <b>
+             NOTA:
+            </b>
+            Utilize sempre o botão
+            <i>
+             Terminar sessão
+            </i>
+            para terminar a sua sessão e sair do CatecheSis em segurança.
+           </p>
+          </div>
+          <p>
+           Ainda no canto superior direito, estão localizados mais dois
+           <em>
+            icons
+           </em>
+           : o botão de configurções do CatecheSis, e o botão de ajuda, que dá acesso ao Manual de Utilizador e alguma informação sobre o CatecheSis.
+          </p>
+          <p>
+           Ao centro da página é apresentada alguma informação util ao catequista:
+          </p>
+          <ul class="simple">
+           <li>
+            <p>
+             <strong>
+              Os seus grupos de catequese
+             </strong>
+             : São apresentados os vários grupos de catequese assim como aniversários dentro desse mesmo grupo de Catequese. Existe ainda a possibilidade de ir para
+             <em>
+              os meus catequizandos
+             </em>
+             , de forma rápida.
+            </p>
+           </li>
+           <li>
+            <p>
+             <strong>
+              Dados dos seus catequizandos
+             </strong>
+             : Indica de forma visual se as fichas dos seus catequizandos contêm alguma informação incompleta ou incorreta. A cor da
+             <em>
+              caixa
+             </em>
+             varia consoante a gravidade inconsistência de dados. Selecionando a opção
+             <em>
+              Ver relatório
+             </em>
+             é apresentado o relatório completo dos dados inconsistentes dos seus catequizandos (por exemplo, números de telefone inválidos, datas de baptismo inválidas, ou comprovativos de baptismo em falta).
+             <em>
+              Veja também
+              <a class="reference external" href="#listar-catequizandos-com-dados-inconsistentes">
+               2.9.4 Listar catequizandos com dados inconsistentes
+              </a>
+             </em>
+             .
+            </p>
+           </li>
+           <li>
+            <p>
+             <strong>
+              Acessos rápidos
+             </strong>
+             : São apresentados os vários alguns acessos rápidos, úteis para o catequista.
+            </p>
+           </li>
+          </ul>
+          <p>
+           <img alt="_images/1.1_utilizar_menus.png" src="_images/1.1_utilizar_menus.png"/>
+          </p>
+          <center>
+           <i>
+            - Opções relativamente a inconsistência de dados dos catequizandos -
+           </i>
+          </center>
+          <p>
+          </p>
+          <div class="info">
+           <p>
+            <b>
+             NOTA:
+            </b>
+            Dependendo do seu tipo de conta de utilizador ou do contexto em que se encontra, algumas opções do menu poderão não estar visíveis ou não serem selecionáveis. Consulte
+            <b>
+             Tipos de contas
+            </b>
+            neste manual.
+           </p>
+          </div>
+         </section>
+         <section id="tipos-de-contas">
+          <h3 id="tipos-de-contas">
+           1.2 Tipos de contas
+           <a class="headerlink" href="#tipos-de-contas" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           Existem vários tipos de contas de utilizador no CatecheSis.
+          </p>
+          <p>
+           Relativamente ao sistema, o seu tipo de conta pode ser:
+          </p>
+          <ul class="simple">
+           <li>
+            <p>
+             <strong>
+              Utilizador (simples)
+             </strong>
+             – É o tipo de conta mais comum. Tem permissões para modificar os seus próprios dados pessoais e aceder somente às fichas dos seus catequizandos (se for catequista), para leitura e edição. Permite ainda fazer pesquisas sobre a base de dados de catequizandos, imprimir a folha de presenças e as fichas do grupo em que dá catequese, e consultar as estatísticas da catequese paroquial.
+            </p>
+           </li>
+           <li>
+            <p>
+             <strong>
+              Administrador
+             </strong>
+             – Além de tudo o que um utilizador simples pode fazer, um Administrador pode ainda inscrever catequizandos, aceder à ficha de qualquer catequizando e modificar fichas, gerar e imprimir listagens de catequizandos (ex: baptismos, escuteiros, etc.), criar e gerir grupos de catequese, criar e modificar contas de outros utilizadores.
+            </p>
+           </li>
+          </ul>
+          <p>
+           Relativamente à catequese, o seu tipo de conta pode ser:
+          </p>
+          <ul class="simple">
+           <li>
+            <p>
+             <strong>
+              Catequista ativo
+             </strong>
+             – Pode ser inserido num grupo de catequese no ano catequético atual.
+            </p>
+           </li>
+           <li>
+            <p>
+             <strong>
+              Catequista inativo
+             </strong>
+             – Não pode ser inserido num grupo de catequese no ano catequético atual, mas já deu catequese no passado e/ou poderá vir a tornar-se um catequista ativo no futuro.
+            </p>
+           </li>
+           <li>
+            <p>
+             <strong>
+              Não catequista
+             </strong>
+             – Nunca pode ser inserido numa grupo de catequese. Este tipo de conta pode ser utilizada por um utilizador que apenas efectue tarefas administrativas, por exemplo.
+            </p>
+           </li>
+          </ul>
+          <p>
+           Apenas um Administrador pode modificar o tipo de conta dos utilizadores.
+          </p>
+          <p>
+           Algumas funcionalidades do CatecheSis só estão disponíveis para Administradores. De ora em diante neste manual, essas funcionalidades serão assinaladas com o ícone
+           <img alt="🅐🅓🅜🅘🅝🅘🅢🅣🅡🅐🅓🅞🅡" src="_images/administrador.svg"/>
+           .
+          </p>
+          <section id="qual-e-o-meu-tipo-de-conta">
+           <h4 id="qual-e-o-meu-tipo-de-conta">
+            1.2.1 Qual é o meu tipo de conta?
+            <a class="headerlink" href="#qual-e-o-meu-tipo-de-conta" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Para saber qual o seu tipo de conta, aceda ao ecrã
+            <em>
+             Configurações
+            </em>
+            (ícone da roda dentada no canto superior direito do ecrã).
+           </p>
+           <p>
+            No painel
+            <em>
+             Dados da conta
+            </em>
+            observe o campo
+            <em>
+             Atributos
+            </em>
+            .
+           </p>
+           <p>
+            Se não possuir o atributo
+            <em>
+             Administrador
+            </em>
+            , o seu tipo de conta é de
+            <em>
+             Utilizador (simples)
+            </em>
+            . Se não tiver o atributo
+            <em>
+             Catequista ativo
+            </em>
+            nem
+            <em>
+             Catequista inativo
+            </em>
+            , então não é catequista.
+           </p>
+           <p>
+            <img alt="_images/1.2.1_qual_e_o_meu_tipo_de_conta_1.png" src="_images/1.2.1_qual_e_o_meu_tipo_de_conta_1.png"/>
+           </p>
+           <center>
+            <i>
+             - Utilizador tem uma conta de Administrador e é um catequista ativo -
+            </i>
+           </center>
+          </section>
+         </section>
+         <section id="editar-dados-no-catechesis">
+          <h3 id="editar-dados-no-catechesis">
+           1.3 Editar dados no Catechesis
+           <a class="headerlink" href="#editar-dados-no-catechesis" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           Em diversos ecrãs do CatecheSis é possível editar dados.
+          </p>
+          <p>
+           Sempre que tal for possível, encontrará um botão
+           <em>
+            Editar
+           </em>
+           , geralmente localizado no canto superior direito dos painéis. Clique em
+           <em>
+            Editar
+           </em>
+           para habilitar o modo de edição.
+          </p>
+          <p>
+           Nesse momento, o botão
+           <em>
+            Editar
+           </em>
+           será substituído por dois botões:
+           <em>
+            Cancelar
+           </em>
+           e
+           <em>
+            Guardar
+           </em>
+           . Clique em
+           <em>
+            Guardar
+           </em>
+           para submeter as alterações à base de dados, ou em
+           <em>
+            Cancelar
+           </em>
+           para descartar as alterações.
+          </p>
+          <p>
+           <img alt="_images/1.3_editar_dados_no_catechesis_1.png" src="_images/1.3_editar_dados_no_catechesis_1.png"/>
+          </p>
+          <center>
+           <i>
+            - Botão de Editar e botões de Cancelar e Guardar. -
+           </i>
+          </center>
+          <p>
+           Depois de submeter as alterações procure uma caixa de diálogo, geralmente localizada no topo do ecrã, que confirma se a operação foi completada com sucesso (caixa verde) ou se ocorreu um erro (caixa vermelha).
+          </p>
+          <p>
+           <img alt="_images/1.3_editar_dados_no_catechesis_2.png" src="_images/1.3_editar_dados_no_catechesis_2.png"/>
+          </p>
+          <center>
+           <i>
+            - Modificação dos dados da minha conta -
+           </i>
+          </center>
+          <p>
+          </p>
+         </section>
+        </section>
+        <section id="efectuar-uma-tarefa">
+         <h2 id="efectuar-uma-tarefa">
+          2. Efectuar uma tarefa
+          <a class="headerlink" href="#efectuar-uma-tarefa" title="Link permanente para este título">
+           ¶
+          </a>
+         </h2>
+         <section id="modificar-os-dados-da-minha-conta">
+          <h3 id="modificar-os-dados-da-minha-conta">
+           2.1 Modificar os dados da minha conta
+           <a class="headerlink" href="#modificar-os-dados-da-minha-conta" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           Aceda aceda ao ecrã
+           <em>
+            Configurações
+           </em>
+           (ícone da roda dentada no canto superior direito do ecrã), localize o painel
+           <em>
+            Dados da conta
+           </em>
+           e clique no botão
+           <em>
+            Editar
+           </em>
+           , localizado no canto superior direito do painel.
+          </p>
+          <p>
+           Pode modificar a forma como o seu nome é apresentado no programa, o seu endereço de
+           <em>
+            e-mail
+           </em>
+           e o seu número de telefone.
+          </p>
+          <p>
+           Para modificar também a palavra-passe, clique na linha
+           <em>
+            Modificar palavra-passe
+           </em>
+           .
+          </p>
+          <p>
+           Não é possível modificar o seu nome de utilizador. Os atributos da sua conta só podem ser modificados por um administrador.
+          </p>
+          <p>
+           <img alt="_images/2.1_modificar_os_dados_da_minha_conta.png" src="_images/2.1_modificar_os_dados_da_minha_conta.png"/>
+          </p>
+          <center>
+           <i>
+            - O Utilizador editou os dados da sua conta com sucesso -
+           </i>
+          </center>
+          <p>
+          </p>
+          <p>
+           Quando estiver satisfeito(a) com as alterações, clique em
+           <em>
+            Guardar
+           </em>
+           .
+          </p>
+          <div class="info">
+           <p>
+            <b>
+             NOTA 1:
+            </b>
+            O seu endereço de
+            <i>
+             e-mail
+            </i>
+            e o seu número de telefone são visíveis apenas por administradores, e destinam-se a permitir que estes entrem em contacto consigo se necessário.
+           </p>
+           <p>
+            <b>
+             NOTA 2:
+            </b>
+            O seu nome, tal como escrito na caixa
+            <i>
+             Nome
+            </i>
+            , é utilizado em determinados ecrãs do CatecheSis e é o que poderá ser visto pelos outros utilizadores.
+  Em alguns ecrãs, bem como no canto superior direito do ecrã, o CatecheSis apresenta apenas o seu primeiro e último nome. O seu primeiro e último nome correspondem à primeira e última palavra escritas na caixa
+            <i>
+             Nome
+            </i>
+            , respectivamente.
+           </p>
+          </div>
+         </section>
+         <section id="consultar-as-fichas-dos-meus-catequizandos">
+          <h3 id="consultar-as-fichas-dos-meus-catequizandos">
+           2.2 Consultar as fichas dos meus catequizandos
+           <a class="headerlink" href="#consultar-as-fichas-dos-meus-catequizandos" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <section id="opcao-1">
+           <h4 id="opcao-1">
+            2.2.1 Opção 1
+            <a class="headerlink" href="#opcao-1" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao ecrã de
+            <em>
+             Início
+            </em>
+            (clicando no ícone da casa, ou no logotipo do CatecheSis, na barra de menu) e observe o painel
+            <em>
+             Os seus grupos de catequese
+            </em>
+            . É apresentado o(s) seu(s) grupo(s) de catequese neste ano catequético.
+           </p>
+           <p>
+            <img alt="_images/2.2_consultar_as_fichas_dos_meus_catequizandos_1.png" src="_images/2.2_consultar_as_fichas_dos_meus_catequizandos_1.png"/>
+           </p>
+           <center>
+            <i>
+             - Painel sobre Os seus grupos de catequese -
+            </i>
+           </center>
+           <p>
+           </p>
+           <div class="info">
+            <p>
+             <b>
+              NOTA:
+             </b>
+             Neste ecrã também pode ficar a saber se algum dos seus catequizandos faz anos hoje!
+            </p>
+           </div>
+           <p>
+            Clique em
+            <em>
+             Ir para os meus catequizandos
+            </em>
+            .
+           </p>
+          </section>
+          <section id="opcao-2">
+           <h4 id="opcao-2">
+            2.2.2 Opção 2
+            <a class="headerlink" href="#opcao-2" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao menu
+            <em>
+             Catequizandos
+            </em>
+            e clique em
+            <em>
+             Os meus catequizandos.
+            </em>
+           </p>
+           <p>
+            <img alt="_images/2.2_consultar_as_fichas_dos_meus_catequizandos_2.png" src="_images/2.2_consultar_as_fichas_dos_meus_catequizandos_2.png"/>
+           </p>
+           <center>
+            <i>
+             - Listagem dos catequizandos -
+            </i>
+           </center>
+           <p>
+           </p>
+           <p>
+            Clique sobre o nome de um catequizando para abrir a respectiva ficha.
+           </p>
+          </section>
+         </section>
+         <section id="procurar-e-consultar-a-ficha-de-um-catequizando">
+          <h3 id="procurar-e-consultar-a-ficha-de-um-catequizando">
+           2.3 Procurar e consultar a ficha de um catequizando
+           <a class="headerlink" href="#procurar-e-consultar-a-ficha-de-um-catequizando" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <section id="procurar-por-nome-data-de-nascimento">
+           <h4 id="procurar-por-nome-data-de-nascimento">
+            2.3.1 Procurar por nome / data de nascimento
+            <a class="headerlink" href="#procurar-por-nome-data-de-nascimento" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao menu
+            <em>
+             Catequizandos
+            </em>
+            e selecione a opção
+            <em>
+             Por nome / data de nascimento
+            </em>
+            .
+           </p>
+           <p>
+            No campo
+            <em>
+             Nome
+            </em>
+            pode escrever o nome completo ou apenas parte dele. Pode até escrever qualquer subconjunto de caracteres do nome separados por espaços, desde que estejam ordenados tal como surgem no nome do catequizando. Experimente, por exemplo, escrever apenas as iniciais do nome, separadas por espaços.
+           </p>
+           <p>
+            A pesquisa não é sensível a maiúsculas/minúsculas, nem a acentos ou cedilhas.
+           </p>
+           <p>
+            No campo
+            <em>
+             Nasceu a
+            </em>
+            pode especificar a data de nascimento clicando com o rato na caixa ou utilizando teclado (no formado
+            <em>
+             dd-mm-aaaa
+            </em>
+            ).
+           </p>
+           <p>
+            Ambos os campos são opcionais.
+           </p>
+           <p>
+            <img alt="_images/2.3.1_procurar_por_nome_data_de_nascimento.png" src="_images/2.3.1_procurar_por_nome_data_de_nascimento.png"/>
+           </p>
+           <center>
+            <i>
+             - Procurar por nome / data de nascimento -
+            </i>
+           </center>
+           <p>
+           </p>
+           <p>
+            Clique sobre o nome de qualquer catequizando na lista de resultados para aceder à respectiva ficha.
+           </p>
+           <div class="info">
+            <p>
+             <b>
+              NOTA:
+             </b>
+             Se a sua conta for do tipo
+             <i>
+              Administrador
+             </i>
+             poderá abrir a ficha de qualquer catequizando.  
+  Caso contrário, só poderá abrir as fichas dos catequizandos que pertençam ao seu grupo de catequese neste ano catequético.
+            </p>
+           </div>
+          </section>
+          <section id="procurar-por-ano-catecismo">
+           <h4 id="procurar-por-ano-catecismo">
+            2.3.2 Procurar por ano / catecismo
+            <a class="headerlink" href="#procurar-por-ano-catecismo" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao menu
+            <em>
+             Catequizandos
+            </em>
+            e selecione a opção
+            <em>
+             Por ano / catecismo
+            </em>
+            .
+           </p>
+           <p>
+            Pode atribuir valores aos campos
+            <em>
+             Ano catequético
+            </em>
+            ,
+            <em>
+             Catecismo
+            </em>
+            e
+            <em>
+             grupo
+            </em>
+            . Todos eles são opcionais.
+           </p>
+           <p>
+            É possível também filtrar os resultados obtidos segundo determinados critérios. Para tal, clique na linha
+            <em>
+             Aplicar filtros
+            </em>
+            e surgirão mais opções.
+           </p>
+           <p>
+            <img alt="_images/2.3.2_procurar_por_ano_catecismo.png" src="_images/2.3.2_procurar_por_ano_catecismo.png"/>
+           </p>
+           <center>
+            <i>
+             - O Utilizador pediu todos os catequizandos inscritos no 1ºAno em 
+2022/2023 -
+            </i>
+           </center>
+           <p>
+           </p>
+           <div class="info">
+            <p>
+             <b>
+              NOTA 1:
+             </b>
+             Depois de clicar em
+             <i>
+              Pesquisar,
+             </i>
+             os resultados desta pesquisa (incluindo os filtros que aplicou) podem ser impressos ou exportados como um ficheiro do Microsoft Excel ou PDF. Para tal, utilize os botões
+             <i>
+              Imprimir
+             </i>
+             e
+             <i>
+              Exportar
+             </i>
+             , respectivamente, localizados imediatamente antes da lista de resultados.
+            </p>
+            <p>
+             <b>
+              NOTA 2:
+             </b>
+             Se especificar valores para os três campos
+             <i>
+              Ano catequético
+             </i>
+             ,
+             <i>
+              catecismo
+             </i>
+             e
+             <i>
+              grupo
+             </i>
+             , surgirá juntamente com os resultados da pesquisa um botão que permite imprimir a folha de presenças para esse grupo de catequese bem como as fichas dos catequizandos.
+            </p>
+            <p>
+             <b>
+              NOTA 3:
+             </b>
+             Se a sua conta for do tipo
+             <i>
+              Administrador
+             </i>
+             poderá abrir a ficha de qualquer catequizando.
+  Caso contrário, só poderá abrir as fichas dos catequizandos que pertençam ao seu grupo de catequese neste ano catequético.
+            </p>
+           </div>
+          </section>
+          <section id="procurar-por-catequista">
+           <h4 id="procurar-por-catequista">
+            2.3.3 Procurar por catequista
+            <a class="headerlink" href="#procurar-por-catequista" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao menu
+            <em>
+             Catequizandos
+            </em>
+            e selecione a opção
+            <em>
+             Por catequista
+            </em>
+            .
+           </p>
+           <p>
+            Pode atribuir valores aos campos
+            <em>
+             Ano catequético
+            </em>
+            e
+            <em>
+             Catequista
+            </em>
+            . Ambos são opcionais.
+           </p>
+           <p>
+            É possível também filtrar os resultados obtidos segundo determinados critérios. Para tal, clique na linha
+            <em>
+             Aplicar filtros
+            </em>
+            e surgirão mais opções. Consulte o exemplo no tópico anterior.
+           </p>
+           <div class="info">
+            <p>
+             <b>
+              NOTA 1:
+             </b>
+             Depois de clicar em
+             <i>
+              Pesquisar,
+             </i>
+             os resultados desta pesquisa (incluindo os filtros que aplicou) podem ser impressos ou exportados como um ficheiro do Microsoft Excel ou PDF. Para tal, utilize os botões
+             <i>
+              Imprimir
+             </i>
+             e
+             <i>
+              Exportar
+             </i>
+             , respectivamente, localizados imediatamente antes da lista de resultados.
+            </p>
+            <p>
+             <b>
+              NOTA 2:
+             </b>
+             Se a sua conta for do tipo
+             <i>
+              Administrador
+             </i>
+             poderá abrir a ficha de qualquer catequizando.  
+  Caso contrário, só poderá abrir as fichas dos catequizandos que pertençam ao seu grupo de catequese neste ano catequético.
+            </p>
+           </div>
+          </section>
+         </section>
+         <section id="consultar-o-arquivo-acerca-de-um-catequizando">
+          <h3 id="consultar-o-arquivo-acerca-de-um-catequizando">
+           2.4 Consultar o arquivo acerca de um catequizando
+           <a class="headerlink" href="#consultar-o-arquivo-acerca-de-um-catequizando" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           Proceda do mesmo modo que para
+           <a class="reference external" href="#procurar-e-consultar-a-ficha-de-um-catequizando">
+            2.3 Procurar e consultar a ficha de um catequizando
+           </a>
+           .
+          </p>
+          <p>
+           Estando a ficha do catequizando aberta, clique sobre o separador
+           <em>
+            Arquivo
+           </em>
+           , no topo do ecrã.
+          </p>
+          <p>
+           <img alt="_images/2.4_consultar_o_arquivo_acerca_de_um_catequizando.png" src="_images/2.4_consultar_o_arquivo_acerca_de_um_catequizando.png"/>
+          </p>
+          <center>
+           <i>
+            - Consulta do arquivo acerca de um catequizando -
+           </i>
+          </center>
+          <p>
+          </p>
+          <p>
+           Neste ecrã poderá consultar detalhes do percurso catequético do catequizando, incluindo sacramentos, grupos de catequese e catequistas. Poderá também editar estes dados.
+          </p>
+         </section>
+         <section id="imprimir-folha-de-presencas-fichas-de-catequizandos-ou-fichas-de-pre-inscricao">
+          <h3 id="imprimir-folha-de-presencas-fichas-de-catequizandos-ou-fichas-de-pre-inscricao">
+           2.5 Imprimir folha de presenças, fichas de catequizandos ou fichas de pré-inscrição
+           <a class="headerlink" href="#imprimir-folha-de-presencas-fichas-de-catequizandos-ou-fichas-de-pre-inscricao" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <section id="para-o-meu-grupo-de-catequese">
+           <h4 id="para-o-meu-grupo-de-catequese">
+            2.5.1 Para o meu grupo de catequese
+            <a class="headerlink" href="#para-o-meu-grupo-de-catequese" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao menu
+            <em>
+             Catequizandos
+            </em>
+            e selecione a opção
+            <em>
+             Os meus catequizandos.
+            </em>
+           </p>
+           <p>
+            No ecrã que surge, clique no botão
+            <em>
+             Ir para a Área de Impressão.
+            </em>
+           </p>
+           <p>
+            Seleccione o separador
+            <em>
+             Folha de presenças
+            </em>
+            e clique em
+            <em>
+             Imprimir
+            </em>
+            . Obtém uma tabela pré-preenchida com os nomes dos seus catequizandos e as datas de todas as sessões desde o início de Setembro até ao fim de Junho. É recomendado que configure a impressora para imprimir a folha na horizontal. Poderá também ser necessário alterar a escala de impressão para que todas as colunas sejam legíveis. Consulte a ajuda do seu
+            <em>
+             navegador
+            </em>
+            .
+           </p>
+           <p>
+            Seleccione o separador
+            <em>
+             Fichas dos catequizandos
+            </em>
+            e clique em
+            <em>
+             Imprimir
+            </em>
+            . Obtém um conjunto de fichas com o resumo da informação relevante sobre cada catequizando. É recomendado que configure a impressora para imprimir a folha na vertical. Poderá também ser útil alterar a escala de impressão para que possa acomodar várias fichas numa folha A4. Consulte a ajuda do seu
+            <em>
+             navegador
+            </em>
+            .
+           </p>
+           <p>
+            Seleccione o separador
+            <em>
+             Pré-Inscrições
+            </em>
+            e clique em
+            <em>
+             Transferir
+            </em>
+            . Obtém um ficheiro do Microsoft Word com as fichas de pré-inscrição para o grupo de catequizandos que selecionou. As fichas saem pré-preenchidas com os dados de cada catequizando, um por página.
+           </p>
+          </section>
+          <section id="para-outro-grupo-de-catequese">
+           <h4 id="para-outro-grupo-de-catequese">
+            2.5.2 Para outro grupo de catequese
+            <img alt="🅐🅓🅜🅘🅝🅘🅢🅣🅡🅐🅓🅞🅡" src="_images/administrador.svg"/>
+            <a class="headerlink" href="#para-outro-grupo-de-catequese" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao menu
+            <em>
+             Catequese
+            </em>
+            e selecione
+            <em>
+             Área de Impressão
+            </em>
+            .
+           </p>
+           <p>
+            Introduza o ano catequético, catecismo e grupo para a qual pretende gerar a folha de presenças e as fichas dos catequizandos.
+           </p>
+           <p>
+            Clique no botão
+            <em>
+             Gerar
+            </em>
+            . Siga as instruções já apresentadas no tópico anterior acerca dos separadores
+            <em>
+             Folha de presenças, Fichas dos catequizandos
+            </em>
+            e
+            <em>
+             Pré-Inscrições
+            </em>
+            .
+           </p>
+           <div class="info">
+            <p>
+             <b>
+              NOTA:
+             </b>
+             Também pode gerar a folha de presenças, as fichas dos catequizandos ou as fichas de pré-inscrição a partir de uma pesquisa por ano/catecismo. Aceda ao menu
+             <i>
+              Catequizandos
+             </i>
+             e selecione a opção
+             <i>
+              Por ano/catecismo
+             </i>
+             . Especifique o ano catequético, catecismo e grupo e clique em
+             <i>
+              Pesquisar
+             </i>
+             . Surgirá então o botão
+             <i>
+              Ir para a Área de Impressão
+             </i>
+             .
+            </p>
+           </div>
+          </section>
+         </section>
+         <section id="registar-o-aproveitamento-dos-catequizandos">
+          <h3 id="registar-o-aproveitamento-dos-catequizandos">
+           2.6 Registar o aproveitamento dos catequizandos
+           <a class="headerlink" href="#registar-o-aproveitamento-dos-catequizandos" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <section id="registar-o-aproveitamento-dos-meus-catequizandos">
+           <h4 id="registar-o-aproveitamento-dos-meus-catequizandos">
+            2.6.1 Registar o aproveitamento dos meus catequizandos
+            <a class="headerlink" href="#registar-o-aproveitamento-dos-meus-catequizandos" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao menu
+            <em>
+             Catequese
+            </em>
+            e seleccione
+            <em>
+             Aproveitamento dos catequizandos
+            </em>
+            .
+           </p>
+           <p>
+            Surge uma lista com todos os seus catequizandos actuais. Para cada catequizando, classifique o seu aproveitamento clicando ou deslizando o botão localizado à esquerda do seu nome.
+           </p>
+           <p>
+            Para terminar, clique em Guardar, no topo do ecrã.
+           </p>
+           <p>
+            <img alt="_images/2.6.1_registar_o_aproveitamento_dos_meus_catequizandos.png" src="_images/2.6.1_registar_o_aproveitamento_dos_meus_catequizandos.png"/>
+           </p>
+           <center>
+            <i>
+             - Registo do aproveitamento dos meus catequizandos -
+            </i>
+           </center>
+           <p>
+           </p>
+          </section>
+          <section id="abrir-fechar-o-periodo-de-avaliacao">
+           <h4 id="abrir-fechar-o-periodo-de-avaliacao">
+            2.6.2 Abrir/fechar o período de avaliação
+            <img alt="🅐🅓🅜🅘🅝🅘🅢🅣🅡🅐🅓🅞🅡" src="_images/administrador.svg"/>
+            <a class="headerlink" href="#abrir-fechar-o-periodo-de-avaliacao" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao menu
+            <em>
+             Catequese
+            </em>
+            e seleccione
+            <em>
+             Aproveitamento dos catequizandos
+            </em>
+            .
+           </p>
+           <p>
+            Se a sua conta for de
+            <em>
+             Administrador
+            </em>
+            , surgirá no topo da janela um painel semelhante ao da figura abaixo:
+           </p>
+           <p>
+            <img alt="_images/2.6.2_abrir_fechar_o_periodo_de_avaliacao.png" src="_images/2.6.2_abrir_fechar_o_periodo_de_avaliacao.png"/>
+           </p>
+           <center>
+            <i>
+             - Abrir/fechar o período de avaliação -
+            </i>
+           </center>
+           <p>
+           </p>
+           <p>
+            Este painel também se contra no ecrã
+            <em>
+             Configurações
+            </em>
+            (ícone da roda dentada no canto superior direito do ecrã).
+           </p>
+           <p>
+            Clique ou deslize o botão azul. Quando o botão está definido para
+            <em>
+             ON
+            </em>
+            , o período de avaliação está aberto, e todos os catequistas podem avaliar os seus catequizandos. Quando o botão está definido para
+            <em>
+             OFF
+            </em>
+            , os catequistas não poderão alterar a avaliação dos catequizandos.
+           </p>
+          </section>
+         </section>
+         <section id="gerar-listagens-de-catequizandos">
+          <h3 id="gerar-listagens-de-catequizandos">
+           2.7 Gerar listagens de catequizandos
+           <img alt="🅐🅓🅜🅘🅝🅘🅢🅣🅡🅐🅓🅞🅡" src="_images/administrador.svg"/>
+           <a class="headerlink" href="#gerar-listagens-de-catequizandos" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           Aceda ao menu
+           <em>
+            Catequizandos
+           </em>
+           e selecione uma das opções disponíveis abaixo da linha
+           <em>
+            Listar catequizandos
+           </em>
+           . As várias opções são descritas em seguida.
+          </p>
+          <p>
+           Todas as listagens de sacramentos incluem o nome do catequizando, data de nascimento, a data e paróquia do sacramento em causa.
+          </p>
+          <section id="listar-baptismos">
+           <h4 id="listar-baptismos">
+            2.7.1 Listar baptismos
+            <a class="headerlink" href="#listar-baptismos" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Gera uma listagem de todos os baptismos registados na base de dados. Pode filtrar os resultados por ano do baptismo e/ou por paróquia.
+           </p>
+          </section>
+          <section id="listar-primeiras-comunhoes">
+           <h4 id="listar-primeiras-comunhoes">
+            2.7.2 Listar primeiras comunhões
+            <a class="headerlink" href="#listar-primeiras-comunhoes" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Gera uma listagem de todas as primeiras comunhões registadas na base de dados. Pode filtrar os resultados por ano da primeira comunhão e/ou por paróquia.
+           </p>
+          </section>
+          <section id="listar-profissoes-de-fe">
+           <h4 id="listar-profissoes-de-fe">
+            2.7.3 Listar profissões de fé
+            <a class="headerlink" href="#listar-profissoes-de-fe" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Gera uma listagem de todas as profissões de fé registadas na base de dados. Pode filtrar os resultados por ano da profissão de fé e/ou por paróquia.
+           </p>
+          </section>
+          <section id="listar-confirmacoes">
+           <h4 id="listar-confirmacoes">
+            2.7.4 Listar confirmações
+            <a class="headerlink" href="#listar-confirmacoes" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Gera uma listagem de todas as confirmações registadas na base de dados. Pode filtrar os resultados por ano da confirmação e/ou por paróquia.
+           </p>
+          </section>
+          <section id="listar-escuteiros">
+           <h4 id="listar-escuteiros">
+            2.7.5 Listar escuteiros
+            <a class="headerlink" href="#listar-escuteiros" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Gera uma listagem de todos os catequizandos que são escuteiros e que estão inscritos nalgum grupo de catequese neste ano catequético.
+           </p>
+          </section>
+         </section>
+         <section id="consultar-imprimir-sacramentos-de-todos-os-catequizandos">
+          <h3 id="consultar-imprimir-sacramentos-de-todos-os-catequizandos">
+           2.8 Consultar/Imprimir sacramentos de todos os catequizandos
+           <a class="headerlink" href="#consultar-imprimir-sacramentos-de-todos-os-catequizandos" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           É possível listar de uma forma sucinta todos os sacramentos de um conjunto de catequizandos, sob a forma de ícones:
+          </p>
+          <p>
+           <img alt="_images/2.8_consultar_imprimir_sacramentos_de_todos_os_catequizandos_1.png" src="_images/2.8_consultar_imprimir_sacramentos_de_todos_os_catequizandos_1.png"/>
+          </p>
+          <center>
+           <i>
+            - Sacramentos -
+           </i>
+          </center>
+          <p>
+          </p>
+          <p>
+           Um ícone verde
+           <img alt="_images/2.8_consultar_imprimir_sacramentos_de_todos_os_catequizandos_2.png" src="_images/2.8_consultar_imprimir_sacramentos_de_todos_os_catequizandos_2.png"/>
+           indica que o sacramento em causa foi realizado na Paróquia. Um ícone cinzento
+           <img alt="_images/2.8_consultar_imprimir_sacramentos_de_todos_os_catequizandos_3.png" src="_images/2.8_consultar_imprimir_sacramentos_de_todos_os_catequizandos_3.png"/>
+           indica que o sacramento foi realizado noutra paróquia.
+Um ponto verde sobre o ícone indica que o comprovativo do respetivo sacramento foi carregado no CatecheSis e está disponível no arquivo do catequizando.
+          </p>
+          <div class="info">
+           <p>
+            <b>
+             NOTA:
+            </b>
+            Deste modo, é fácil determinar para um grupo de catequese quais são as certidões de baptismo (por exemplo) que são necessárias pedir aos encarregados de educação, e quais aquelas que podem ser obtidas nesta mesma paróquia sem necessidade de incomodar os encarregados de educação.
+           </p>
+          </div>
+          <p>
+           Os ícones dos sacramentos estão disponíveis nas seguintes listagens:
+          </p>
+          <section id="os-meus-catequizandos">
+           <h4 id="os-meus-catequizandos">
+            2.8.1 Os meus catequizandos
+            <a class="headerlink" href="#os-meus-catequizandos" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao menu
+            <em>
+             Catequizandos
+            </em>
+            &gt;
+            <em>
+             Os meus catequizandos
+            </em>
+            .
+           </p>
+           <p>
+            Clique em
+            <em>
+             Mostrar sacramentos.
+            </em>
+           </p>
+          </section>
+          <section id="pesquisa-por-ano-catecismo">
+           <h4 id="pesquisa-por-ano-catecismo">
+            2.8.2 Pesquisa por ano/catecismo
+            <a class="headerlink" href="#pesquisa-por-ano-catecismo" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao menu
+            <em>
+             Catequizandos
+            </em>
+            &gt;
+            <em>
+             Por ano / catecismo
+            </em>
+            .
+           </p>
+           <p>
+            Efetue uma pesquisa e depois clique em
+            <em>
+             Mostrar sacramentos.
+            </em>
+           </p>
+          </section>
+          <section id="pesquisa-por-catequista">
+           <h4 id="pesquisa-por-catequista">
+            2.8.3 Pesquisa por catequista
+            <a class="headerlink" href="#pesquisa-por-catequista" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao menu
+            <em>
+             Catequizandos
+            </em>
+            &gt;
+            <em>
+             Por catequista
+            </em>
+            .
+           </p>
+           <p>
+            Efetue uma pesquisa e depois clique em
+            <em>
+             Mostrar sacramentos.
+            </em>
+           </p>
+           <p>
+            <img alt="_images/2.8_consultar_imprimir_sacramentos_de_todos_os_catequizandos_4.png" src="_images/2.8_consultar_imprimir_sacramentos_de_todos_os_catequizandos_4.png"/>
+           </p>
+           <center>
+            <i>
+             - Apresentação dos sacramentos dos catequizandos -
+            </i>
+           </center>
+           <p>
+           </p>
+           <div class="info">
+            <p>
+             <b>
+              NOTA:
+             </b>
+             Para imprimir a listagem com os sacramentos a cores (verde/cinzento), certifique-se de que o
+             <i>
+              navegador
+             </i>
+             está configurado para imprimir
+             <i>
+              cores de fundo e imagens
+             </i>
+             . Ver o
+             <b>
+              item IV
+             </b>
+             em
+             <b>
+              Problemas Conhecidos
+             </b>
+            </p>
+           </div>
+          </section>
+         </section>
+         <section id="utilizar-as-ferramentas-de-apoio-a-decisao">
+          <h3 id="utilizar-as-ferramentas-de-apoio-a-decisao">
+           2.9 Utilizar as ferramentas de apoio à decisão
+           <a class="headerlink" href="#utilizar-as-ferramentas-de-apoio-a-decisao" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           O CatecheSis dispõe de uma ferramenta de apoio à decisão que o ajuda a decidir quais os catequizandos que estão aptos para receber um determinado sacramento neste ano catequético, tendo em consideração o seu percurso catequético e algumas regras pré-definidas, bem como a detectar eventuais incorreções nas fichas dos catequizandos.
+          </p>
+          <div class="info">
+           <p>
+            <b>
+             NOTA:
+            </b>
+            Se for um administrador, esta ferramenta irá mostrar-lhe um relatório completo com todos os catequizandos inscritos neste ano catequético.
+   Caso contrário, apenas serão mostrados catequizandos dos seus grupos de catequese.
+           </p>
+          </div>
+          <section id="listar-catequizandos-elegiveis-para-baptismo">
+           <h4 id="listar-catequizandos-elegiveis-para-baptismo">
+            2.9.1 Listar catequizandos elegíveis para Baptismo
+            <a class="headerlink" href="#listar-catequizandos-elegiveis-para-baptismo" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao menu
+            <em>
+             Sacramentos
+            </em>
+            e, na secção
+            <em>
+             Apoio à decisão
+            </em>
+            , clique em
+            <em>
+             Baptismos
+            </em>
+            .
+           </p>
+           <p>
+            O relatório apresenta-lhe todos os catequizandos inscritos neste ano catequético, divididos em três listas:
+           </p>
+           <p>
+            <img alt="_images/2.9.1_apoio_decisao_baptismo.png" src="_images/2.9.1_apoio_decisao_baptismo.png"/>
+           </p>
+           <ul class="simple">
+            <li>
+             <p>
+              <strong>
+               Elegíveis para receber o sacramento
+              </strong>
+              - aqueles que, em princípio, poderão receber o sacramento neste ano catequético. Confirme na coluna
+              <em>
+               Relatório
+              </em>
+              se existem algumas ações necessárias a realizar antes da data do sacramento.
+             </p>
+            </li>
+            <li>
+             <p>
+              <strong>
+               Não cumprem os requisitos
+              </strong>
+              - aqueles que, por não cumprirem todos os requisitos necessários, estão à partida impedidos de receber o sacramento neste ano catequético. Os requisitos podem corresponder à frequência de um determinado ano de catequese, ou a frequência da catequese há pelo menos dois anos, por exemplo.
+             </p>
+            </li>
+            <li>
+             <p>
+              <strong>
+               Já receberam o sacramento
+              </strong>
+              - catequizandos que, por já terem recebido o sacramento, são excluídos das duas listas anteriores.
+             </p>
+            </li>
+           </ul>
+           <p>
+            Clique no título de cada uma destas listas para a expandir / colapsar.
+           </p>
+           <p>
+            A coluna
+            <em>
+             Relatório
+            </em>
+            alerta para eventuais problemas a resolver, tais como comprovativos de baptismo em falta, datas de sacramentos incorretas ou incompletas nas fichas dos catequizandos.
+           </p>
+           <p>
+            Os catequizandos em cada uma das três listas são ordenados por ordem de gravidade dos problemas reportados na coluna
+            <em>
+             Relatório
+            </em>
+            .
+           </p>
+          </section>
+          <section id="listar-catequizandos-elegiveis-para-primeira-comunhao">
+           <h4 id="listar-catequizandos-elegiveis-para-primeira-comunhao">
+            2.9.2 Listar catequizandos elegíveis para Primeira Comunhão
+            <a class="headerlink" href="#listar-catequizandos-elegiveis-para-primeira-comunhao" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao menu
+            <em>
+             Sacramentos
+            </em>
+            e, na secção
+            <em>
+             Apoio à decisão
+            </em>
+            , clique em
+            <em>
+             Primeiras Comunhões
+            </em>
+            .
+           </p>
+           <p>
+            O relatório funciona conforme descrito na secção
+            <a class="reference external" href="#listar-catequizandos-elegiveis-para-baptismo">
+             2.9.1 Listar catequizandos elegíveis para Baptismo
+            </a>
+            .
+           </p>
+          </section>
+          <section id="listar-catequizandos-elegiveis-para-crisma">
+           <h4 id="listar-catequizandos-elegiveis-para-crisma">
+            2.9.3 Listar catequizandos elegíveis para Crisma
+            <a class="headerlink" href="#listar-catequizandos-elegiveis-para-crisma" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao menu
+            <em>
+             Sacramentos
+            </em>
+            e, na secção
+            <em>
+             Apoio à decisão
+            </em>
+            , clique em
+            <em>
+             Crismas
+            </em>
+            .
+           </p>
+           <p>
+            O relatório funciona conforme descrito na secção
+            <a class="reference external" href="#listar-catequizandos-elegiveis-para-baptismo">
+             2.9.1 Listar catequizandos elegíveis para Baptismo
+            </a>
+            .
+           </p>
+          </section>
+          <section id="listar-catequizandos-com-dados-inconsistentes">
+           <h4 id="listar-catequizandos-com-dados-inconsistentes">
+            2.9.4 Listar catequizandos com dados inconsistentes
+            <a class="headerlink" href="#listar-catequizandos-com-dados-inconsistentes" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao menu
+            <em>
+             Análise
+            </em>
+            e, na secção
+            <em>
+             Dados
+            </em>
+            , clique em
+            <em>
+             Dados insconsistentes
+            </em>
+            .
+           </p>
+           <p>
+            Neste relatório, são reportados outros tipos de problemas relacionados com as fichas dos catequizandos, tais como dados incompletos ou incorretos.
+           </p>
+           <p>
+            <img alt="_images/2.9.4_relatorio_dados_inconsistentes.png" src="_images/2.9.4_relatorio_dados_inconsistentes.png"/>
+           </p>
+           <p>
+            Apesar do conteúdo e da finalidade serem diferentes, o aspeto do relatório e o seu funcionamento é muito semelhante ao dos relatórios de apoio à decisão para sacramentos, descritos nas secções anteriores.
+           </p>
+          </section>
+         </section>
+         <section id="consultar-estatisticas-acerca-da-catequese-paroquial">
+          <h3 id="consultar-estatisticas-acerca-da-catequese-paroquial">
+           2.10 Consultar estatísticas acerca da catequese paroquial
+           <a class="headerlink" href="#consultar-estatisticas-acerca-da-catequese-paroquial" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           Aceda ao menu
+           <em>
+            Estatísticas
+           </em>
+           e selecione uma das opções disponíveis. As várias opções são descritas em seguida.
+          </p>
+          <section id="numero-de-catequizandos-por-catequista">
+           <h4 id="numero-de-catequizandos-por-catequista">
+            2.10.1 Número de catequizandos por catequista
+            <a class="headerlink" href="#numero-de-catequizandos-por-catequista" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            O gráfico mostra a evolução do número de catequizandos por cada catequista, ao longo dos anos catequéticos.
+           </p>
+           <p>
+            A tabela mostra o número total de catequizandos que já passaram por cada catequista (contabilizando apenas os dados de anos catequéticos presentes na base de dados do CatecheSis).
+           </p>
+           <p>
+            A coluna
+            <em>
+             Total de catequizandos
+            </em>
+            soma indiscriminadamente os valores apresentados no gráfico para um dado catequista.
+           </p>
+           <p>
+            A coluna
+            <em>
+             Total de catequizandos distintos
+            </em>
+            é mais significativa, pois não soma duas vezes o mesmo catequizando.
+           </p>
+          </section>
+          <section id="desistencias">
+           <h4 id="desistencias">
+            2.10.2 Desistências
+            <a class="headerlink" href="#desistencias" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            O 1º gráfico mostra o número de desistências por ano catequético.
+           </p>
+           <p>
+            Considera-se uma desistência no ano catequético de 2014/2015, por exemplo, se um catequizando inscrito num grupo de catequese nesse ano não se inscrever em nenhum grupo de catequese no ano catequético 2015/2016, excepto no caso de o catequizando estar no 10º catecismo em 2014/2015 (nesse caso considera-se que terminou o percurso catequético).
+           </p>
+           <p>
+            O 2º gráfico mostra a percentagem de desistências por ano catequético.
+           </p>
+           <p>
+            A percentagem é obtida dividindo o número calculado no gráfico anterior para um determinado ano catequético pelo número total de catequizandos inscritos nalgum grupo de catequese nesse mesmo ano catequético.
+           </p>
+           <div class="info">
+            <p>
+             <b>
+              NOTA:
+             </b>
+             O CatecheSis contabiliza as desistências por comparação entre as inscrições num determinado ano catequético e as inscrições no ano seguinte. Por esse motivo, a estatística
+             <i>
+              Desistências
+             </i>
+             só é apresentada até ao ano catequético anterior ao ano atualmente em curso.
+            </p>
+           </div>
+          </section>
+          <section id="percursos-catequeticos-completos">
+           <h4 id="percursos-catequeticos-completos">
+            2.10.3 Percursos catequéticos completos
+            <a class="headerlink" href="#percursos-catequeticos-completos" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            O 1º gráfico mostra o número de catequizandos que terminaram o percurso catequético, por ano catequético.
+           </p>
+           <p>
+            Considera-se que um percurso catequético é completo no ano em que o catequizando, tendo já completado o 10º catecismo (nesse ano ou num ano anterior), recebe o sacramento da Confirmação.
+           </p>
+           <p>
+            O 2º gráfico mostra a percentagem de percursos catequéticos completos num determinado ano, face ao ideal esperado para esse mesmo ano.
+           </p>
+           <p>
+            O ideal esperado corresponde ao número máximo de catequizandos que poderiam nesse ano terminar o 10º catecismo e receber o sacramento da Confirmação. Por exemplo, se considerarmos o ano de 2014/2015, são contabilizados para o ideal esperado todos os catequizandos inscritos no 10º catecismo nesse ano, mais os inscritos no 9º catecismo em 2013/2014, mais os inscritos no 8º catecismo em 2012/2013… A situação que maximiza a percentagem (100%) acontece quando num grupo de catequese nunca se verificarem desistências, ano após ano.
+           </p>
+          </section>
+          <section id="percentagem-de-catequizandos-residentes-na-paroquia">
+           <h4 id="percentagem-de-catequizandos-residentes-na-paroquia">
+            2.10.4 Percentagem de catequizandos residentes na paróquia
+            <a class="headerlink" href="#percentagem-de-catequizandos-residentes-na-paroquia" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            O gráfico mostra a percentagem de catequizandos residentes e não residentes na área geográfica servida pela sua paróquia, considerando todos os catequizandos registados na base de dados (independentemente de estarem ou não inscritos num grupo de catequese neste ano).
+           </p>
+           <p>
+            Considera-se um catequizando residente na paróquia se o código postal constante na sua ficha de inscrição pertencer a um conjunto de códigos postais considerados inclusos no território da paróquia (estes devem ser definidos na base de dados pela pessoa que instalou o CatecheSis).
+           </p>
+          </section>
+         </section>
+         <section id="criar-uma-sessao-de-catequese-virtual">
+          <h3 id="criar-uma-sessao-de-catequese-virtual">
+           2.11 Criar uma sessão de Catequese Virtual
+           <a class="headerlink" href="#criar-uma-sessao-de-catequese-virtual" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           Aceda ao menu
+           <em>
+            Catequese
+           </em>
+           e selecione a opção
+           <em>
+            Criar Catequese Virtual
+           </em>
+           .
+          </p>
+          <p>
+           Incialmente selecione o Catecismo/Grupo e a data que pretende.
+          </p>
+          <p>
+           Através da caixa de texto e das diversas ferramentas disponíveis (formatação de texto, inserção de videos, imagens e hiperligações) é possivel criar uma catequese dinâmica e bem estruturada.
+          </p>
+          <p>
+           <img alt="_images/2.11_criar_uma_catequese_virtual.png" src="_images/2.11_criar_uma_catequese_virtual.png"/>
+          </p>
+          <center>
+           <i>
+            - Criar uma sessão de Catequese Virtual -
+           </i>
+          </center>
+          <p>
+          </p>
+          <p>
+           Para além das ferramentas enumeradas anteriormente, o Catechesis pode dispor ainda de
+           <strong>
+            Recursos na nuvem
+           </strong>
+           , onde estão
+armazenados materias (tais como imagens, separadores, ícones) disponiblizados pelos catequistas da sua paróquia, e para
+os quais também pode contribuir.
+          </p>
+          <div class="info">
+           <p>
+            <b>
+             NOTA:
+            </b>
+            A funcionalidade
+            <i>
+             Recursos na nuvem
+            </i>
+            requer a existência da Catequese Cloud, cuja instalação é opcional, e poderá não estar disponível na sua paróquia.
+    Contacte a pessoa responsável pela instalação do CatecheSis na sua paróquia.
+           </p>
+          </div>
+          <p>
+           Quando o conteúdo da catequese estiver concluido, ou regularmente durante a sua criação, selecione a opção
+           <em>
+            Guardar
+           </em>
+           .
+          </p>
+          <p>
+           Se pretender visualizar o resultado final, selecione a opção
+           <em>
+            Pré-visualizar
+           </em>
+           .
+          </p>
+         </section>
+         <section id="inscrever-um-catequizando">
+          <h3 id="inscrever-um-catequizando">
+           2.12 Inscrever um catequizando
+           <img alt="🅐🅓🅜🅘🅝🅘🅢🅣🅡🅐🅓🅞🅡" src="_images/administrador.svg"/>
+           <a class="headerlink" href="#inscrever-um-catequizando" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <div class="info">
+           <p>
+            <b>
+             NOTA:
+            </b>
+            Antes de inscrever um novo catequizando, poderá ser-lhe muito útil saber se este tem algum irmão já inscrito na catequese.
+  Se tem conhecimento de que o catequizando a inscrever já tem um irmão na catequese, salte directamente para o tópico
+            <b>
+             2.12.2 Inscrever um irmão
+            </b>
+           </p>
+          </div>
+          <section id="inscrever-um-novo-catequizando-offline">
+           <h4 id="inscrever-um-novo-catequizando-offline">
+            2.12.1 Inscrever um novo catequizando (offline)
+            <a class="headerlink" href="#inscrever-um-novo-catequizando-offline" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao menu
+            <em>
+             Inscrições
+            </em>
+            e selecione a opção
+            <em>
+             Inscrever novo catequizando
+            </em>
+            .
+           </p>
+           <p>
+            Preencha o formulário de inscrição. Todos os campos são obrigatórios, excepto o endereço de
+            <em>
+             e-mail
+            </em>
+            , um dos contactos telefónicos e os dados de um dos pais.
+           </p>
+           <p>
+            Se o seu computador tiver uma
+            <em>
+             webcam
+            </em>
+            ,pode opcionalmente tirar uma fotografia ao catequizando clicando no botão
+            <em>
+             Tirar foto
+            </em>
+            .
+           </p>
+           <p>
+            No painel inferior é possível ainda atribuir o catequizando a um grupo de catequese do ano catequético atual. Isto também pode ser feito mais tarde, através do Arquivo.
+           </p>
+           <p>
+            Clique no botão
+            <em>
+             Inscrever
+            </em>
+            .
+           </p>
+           <p>
+            Depois de concluída a inscrição, pode consultar imediatamente a ficha do catequizando, o arquivo (onde poderá
+            <a class="reference external" href="#atribuir-um-catequizando-a-um-grupo-de-catequese">
+             2.14 Atribuir um catequizando a um grupo de catequese
+            </a>
+            , ou inscrever um irmão deste catequizando.
+           </p>
+          </section>
+          <section id="inscrever-um-irmao">
+           <h4 id="inscrever-um-irmao">
+            2.12.2 Inscrever um irmão
+            <a class="headerlink" href="#inscrever-um-irmao" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda primeiro à ficha do irmão do catequizando que pretende inscrever. Pode utilizar qualquer um dos métodos descritos neste manual para aceder à ficha. Consulte
+            <a class="reference external" href="#procurar-e-consultar-a-ficha-de-um-catequizando">
+             2.3 Procurar e consultar a ficha de um catequizando
+            </a>
+           </p>
+           <p>
+            Aceda agora ao menu
+            <em>
+             Inscrições
+            </em>
+            e selecione a opção
+            <em>
+             Inscrever um irmão deste catequizando
+            </em>
+            .
+           </p>
+           <p>
+            <img alt="_images/2.12.2_inscrever_um_irmao.png" src="_images/2.12.2_inscrever_um_irmao.png"/>
+           </p>
+           <center>
+            <i>
+             - Inscrição de um irmão -
+            </i>
+           </center>
+           <p>
+           </p>
+           <p>
+            Surgirá um formulário de inscrição pré-preenchido com os dados dos pais, morada, telefones e
+            <em>
+             e-mail
+            </em>
+            , assumindo que se tratam dos mesmos dados do irmão. Complete a informação em falta e altere o que for necessário.
+           </p>
+           <p>
+            Siga as mesmas instruções do tópico anterior,
+            <a class="reference external" href="#inscrever-um-catequizando">
+             2.12.1 Inscrever um novo catequizando (offline)
+            </a>
+           </p>
+           <div class="info">
+            <p>
+             <b>
+              NOTA:
+             </b>
+             Se durante a inscrição deste catequizando alterar algum dos dados comuns às fichas dos irmãos (ex: morada, telefones,
+             <i>
+              e-mail
+             </i>
+             ou profissão dos pais) esses dados serão automaticamente atualizados nas fichas de todos os irmãos.
+            </p>
+           </div>
+          </section>
+         </section>
+         <section id="renovar-matriculas">
+          <h3 id="renovar-matriculas">
+           2.13 Renovar matrículas
+           <img alt="🅐🅓🅜🅘🅝🅘🅢🅣🅡🅐🅓🅞🅡" src="_images/administrador.svg"/>
+           <a class="headerlink" href="#renovar-matriculas" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           Aceda ao menu
+           <em>
+            Inscrições
+           </em>
+           e seleccione
+           <em>
+            Renovar matrículas
+           </em>
+           .
+          </p>
+          <p>
+           No painel superior, selecione o último ano catequético concluído, o catecismo e grupo dos catequizandos para os quais pretende renovar a matrícula para o ano seguinte.
+          </p>
+          <p>
+           <img alt="_images/2.13_renovar_matriculas_1.png" src="_images/2.13_renovar_matriculas_1.png"/>
+          </p>
+          <center>
+           <i>
+            - Seleção do último ano catequético concluído, o catecismo e grupo dos catequizandos -
+           </i>
+          </center>
+          <p>
+          </p>
+          <p>
+           Nos painéis inferiores selecione o grupo onde devem ser inscritos no ano seguinte os catequizandos que foram aprovados e os que foram reprovados.
+          </p>
+          <p>
+           <img alt="_images/2.13_renovar_matriculas_2.png" src="_images/2.13_renovar_matriculas_2.png"/>
+          </p>
+          <center>
+           <i>
+            - Seleção do grupo onde os catequizandos devem ser inscritos -
+           </i>
+          </center>
+          <p>
+          </p>
+          <p>
+           Em baixo surge uma lista com todos os catequizandos do ano/grupo selecionado.
+          </p>
+          <p>
+           É apresentado o aproveitamento do catequizando (avaliado pelos seus catequistas) à direita do seu nome. Se o aproveitamento de um catequizando for positivo (
+           <em>
+            Transita
+           </em>
+           ), será automaticamente inscrito no catecismo e grupo selecionados no painel
+           <em>
+            Aprovados
+           </em>
+           , caso renove a matrícula. Se o aproveitamento for negativo (
+           <em>
+            Reprova
+           </em>
+           ), será automaticamente inscrito no catecismo e grupo selecionados no painel
+           <em>
+            Reprovados
+           </em>
+           .
+          </p>
+          <p>
+           Para cada catequizando, indique se renova a matrícula clicando ou deslizando o botão localizado à esquerda do seu nome. Indique se a matrícula foi paga na coluna
+           <em>
+            Pago?
+           </em>
+           .
+          </p>
+          <p>
+           <img alt="_images/2.13_renovar_matriculas_3.png" src="_images/2.13_renovar_matriculas_3.png"/>
+          </p>
+          <center>
+           <i>
+            - Indicação de renovação de matrícula e repetivo pagamento -
+           </i>
+          </center>
+          <p>
+          </p>
+          <p>
+           Para terminar, clique em Guardar, no topo da janela.
+          </p>
+          <div class="info">
+           <p>
+            <b>
+             NOTA:
+            </b>
+            A página de renovações de matrícula também apresenta um painel com os pedidos de renovação feitos online, caso esteja a utilizar essa funcionalidade na sua paróquia.
+            <br/>
+            Leia também a secção
+            <b>
+             2.15.4 Aprovar renovações
+            </b>
+            para saber mais sobre como utilizar esta funcionalidade.
+           </p>
+          </div>
+         </section>
+         <section id="atribuir-um-catequizando-a-um-grupo-de-catequese">
+          <h3 id="atribuir-um-catequizando-a-um-grupo-de-catequese">
+           2.14 Atribuir um catequizando a um grupo de catequese
+           <img alt="🅐🅓🅜🅘🅝🅘🅢🅣🅡🅐🅓🅞🅡" src="_images/administrador.svg"/>
+           <a class="headerlink" href="#atribuir-um-catequizando-a-um-grupo-de-catequese" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           Aceda ao arquivo do catequizando, conforme descrito no tópico
+           <a class="reference external" href="#consultar-o-arquivo-acerca-de-um-catequizando">
+            2.4 Consultar o arquivo acerca de um catequizando
+           </a>
+           .
+          </p>
+          <p>
+           No painel
+           <em>
+            Percurso catequético
+           </em>
+           , concentre-se sobre a última linha da tabela. Preencha o ano catequético e o catecismo onde pretende colocar o catequizando. Seleccione a caixa
+           <em>
+            pago
+           </em>
+           se a inscrição foi paga. Clique em
+           <em>
+            Adicionar
+           </em>
+           .
+          </p>
+          <p>
+           <img alt="_images/2.14_atribuir_um_catequizando_a_um_grupo_de_catequese_1.png" src="_images/2.14_atribuir_um_catequizando_a_um_grupo_de_catequese_1.png"/>
+          </p>
+          <center>
+           <i>
+            - Atribuição de um catequizando a um grupo de catequese -
+           </i>
+          </center>
+          <p>
+          </p>
+          <p>
+           É possível também retirar o catequizando de um grupo de catequese ou registar um pagamento posterior à inscrição. Para tal posicione o rato sobre a linha da tabela respeitante ao ano catequético que pretende e surgirão botões para efectuar estas acções.
+          </p>
+          <p>
+           <img alt="_images/2.14_atribuir_um_catequizando_a_um_grupo_de_catequese_2.png" src="_images/2.14_atribuir_um_catequizando_a_um_grupo_de_catequese_2.png"/>
+          </p>
+          <center>
+           <i>
+            - Alterar o catequizando de um grupo de catequese e registo de 
+pagamento -
+           </i>
+          </center>
+          <p>
+          </p>
+          <div class="info">
+           <p>
+            <b>
+             NOTA:
+            </b>
+            A coluna
+            <i>
+             Catequistas
+            </i>
+            é preenchida automaticamente quando forem definidos os catequistas para aquele grupo de catequese. Consulte
+            <b>
+             2.16 Criar e gerir grupos de catequese
+            </b>
+           </p>
+          </div>
+          <p>
+           Se pretender transferir o catequizando para outro grupo de catequese, remova-o primeiro do grupo atual e inscreva-o de seguida no novo grupo, seguindo as instruções acima.
+          </p>
+         </section>
+         <section id="gerir-inscricoes-online">
+          <h3 id="gerir-inscricoes-online">
+           2.15 Gerir inscrições online
+           <img alt="🅐🅓🅜🅘🅝🅘🅢🅣🅡🅐🅓🅞🅡" src="_images/administrador.svg"/>
+           <a class="headerlink" href="#gerir-inscricoes-online" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <section id="abrir-fechar-as-inscricoes-online">
+           <h4 id="abrir-fechar-as-inscricoes-online">
+            2.15.1 Abrir/fechar as inscrições online
+            <a class="headerlink" href="#abrir-fechar-as-inscricoes-online" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Para abrir ou fechar o portal de inscrições e renovações de matrículas online, para encarregados de educação, comece por aceder à página de
+            <em>
+             Configurações
+            </em>
+            (ícone da roda dentada no canto superior direito do ecrã).
+           </p>
+           <p>
+            Na secção
+            <em>
+             Inscrições online
+            </em>
+            deslize o interruptor de modo a que
+            <em>
+             ON
+            </em>
+            fique visível.
+           </p>
+           <p>
+            <img alt="_images/2.15.1_abrir_fechar_inscricoes_online.png" src="_images/2.15.1_abrir_fechar_inscricoes_online.png"/>
+           </p>
+           <center>
+            <i>
+             - Abrir/fechar inscrições online -
+            </i>
+           </center>
+           <p>
+           </p>
+           <div class="info">
+            <p>
+             <b>
+              NOTA:
+             </b>
+             Para ligar/desligar interruptores como este, não é necessário clicar no botão
+             <i>
+              Editar
+             </i>
+             no canto superior direito do painel. A alteração é imediata.
+            </p>
+           </div>
+           <p>
+            A caixa imediatamente abaixo do interruptor indica-lhe o endereço do portal de inscrições online, que poderá divulgar junto dos encarregados de educação e interessados.
+           </p>
+           <p>
+            Os restantes campos do painel permitem-lhe configurar um texto informativo a ser mostrado na página de inscrições, bem como a referência multibanco para receber donativos.
+           </p>
+           <p>
+            À medida que forem chegando pedidos de inscrição/renovação, será mostrado o número de pedidos pendentes no menu
+            <em>
+             Inscrições
+            </em>
+            .
+           </p>
+           <p>
+            <img alt="_images/2.15.1_numero_pedidos_pendentes.png" src="_images/2.15.1_numero_pedidos_pendentes.png"/>
+           </p>
+           <center>
+            <i>
+             - Número de pedidos pendentes -
+            </i>
+           </center>
+           <p>
+           </p>
+           <p>
+            Para visualizar um resumo de todos os pedidos, aceda ao menu
+            <em>
+             Inscrições &gt; Processar pedidos de inscrição online.
+            </em>
+           </p>
+          </section>
+          <section id="visualizar-pedidos-de-novas-inscricoes">
+           <h4 id="visualizar-pedidos-de-novas-inscricoes">
+            2.15.2 Visualizar pedidos de novas inscrições
+            <a class="headerlink" href="#visualizar-pedidos-de-novas-inscricoes" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            O primeiro separador apresenta os
+            <strong>
+             pedidos de inscrição
+            </strong>
+            , para quem se inscreve pela primeira vez.
+           </p>
+           <p>
+            <img alt="_images/2.15.2_novas_inscricoes.png" src="_images/2.15.2_novas_inscricoes.png"/>
+           </p>
+           <center>
+            <i>
+             - Novas inscrições -
+            </i>
+           </center>
+           <p>
+           </p>
+           <p>
+            O programa sugere um catecismo para cada candidato, com base na sua idade e também no último catecismo que ele frequentou (caso tenha vindo de outra paróquia). Deste modo, já consegue prever quantos catequizandos novos entrarão em cada catecismo.
+           </p>
+          </section>
+          <section id="visualizar-pedidos-de-renovacao-de-matricula">
+           <h4 id="visualizar-pedidos-de-renovacao-de-matricula">
+            2.15.3 Visualizar pedidos de renovação de matrícula
+            <a class="headerlink" href="#visualizar-pedidos-de-renovacao-de-matricula" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            O separador
+            <strong>
+             Renovações de matrícula
+            </strong>
+            mostra de forma semelhante os pedidos de renovação que forem recebidos.
+           </p>
+           <p>
+            Aqui pode ser visualizada a informação completa de um pedido clicando sobre essa linha da tabela.
+           </p>
+           <p>
+            Esta página mostra o total de pedidos de renovação de todos os catecismos, no entanto, não é aqui que se processa a renovação.
+           </p>
+           <p>
+            <img alt="_images/2.15.3_renovacoes_de_matricula.png" src="_images/2.15.3_renovacoes_de_matricula.png"/>
+           </p>
+           <center>
+            <i>
+             - Renovações de matrícula -
+            </i>
+           </center>
+           <p>
+           </p>
+          </section>
+          <section id="aprovar-renovacoes">
+           <h4 id="aprovar-renovacoes">
+            2.15.4 Aprovar renovações
+            <a class="headerlink" href="#aprovar-renovacoes" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Para
+            <strong>
+             aprovar uma renovação
+            </strong>
+            , aceda ao menu
+            <em>
+             Inscrições &gt; Renovar matrículas.
+            </em>
+           </p>
+           <p>
+            Depois de criar os novos grupos para o novo ano catequético, selecione nesta página o ano catequético anterior e um catecismo.
+           </p>
+           <p>
+            Surgirá a listagem dos catequizandos inscritos no grupo no ano anterior.
+           </p>
+           <p>
+            No final da listagem, um painel azul que mostra os pedidos de renovação para esse catecismo que foram feitos online.
+           </p>
+           <p>
+            Verifique se o nome de um catequizando aparece simultâneamente na listagem e no painel de renovações online. Em caso afirmativo, ative o botão à esquerda do nome dele (que fica verde) em ambas as listas.
+           </p>
+           <p>
+            Sugerimos que também verifique, sobre a linha do pedido, o telefone e o e-mail, e confirme na ficha do catequizando (clicando sobre ele na primeira listagem) se esses dados estão atualizados. Se não estiverem, pode aproveitar para os atualizar, porque isso não é feito automaticamente.
+           </p>
+           <p>
+            Por fim clique no botão
+            <em>
+             Guardar
+            </em>
+            .
+           </p>
+           <p>
+            <img alt="_images/2.15.4_aprovar_renovacoes.png" src="_images/2.15.4_aprovar_renovacoes.png"/>
+           </p>
+           <center>
+            <i>
+             - Aprovar renovações -
+            </i>
+           </center>
+           <p>
+           </p>
+           <p>
+            Nesse momento a renovação fica efetivamente aprovada, e o pedido passa para a lista de
+            <em>
+             Processados
+            </em>
+            .
+           </p>
+           <div class="info">
+            <p>
+             <b>
+              NOTA 1:
+             </b>
+             Ao aprovar os pedidos de renovação, não tem de processar um de cada vez. Pode selecionar simultâneamente vários catequizandos nas listas e clicar em
+             <i>
+              Guardar.
+             </i>
+            </p>
+            <p>
+             <b>
+              NOTA 2:
+             </b>
+             Quando os encarregados de educação fazem a inscrição/renovação online, é-lhes atribuído um número de inscrição que eles são aconselhados a guardar ou imprimir. Este número é o
+             <i>
+              ID do pedido
+             </i>
+             que pode consultado nas tabelas. Assim, se algum encarregado de educação tiver alguma dúvida sobre a inscrição, basta indicar o
+             <i>
+              ID do pedido
+             </i>
+             e um administrador pode encontrá-lo rapidamente na lista de pedidos pendentes ou processados.
+            </p>
+            <p>
+             <b>
+              NOTA 3:
+             </b>
+             Existe uma barra de pesquisa no canto superior direito destas tabelas de pedidos que filtra pedidos por ID, nome da criança ou catecismo. Também pode ordenar os pedidos por qualquer uma das colunas (ID, nome, catecismo).
+            </p>
+            <p>
+             <b>
+              NOTA 4:
+             </b>
+             Se receber pedidos estranhos/duvidosos, há um botão para eliminar. No entanto, recomendamos que só elimine nesses casos. O procedimento normal deve ser marcar um pedido como processado e não eliminá-lo, porque o pedido é a única prova que a coordenação da catequese detém de que o encarregado de educação realmente efetuou o pedido de inscrição.
+            </p>
+           </div>
+          </section>
+         </section>
+         <section id="criar-e-gerir-grupos-de-catequese">
+          <h3 id="criar-e-gerir-grupos-de-catequese">
+           2.16 Criar e gerir grupos de catequese
+           <img alt="🅐🅓🅜🅘🅝🅘🅢🅣🅡🅐🅓🅞🅡" src="_images/administrador.svg"/>
+           <a class="headerlink" href="#criar-e-gerir-grupos-de-catequese" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           Aceda ao menu
+           <em>
+            Catequese
+           </em>
+           e selecione a opção
+           <em>
+            Gerir grupos de catequese
+           </em>
+           .
+          </p>
+          <section id="criar-grupos-para-um-novo-ano-catequetico">
+           <h4 id="criar-grupos-para-um-novo-ano-catequetico">
+            2.16.1 Criar grupos para um novo ano catequético
+            <a class="headerlink" href="#criar-grupos-para-um-novo-ano-catequetico" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Clique no separador
+            <em>
+             Novo ano catequético
+            </em>
+            .
+           </p>
+           <p>
+            Escreva na caixa o ano catequético para o qual pretende criar grupos. Pode escolher uma de duas opções:
+           </p>
+           <ul class="simple">
+            <li>
+             <p>
+              Criar 10 grupos de catequese, com 1 grupo por cada catecismo;
+             </p>
+            </li>
+            <li>
+             <p>
+              Criar um número de catecismos e grupos igual ao do último ano catequético registado na base de dados do CatecheSis;
+             </p>
+            </li>
+           </ul>
+           <div class="info">
+            <p>
+             <b>
+              NOTA:
+             </b>
+             A segunda opção só estará disponível se já existir pelo menos um ano catequético na base de dados.
+            </p>
+           </div>
+           <p>
+            Clique em
+            <em>
+             Criar
+            </em>
+            .
+           </p>
+           <p>
+            Em seguida, poderá adicionar grupos de catequese ou remover alguns dos grupos criados automaticamente neste passo.
+           </p>
+          </section>
+          <section id="adicionar-remover-grupos-num-ano-catequetico-existente">
+           <h4 id="adicionar-remover-grupos-num-ano-catequetico-existente">
+            2.16.2 Adicionar/remover grupos num ano catequético existente
+            <a class="headerlink" href="#adicionar-remover-grupos-num-ano-catequetico-existente" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda agora ao separador
+            <em>
+             Anos catequéticos existentes
+            </em>
+            e selecione um ano catequético na caixa de selecção.
+           </p>
+           <p>
+            Para adicionar um novo grupo de catequese, posicione-se na última linha da tabela. Seleccione um catecismo e um grupo nas caixas de selecção e clique em
+            <em>
+             Adicionar
+            </em>
+            .
+           </p>
+           <p>
+            Para remover um grupo de catequese, posicione o rato sobre a respectiva linha da tabela. Surge então à direita, na mesma linha, o botão
+            <em>
+             Eliminar.
+            </em>
+           </p>
+           <p>
+            <img alt="_images/2.16.2_criar_e_gerir_grupos_de_catequese.png" src="_images/2.16.2_criar_e_gerir_grupos_de_catequese.png"/>
+           </p>
+           <center>
+            <i>
+             - Adicionar/remover grupos num ano catequético existente -
+            </i>
+           </center>
+           <p>
+           </p>
+          </section>
+          <section id="definir-os-catequistas-para-um-grupo-de-catequese">
+           <h4 id="definir-os-catequistas-para-um-grupo-de-catequese">
+            2.16.3 Definir os catequistas para um grupo de catequese
+            <a class="headerlink" href="#definir-os-catequistas-para-um-grupo-de-catequese" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao separador
+            <em>
+             Anos catequéticos existentes
+            </em>
+            e selecione um ano catequético na caixa de selecção.
+           </p>
+           <p>
+            Posicione o rato sobre a respectiva linha da tabela respeitante ao grupo de catequese que pretende modificar. Surge então à direita, na mesma linha, o botão
+            <em>
+             Definir catequistas.
+            </em>
+           </p>
+           <p>
+            <img alt="_images/2.16.2_criar_e_gerir_grupos_de_catequese.png" src="_images/2.16.2_criar_e_gerir_grupos_de_catequese.png"/>
+           </p>
+           <center>
+            <i>
+             - Definir os catequistas para um grupo de catequese -
+            </i>
+           </center>
+           <p>
+           </p>
+           <p>
+            Clique no botão e será conduzido(a) para o painel
+            <em>
+             Definir catequistas
+            </em>
+            , localizado no fundo da página.
+           </p>
+           <p>
+            Para adicionar um catequista ao grupo de catequese, selecione o seu nome na caixa de selecção e clique em
+            <em>
+             Adicionar
+            </em>
+            .
+           </p>
+           <p>
+            Para retirar um catequista do grupo de catequese, posicione o rato sobre a linha que contém o seu nome e clique no botão
+            <em>
+             Remover
+            </em>
+            que surgirá à direita, na mesma linha.
+           </p>
+           <div class="info">
+            <p>
+             <b>
+              NOTA:
+             </b>
+             Ao adicionar um catequista a um grupo de catequese, só encontrará na caixa de selecção os nomes de utilizadores com o atributo de
+             <i>
+              Catequista ativo
+             </i>
+             . Consulte
+             <b>
+              2.17 Criar e gerir utilizadores e catequistas
+             </b>
+             .
+            </p>
+           </div>
+          </section>
+         </section>
+         <section id="criar-e-gerir-utilizadores-e-catequistas">
+          <h3 id="criar-e-gerir-utilizadores-e-catequistas">
+           2.17 Criar e gerir utilizadores e catequistas
+           <img alt="🅐🅓🅜🅘🅝🅘🅢🅣🅡🅐🅓🅞🅡" src="_images/administrador.svg"/>
+           <a class="headerlink" href="#criar-e-gerir-utilizadores-e-catequistas" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           Aceda ao menu
+           <em>
+            Catequese
+           </em>
+           e selecione a opção
+           <em>
+            Gerir utilizadores e catequistas
+           </em>
+           .
+          </p>
+          <section id="criar-uma-nova-conta-de-utilizador-catequista">
+           <h4 id="criar-uma-nova-conta-de-utilizador-catequista">
+            2.17.1 Criar uma nova conta de utilizador / catequista
+            <a class="headerlink" href="#criar-uma-nova-conta-de-utilizador-catequista" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao separador
+            <em>
+             Novo utilizador
+            </em>
+            .
+           </p>
+           <p>
+            Preencha o formulário, tendo em conta que o campo
+            <em>
+             Nome de utilizador
+            </em>
+            não poderá jamais ser modificado, nem a conta de utilizador eliminada.
+           </p>
+           <p>
+            Seleccione o tipo de conta. Para mais informações consulte
+            <a class="reference external" href="#tipos-de-contas">
+             1.2 Tipos de contas
+            </a>
+            , neste manual.
+           </p>
+           <p>
+            Clique no botão
+            <em>
+             Criar
+            </em>
+            .
+           </p>
+           <div class="info">
+            <p>
+             <b>
+              NOTA:
+             </b>
+             Poderá atribuir e revogar privilégios de administrador ou redefinir o estado do catequista mais tarde.
+            </p>
+           </div>
+          </section>
+          <section id="modificar-a-conta-de-um-utilizador">
+           <h4 id="modificar-a-conta-de-um-utilizador">
+            2.17.2 Modificar a conta de um utilizador
+            <a class="headerlink" href="#modificar-a-conta-de-um-utilizador" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            Aceda ao separador
+            <em>
+             Utilizadores existentes
+            </em>
+            .
+           </p>
+           <p>
+            Posicione o rato sobre a linha correspondente ao utilizador que pretende modificar. Clique no botão
+            <em>
+             Acções
+            </em>
+            , que surgirá na mesma linha, à direita.
+           </p>
+           <p>
+            <img alt="_images/2.17.2_modificar_a_conta_de_um_utilizador.png" src="_images/2.17.2_modificar_a_conta_de_um_utilizador.png"/>
+           </p>
+           <center>
+            <i>
+             - Modificar a conta de um utilizador -
+            </i>
+           </center>
+           <p>
+           </p>
+           <p>
+            As opções disponíveis para a conta são descritas de seguida:
+           </p>
+           <ul class="simple">
+            <li>
+             <p>
+              <strong>
+               Ativar
+              </strong>
+              – Desbloqueia uma conta previamente bloqueda.
+             </p>
+            </li>
+            <li>
+             <p>
+              <strong>
+               Bloquear
+              </strong>
+              – Impede que o utilizador inicie sessão no CatecheSis. Se for catequista, o seu nome ainda poderá ser atribuído a grupos de catequese.
+             </p>
+            </li>
+            <li>
+             <p>
+              <strong>
+               Modificar dados da conta
+              </strong>
+              – Permite alterar o nome, e-mail, telefone e password do utilizador.
+             </p>
+            </li>
+            <li>
+             <p>
+              <strong>
+               Tornar administrador
+              </strong>
+              - Atribui privilégios de administrador à conta do utilizador.
+             </p>
+            </li>
+            <li>
+             <p>
+              <strong>
+               Dispensar administrador
+              </strong>
+              - Remove os privilégios de administrador à conta do utilizador.
+             </p>
+            </li>
+           </ul>
+           <p>
+            As opções disponíveis relativamente ao atributo catequista são descritas de seguida:
+           </p>
+           <ul class="simple">
+            <li>
+             <p>
+              <strong>
+               Ativar
+              </strong>
+              – Define o tipo de conta como
+              <em>
+               Catequista ativo
+              </em>
+              . O nome deste catequista passa a poder ser selecionado para constituir grupos de catequese.
+             </p>
+            </li>
+            <li>
+             <p>
+              <strong>
+               Desativar
+              </strong>
+              – Define o tipo de conta como
+              <em>
+               Catequista inativo.
+              </em>
+              O nome deste catequista deixa de poder ser seleccionado para constituir grupos de catequese. No entanto, se o catequista já está inserido num grupo permanece inserido nesse grupo de catequese.
+             </p>
+            </li>
+           </ul>
+           <div class="info">
+            <p>
+             <b>
+              NOTA 1:
+             </b>
+             Não é possível bloquear nem revogar os privilégios de administrador da sua própria conta. Peça a outro administrador para o fazer.
+             <br/>
+            </p>
+            <p>
+             <b>
+              NOTA 2:
+             </b>
+             Não é possível eliminar a conta de um utilizador. Se deseja impedir que este utilizador aceda ao sistema, bloqueie a conta. Se o utilizador deixou de ser catequista, defina-o como
+             <i>
+              Catequista inativo
+             </i>
+             e bloqueie a conta.
+            </p>
+           </div>
+          </section>
+         </section>
+         <section id="alterar-configuracoes-do-catechesis">
+          <h3 id="alterar-configuracoes-do-catechesis">
+           2.18 Alterar configurações do Catechesis
+           <a class="headerlink" href="#alterar-configuracoes-do-catechesis" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           Aceda à página de Configurações selecionando a
+           <em>
+            roda dentada
+           </em>
+           na barra superior do CatecheSis.
+          </p>
+          <p>
+           Os vários painéis nesta página permitem configurar diversos aspetos do CatecheSis consoante as suas necessidades, nomeadamente:
+          </p>
+          <section id="dados-da-conta">
+           <h4 id="dados-da-conta">
+            2.18.1 Dados da conta
+            <a class="headerlink" href="#dados-da-conta" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <ul class="simple">
+            <li>
+             <p>
+              Modificar o nome, e-mail, telefone e palavra-passe da sua conta.
+             </p>
+            </li>
+           </ul>
+           <p>
+            <em>
+             Veja também
+             <a class="reference external" href="#modificar-os-dados-da-minha-conta">
+              2.1 Modificar os dados da minha conta
+             </a>
+            </em>
+            .
+           </p>
+          </section>
+          <section id="inscricoes-online">
+           <h4 id="inscricoes-online">
+            2.18.2 Inscrições online
+            <img alt="🅐🅓🅜🅘🅝🅘🅢🅣🅡🅐🅓🅞🅡" src="_images/administrador.svg"/>
+            <a class="headerlink" href="#inscricoes-online" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <ul class="simple">
+            <li>
+             <p>
+              Definir o período de abertura/fecho das inscrições online;
+             </p>
+            </li>
+            <li>
+             <p>
+              Definir um texto informativo a ser mostrado na página de inscrição/renovação de matrículas online;
+             </p>
+            </li>
+            <li>
+             <p>
+              Definir uma referência multibanco para pagamento da inscrição/renovação;
+             </p>
+            </li>
+           </ul>
+          </section>
+          <section id="aproveitamento-dos-catequizandos">
+           <h4 id="aproveitamento-dos-catequizandos">
+            2.18.3 Aproveitamento dos catequizandos
+            <img alt="🅐🅓🅜🅘🅝🅘🅢🅣🅡🅐🅓🅞🅡" src="_images/administrador.svg"/>
+            <a class="headerlink" href="#aproveitamento-dos-catequizandos" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <ul class="simple">
+            <li>
+             <p>
+              Ativar/desativar a possibilidade de os catequistas registarem o aproveitamento dos catequizandos.
+             </p>
+            </li>
+           </ul>
+          </section>
+          <section id="catequese-operacionalizacao">
+           <h4 id="catequese-operacionalizacao">
+            2.18.4 Catequese (operacionalização)
+            <img alt="🅐🅓🅜🅘🅝🅘🅢🅣🅡🅐🅓🅞🅡" src="_images/administrador.svg"/>
+            <a class="headerlink" href="#catequese-operacionalizacao" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <ul class="simple">
+            <li>
+             <p>
+              Definir o dia em que a catequese é ministrada:
+             </p>
+            </li>
+            <li>
+             <p>
+              Definir o número de anos do percurso catequético (catecismos):
+             </p>
+            </li>
+           </ul>
+          </section>
+          <section id="integracao-com-nextcloud">
+           <h4 id="integracao-com-nextcloud">
+            2.18.5 Integração com Nextcloud
+            <img alt="🅐🅓🅜🅘🅝🅘🅢🅣🅡🅐🅓🅞🅡" src="_images/administrador.svg"/>
+            <a class="headerlink" href="#integracao-com-nextcloud" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <ul class="simple">
+            <li>
+             <p>
+              Alteração das
+              <em>
+               URLs
+              </em>
+              relacionadas com a Catequese Cloud.
+             </p>
+            </li>
+           </ul>
+          </section>
+          <section id="personalizar-pagina-publica">
+           <h4 id="personalizar-pagina-publica">
+            2.18.6 Personalizar página pública
+            <img alt="🅐🅓🅜🅘🅝🅘🅢🅣🅡🅐🅓🅞🅡" src="_images/administrador.svg"/>
+            <a class="headerlink" href="#personalizar-pagina-publica" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <ul class="simple">
+            <li>
+             <p>
+              Se pretender uma página pública mais personalizada, é possivel definir uma imagem à sua escolha, como um logotipo da paróquia, uma fotografia da igreja, entre outros. Caso não seja definida nenhuma imagem o CatecheSis apresenta uma imagem padrão.
+             </p>
+            </li>
+           </ul>
+          </section>
+          <section id="dados-da-paroquia">
+           <h4 id="dados-da-paroquia">
+            2.18.7 Dados da paróquia
+            <img alt="🅐🅓🅜🅘🅝🅘🅢🅣🅡🅐🅓🅞🅡" src="_images/administrador.svg"/>
+            <a class="headerlink" href="#dados-da-paroquia" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <ul class="simple">
+            <li>
+             <p>
+              Definir o logotipo da paróquia e as respetivas informações (nome, localidade, diocese e país).
+             </p>
+            </li>
+           </ul>
+           <div class="info">
+            <p>
+             <b>
+              IMPORTANTE:
+             </b>
+             A configuração do
+             <b>
+              país
+             </b>
+             define determinados ajustes regionais, tais como o número de dígitos dos códigos postais
+e telefones, a exibição dos anos catequéticos e os seus meses de início/fim (por exemplo, em Portugal a catequese decorre
+geralmente entre Setembro e Junho, enquanto no Brasil costuma ser entre Março e Dezembro).
+             <br/>
+             É importante por isso que defina corretamente o país onde está a utilizar o CatecheSis.
+            </p>
+           </div>
+          </section>
+          <section id="protecao-de-dados-rgpd">
+           <h4 id="protecao-de-dados-rgpd">
+            2.18.8 Proteção de dados (RGPD)
+            <img alt="🅐🅓🅜🅘🅝🅘🅢🅣🅡🅐🅓🅞🅡" src="_images/administrador.svg"/>
+            <a class="headerlink" href="#protecao-de-dados-rgpd" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <ul class="simple">
+            <li>
+             <p>
+              Definir os reponsáveis pelo tratamento de dados, necessários para o Regulamento Geral sobre a Proteção de Dados (RGPD). Estes dados são utilizados para gerar automaticamente a declaração de consentimento de tratamento de dados pessoais, apresentada aos encarregados de educação que efetuarem uma inscrição/renovação de matrícula online.
+             </p>
+            </li>
+           </ul>
+          </section>
+         </section>
+         <section id="monitorizar-os-acessos-ao-catechesis">
+          <h3 id="monitorizar-os-acessos-ao-catechesis">
+           2.19 Monitorizar os acessos ao CatecheSis
+           <img alt="🅐🅓🅜🅘🅝🅘🅢🅣🅡🅐🅓🅞🅡" src="_images/administrador.svg"/>
+           <a class="headerlink" href="#monitorizar-os-acessos-ao-catechesis" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           Aceda ao menu
+           <em>
+            Análise
+           </em>
+           e selecione a opção
+           <em>
+            Registos de atividade do sistema
+           </em>
+           .
+          </p>
+          <p>
+           O separador
+           <em>
+            Actividade no CatecheSis
+           </em>
+           dá acesso aos registos das acções dos utilizadores, tais como inscrições de novos catequizandos, modificação e eliminação de fichas, criação e alteração da constituição de grupos de catequese, modificação de dados pessoais, criação ou modificação de contas de utilizadores.
+          </p>
+          <p>
+           Os registos incluem data, hora e o nome de utilizador, além de uma descrição da acção efectuada.
+          </p>
+          <p>
+           O separador
+           <em>
+            Autenticações
+           </em>
+           regista a data, hora e endereço de rede da máquina utilizada por cada utilizador quando este se autentica. São registadas todas as autenticações no sistema, bem como todas as tentativas falhadas de autenticação e ainda eventos de criação de novas contas de utilizador.
+          </p>
+          <div class="info">
+           <p>
+            <b>
+             NOTA:
+            </b>
+            Não é possível modificar nem eliminar os registos de atividade nem de autenticações.
+  Registos muito antigos são automaticamente eliminados à medida que novos são introduzidos, de acordo com regras pré-estabelecidas no CatecheSis.
+           </p>
+          </div>
+         </section>
+         <section id="manter-o-catechesis-atualizado">
+          <h3 id="manter-o-catechesis-atualizado">
+           2.20 Manter o CatecheSis atualizado
+           <img alt="🅐🅓🅜🅘🅝🅘🅢🅣🅡🅐🅓🅞🅡" src="_images/administrador.svg"/>
+           <a class="headerlink" href="#manter-o-catechesis-atualizado" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+         </section>
+         <section id="notificacao-de-atualizacao">
+          <h3 id="notificacao-de-atualizacao">
+           2.20.1 Notificação de atualização
+           <a class="headerlink" href="#notificacao-de-atualizacao" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           O CatecheSis procura automaticamente a existência de atualizações periodicamente.
+          </p>
+          <p>
+           Quando estiver disponível uma nova versão, o CatecheSis irá apresentar um novo ícone no canto superior direito da barra
+de menu, que corresponde a uma seta ascendente.
+          </p>
+          <p>
+           <img alt="ícon atualiação" src="_images/2.20_icon_atualizacao.png"/>
+          </p>
+          <p>
+           Clique no ícon da seta para abrir a notificação de atualização.
+          </p>
+          <p>
+           A notificação indica a versão do CatecheSis atualmente instalada no seu servidor e a versão disponível para transferir.
+          </p>
+          <p>
+           <img alt="notificação de atualização" src="_images/2.20_notificacao_atualizacao.png"/>
+          </p>
+          <p>
+           Faça clique sobre o botão
+           <em>
+            Atualizar
+           </em>
+           para lançar o Assistente de Atualização.
+          </p>
+         </section>
+         <section id="verificar-manualmente-a-existencia-de-atualizacoes">
+          <h3 id="verificar-manualmente-a-existencia-de-atualizacoes">
+           2.20.2 Verificar manualmente a existência de atualizações
+           <a class="headerlink" href="#verificar-manualmente-a-existencia-de-atualizacoes" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           Apesar de o CatecheSis procurar automaticamente, e de forma periódica, a existência de atualizações, pode também
+verificar manualmente a existência de atualizações.
+          </p>
+          <p>
+           Aceda ao menu ❔ (Ajuda), no canto superior direito da barra de menu, e clique em
+           <em>
+            Acerca do CatecheSis…
+           </em>
+           .
+          </p>
+          <p>
+           Na caixa de diálogo «Acerca do CatecheSis», clique no botão
+           <em>
+            Procurar atualizações
+           </em>
+           , por baixo da versão.
+          </p>
+          <p>
+           <img alt="procurar atualizações" src="_images/2.20_procurar_atualizacoes.png"/>
+          </p>
+          <p>
+           O Assistente de Atualização irá verificar se existe uma nova versão disponível e permitir-lhe-á aplicar a atualização.
+          </p>
+         </section>
+         <section id="utilizar-o-assistente-de-atualizacao">
+          <h3 id="utilizar-o-assistente-de-atualizacao">
+           2.20.3 Utilizar o Assistente de Atualização
+           <a class="headerlink" href="#utilizar-o-assistente-de-atualizacao" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           O Assistente de Atualização verifica se existe uma nova versão do CatecheSis disponível e permite-lhe descarregar e
+aplicar automaticamente a atualização.
+          </p>
+          <p>
+           <img alt="assistente de atualização" src="_images/2.20_assistente_atualizacao.png"/>
+          </p>
+          <p>
+           Se estiver disponível uma nova versão do CatecheSis, faça clique em
+           <em>
+            Seguinte
+           </em>
+           para iniciar o processo de atualização.
+          </p>
+          <p>
+           O CatecheSis irá transferir a atualização e aplicá-la.
+          </p>
+          <div class="info">
+           <p>
+            <b>
+             NOTA:
+            </b>
+            É recomendado que realize uma cópia de segurança da base de dados e da diretoria de dados do CatecheSis
+  antes de proceder a uma atualização.
+           </p>
+          </div>
+          <div class="info">
+           <p>
+            <b>
+             NOTA:
+            </b>
+            É preferível escolher para a atualização uma hora em que não existam outros utilizadores a aceder ao CatecheSis,
+  para minimizar o risco de erros ao atualizar a base de dados.
+           </p>
+          </div>
+         </section>
+        </section>
+        <section id="requisitos-de-sistema">
+         <h2 id="requisitos-de-sistema">
+          3. Requisitos de sistema
+          <a class="headerlink" href="#requisitos-de-sistema" title="Link permanente para este título">
+           ¶
+          </a>
+         </h2>
+         <p>
+          <em>
+           Características essenciais
+          </em>
+         </p>
+         <p>
+          Para utilizar o CatecheSis necessita de um dispositivo com acesso à Internet e com um
+          <em>
+           navegador web
+          </em>
+          .
+         </p>
+         <p>
+          O funcionamento do CatecheSis foi testado nos seguintes
+          <em>
+           navegadores
+          </em>
+          , em ambiente desktop
+          <em>
+           Windows
+          </em>
+          e
+          <em>
+           Linux
+          </em>
+          . Recomenda-se a utilização de um destes
+          <em>
+           navegadores
+          </em>
+          na sua versão mais recente:
+         </p>
+         <ul class="simple">
+          <li>
+           <p>
+            Mozilla Firefox
+           </p>
+          </li>
+          <li>
+           <p>
+            Google Chrome*
+           </p>
+          </li>
+          <li>
+           <p>
+            Microsoft Edge*
+           </p>
+          </li>
+         </ul>
+         <p>
+          *Estes
+          <em>
+           navegadores
+          </em>
+          podem apresentar alguns problemas. Consulte
+          <a class="reference external" href="#problemas-conhecidos">
+           4. Problemas conhecidos
+          </a>
+          neste manual.
+         </p>
+         <p>
+          Certifique-se ainda de que as seguintes funcionalidades estão ativas no seu
+          <em>
+           navegador
+          </em>
+          :
+         </p>
+         <ul class="simple">
+          <li>
+           <p>
+            JavaScript
+           </p>
+          </li>
+          <li>
+           <p>
+            Cookies (permitir)
+           </p>
+          </li>
+          <li>
+           <p>
+            Janelas de pop-up (permitir no CatecheSis)
+           </p>
+          </li>
+         </ul>
+         <p>
+          Consulte a ajuda do seu
+          <em>
+           navegador
+          </em>
+          para saber como ativar estas funcionalidades.
+         </p>
+         <div class="info">
+          <p>
+           <b>
+            NOTA:
+           </b>
+           O CatecheSis não foi optimizado para dispositivos portáteis, tais como
+           <i>
+            smartphones
+           </i>
+           e
+           <i>
+            tablets
+           </i>
+           .
+Alguns ecrãs poderão não ser legíveis. Algumas funcionalidades poderão não funcionar.
+          </p>
+         </div>
+         <p>
+          <em>
+           Características opcionais
+          </em>
+         </p>
+         <p>
+          Para fazer inscrições de catequizandos com fotografia é ainda necessário:
+         </p>
+         <ul class="simple">
+          <li>
+           <p>
+            Webcam
+           </p>
+          </li>
+          <li>
+           <p>
+            Adobe Flash Player
+           </p>
+          </li>
+         </ul>
+         <p>
+          Para utilizar algumas funcionalidades do CatecheSis, tais como exportar fichas de catequizandos e pesquisas, é ainda necessário:
+         </p>
+         <ul class="simple">
+          <li>
+           <p>
+            Software leitor de PDF
+           </p>
+          </li>
+          <li>
+           <p>
+            Microsoft Office Word 2007 ou superior
+            <em>
+             (ou alternativa compatível)
+            </em>
+           </p>
+          </li>
+          <li>
+           <p>
+            Microsoft Office Excel 2007 ou superior
+            <em>
+             (ou alternativa compatível)
+            </em>
+           </p>
+          </li>
+         </ul>
+        </section>
+        <section id="problemas-conhecidos">
+         <h2 id="problemas-conhecidos">
+          4. Problemas conhecidos
+          <a class="headerlink" href="#problemas-conhecidos" title="Link permanente para este título">
+           ¶
+          </a>
+         </h2>
+         <p>
+          Abaixo são discriminados alguns problemas conhecidos para os quais ainda não existe uma solução técnica eficaz. Para alguns deles são apresentadas sugestões para remediar o problema.
+         </p>
+         <p>
+          A lista poderá ser alargada à medida que novos problemas forem descobertos.
+         </p>
+         <section id="imprimir-fichas-e-arquivo-de-catequizandos">
+          <h3 id="imprimir-fichas-e-arquivo-de-catequizandos">
+           1.
+           <em>
+            Imprimir fichas e arquivo de catequizandos
+           </em>
+           <a class="headerlink" href="#imprimir-fichas-e-arquivo-de-catequizandos" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           A funcionalidade de impressão é altamente dependente do
+           <em>
+            navegador
+           </em>
+           , existindo muito pouco controlo possível do lado do programador.
+          </p>
+          <p>
+           Se o conteúdo não for legível na página impressa, recomenda-se que experimente diferentes escalas de impressão, na janela de configuração de impressão do seu
+           <em>
+            navegador
+           </em>
+           .
+          </p>
+          <p>
+           Para as fichas recomenda-se que as transfira como um ficheiro do Microsoft Word e as imprima nesse programa.
+          </p>
+         </section>
+         <section id="imprimir-listagens">
+          <h3 id="imprimir-listagens">
+           2.
+           <em>
+            Imprimir listagens
+           </em>
+           <a class="headerlink" href="#imprimir-listagens" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           À data de escrita deste manual, verifica-se que as listagens de baptismos, primeiras comunhões, profissões de fé, confirmações e escuteiros, bem como a página
+           <em>
+            Os meus catequizandos
+           </em>
+           , só são correctamente impressas no
+           <em>
+            navegador
+           </em>
+           Mozilla Firefox.
+          </p>
+          <p>
+           A impressão no
+           <em>
+            navegador
+           </em>
+           Google Chrome omite o logotipo da catequese paroquial nas páginas subsequentes à primeira.
+          </p>
+          <p>
+           A impressão no
+           <em>
+            navegador
+           </em>
+           Microsoft Internet Explorer sobrepõe o logotipo da catequese paroquial à listagem nas páginas subsequentes à primeira, impossibilitando a leitura de alguns nomes.
+          </p>
+          <p>
+           Uma alternativa é exportar a pesquisa como um ficheiro PDF ou do Microsoft Excel e imprimi-la nesse programa.
+          </p>
+         </section>
+         <section id="imprimir-estatisticas">
+          <h3 id="imprimir-estatisticas">
+           3.
+           <em>
+            Imprimir estatísticas
+           </em>
+           <a class="headerlink" href="#imprimir-estatisticas" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           A impressão de estatísticas não é atualmente suportada. Se tentar imprimir é expectável que os gráficos ultrapassem os limites dos painéis e não sejam completamente legíveis.
+          </p>
+         </section>
+         <section id="as-cores-dos-paineis-e-botoes-nao-aparecem-nas-paginas-impressas">
+          <h3 id="as-cores-dos-paineis-e-botoes-nao-aparecem-nas-paginas-impressas">
+           4.
+           <em>
+            As cores dos painéis e botões não aparecem nas páginas impressas
+           </em>
+           <a class="headerlink" href="#as-cores-dos-paineis-e-botoes-nao-aparecem-nas-paginas-impressas" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           Para garantir que as páginas impressas preservam as cores tal como mostradas no ecrã (ex: a cor verde nos ícones dos sacramentos), configure o seu
+           <em>
+            navegador
+           </em>
+           para imprimir cores de fundo nas páginas. Procure essa opção nas configurações de impressão do
+           <em>
+            navegador
+           </em>
+           .
+          </p>
+         </section>
+        </section>
+       </section>
+      </article>
+     </div>
+    </div>
+   </main>
+  </div>
+  <footer class="md-footer">
+   <div class="md-footer-nav">
+    <nav class="md-footer-nav__inner md-grid">
+     <a class="md-flex md-footer-nav__link md-footer-nav__link--prev" href="index.html" rel="prev" title="Manuais do CatecheSis">
+      <div class="md-flex__cell md-flex__cell--shrink">
+       <i class="md-icon md-icon--arrow-back md-footer-nav__button">
+       </i>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+       <span class="md-flex__ellipsis">
+        <span class="md-footer-nav__direction">
+         Previous
+        </span>
+        Manuais do CatecheSis
+       </span>
+      </div>
+     </a>
+     <a class="md-flex md-footer-nav__link md-footer-nav__link--next" href="manual_de_instalacao.html" rel="next" title="Manual de Instalação">
+      <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+       <span class="md-flex__ellipsis">
+        <span class="md-footer-nav__direction">
+         Next
+        </span>
+        Manual de Instalação
+       </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+       <i class="md-icon md-icon--arrow-forward md-footer-nav__button">
+       </i>
+      </div>
+     </a>
+    </nav>
+   </div>
+   <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+     <div class="md-footer-copyright">
+      <div class="md-footer-copyright__highlight">
+       © Copyright 2022, CatecheSis.
+      </div>
+      Last updated on
+              13 fev., 2024.
+      <br/>
+      Created using
+      <a href="http://www.sphinx-doc.org/">
+       Sphinx
+      </a>
+      4.5.0.
+             and
+      <a href="https://github.com/bashtage/sphinx-material/">
+       Material for
+              Sphinx
+      </a>
+     </div>
+    </div>
+   </div>
+  </footer>
+  <script src="_static/javascripts/application.js">
+  </script>
+  <script>
+   app.initialize({version: "1.0.4", url: {base: ".."}})
+  </script>
+ </body>
+</html>

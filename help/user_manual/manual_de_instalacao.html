@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="pt_PT">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <meta content="ie=edge" http-equiv="x-ua-compatible"/>
+  <meta content="Copy to clipboard" name="lang:clipboard.copy"/>
+  <meta content="Copied to clipboard" name="lang:clipboard.copied"/>
+  <meta content="en" name="lang:search.language"/>
+  <meta content="True" name="lang:search.pipeline.stopwords"/>
+  <meta content="True" name="lang:search.pipeline.trimmer"/>
+  <meta content="No matching documents" name="lang:search.result.none"/>
+  <meta content="1 matching document" name="lang:search.result.one"/>
+  <meta content="# matching documents" name="lang:search.result.other"/>
+  <meta content="[\s\-]+" name="lang:search.tokenizer"/>
+  <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&amp;display=fallback" rel="stylesheet"/>
+  <style>
+   body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+  </style>
+  <link href="_static/stylesheets/application.css" rel="stylesheet"/>
+  <link href="_static/stylesheets/application-palette.css" rel="stylesheet"/>
+  <link href="_static/stylesheets/application-fixes.css" rel="stylesheet"/>
+  <link href="_static/fonts/material-icons.css" rel="stylesheet"/>
+  <meta content="blue" name="theme-color"/>
+  <script src="_static/javascripts/modernizr.js">
+  </script>
+  <title>
+   Manual de Instalação — Manuais do CatecheSis
+  </title>
+  <link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
+  <link href="_static/material.css" rel="stylesheet" type="text/css"/>
+  <link href="_static/copybutton.css" rel="stylesheet" type="text/css"/>
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js">
+  </script>
+  <script src="_static/jquery.js">
+  </script>
+  <script src="_static/underscore.js">
+  </script>
+  <script src="_static/doctools.js">
+  </script>
+  <script src="_static/clipboard.min.js">
+  </script>
+  <script src="_static/copybutton.js">
+  </script>
+  <script src="_static/translations.js">
+  </script>
+  <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js">
+  </script>
+  <link href="_static/AF_CatecheSis_Logo_Broswer.png" rel="shortcut icon"/>
+  <link href="genindex.html" rel="index" title="Índice"/>
+  <link href="search.html" rel="search" title="Pesquisar"/>
+  <link href="manual_do_utilizador.html" rel="prev" title="Manual do Utilizador"/>
+ </head>
+ <body data-md-color-accent="black" data-md-color-primary="blue" dir="ltr">
+  <svg class="md-svg">
+   <defs data-children-count="0">
+    <svg height="448" id="__github" viewbox="0 0 416 448" width="416" xmlns="http://www.w3.org/2000/svg">
+     <path d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z" fill="currentColor">
+     </path>
+    </svg>
+   </defs>
+  </svg>
+  <input class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+  <input class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+  <label class="md-overlay" data-md-component="overlay" for="__drawer">
+  </label>
+  <a class="md-skip" href="#manual_de_instalacao" tabindex="1">
+   Skip to content
+  </a>
+  <header class="md-header" data-md-component="header" style="background-color: #008fcf; color: #f3e9e7;">
+   <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+     <div class="md-flex__cell md-flex__cell--shrink">
+      <a class="md-header-nav__button md-logo" href="index.html" title="Manuais do CatecheSis">
+       <img alt="Manuais do CatecheSis logo" height="26" src="_static/AF_CatecheSis_Logo_Navbar.png"/>
+      </a>
+     </div>
+     <div class="md-flex__cell md-flex__cell--shrink">
+      <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer">
+      </label>
+     </div>
+     <div class="md-flex__cell md-flex__cell--stretch">
+      <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+       <span class="md-header-nav__topic">
+        Manuais do CatecheSis
+       </span>
+       <span class="md-header-nav__topic">
+        Manual de Instalação
+       </span>
+      </div>
+     </div>
+     <div class="md-flex__cell md-flex__cell--shrink">
+      <label class="md-icon md-icon--search md-header-nav__button" for="__search">
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+       <label class="md-search__overlay" for="__search">
+       </label>
+       <div class="md-search__inner" role="search">
+        <form action="search.html" class="md-search__form" method="get" name="search">
+         <input autocapitalize="off" autocomplete="off" class="md-search__input" data-md-component="query" data-md-state="active" name="q" placeholder="Search" spellcheck="false" type="text"/>
+         <label class="md-icon md-search__icon" for="__search">
+         </label>
+         <button class="md-icon md-search__icon" data-md-component="reset" tabindex="-1" type="reset">
+          
+         </button>
+        </form>
+        <div class="md-search__output">
+         <div class="md-search__scrollwrap" data-md-scrollfix="">
+          <div class="md-search-result" data-md-component="result">
+           <div class="md-search-result__meta">
+            Type to start searching
+           </div>
+           <ol class="md-search-result__list">
+           </ol>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <script src="_static/javascripts/version_dropdown.js">
+     </script>
+     <script>
+      var json_loc = ""versions.json"",
+        target_loc = "../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+     </script>
+    </div>
+   </nav>
+  </header>
+  <div class="md-container">
+   <main class="md-main">
+    <div class="md-main__inner md-grid" data-md-component="container">
+     <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" style="margin-top: 50px;">
+      <div class="md-sidebar__scrollwrap">
+       <div class="md-sidebar__inner">
+        <nav class="md-nav md-nav--primary" data-md-level="0">
+         <label class="md-nav__title md-nav__title--site" for="__drawer">
+          <a class="md-nav__button md-logo" href="index.html" title="Manuais do CatecheSis">
+           <img alt=" logo" height="48" src="_static/AF_CatecheSis_Logo_Navbar.png" width="48"/>
+          </a>
+          <a href="index.html" title="Manuais do CatecheSis">
+           Manuais do CatecheSis
+          </a>
+         </label>
+         <ul class="md-nav__list">
+          <li class="md-nav__item">
+           <a class="md-nav__link" href="manual_do_utilizador.html">
+            Manual do Utilizador
+           </a>
+          </li>
+          <li class="md-nav__item">
+           <input class="md-toggle md-nav__toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+           <label class="md-nav__link md-nav__link--active" for="__toc">
+            Manual de Instalação
+           </label>
+           <a class="md-nav__link md-nav__link--active" href="#">
+            Manual de Instalação
+           </a>
+           <nav class="md-nav md-nav--secondary">
+            <label class="md-nav__title" for="__toc">
+             Contents
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix="">
+             <li class="md-nav__item">
+              <a class="md-nav__link" href="#manual-de-instalacao--page-root">
+               Manual de Instalação
+              </a>
+              <nav class="md-nav">
+               <ul class="md-nav__list">
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#requisitos">
+                  1. Requisitos
+                 </a>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#instalar-o-catechesis-num-servidor-web">
+                  2. Instalar o CatecheSis num servidor web
+                 </a>
+                 <nav class="md-nav">
+                  <ul class="md-nav__list">
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#decarregar-o-catechesis">
+                     2.1 Decarregar o CatecheSis
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#instalar-o-catechesis">
+                     2.2 Instalar o CatecheSis
+                    </a>
+                    <nav class="md-nav">
+                     <ul class="md-nav__list">
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#preparativos">
+                        2.2.1 Preparativos
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#instalar-utilizando-o-assistente-de-instalacao">
+                        2.2.2 Instalar utilizando o assistente de instalação
+                       </a>
+                      </li>
+                      <li class="md-nav__item">
+                       <a class="md-nav__link" href="#instalar-manualmente-para-utilizadores-avancados">
+                        2.2.3 Instalar manualmente [para utilizadores avançados]
+                       </a>
+                      </li>
+                     </ul>
+                    </nav>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#configuracoes-adicionais">
+                     2.3 Configurações adicionais
+                    </a>
+                   </li>
+                  </ul>
+                 </nav>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#instalar-a-catequese-cloud-opcional">
+                  3. Instalar a Catequese Cloud [OPCIONAL]
+                 </a>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#manter-o-catechesis-atualizado">
+                  4. Manter o CatecheSis atualizado
+                 </a>
+                </li>
+               </ul>
+              </nav>
+             </li>
+             <li class="md-nav__item">
+              <a class="md-nav__extra_link" href="_sources/manual_de_instalacao.md.txt">
+               Exibir Fonte
+              </a>
+             </li>
+            </ul>
+           </nav>
+           <ul class="md-nav__list">
+            <li class="md-nav__item">
+             <a class="md-nav__link" href="#requisitos">
+              1. Requisitos
+             </a>
+            </li>
+            <li class="md-nav__item">
+             <a class="md-nav__link" href="#instalar-o-catechesis-num-servidor-web">
+              2. Instalar o CatecheSis num servidor web
+             </a>
+            </li>
+            <li class="md-nav__item">
+             <a class="md-nav__link" href="#instalar-a-catequese-cloud-opcional">
+              3. Instalar a Catequese Cloud [OPCIONAL]
+             </a>
+            </li>
+            <li class="md-nav__item">
+             <a class="md-nav__link" href="#manter-o-catechesis-atualizado">
+              4. Manter o CatecheSis atualizado
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="md-nav__item">
+           <span class="md-nav__link caption" style="margin-top: 30px;">
+            <span class="caption-text">
+             Links Uteis
+            </span>
+           </span>
+          </li>
+          <li class="md-nav__item">
+           <a class="md-nav__link" href="https://catechesis.org.pt">
+            CatecheSis
+           </a>
+          </li>
+         </ul>
+        </nav>
+       </div>
+      </div>
+     </div>
+     <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+      <div class="md-sidebar__scrollwrap">
+       <div class="md-sidebar__inner">
+        <nav class="md-nav md-nav--secondary">
+         <label class="md-nav__title" for="__toc">
+          Contents
+         </label>
+         <ul class="md-nav__list" data-md-scrollfix="">
+          <li class="md-nav__item">
+           <a class="md-nav__link" href="#manual-de-instalacao--page-root">
+            Manual de Instalação
+           </a>
+           <nav class="md-nav">
+            <ul class="md-nav__list">
+             <li class="md-nav__item">
+              <a class="md-nav__link" href="#requisitos">
+               1. Requisitos
+              </a>
+             </li>
+             <li class="md-nav__item">
+              <a class="md-nav__link" href="#instalar-o-catechesis-num-servidor-web">
+               2. Instalar o CatecheSis num servidor web
+              </a>
+              <nav class="md-nav">
+               <ul class="md-nav__list">
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#decarregar-o-catechesis">
+                  2.1 Decarregar o CatecheSis
+                 </a>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#instalar-o-catechesis">
+                  2.2 Instalar o CatecheSis
+                 </a>
+                 <nav class="md-nav">
+                  <ul class="md-nav__list">
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#preparativos">
+                     2.2.1 Preparativos
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#instalar-utilizando-o-assistente-de-instalacao">
+                     2.2.2 Instalar utilizando o assistente de instalação
+                    </a>
+                   </li>
+                   <li class="md-nav__item">
+                    <a class="md-nav__link" href="#instalar-manualmente-para-utilizadores-avancados">
+                     2.2.3 Instalar manualmente [para utilizadores avançados]
+                    </a>
+                   </li>
+                  </ul>
+                 </nav>
+                </li>
+                <li class="md-nav__item">
+                 <a class="md-nav__link" href="#configuracoes-adicionais">
+                  2.3 Configurações adicionais
+                 </a>
+                </li>
+               </ul>
+              </nav>
+             </li>
+             <li class="md-nav__item">
+              <a class="md-nav__link" href="#instalar-a-catequese-cloud-opcional">
+               3. Instalar a Catequese Cloud [OPCIONAL]
+              </a>
+             </li>
+             <li class="md-nav__item">
+              <a class="md-nav__link" href="#manter-o-catechesis-atualizado">
+               4. Manter o CatecheSis atualizado
+              </a>
+             </li>
+            </ul>
+           </nav>
+          </li>
+          <li class="md-nav__item">
+           <a class="md-nav__extra_link" href="_sources/manual_de_instalacao.md.txt">
+            Exibir Fonte
+           </a>
+          </li>
+          <li class="md-nav__item" id="searchbox">
+          </li>
+         </ul>
+        </nav>
+       </div>
+      </div>
+     </div>
+     <div class="md-content">
+      <article class="md-content__inner md-typeset" role="main">
+       <section id="manual-de-instalacao">
+        <h1 id="manual-de-instalacao--page-root">
+         Manual de Instalação
+         <a class="headerlink" href="#manual-de-instalacao--page-root" title="Link permanente para este título">
+          ¶
+         </a>
+        </h1>
+        <style>
+         .info {
+  margin-bottom: 15px;
+  padding: 4px 12px;
+  background-color: #e7f3fe;
+  border-left: 6px solid #2196F3;
+}
+        </style>
+        <p>
+         Este manual destina-se aos administradores / técnicos de informática responsáveis pela instalação do CatecheSis.
+        </p>
+        <section id="requisitos">
+         <h2 id="requisitos">
+          1. Requisitos
+          <a class="headerlink" href="#requisitos" title="Link permanente para este título">
+           ¶
+          </a>
+         </h2>
+         <p>
+          Antes de iniciar a instalação, certifque-se de que o seu servidor cumpre os seguintes requisitos:
+         </p>
+         <ul class="simple">
+          <li>
+           <p>
+            Servidor web Apache
+           </p>
+          </li>
+          <li>
+           <p>
+            Servidor de base de dados MySQL 5.7 ou superior, ou MariaDB 10.3 ou superior
+           </p>
+          </li>
+          <li>
+           <p>
+            PHP 7.4 ou superior
+           </p>
+          </li>
+          <li>
+           <p>
+            Extensões PHP instaladas/ativas:
+           </p>
+           <ul>
+            <li>
+             <p>
+              pdo_mysql
+             </p>
+            </li>
+            <li>
+             <p>
+              zip
+             </p>
+            </li>
+            <li>
+             <p>
+              gd
+             </p>
+            </li>
+            <li>
+             <p>
+              xml
+             </p>
+            </li>
+            <li>
+             <p>
+              XMLWriter
+             </p>
+            </li>
+            <li>
+             <p>
+              DOM
+             </p>
+            </li>
+            <li>
+             <p>
+              MBString
+             </p>
+            </li>
+           </ul>
+          </li>
+          <li>
+           <p>
+            Certificado SSL e servidor web configurado para HTTPS
+           </p>
+          </li>
+          <li>
+           <p>
+            No mínimo, 200MB de espaço livre em disco
+           </p>
+          </li>
+         </ul>
+        </section>
+        <section id="instalar-o-catechesis-num-servidor-web">
+         <h2 id="instalar-o-catechesis-num-servidor-web">
+          2. Instalar o CatecheSis num servidor web
+          <a class="headerlink" href="#instalar-o-catechesis-num-servidor-web" title="Link permanente para este título">
+           ¶
+          </a>
+         </h2>
+         <section id="decarregar-o-catechesis">
+          <h3 id="decarregar-o-catechesis">
+           2.1 Decarregar o CatecheSis
+           <a class="headerlink" href="#decarregar-o-catechesis" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           Visite a página
+           <a class="reference external" href="https://catechesis.org.pt">
+            https://catechesis.org.pt
+           </a>
+           e navegue até à secção
+           <em>
+            Transferir
+           </em>
+           para descarregar um ficheiro compactado contendo o CatecheSis.
+          </p>
+          <p>
+           O ficheiro tem um nome da forma
+           <code class="docutils literal notranslate">
+            <span class="pre">
+             CatecheSis-vX.Y.Z.tar.gz
+            </span>
+           </code>
+           onde
+           <em>
+            X.Y.Z
+           </em>
+           designa a versão (por exemplo,
+           <code class="docutils literal notranslate">
+            <span class="pre">
+             CatecheSis-v2.0.0.tar.gz
+            </span>
+           </code>
+           ).
+          </p>
+         </section>
+         <section id="instalar-o-catechesis">
+          <h3 id="instalar-o-catechesis">
+           2.2 Instalar o CatecheSis
+           <a class="headerlink" href="#instalar-o-catechesis" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <section id="preparativos">
+           <h4 id="preparativos">
+            2.2.1 Preparativos
+            <a class="headerlink" href="#preparativos" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <ol class="simple">
+            <li>
+             <p>
+              Carregue no seu servidor web, na diretoria pública principal (geralmente
+              <code class="docutils literal notranslate">
+               <span class="pre">
+                public_html
+               </span>
+              </code>
+              ou
+              <code class="docutils literal notranslate">
+               <span class="pre">
+                /var/www
+               </span>
+              </code>
+              ) ou numa subdiretoria daquela,  o ficheiro
+              <code class="docutils literal notranslate">
+               <span class="pre">
+                CatecheSis-vX.Y.Z.tar.gz
+               </span>
+              </code>
+              que descarregou do site oficial e descomprima-o.
+             </p>
+            </li>
+            <li>
+             <p>
+              Certifique-se de que o utilizador do sistema que executa o processo do Apache/PHP tem permissões de escrita na diretoria que acaba de descompactar e em todas as suas subdiretorias e ficheiros.
+             </p>
+            </li>
+            <li>
+             <p>
+              Crie uma nova base de dados MySQL vazia, para uso do CatecheSis (por exemplo, chamada
+              <code class="docutils literal notranslate">
+               <span class="pre">
+                catechesis
+               </span>
+              </code>
+              ).
+             </p>
+            </li>
+           </ol>
+          </section>
+          <section id="instalar-utilizando-o-assistente-de-instalacao">
+           <h4 id="instalar-utilizando-o-assistente-de-instalacao">
+            2.2.2 Instalar utilizando o assistente de instalação
+            <a class="headerlink" href="#instalar-utilizando-o-assistente-de-instalacao" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <ol>
+            <li>
+             <p>
+              Inicie um navegador
+              <em>
+               web
+              </em>
+              e aceda ao endereço
+              <code class="docutils literal notranslate">
+               <span class="pre">
+                https://&lt;URL_do_CatecheSis&gt;/setup
+               </span>
+              </code>
+              , onde
+              <code class="docutils literal notranslate">
+               <span class="pre">
+                &lt;URL_do_CatecheSis&gt;
+               </span>
+              </code>
+              designa o endereço onde ficará disponível o CatecheSis (por exemplo:
+              <em>
+               example.com/catechesis
+              </em>
+              ).
+             </p>
+             <p>
+              Deverá ser mostrada a seguinte página:
+              <img alt="_images/Assistente_de_instalacao_1.png" src="_images/Assistente_de_instalacao_1.png"/>
+             </p>
+            </li>
+            <li>
+             <p>
+              Faça clique em
+              <em>
+               Seguinte
+              </em>
+              .
+             </p>
+            </li>
+            <li>
+             <p>
+              Por favor leia os termos e condições apresentados na página. Se concordar, marque a opção
+              <em>
+               <strong>
+                Li e aceito os termos e condições
+               </strong>
+              </em>
+              e de seguida clique em
+              <em>
+               Seguinte
+              </em>
+              .
+             </p>
+            </li>
+            <li>
+             <p>
+              O assistente de instalação vai agora verificar se o seu servidor cumpre os requisitos técnicos para executar o CatecheSis.
+             </p>
+             <p>
+              Se forem detetados problemas, será exibida uma caixa vermelha. Por favor instale os pacotes de software que estão em falta, e que são indicados nessa caixa, e volte ao passo 1.
+             </p>
+             <div class="info">
+              <p>
+               <b>
+                NOTA:
+               </b>
+               Por razões de segurança, o assistente de instalação
+               <i>
+                exige
+               </i>
+               que o servidor esteja configurado para utilizar HTTPS.
+               <br/>
+               Se o seu servidor não tem um certificado SSL configurado, por favor crie um ou contacte o seu provedor de alojamento web e informe-se sobre como pode obter um.
+              </p>
+             </div>
+             <p>
+              Se não forem detetados problemas, surgirá uma caixa verde. Clique em
+              <em>
+               Seguinte
+              </em>
+              para continuar.
+              <img alt="_images/Assistente_de_instalacao_3.png" src="_images/Assistente_de_instalacao_3.png"/>
+             </p>
+            </li>
+            <li>
+             <p>
+              Escolha uma diretoria no seu servidor para armazenar os dados gerados pelo CatecheSis, tais como documentos carregados e fotografias, e escreva-a na caixa.
+              <img alt="_images/Assistente_de_instalacao_4.png" src="_images/Assistente_de_instalacao_4.png"/>
+              Esta diretoria
+              <em>
+               não
+              </em>
+              deverá existir ainda no seu servidor, pois será criada pelo assistente.
+             </p>
+             <p>
+              <strong>
+               Certifique-se de que esta diretoria não é servida pelo seu servidor web
+              </strong>
+              , isto é, que não é acessível publicamente através de um browser.
+             </p>
+             <p>
+              Clique em
+              <em>
+               Seguinte
+              </em>
+              .
+             </p>
+            </li>
+            <li>
+             <p>
+              Preencha as credenciais de acesso à base de dados que criou previamente.
+             </p>
+             <p>
+              Se a sua base de dados residir fisicamente na mesma máquina que o servidor web, escreva
+              <em>
+               localhost
+              </em>
+              na caixa
+              <em>
+               Servidor:
+              </em>
+              . Esta é a situação mais comum em serviços de alojamento web.
+             </p>
+             <p>
+              Clique em
+              <em>
+               Seguinte
+              </em>
+              .
+             </p>
+             <p>
+              A base de dados será preenchida com as tabelas necessárias para o CatecheSis. Se ocorrer algum erro durante este processo, voltará a ver esta página e informações sobre o erro. Caso contrário, será encaminhado para a página seguinte.
+             </p>
+            </li>
+            <li>
+             <p>
+              É altura de criar uma conta de admninistrador.
+             </p>
+             <p>
+              Preencha o nome da pessoa em questão, escolha um nome de utilizador para a identificar no sistema e uma palavra-passe.
+             </p>
+             <p>
+              A palavra-passe deve ter, no mínimo, 10 caracteres, contendo letras, dígitos e símbolos especiais.
+             </p>
+             <p>
+              <img alt="_images/Assistente_de_instalacao_6.png" src="_images/Assistente_de_instalacao_6.png"/>
+             </p>
+             <div class="info">
+              <p>
+               <b>
+                NOTA:
+               </b>
+               Esta é uma boa ocasião para criar uma conta de administrador para o seu pároco.
+              </p>
+             </div>
+             <div class="info">
+              <p>
+               <b>
+                NOTA:
+               </b>
+               Poderá criar outras contas de admnistrador mais tarde, no CatecheSis.
+              </p>
+             </div>
+            </li>
+            <li>
+             <p>
+              Preencha os dados da sua paróquia, no painel mostrado.
+             </p>
+             <p>
+              Para começar o preenchimento, clique no botão
+              <em>
+               Editar
+              </em>
+              no canto superior direito do painel.
+             </p>
+             <p>
+              Quando terminar de preencher todos os campos, clique no botão
+              <em>
+               Guardar
+              </em>
+              no canto superior direito do painel.
+             </p>
+             <p>
+              <img alt="_images/Assistente_de_instalacao_7.png" src="_images/Assistente_de_instalacao_7.png"/>
+             </p>
+             <p>
+              Quando estiver satisfeito com as alterações, clique em
+              <em>
+               Seguinte
+              </em>
+              .
+             </p>
+             <div class="info">
+              <p>
+               <b>
+                NOTA:
+               </b>
+               Deve clicar no botão
+               <i>
+                Guardar
+               </i>
+               , no canto superior direito do painel, antes de avançar com o botão
+               <i>
+                Seguinte
+               </i>
+               , para que as alterações fiquem guardadas.
+              </p>
+             </div>
+             <div class="info">
+              <p>
+               <b>
+                NOTA:
+               </b>
+               Poderá aceder a este mesmo painel mais tarde, e efetuar alterações aos dados da paróquia, na página de configurações do CatecheSis.
+              </p>
+             </div>
+            </li>
+            <li>
+             <p>
+              Preencha as informações relativas à proteção de dados.
+             </p>
+             <p>
+              Para garantir o cumprimento do Regulanento Geral de Proteção de Dados (RGPD) na sua paróquia, por favor preencha o nome e contacto das pessoas responsáveis.
+             </p>
+             <p>
+              Para começar o preenchimento, clique no botão
+              <em>
+               Editar
+              </em>
+              no canto superior direito do painel.
+             </p>
+             <p>
+              Quando terminar de preencher todos os campos, clique no botão
+              <em>
+               Guardar
+              </em>
+              no canto superior direito do painel.
+             </p>
+             <p>
+              <img alt="_images/Assistente_de_instalacao_8.png" src="_images/Assistente_de_instalacao_8.png"/>
+             </p>
+             <p>
+              Quando estiver satisfeito com as alterações, clique em
+              <em>
+               Seguinte
+              </em>
+              .
+             </p>
+             <div class="info">
+              <p>
+               <b>
+                NOTA:
+               </b>
+               Deve clicar no botão
+               <i>
+                Guardar
+               </i>
+               , no canto superior direito do painel, antes de avançar com o botão
+               <i>
+                Seguinte
+               </i>
+               , para que as alterações fiquem guardadas.
+              </p>
+             </div>
+             <div class="info">
+              <p>
+               <b>
+                NOTA:
+               </b>
+               Poderá aceder a este mesmo painel mais tarde, e efetuar alterações, na página de configurações do CatecheSis.
+              </p>
+             </div>
+            </li>
+            <li>
+             <p>
+              A última página do assistente informá-lo-á se a instalção foi concluída com sucesso.
+             </p>
+            </li>
+           </ol>
+           <p>
+            <img alt="_images/Assistente_de_instalacao_9.png" src="_images/Assistente_de_instalacao_9.png"/>
+           </p>
+           <p>
+            Poderá ser necessário remover manualmente a pasta
+            <code class="docutils literal notranslate">
+             <span class="pre">
+              setup
+             </span>
+            </code>
+            , se o assistente não encontrar as permissões necessárias para o fazer automaticamente.
+           </p>
+           <div class="info">
+            <p>
+             <b>
+              NOTA:
+             </b>
+             <b>
+              Por razões de segurança, é muito importante garantir que a pasta
+              <code>
+               setup
+              </code>
+              é eliminada após a conclusão do assistente de instalação.
+             </b>
+             Se a pasta não foi eliminada automaticamente, por favor elimine-a manualmente no seu servidor.
+            </p>
+           </div>
+           <p>
+            Continue para
+            <a class="reference external" href="#configuracoes-adicionais">
+             Configurações adicionais
+            </a>
+           </p>
+          </section>
+          <section id="instalar-manualmente-para-utilizadores-avancados">
+           <h4 id="instalar-manualmente-para-utilizadores-avancados">
+            2.2.3 Instalar manualmente [para utilizadores avançados]
+            <a class="headerlink" href="#instalar-manualmente-para-utilizadores-avancados" title="Link permanente para este título">
+             ¶
+            </a>
+           </h4>
+           <p>
+            É possível instalar e configurar o CatecheSis sem utilizar o assistente de instalação.
+Para tal, os passos genéricos são estes:
+           </p>
+           <ol>
+            <li>
+             <p>
+              Crie uma base se dados MySQL.
+             </p>
+            </li>
+            <li>
+             <p>
+              Execute, por esta ordem, os scripts SQL
+              <code class="docutils literal notranslate">
+               <span class="pre">
+                catechesis_database.sql
+               </span>
+              </code>
+              e
+              <code class="docutils literal notranslate">
+               <span class="pre">
+                ulogin_database.sql
+               </span>
+              </code>
+              localizados na diretoria
+              <code class="docutils literal notranslate">
+               <span class="pre">
+                setup
+               </span>
+              </code>
+              .
+             </p>
+            </li>
+            <li>
+             <p>
+              [OPCIONAL] Para uma segurança reforçada, pode criar utilizadores da base de dados específicos para cada contexto de segurança. Para tal, preencha as respetivas palavras-passe no ficheiro
+              <code class="docutils literal notranslate">
+               <span class="pre">
+                users.sql
+               </span>
+              </code>
+              e execute esse script.
+             </p>
+            </li>
+            <li>
+             <p>
+              Crie uma pasta no seu servidor, numa localização que não seja servida pelo servidor web (i.e. que não fique acessivel publicamente através de um navegador), para alojar o conteúdo gerado pelo CatecheSis.
+             </p>
+             <p>
+              Por exemplo, crie a pasta
+              <code class="docutils literal notranslate">
+               <span class="pre">
+                catechesis_data
+               </span>
+              </code>
+              na raíz do seu servidor.
+             </p>
+             <p>
+              Depois, copie para essa pasta o conteúdo da pasta
+              <code class="docutils literal notranslate">
+               <span class="pre">
+                setup/catechesis_data
+               </span>
+              </code>
+              .
+             </p>
+            </li>
+            <li>
+             <p>
+              Crie uma cópia do ficheiro
+              <code class="docutils literal notranslate">
+               <span class="pre">
+                core/config/catechesis_config.inc.template.php
+               </span>
+              </code>
+              e renomeie-a para
+              <code class="docutils literal notranslate">
+               <span class="pre">
+                catechesis_config.inc.php
+               </span>
+              </code>
+              .
+             </p>
+             <p>
+              Depois, substitua todos os campos nesse ficheiro pelos valores apropriados, nomeadamente:
+             </p>
+            </li>
+           </ol>
+           <table border="1">
+            <thead>
+             <tr>
+              <th>
+               Campo
+              </th>
+              <th>
+               Descrição
+              </th>
+             </tr>
+            </thead>
+            <tbody>
+             <tr>
+              <td>
+               CATECHESIS_DOMAIN
+              </td>
+              <td>
+               O seu domínio na internet (ex:
+               <em>
+                example.com
+               </em>
+               ).
+              </td>
+             </tr>
+             <tr>
+              <td>
+               CATECHESIS_BASE_URL
+              </td>
+              <td>
+               A URL da página principal do CatecheSis (ex:
+               <em>
+                https://example.com/catechesis
+               </em>
+               )
+              </td>
+             </tr>
+             <tr>
+              <td>
+               CATECHESIS_ROOT_DIRECTORY
+              </td>
+              <td>
+               O caminho para a diretoria principal do CatecheSis, no seu servidor. (ex:
+               <em>
+                /var/www/catechesis
+               </em>
+               )
+              </td>
+             </tr>
+             <tr>
+              <td>
+               CATECHESIS_DATA_DIRECTORY
+              </td>
+              <td>
+               O caminho para a diretoria de dados que criou no passo 4. (ex:
+               <em>
+                /home/catechesis_data
+               </em>
+               )
+              </td>
+             </tr>
+            </tbody>
+           </table>
+           <ol>
+            <li>
+             <p>
+              Crie uma cópia do ficheiro
+              <code class="docutils literal notranslate">
+               <span class="pre">
+                &lt;catechesis_data&gt;/config/catechesis_config.shadow.template.php
+               </span>
+              </code>
+              e renomeie-a para
+              <code class="docutils literal notranslate">
+               <span class="pre">
+                catechesis_config.shadow.php
+               </span>
+              </code>
+              . Note que
+              <code class="docutils literal notranslate">
+               <span class="pre">
+                &lt;catechesis_data&gt;
+               </span>
+              </code>
+              no caminho anterior refere-se à pasta que criou no passo 4.
+             </p>
+             <p>
+              Depois, substitua todos os campos nesse ficheiro pelos valores apropriados, nomeadamente:
+             </p>
+            </li>
+           </ol>
+           <table border="1">
+            <thead>
+             <tr>
+              <th>
+               Campo
+              </th>
+              <th>
+               Descrição
+              </th>
+             </tr>
+            </thead>
+            <tbody>
+             <tr>
+              <td>
+               CATECHESIS_UL_SITE_KEY
+              </td>
+              <td>
+               Crie uma chave criptográfica alfanumérica com 40 ou mais caracteres e escreva-a aqui.
+              </td>
+             </tr>
+             <tr>
+              <td>
+               CATECHESIS_HOST
+              </td>
+              <td>
+               Nome do servidor que aloja a base de dados (ex:
+               <em>
+                localhost
+               </em>
+               )
+              </td>
+             </tr>
+             <tr>
+              <td>
+               CATECHESIS_DB
+              </td>
+              <td>
+               Nome da base de dados que criou no passo 1.
+              </td>
+             </tr>
+             <tr>
+              <td>
+               HIGH_SECURITY
+              </td>
+              <td>
+               Se executou o passo opcional 3., para uma segurança reforçada, escreva
+               <code>
+                true
+               </code>
+               no valor desta variável e preencha as palavras-passe dos utilizadores da base de dados em cada um dos campos
+               <code>
+                &lt;PASS...&gt;
+               </code>
+              </td>
+             </tr>
+             <tr>
+              <td>
+               DB_ROOT_USER
+              </td>
+              <td>
+               Nome de utilizador único para acesso à base de dados (no caso de não ter executado o passo 3.).
+              </td>
+             </tr>
+             <tr>
+              <td>
+               DB_ROOT_PASSWORD
+              </td>
+              <td>
+               Palavra-passe do utilizador único para acesso à base de dados (no caso de não ter executado o passo 3.).
+              </td>
+             </tr>
+            </tbody>
+           </table>
+           <ol>
+            <li>
+             <p>
+              Modifique no ficheiro
+              <code class="docutils literal notranslate">
+               <span class="pre">
+                setup/criaAdmin.php
+               </span>
+              </code>
+              o nome e as credenciais desejadas para criar uma conta de administrador para o CatecheSis.
+             </p>
+             <p>
+              Depois, execute esse script acedendo através de um navegador à página
+              <code class="docutils literal notranslate">
+               <span class="pre">
+                https://&lt;O_SEU_DOMINIO/catechesis&gt;/setup/criaAdmin.php
+               </span>
+              </code>
+              .
+             </p>
+            </li>
+            <li>
+             <p>
+              <strong>
+               Elimine a pasta
+               <code class="docutils literal notranslate">
+                <span class="pre">
+                 setup
+                </span>
+               </code>
+               .
+              </strong>
+             </p>
+            </li>
+            <li>
+             <p>
+              Aceda ao CatecheSis através de um navegador, entre com a conta de administrador criada no passo 7., e termine a configuração dos dados da paróqua e do Regulamento Geral de Proteção de Dados na página de configurações do CatecheSis.
+             </p>
+            </li>
+           </ol>
+          </section>
+         </section>
+         <section id="configuracoes-adicionais">
+          <h3 id="configuracoes-adicionais">
+           2.3 Configurações adicionais
+           <a class="headerlink" href="#configuracoes-adicionais" title="Link permanente para este título">
+            ¶
+           </a>
+          </h3>
+          <p>
+           Existem alguns passos adicionais que têm de ser executados manualmente, para concluir a instalação do CatecheSis.
+          </p>
+          <ol>
+           <li>
+            <p>
+             Confirme, utilizando um navegador web, que o conteúdo das pastas internas do CatecheSis (nomeadamente
+             <code class="docutils literal notranslate">
+              <span class="pre">
+               core
+              </span>
+             </code>
+             ) não está a ser servido.
+            </p>
+            <p>
+             Esta verificação destina-se a testar se o seu servidor está corretamente configurado para interpretar as diretrizes dos ficheiros
+             <code class="docutils literal notranslate">
+              <span class="pre">
+               .htaccess
+              </span>
+             </code>
+             que bloqueiam o acesso dos visitantes a determinadas áreas internas do CatecheSis.
+Se necessário, corrija a configuração do servidor web.
+            </p>
+           </li>
+           <li>
+            <p>
+             Para que a funcionalidade de estatísticas de catequizandos residentes na paróquia funcione, é necessário preencher tabela
+             <code class="docutils literal notranslate">
+              <span class="pre">
+               cod_postais_paroquia
+              </span>
+             </code>
+             da base de dados com os códigos postais abrangidos pela sua paróquia.
+            </p>
+           </li>
+          </ol>
+         </section>
+        </section>
+        <section id="instalar-a-catequese-cloud-opcional">
+         <h2 id="instalar-a-catequese-cloud-opcional">
+          3. Instalar a Catequese Cloud [OPCIONAL]
+          <a class="headerlink" href="#instalar-a-catequese-cloud-opcional" title="Link permanente para este título">
+           ¶
+          </a>
+         </h2>
+         <p>
+          A Catequese Cloud é um componente opcional. Trata-se de uma plataforma de partilha de ficheiros (vulgarmente chamada de «cloud»), baseada no software open-source
+          <a class="reference external" href="https://nextcloud.com/">
+           NextCloud
+          </a>
+          .
+O CatecheSis possui integrações específicas com a Nextcloud, de forma a que possa utilizar as mesmas contas de utilizador para aceder a ambos os sistemas, e para que possa facilmente utilizar recursos da nuvem nas sessões de catequese virtual.
+         </p>
+         <p>
+          Atualmente, a documentação de configuração da Catequese Cloud e respetiva integração com o CatecheSis encontra-se apenas disponível em língua inglesa, no
+          <a class="reference external" href="https://github.com/CatecheSis-org-pt/catechesis/blob/master/integrations/Nextcloud/CatecheSis%20Nextcloud%20integration.md">
+           repositório de código do CatecheSis
+          </a>
+          .
+         </p>
+        </section>
+        <section id="manter-o-catechesis-atualizado">
+         <h2 id="manter-o-catechesis-atualizado">
+          4. Manter o CatecheSis atualizado
+          <a class="headerlink" href="#manter-o-catechesis-atualizado" title="Link permanente para este título">
+           ¶
+          </a>
+         </h2>
+         <p>
+          O CatecheSis irá apresentar uma notificação quando estiver disponível uma nova versão para transferir, e inclui um
+Assistente de Atualização que transfere e instala automaticamente atualizações, quando estas estiverem disponíveis.
+         </p>
+         <p>
+          Para mais informações sobre o processo de atualização, consulte a secção
+          <em>
+           Manter o CatecheSis atualizado
+          </em>
+          no
+          <a class="reference internal" href="manual_do_utilizador.html">
+           <span class="doc">
+            Manual do Utilizador
+           </span>
+          </a>
+          .
+         </p>
+        </section>
+       </section>
+      </article>
+     </div>
+    </div>
+   </main>
+  </div>
+  <footer class="md-footer">
+   <div class="md-footer-nav">
+    <nav class="md-footer-nav__inner md-grid">
+     <a class="md-flex md-footer-nav__link md-footer-nav__link--prev" href="manual_do_utilizador.html" rel="prev" title="Manual do Utilizador">
+      <div class="md-flex__cell md-flex__cell--shrink">
+       <i class="md-icon md-icon--arrow-back md-footer-nav__button">
+       </i>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+       <span class="md-flex__ellipsis">
+        <span class="md-footer-nav__direction">
+         Previous
+        </span>
+        Manual do Utilizador
+       </span>
+      </div>
+     </a>
+    </nav>
+   </div>
+   <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+     <div class="md-footer-copyright">
+      <div class="md-footer-copyright__highlight">
+       © Copyright 2022, CatecheSis.
+      </div>
+      Last updated on
+              13 fev., 2024.
+      <br/>
+      Created using
+      <a href="http://www.sphinx-doc.org/">
+       Sphinx
+      </a>
+      4.5.0.
+             and
+      <a href="https://github.com/bashtage/sphinx-material/">
+       Material for
+              Sphinx
+      </a>
+     </div>
+    </div>
+   </div>
+  </footer>
+  <script src="_static/javascripts/application.js">
+  </script>
+  <script>
+   app.initialize({version: "1.0.4", url: {base: ".."}})
+  </script>
+ </body>
+</html>

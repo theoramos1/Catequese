@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="pt_PT">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <meta content="ie=edge" http-equiv="x-ua-compatible"/>
+  <meta content="Copy to clipboard" name="lang:clipboard.copy"/>
+  <meta content="Copied to clipboard" name="lang:clipboard.copied"/>
+  <meta content="en" name="lang:search.language"/>
+  <meta content="True" name="lang:search.pipeline.stopwords"/>
+  <meta content="True" name="lang:search.pipeline.trimmer"/>
+  <meta content="No matching documents" name="lang:search.result.none"/>
+  <meta content="1 matching document" name="lang:search.result.one"/>
+  <meta content="# matching documents" name="lang:search.result.other"/>
+  <meta content="[\s\-]+" name="lang:search.tokenizer"/>
+  <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&amp;display=fallback" rel="stylesheet"/>
+  <style>
+   body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+  </style>
+  <link href="_static/stylesheets/application.css" rel="stylesheet"/>
+  <link href="_static/stylesheets/application-palette.css" rel="stylesheet"/>
+  <link href="_static/stylesheets/application-fixes.css" rel="stylesheet"/>
+  <link href="_static/fonts/material-icons.css" rel="stylesheet"/>
+  <meta content="blue" name="theme-color"/>
+  <script src="_static/javascripts/modernizr.js">
+  </script>
+  <title>
+   Manuais do CatecheSis — Manuais do CatecheSis
+  </title>
+  <link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
+  <link href="_static/material.css" rel="stylesheet" type="text/css"/>
+  <link href="_static/copybutton.css" rel="stylesheet" type="text/css"/>
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js">
+  </script>
+  <script src="_static/jquery.js">
+  </script>
+  <script src="_static/underscore.js">
+  </script>
+  <script src="_static/doctools.js">
+  </script>
+  <script src="_static/clipboard.min.js">
+  </script>
+  <script src="_static/copybutton.js">
+  </script>
+  <script src="_static/translations.js">
+  </script>
+  <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js">
+  </script>
+  <link href="_static/AF_CatecheSis_Logo_Broswer.png" rel="shortcut icon"/>
+  <link href="genindex.html" rel="index" title="Índice"/>
+  <link href="search.html" rel="search" title="Pesquisar"/>
+  <link href="manual_do_utilizador.html" rel="next" title="Manual do Utilizador"/>
+ </head>
+ <body data-md-color-accent="black" data-md-color-primary="blue" dir="ltr">
+  <svg class="md-svg">
+   <defs data-children-count="0">
+    <svg height="448" id="__github" viewbox="0 0 416 448" width="416" xmlns="http://www.w3.org/2000/svg">
+     <path d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z" fill="currentColor">
+     </path>
+    </svg>
+   </defs>
+  </svg>
+  <input class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+  <input class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+  <label class="md-overlay" data-md-component="overlay" for="__drawer">
+  </label>
+  <a class="md-skip" href="#index" tabindex="1">
+   Skip to content
+  </a>
+  <header class="md-header" data-md-component="header" style="background-color: #008fcf; color: #f3e9e7;">
+   <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+     <div class="md-flex__cell md-flex__cell--shrink">
+      <a class="md-header-nav__button md-logo" href="#" title="Manuais do CatecheSis">
+       <img alt="Manuais do CatecheSis logo" height="26" src="_static/AF_CatecheSis_Logo_Navbar.png"/>
+      </a>
+     </div>
+     <div class="md-flex__cell md-flex__cell--shrink">
+      <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer">
+      </label>
+     </div>
+     <div class="md-flex__cell md-flex__cell--stretch">
+      <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+       <span class="md-header-nav__topic">
+        Manuais do CatecheSis
+       </span>
+       <span class="md-header-nav__topic">
+        Manuais do CatecheSis
+       </span>
+      </div>
+     </div>
+     <div class="md-flex__cell md-flex__cell--shrink">
+      <label class="md-icon md-icon--search md-header-nav__button" for="__search">
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+       <label class="md-search__overlay" for="__search">
+       </label>
+       <div class="md-search__inner" role="search">
+        <form action="search.html" class="md-search__form" method="get" name="search">
+         <input autocapitalize="off" autocomplete="off" class="md-search__input" data-md-component="query" data-md-state="active" name="q" placeholder="Search" spellcheck="false" type="text"/>
+         <label class="md-icon md-search__icon" for="__search">
+         </label>
+         <button class="md-icon md-search__icon" data-md-component="reset" tabindex="-1" type="reset">
+          
+         </button>
+        </form>
+        <div class="md-search__output">
+         <div class="md-search__scrollwrap" data-md-scrollfix="">
+          <div class="md-search-result" data-md-component="result">
+           <div class="md-search-result__meta">
+            Type to start searching
+           </div>
+           <ol class="md-search-result__list">
+           </ol>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <script src="_static/javascripts/version_dropdown.js">
+     </script>
+     <script>
+      var json_loc = ""versions.json"",
+        target_loc = "../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+     </script>
+    </div>
+   </nav>
+  </header>
+  <div class="md-container">
+   <main class="md-main">
+    <div class="md-main__inner md-grid" data-md-component="container">
+     <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" style="margin-top: 50px;">
+      <div class="md-sidebar__scrollwrap">
+       <div class="md-sidebar__inner">
+        <nav class="md-nav md-nav--primary" data-md-level="0">
+         <label class="md-nav__title md-nav__title--site" for="__drawer">
+          <a class="md-nav__button md-logo" href="#" title="Manuais do CatecheSis">
+           <img alt=" logo" height="48" src="_static/AF_CatecheSis_Logo_Navbar.png" width="48"/>
+          </a>
+          <a href="#" title="Manuais do CatecheSis">
+           Manuais do CatecheSis
+          </a>
+         </label>
+         <ul class="md-nav__list">
+          <li class="md-nav__item">
+           <a class="md-nav__link" href="manual_do_utilizador.html">
+            Manual do Utilizador
+           </a>
+          </li>
+          <li class="md-nav__item">
+           <a class="md-nav__link" href="manual_de_instalacao.html">
+            Manual de Instalação
+           </a>
+          </li>
+          <li class="md-nav__item">
+           <span class="md-nav__link caption" style="margin-top: 30px;">
+            <span class="caption-text">
+             Links Uteis
+            </span>
+           </span>
+          </li>
+          <li class="md-nav__item">
+           <a class="md-nav__link" href="https://catechesis.org.pt">
+            CatecheSis
+           </a>
+          </li>
+         </ul>
+        </nav>
+       </div>
+      </div>
+     </div>
+     <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+      <div class="md-sidebar__scrollwrap">
+       <div class="md-sidebar__inner">
+        <nav class="md-nav md-nav--secondary">
+         <label class="md-nav__title" for="__toc">
+          Contents
+         </label>
+         <ul class="md-nav__list" data-md-scrollfix="">
+          <li class="md-nav__item">
+           <a class="md-nav__link" href="#index--page-root">
+            Manuais do CatecheSis
+           </a>
+           <nav class="md-nav">
+            <ul class="md-nav__list">
+             <li class="md-nav__item">
+              <a class="md-nav__link" href="#manual-de-utilizador">
+               Manual de Utilizador
+              </a>
+             </li>
+             <li class="md-nav__item">
+              <a class="md-nav__link" href="#manual-de-instalacao">
+               Manual de Instalação
+              </a>
+             </li>
+            </ul>
+           </nav>
+          </li>
+          <li class="md-nav__item">
+           <a class="md-nav__extra_link" href="_sources/index.rst.txt">
+            Exibir Fonte
+           </a>
+          </li>
+          <li class="md-nav__item" id="searchbox">
+          </li>
+         </ul>
+        </nav>
+       </div>
+      </div>
+     </div>
+     <div class="md-content">
+      <article class="md-content__inner md-typeset" role="main">
+       <section id="manuais-do-catechesis">
+        <h1 id="index--page-root">
+         Manuais do CatecheSis
+         <a class="headerlink" href="#index--page-root" title="Link permanente para este título">
+          ¶
+         </a>
+        </h1>
+        <p>
+         A presente página tem como objetivo apresentar e descrever o funcionamento do CatecheSis
+        </p>
+        <section id="manual-de-utilizador">
+         <h2 id="manual-de-utilizador">
+          Manual de Utilizador
+          <a class="headerlink" href="#manual-de-utilizador" title="Link permanente para este título">
+           ¶
+          </a>
+         </h2>
+         <p>
+          Este manual destina-se a todos os utilizadores do CatecheSis.
+         </p>
+         <div class="toctree-wrapper compound">
+          <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="manual_do_utilizador.html">
+             Manual do Utilizador
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="manual_do_utilizador.html#conceitos-basicos">
+               1. Conceitos básicos
+              </a>
+              <ul>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#utilizar-os-menus">
+                 1.1 Utilizar os menus
+                </a>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#tipos-de-contas">
+                 1.2 Tipos de contas
+                </a>
+                <ul>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#qual-e-o-meu-tipo-de-conta">
+                   1.2.1 Qual é o meu tipo de conta?
+                  </a>
+                 </li>
+                </ul>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#editar-dados-no-catechesis">
+                 1.3 Editar dados no Catechesis
+                </a>
+               </li>
+              </ul>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="manual_do_utilizador.html#efectuar-uma-tarefa">
+               2. Efectuar uma tarefa
+              </a>
+              <ul>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#modificar-os-dados-da-minha-conta">
+                 2.1 Modificar os dados da minha conta
+                </a>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#consultar-as-fichas-dos-meus-catequizandos">
+                 2.2 Consultar as fichas dos meus catequizandos
+                </a>
+                <ul>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#opcao-1">
+                   2.2.1 Opção 1
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#opcao-2">
+                   2.2.2 Opção 2
+                  </a>
+                 </li>
+                </ul>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#procurar-e-consultar-a-ficha-de-um-catequizando">
+                 2.3 Procurar e consultar a ficha de um catequizando
+                </a>
+                <ul>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#procurar-por-nome-data-de-nascimento">
+                   2.3.1 Procurar por nome / data de nascimento
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#procurar-por-ano-catecismo">
+                   2.3.2 Procurar por ano / catecismo
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#procurar-por-catequista">
+                   2.3.3 Procurar por catequista
+                  </a>
+                 </li>
+                </ul>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#consultar-o-arquivo-acerca-de-um-catequizando">
+                 2.4 Consultar o arquivo acerca de um catequizando
+                </a>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#imprimir-folha-de-presencas-fichas-de-catequizandos-ou-fichas-de-pre-inscricao">
+                 2.5 Imprimir folha de presenças, fichas de catequizandos ou fichas de pré-inscrição
+                </a>
+                <ul>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#para-o-meu-grupo-de-catequese">
+                   2.5.1 Para o meu grupo de catequese
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#para-outro-grupo-de-catequese">
+                   2.5.2 Para outro grupo de catequese
+                  </a>
+                 </li>
+                </ul>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#registar-o-aproveitamento-dos-catequizandos">
+                 2.6 Registar o aproveitamento dos catequizandos
+                </a>
+                <ul>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#registar-o-aproveitamento-dos-meus-catequizandos">
+                   2.6.1 Registar o aproveitamento dos meus catequizandos
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#abrir-fechar-o-periodo-de-avaliacao">
+                   2.6.2 Abrir/fechar o período de avaliação
+                  </a>
+                 </li>
+                </ul>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#gerar-listagens-de-catequizandos">
+                 2.7 Gerar listagens de catequizandos
+                </a>
+                <ul>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#listar-baptismos">
+                   2.7.1 Listar baptismos
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#listar-primeiras-comunhoes">
+                   2.7.2 Listar primeiras comunhões
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#listar-profissoes-de-fe">
+                   2.7.3 Listar profissões de fé
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#listar-confirmacoes">
+                   2.7.4 Listar confirmações
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#listar-escuteiros">
+                   2.7.5 Listar escuteiros
+                  </a>
+                 </li>
+                </ul>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#consultar-imprimir-sacramentos-de-todos-os-catequizandos">
+                 2.8 Consultar/Imprimir sacramentos de todos os catequizandos
+                </a>
+                <ul>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#os-meus-catequizandos">
+                   2.8.1 Os meus catequizandos
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#pesquisa-por-ano-catecismo">
+                   2.8.2 Pesquisa por ano/catecismo
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#pesquisa-por-catequista">
+                   2.8.3 Pesquisa por catequista
+                  </a>
+                 </li>
+                </ul>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#utilizar-as-ferramentas-de-apoio-a-decisao">
+                 2.9 Utilizar as ferramentas de apoio à decisão
+                </a>
+                <ul>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#listar-catequizandos-elegiveis-para-baptismo">
+                   2.9.1 Listar catequizandos elegíveis para Baptismo
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#listar-catequizandos-elegiveis-para-primeira-comunhao">
+                   2.9.2 Listar catequizandos elegíveis para Primeira Comunhão
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#listar-catequizandos-elegiveis-para-crisma">
+                   2.9.3 Listar catequizandos elegíveis para Crisma
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#listar-catequizandos-com-dados-inconsistentes">
+                   2.9.4 Listar catequizandos com dados inconsistentes
+                  </a>
+                 </li>
+                </ul>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#consultar-estatisticas-acerca-da-catequese-paroquial">
+                 2.10 Consultar estatísticas acerca da catequese paroquial
+                </a>
+                <ul>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#numero-de-catequizandos-por-catequista">
+                   2.10.1 Número de catequizandos por catequista
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#desistencias">
+                   2.10.2 Desistências
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#percursos-catequeticos-completos">
+                   2.10.3 Percursos catequéticos completos
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#percentagem-de-catequizandos-residentes-na-paroquia">
+                   2.10.4 Percentagem de catequizandos residentes na paróquia
+                  </a>
+                 </li>
+                </ul>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#criar-uma-sessao-de-catequese-virtual">
+                 2.11 Criar uma sessão de Catequese Virtual
+                </a>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#inscrever-um-catequizando">
+                 2.12 Inscrever um catequizando
+                </a>
+                <ul>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#inscrever-um-novo-catequizando-offline">
+                   2.12.1 Inscrever um novo catequizando (offline)
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#inscrever-um-irmao">
+                   2.12.2 Inscrever um irmão
+                  </a>
+                 </li>
+                </ul>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#renovar-matriculas">
+                 2.13 Renovar matrículas
+                </a>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#atribuir-um-catequizando-a-um-grupo-de-catequese">
+                 2.14 Atribuir um catequizando a um grupo de catequese
+                </a>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#gerir-inscricoes-online">
+                 2.15 Gerir inscrições online
+                </a>
+                <ul>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#abrir-fechar-as-inscricoes-online">
+                   2.15.1 Abrir/fechar as inscrições online
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#visualizar-pedidos-de-novas-inscricoes">
+                   2.15.2 Visualizar pedidos de novas inscrições
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#visualizar-pedidos-de-renovacao-de-matricula">
+                   2.15.3 Visualizar pedidos de renovação de matrícula
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#aprovar-renovacoes">
+                   2.15.4 Aprovar renovações
+                  </a>
+                 </li>
+                </ul>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#criar-e-gerir-grupos-de-catequese">
+                 2.16 Criar e gerir grupos de catequese
+                </a>
+                <ul>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#criar-grupos-para-um-novo-ano-catequetico">
+                   2.16.1 Criar grupos para um novo ano catequético
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#adicionar-remover-grupos-num-ano-catequetico-existente">
+                   2.16.2 Adicionar/remover grupos num ano catequético existente
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#definir-os-catequistas-para-um-grupo-de-catequese">
+                   2.16.3 Definir os catequistas para um grupo de catequese
+                  </a>
+                 </li>
+                </ul>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#criar-e-gerir-utilizadores-e-catequistas">
+                 2.17 Criar e gerir utilizadores e catequistas
+                </a>
+                <ul>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#criar-uma-nova-conta-de-utilizador-catequista">
+                   2.17.1 Criar uma nova conta de utilizador / catequista
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#modificar-a-conta-de-um-utilizador">
+                   2.17.2 Modificar a conta de um utilizador
+                  </a>
+                 </li>
+                </ul>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#alterar-configuracoes-do-catechesis">
+                 2.18 Alterar configurações do Catechesis
+                </a>
+                <ul>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#dados-da-conta">
+                   2.18.1 Dados da conta
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#inscricoes-online">
+                   2.18.2 Inscrições online
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#aproveitamento-dos-catequizandos">
+                   2.18.3 Aproveitamento dos catequizandos
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#catequese-operacionalizacao">
+                   2.18.4 Catequese (operacionalização)
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#integracao-com-nextcloud">
+                   2.18.5 Integração com Nextcloud
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#personalizar-pagina-publica">
+                   2.18.6 Personalizar página pública
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#dados-da-paroquia">
+                   2.18.7 Dados da paróquia
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_do_utilizador.html#protecao-de-dados-rgpd">
+                   2.18.8 Proteção de dados (RGPD)
+                  </a>
+                 </li>
+                </ul>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#monitorizar-os-acessos-ao-catechesis">
+                 2.19 Monitorizar os acessos ao CatecheSis
+                </a>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#manter-o-catechesis-atualizado">
+                 2.20 Manter o CatecheSis atualizado
+                </a>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#notificacao-de-atualizacao">
+                 2.20.1 Notificação de atualização
+                </a>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#verificar-manualmente-a-existencia-de-atualizacoes">
+                 2.20.2 Verificar manualmente a existência de atualizações
+                </a>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#utilizar-o-assistente-de-atualizacao">
+                 2.20.3 Utilizar o Assistente de Atualização
+                </a>
+               </li>
+              </ul>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="manual_do_utilizador.html#requisitos-de-sistema">
+               3. Requisitos de sistema
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="manual_do_utilizador.html#problemas-conhecidos">
+               4. Problemas conhecidos
+              </a>
+              <ul>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#imprimir-fichas-e-arquivo-de-catequizandos">
+                 1.
+                 <em>
+                  Imprimir fichas e arquivo de catequizandos
+                 </em>
+                </a>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#imprimir-listagens">
+                 2.
+                 <em>
+                  Imprimir listagens
+                 </em>
+                </a>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#imprimir-estatisticas">
+                 3.
+                 <em>
+                  Imprimir estatísticas
+                 </em>
+                </a>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_do_utilizador.html#as-cores-dos-paineis-e-botoes-nao-aparecem-nas-paginas-impressas">
+                 4.
+                 <em>
+                  As cores dos painéis e botões não aparecem nas páginas impressas
+                 </em>
+                </a>
+               </li>
+              </ul>
+             </li>
+            </ul>
+           </li>
+          </ul>
+         </div>
+        </section>
+        <section id="manual-de-instalacao">
+         <h2 id="manual-de-instalacao">
+          Manual de Instalação
+          <a class="headerlink" href="#manual-de-instalacao" title="Link permanente para este título">
+           ¶
+          </a>
+         </h2>
+         <p>
+          Este manual destina-se aos administradores / técnicos de informática responsáveis pela instalação do CatecheSis.
+         </p>
+         <div class="toctree-wrapper compound">
+          <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="manual_de_instalacao.html">
+             Manual de Instalação
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="manual_de_instalacao.html#requisitos">
+               1. Requisitos
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="manual_de_instalacao.html#instalar-o-catechesis-num-servidor-web">
+               2. Instalar o CatecheSis num servidor web
+              </a>
+              <ul>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_de_instalacao.html#decarregar-o-catechesis">
+                 2.1 Decarregar o CatecheSis
+                </a>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_de_instalacao.html#instalar-o-catechesis">
+                 2.2 Instalar o CatecheSis
+                </a>
+                <ul>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_de_instalacao.html#preparativos">
+                   2.2.1 Preparativos
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_de_instalacao.html#instalar-utilizando-o-assistente-de-instalacao">
+                   2.2.2 Instalar utilizando o assistente de instalação
+                  </a>
+                 </li>
+                 <li class="toctree-l4">
+                  <a class="reference internal" href="manual_de_instalacao.html#instalar-manualmente-para-utilizadores-avancados">
+                   2.2.3 Instalar manualmente [para utilizadores avançados]
+                  </a>
+                 </li>
+                </ul>
+               </li>
+               <li class="toctree-l3">
+                <a class="reference internal" href="manual_de_instalacao.html#configuracoes-adicionais">
+                 2.3 Configurações adicionais
+                </a>
+               </li>
+              </ul>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="manual_de_instalacao.html#instalar-a-catequese-cloud-opcional">
+               3. Instalar a Catequese Cloud [OPCIONAL]
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="manual_de_instalacao.html#manter-o-catechesis-atualizado">
+               4. Manter o CatecheSis atualizado
+              </a>
+             </li>
+            </ul>
+           </li>
+          </ul>
+         </div>
+         <div class="toctree-wrapper compound">
+          <p class="caption" role="heading">
+           <span class="caption-text">
+            Links Uteis
+           </span>
+          </p>
+          <ul>
+           <li class="toctree-l1">
+            <a class="reference external" href="https://catechesis.org.pt">
+             CatecheSis
+            </a>
+           </li>
+          </ul>
+         </div>
+        </section>
+       </section>
+      </article>
+     </div>
+    </div>
+   </main>
+  </div>
+  <footer class="md-footer">
+   <div class="md-footer-nav">
+    <nav class="md-footer-nav__inner md-grid">
+     <a class="md-flex md-footer-nav__link md-footer-nav__link--next" href="manual_do_utilizador.html" rel="next" title="Manual do Utilizador">
+      <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+       <span class="md-flex__ellipsis">
+        <span class="md-footer-nav__direction">
+         Next
+        </span>
+        Manual do Utilizador
+       </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+       <i class="md-icon md-icon--arrow-forward md-footer-nav__button">
+       </i>
+      </div>
+     </a>
+    </nav>
+   </div>
+   <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+     <div class="md-footer-copyright">
+      <div class="md-footer-copyright__highlight">
+       © Copyright 2022, CatecheSis.
+      </div>
+      Last updated on
+              13 fev., 2024.
+      <br/>
+      Created using
+      <a href="http://www.sphinx-doc.org/">
+       Sphinx
+      </a>
+      4.5.0.
+             and
+      <a href="https://github.com/bashtage/sphinx-material/">
+       Material for
+              Sphinx
+      </a>
+     </div>
+    </div>
+   </div>
+  </footer>
+  <script src="_static/javascripts/application.js">
+  </script>
+  <script>
+   app.initialize({version: "1.0.4", url: {base: ".."}})
+  </script>
+ </body>
+</html>
