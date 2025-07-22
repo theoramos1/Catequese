@@ -20,6 +20,7 @@ abstract class MENU_OPTION
     const SACRAMENTS = 4;
     const ANALYSIS = 5;
     const SETTINGS = 6;
+    const PAYMENTS = 7;
 };
 
 
@@ -234,6 +235,9 @@ class MainNavbar extends Widget
                                 }
                                 ?>
                             </ul>
+                        </li>
+                        <li<?php if($this->menuOption==MENU_OPTION::PAYMENTS) echo(' class="active"'); ?>>
+                            <a href="pagamentos.php"><i class="fas fa-money-bill-wave"></i> Pagamento</a>
                         </li>
                     </ul>
 
