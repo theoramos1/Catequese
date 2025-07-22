@@ -101,7 +101,7 @@ class CatechumensEvaluationActivationPanelWidget extends AbstractSettingsPanelWi
         //Activar/desactivar
         if($_POST['action'] == self::$ACTION_PARAMETER && Authenticator::isAdmin())
         {
-            $setting = Utils::sanitizeInput($_POST['evaluation_period_switch']);
+            $setting = Utils::sanitizeInput($_POST['evaluation_period_switch'] ?? 'off');
 
             if($setting=="on")
             {
