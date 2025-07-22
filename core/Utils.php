@@ -474,6 +474,36 @@ class Utils
         return $token;
     }
 
+    /**
+     * Generates (or retrieves) the CSRF token stored in the current session.
+     * @param int $length
+     * @return string
+     * @throws Exception
+     */
+    public static function getCSRFToken(int $length = 32)
+    {
+        if(session_status() === PHP_SESSION_NONE)
+            session_start();
+
+        if(!isset($_SESSION['csrf_token']))
+            $_SESSION['csrf_token'] = self::secureRandomString($length);
+
+        return $_SESSION['csrf_token'];
+    }
+
+    /**
+     * Verifies that the CSRF token provided matches the one stored in the session.
+     * @param string|null $token
+     * @return bool
+     */
+    public static function verifyCSRFToken(?string $token)
+    {
+        if(session_status() === PHP_SESSION_NONE)
+            session_start();
+
+        return (isset($_SESSION['csrf_token']) && isset($token) && hash_equals($_SESSION['csrf_token'], $token));
+    }
+
 
     /**
      * Interrupts a script and returns an error message in the form of an HTML paragraph.

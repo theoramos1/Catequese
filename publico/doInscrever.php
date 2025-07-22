@@ -1,6 +1,7 @@
 <?php
 
 require_once(__DIR__ . '/../core/config/catechesis_config.inc.php');
+require_once(__DIR__ . '/../core/session_init.php');
 require_once(__DIR__ . '/../core/DataValidationUtils.php');
 require_once(__DIR__ . '/../core/Utils.php');
 require_once(__DIR__ . '/../core/UserData.php');
@@ -128,8 +129,13 @@ $navbar->renderHTML();
 
 
 	// Carregamento das variáveis através do metodo POST
-	if ($_SERVER["REQUEST_METHOD"] == "POST")
-	{
+        if ($_SERVER["REQUEST_METHOD"] == "POST")
+        {
+            if(!Utils::verifyCSRFToken($_POST['csrf_token'] ?? null))
+            {
+                echo("<div class=\"alert alert-danger\"><strong>ERRO!</strong> Pedido inválido.</div>");
+                die();
+            }
         //Dados biograficos do catequizando
         $foto_data = Utils::sanitizeInput($_POST['foto_data']);		// Foto codificada em base64
 	  	$nome = Utils::sanitizeInput($_POST['nome']);

@@ -296,6 +296,11 @@ class UserAccountConfigurationPanelWidget extends AbstractSettingsPanelWidget
 
         $ulogin = new uLogin('catechesis\Authenticator::appLogin', 'catechesis\Authenticator::appLoginFail');
 
+        if(!Utils::verifyCSRFToken($_POST['csrf_token'] ?? null))
+        {
+            echo("<div class=\"alert alert-danger\"><strong>Erro!</strong> Pedido inválido.</div>");
+            return;
+        }
         $action = Utils::sanitizeInput($_POST['action']);
 
         //Editar dados da conta

@@ -125,6 +125,12 @@ class CatechesisSettingsPanelWidget extends AbstractSettingsPanelWidget
         if($this->requires_admin_privileges && !Authenticator::isAdmin())
             return; //Do not render this widget if the user is not admin and it requires admin priviledges
 
+        if(!Utils::verifyCSRFToken($_POST['csrf_token'] ?? null))
+        {
+            echo("<div class=\"alert alert-danger\"><strong>Erro!</strong> Pedido inválido.</div>");
+            return;
+        }
+
         if($_POST['action'] == self::$ACTION_PARAMETER && Authenticator::isAdmin())
         {
             $numCatechisms = intval($_POST['num_catechisms']);

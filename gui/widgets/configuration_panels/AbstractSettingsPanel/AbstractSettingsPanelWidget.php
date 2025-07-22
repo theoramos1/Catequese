@@ -157,6 +157,7 @@ abstract class AbstractSettingsPanelWidget extends Widget
         ?>
         <div id="<?=$this->getID()?>" class="settings_panel_widget<?= $this->getCustomClassesString()?>" style="<?=$this->getCustomInlineStyle()?>">
             <form role="form" id="form_settings_<?= $this->getID() ?>" name="form_admin" onsubmit="return on_submit_<?= $this->getID() ?>()" action="<?= $this->post_URL ?>" method="post">
+                <input type="hidden" name="csrf_token" value="<?= \catechesis\Utils::getCSRFToken() ?>">
                 <div class="panel <?= $this->panel_style ?>" id="<?=$this->getID()?>_panel">
                     <div class="panel-heading" id="<?=$this->getID()?>_panel_heading"><?= $this->panel_title ?>
                         <?php
