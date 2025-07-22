@@ -1,4 +1,5 @@
 <?php
+require_once(__DIR__ . '/core/Configurator.php');
 require_once(__DIR__ . "/core/config/catechesis_config.inc.php");
 require_once(__DIR__ . "/authentication/utils/authentication_verify.php");
 require_once(__DIR__ . "/core/Utils.php");
@@ -36,7 +37,7 @@ $pageUI->addWidget($searchResults);
 
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
   <title>Pesquisar catequizandos</title>
   <meta charset="utf-8">
@@ -229,7 +230,10 @@ $longSearchWarning->renderHTML();
 $pageUI->renderJS(); // Render the widgets' JS code
 ?>
 <script src="js/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js"></script>
-<script src="js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.pt.min.js"></script>
+<?php
+    $dpLocale = (\catechesis\Configurator::getConfigurationValueOrDefault(\catechesis\Configurator::KEY_LOCALIZATION_CODE) == \core\domain\Locale::BRASIL) ? 'pt-BR' : 'pt';
+?>
+<script src="js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.<?= $dpLocale ?>.min.js"></script>
 <script src="js/form-validation-utils.js"></script>
 <script src="js/rowlink.js"></script>
 

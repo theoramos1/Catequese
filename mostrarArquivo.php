@@ -59,7 +59,7 @@ $pageUI->addWidget($chrismationPanel);
 
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
   <title>Detalhes do catequizando</title>
   <meta charset="utf-8">

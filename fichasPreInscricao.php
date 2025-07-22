@@ -26,7 +26,7 @@ $menu = new MainNavbar(null, MENU_OPTION::CATECHESIS);
 $pageUI->addWidget($menu);
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
   <title>Fichas de pré-inscrição</title>
   <meta charset="utf-8">

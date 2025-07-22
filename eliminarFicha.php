@@ -1,4 +1,5 @@
 <?php
+require_once(__DIR__ . '/core/Configurator.php');
 
 require_once(__DIR__ . '/core/config/catechesis_config.inc.php');
 require_once(__DIR__ . '/authentication/utils/authentication_verify.php');
@@ -31,7 +32,7 @@ $menu = new MainNavbar(null, MENU_OPTION::CATECHUMENS);
 $pageUI->addWidget($menu);
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
   <title>Detalhes do catequizando</title>
   <meta charset="utf-8">

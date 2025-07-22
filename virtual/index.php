@@ -34,7 +34,7 @@ $pageUI->addWidget($footer);
 
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
     <title>Catequese Virtual</title>
     <meta charset="utf-8">
@@ -255,7 +255,8 @@ $pageUI->addWidget($footer);
 
                 <h2><?= $catecismo ?>º Catecismo <?php if(isset($turma) && $turma !== "" && $turma !== "_") echo(" - Grupo $turma");?></h2>
                 <h4><?php
-                    setlocale(LC_TIME, 'pt_PT', 'pt_PT.utf-8', 'pt_PT.utf-8', 'portuguese');
+                    $localeCode = (\catechesis\Configurator::getConfigurationValueOrDefault(\catechesis\Configurator::KEY_LOCALIZATION_CODE) == \core\domain\Locale::BRASIL) ? 'pt_BR' : 'pt_PT';
+                    setlocale(LC_TIME, $localeCode, $localeCode.'.utf-8', $localeCode.'.utf8', 'portuguese');
                     echo(Utils::toUTF8(strftime('%A, %d de %B de %Y', strtotime($data_sessao))));
                     //echo(strftime('%A, %d de %B de %Y', strtotime($data_sessao))); //Usar este se o de cima der problemas de encoding
                     ?></h4>
@@ -369,7 +370,10 @@ if($on_landing_page)
 <script src="../js/quill-1.3.6/quill.min.js"></script>
 <script src="../js/quill-image-resize-module/image-resize.min.js"></script>
 <script src="../js/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js"></script>
-<script src="../js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.pt.min.js"></script>
+<?php
+    $dpLocale = (\catechesis\Configurator::getConfigurationValueOrDefault(\catechesis\Configurator::KEY_LOCALIZATION_CODE) == \core\domain\Locale::BRASIL) ? 'pt-BR' : 'pt';
+?>
+<script src="../js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.<?= $dpLocale ?>.min.js"></script>
 
 <script>
     $(document).ready(function () {

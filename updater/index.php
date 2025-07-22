@@ -1,4 +1,5 @@
 <?php
+require_once(__DIR__ . '/../core/Configurator.php');
 require_once(__DIR__ . '/../core/config/catechesis_config.inc.php');
 require_once(__DIR__ . '/../authentication/utils/authentication_verify.php');
 require_once(__DIR__ . '/../authentication/Authenticator.php');
@@ -230,7 +231,7 @@ $_SESSION['setup_step'] = $current_step;
 
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

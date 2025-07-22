@@ -42,7 +42,7 @@ $pageUI->addWidget($saveDialog);
 
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
   <title>Criar catequese virtual</title>
   <meta charset="utf-8">
@@ -501,7 +501,10 @@ $pageUI->renderJS(); // Render the widgets' JS code
 quill_render_js_scripts();
 ?>
 <script src="js/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js"></script>
-<script src="js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.pt.min.js"></script>
+<?php
+    $dpLocale = (\catechesis\Configurator::getConfigurationValueOrDefault(\catechesis\Configurator::KEY_LOCALIZATION_CODE) == \core\domain\Locale::BRASIL) ? 'pt-BR' : 'pt';
+?>
+<script src="js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.<?= $dpLocale ?>.min.js"></script>
 <script src="js/rowlink.js"></script>
 <script src="js/quill-1.3.6/quill.min.js"></script>
 <script src="js/quill-image-resize-module/image-resize.min.js"></script>
