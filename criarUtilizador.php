@@ -75,7 +75,7 @@ $menu->renderHTML();
 ?>
 
 <div class="container" id="contentor">
-  <h2> Gerir utilizadores e catequistas</h2>
+  <h2><?= Translation::t('manage_users_title') ?></h2>
   
   <?php
 

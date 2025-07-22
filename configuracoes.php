@@ -168,7 +168,7 @@ $menu->renderHTML();
             <div class="container" id="contentor">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Configurações</h2>
+                        <h2><?= Translation::t('settings_title') ?></h2>
 
                         <div class="row" style="margin-bottom: 60px;"></div>
 

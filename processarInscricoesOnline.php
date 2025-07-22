@@ -121,7 +121,7 @@ $pageUI->addWidget($orderDetailsDialog);
 <div class="container" id="contentor">
 
     <div class="no-print">
-        <h2> Processar pedidos de inscrição online</h2>
+        <h2><?= Translation::t('process_online_enrollments_title') ?></h2>
     </div>
     <div class="row" style="margin-top:40px; "></div>
 
@@ -696,6 +696,11 @@ $pageUI->renderJS(); // Render the widgets' JS code
 <script src="js/rowlink.js"></script>
 <script src="js/btn-group-hover.js"></script>
 <script type="text/javascript" src="js/DataTables/datatables.min.js"></script>
+<?php
+$dtLangUrl = (\catechesis\Configurator::getConfigurationValueOrDefault(\catechesis\Configurator::KEY_LOCALIZATION_CODE) == \core\domain\Locale::BRASIL)
+    ? 'js/DataTables/Portuguese-BR.json'
+    : 'js/DataTables/Portuguese.json';
+?>
 
 <script>
     $(function () {
@@ -713,7 +718,7 @@ $pageUI->renderJS(); // Render the widgets' JS code
             paging: false,
             info: false,
             language: {
-                url: 'js/DataTables/Portuguese.json'
+                url: '<?= $dtLangUrl ?>'
             }
         });
     });
@@ -723,7 +728,7 @@ $pageUI->renderJS(); // Render the widgets' JS code
             paging: false,
             info: false,
             language: {
-                url: 'js/DataTables/Portuguese.json'
+                url: '<?= $dtLangUrl ?>'
             }
         });
     } );
@@ -733,7 +738,7 @@ $pageUI->renderJS(); // Render the widgets' JS code
             paging: false,
             info: false,
             language: {
-                url: 'js/DataTables/Portuguese.json'
+                url: '<?= $dtLangUrl ?>'
             }
         });
     });
@@ -743,7 +748,7 @@ $pageUI->renderJS(); // Render the widgets' JS code
             paging: false,
             info: false,
             language: {
-                url: 'js/DataTables/Portuguese.json'
+                url: '<?= $dtLangUrl ?>'
             }
         });
     } );
