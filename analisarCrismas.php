@@ -125,7 +125,7 @@ $menu->renderHTML();
     </div>
 
     <div class="no-print">
-        <h2> Apoio à decisão</h2>
+        <h2><?= Translation::t('decision_support_title') ?></h2>
 
         <div class="row" style="margin-top:40px; "></div>
 

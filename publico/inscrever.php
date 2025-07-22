@@ -91,9 +91,9 @@ $pageUI->addWidget($footer);
     <h2>
     <?php
         if($_REQUEST['modo']=='editar')
-            echo("Editar ficha");
+            echo(Translation::t('edit_form_title'));
         else
-            echo('Inscrição na catequese');
+            echo(Translation::t('enrollment_only_title'));
     ?>
     </h2>
     <h4>Ano catequético de <?= Utils::formatCatecheticalYear(Utils::currentCatecheticalYear());?></h4>
@@ -1163,7 +1163,13 @@ $(document).ready(function()
     
 <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
 <script type="text/javascript">
-    window.cookieconsent_options = {"message":"Este sítio utiliza cookies para melhorar a sua experiência de navegação. <br>Ao continuar está a consentir essa utilização.","dismiss":"Aceito","learnMore":"Mais info","link":null,"theme":"light-floating"};
+    window.cookieconsent_options = {
+        "message": <?= json_encode(Translation::t('cookie_message')) ?>,
+        "dismiss": <?= json_encode(Translation::t('cookie_dismiss')) ?>,
+        "learnMore": <?= json_encode(Translation::t('cookie_learn_more')) ?>,
+        "link": null,
+        "theme": "light-floating"
+    };
 </script>
 
 <script type="text/javascript" src="../js/cookieconsent2-1.0.10/cookieconsent.min.js"></script>
