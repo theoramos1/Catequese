@@ -206,7 +206,7 @@ $menu->renderHTML();
         if($catecismo == -1)
             $turma = "_";
     }
-    if($_POST['data_sessao'])
+    if(isset($_POST['data_sessao']) && $_POST['data_sessao'])
     {
         $data_sessao = $_POST['data_sessao']; // sanitizeInput($_POST['data_sessao']);
     }
