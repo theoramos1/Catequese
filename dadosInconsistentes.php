@@ -128,7 +128,7 @@ $menu->renderHTML();
     </div>
 
     <div class="no-print">
-      <h2>Dados inconsistentes</h2>
+      <h2><?= Translation::t('inconsistent_data_title') ?></h2>
       <div class="row" style="margin-top:40px; "></div>
     </div>
   

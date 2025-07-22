@@ -107,7 +107,7 @@ $menu->renderHTML();
 
 	?>
 	
-  <h2> Gerir grupos de catequese</h2>
+  <h2><?= Translation::t('manage_groups_title') ?></h2>
   
    
   <div class="row" style="margin-bottom:40px; "></div>

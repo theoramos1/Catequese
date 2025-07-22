@@ -91,9 +91,9 @@ $pageUI->addWidget($footer);
     <h2>
     <?php
         if($_REQUEST['modo']=='editar')
-            echo("Editar ficha");
+            echo(Translation::t('edit_form_title'));
         else
-            echo('Inscrição na catequese');
+            echo(Translation::t('enrollment_only_title'));
     ?>
     </h2>
     <h4>Ano catequético de <?= Utils::formatCatecheticalYear(Utils::currentCatecheticalYear());?></h4>

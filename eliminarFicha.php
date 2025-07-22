@@ -65,7 +65,7 @@ $menu->renderHTML();
 ?>
 
 <div class="container" id="contentor">
-  <h2> Detalhes do catequizando</h2>
+  <h2><?= Translation::t('catechumen_details_title') ?></h2>
 
   <?php
 

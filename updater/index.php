@@ -444,7 +444,7 @@ $_SESSION['setup_step'] = $current_step;
                             ?>
                         <form class="form-horizontal" id="form-wizard" role="form" action="index.php" method="post">
                             <h1>Termos e condições</h1>
-                            <h2>A utilização do CatecheSis está sujeita aos seguintes termos e condições.</h2>
+                            <h2><?= Translation::t('terms_usage_heading') ?></h2>
 
                             <div style="height: 40vh;  overflow: scroll">
                                 <label>Resumo da licença <a href="../licenses/CatecheSis/LICENSE" target="_blank">AGPL-3.0</a></label>
@@ -671,7 +671,7 @@ $_SESSION['setup_step'] = $current_step;
                             }
                             ?>
                             <h1>Atualização concluída!</h1>
-                            <h2>Concluiu com sucesso a atualização do CatecheSis!</h2>
+                            <h2><?= Translation::t('update_complete_message') ?></h2>
 
                             <?php
                             if(!$cleanup_success)
