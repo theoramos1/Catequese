@@ -9,6 +9,7 @@ require_once(__DIR__ . '/../fonts/quill-fonts.php');
 require_once(__DIR__ . '/../gui/widgets/WidgetManager.php');
 require_once(__DIR__ . '/../gui/widgets/Footer/SimpleFooter.php');
 require_once(__DIR__ . '/../core/check_maintenance_mode.php'); //Check if maintenance mode is active and redirect visitor
+require_once(__DIR__ . '/../core/Translation.php');
 
 
 use catechesis\Authenticator;
@@ -18,6 +19,7 @@ use catechesis\PdoDatabaseManager;
 use catechesis\Utils;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\SimpleFooter;
+use catechesis\Translation;
 
 // Start a secure session if none is running
 Authenticator::startSecureSession();
@@ -301,7 +303,7 @@ $pageUI->addWidget($footer);
 
                             <div id="block-title">
                                 <h3>Novos desafios exigem novas respostas!</h3>
-                                <h1>Bem-vindo à <span class="catequese-virtual-destaque">Catequese Virtual!</span></h1>
+                                <h1><?= Translation::t('welcome_catechesis_virtual') ?></h1>
                             </div>
 
                             <div class="row" style="margin-bottom: 80px"></div>

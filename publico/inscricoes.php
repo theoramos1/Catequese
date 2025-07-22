@@ -6,6 +6,7 @@ require_once(__DIR__ . '/../gui/widgets/WidgetManager.php');
 require_once(__DIR__ . '/../gui/widgets/Navbar/MinimalNavbar.php');
 require_once(__DIR__ . '/../gui/widgets/Footer/SimpleFooter.php');
 require_once(__DIR__ . '/../core/check_maintenance_mode.php'); //Check if maintenance mode is active and redirect visitor
+require_once(__DIR__ . '/../core/Translation.php');
 
 
 use catechesis\Configurator;
@@ -13,6 +14,7 @@ use catechesis\Utils;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\MinimalNavbar;
 use catechesis\gui\SimpleFooter;
+use catechesis\Translation;
 
 
 //Verificar se o periodo de inscricoes esta ativo
@@ -74,7 +76,7 @@ $navbar->renderHTML();
     if($periodo_activo)
     {
     ?>
-        <p>Bem-vindo à plataforma de inscrições da catequese da <?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_PARISH_NAME); ?>!<br>
+        <p><?= sprintf(Translation::t('welcome_enrollment_platform'), Configurator::getConfigurationValueOrDefault(Configurator::KEY_PARISH_NAME)); ?><br>
         Selecione a opção que melhor se ajusta ao seu caso:</p>
 
 
@@ -106,7 +108,7 @@ $navbar->renderHTML();
     {
     ?>
 
-    <p>Bem-vindo à plataforma de inscrições da catequese da <?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_PARISH_NAME); ?>!<br>
+    <p><?= sprintf(Translation::t('welcome_enrollment_platform'), Configurator::getConfigurationValueOrDefault(Configurator::KEY_PARISH_NAME)); ?><br>
         De momento, as inscrições estão fechadas. Se desejar efetuar uma inscrição ou renovação de matrícula, contacte a catequese.</p>
 
     <div class="row" style="margin-top: 40px"></div>

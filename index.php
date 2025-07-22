@@ -5,10 +5,12 @@ require_once(__DIR__ . '/gui/widgets/WidgetManager.php');
 require_once(__DIR__ . '/gui/widgets/Footer/SimpleFooter.php');
 require_once(__DIR__ . '/core/check_maintenance_mode.php'); //Check if maintenance mode is active and redirect visitor
 require_once(__DIR__ . '/core/session_init.php');
+require_once(__DIR__ . '/core/Translation.php');
 
 use catechesis\Configurator;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\SimpleFooter;
+use catechesis\Translation;
 
 // Instantiate a widget manager
 $pageUI = new WidgetManager();
@@ -91,14 +93,14 @@ $pageUI->addWidget($footer);
                         </div>
                         <div class="col-md-6 vertical-align-center">
                             <div class="valign-center">
-                                <h2 class="card-title">Inscrições Online</h2>
+                                <h2 class="card-title"><?= Translation::t('online_enrollments') ?></h2>
                                 <span><strong>Inscrição</strong> na catequese ou <strong>renovação</strong> de matrícula.</span><br>
                                 <span><strong>Consulta</strong> do estado do pedido de incrição ou renovação.</span>
                             </div>
                         </div>
                         <div class="col-md-3 vertical-align-center">
                             <div class="valign-center">
-                                <button type="button" class="btn btn-primary card-button" onclick="goto_online_enrollments();">Ir para Inscrições Online</button>
+                                <button type="button" class="btn btn-primary card-button" onclick="goto_online_enrollments();"><?= Translation::t('go_to_online_enrollments') ?></button>
                             </div>
                         </div>
                     </div>
@@ -116,14 +118,14 @@ $pageUI->addWidget($footer);
                         </div>
                         <div class="col-md-6 vertical-align-center">
                             <div class="valign-center">
-                                <h2 class="card-title">Catequese Virtual</h2>
+                                <h2 class="card-title"><?= Translation::t('virtual_catechesis') ?></h2>
                                 <span>Acesso a <strong>conteúdos</strong> digitais.</span><br>
                                 <span>Dinamização de catequeses à distância, por <strong>videochamada</strong>.</span>
                             </div>
                         </div>
                         <div class="col-md-3 vertical-align-center">
                             <div class="valign-center">
-                                <button type="button" class="btn btn-primary card-button" onclick="goto_virtual_catechesis();">Ir para Catequese Virtual</button>
+                                <button type="button" class="btn btn-primary card-button" onclick="goto_virtual_catechesis();"><?= Translation::t('go_to_virtual_catechesis') ?></button>
                             </div>
                         </div>
                     </div>
