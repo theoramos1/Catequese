@@ -498,13 +498,17 @@ $navbar->renderHTML();
                 $acceptDonations =  Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_ACCEPT_BIGGER_DONATIONS);
                 $paymentProof =  Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_PROOF);
 
+                $validPaymentData = DataValidationUtils::validateMbEntity(strval($paymentEntity)) &&
+                                   DataValidationUtils::validateMbReference(strval($paymentReference)) &&
+                                   DataValidationUtils::validatePositiveFloat(strval($paymentAmount));
+
                 $proofType = 'text';
                 if(DataValidationUtils::validateEmail($paymentProof))
                     $proofType = "email";
                 else if(DataValidationUtils::validateURL($paymentProof))
                     $proofType = "url";
 
-                if($showPaymentData)
+                if($showPaymentData && $validPaymentData)
                 {
                     ?>
                     <!-- Referencia multibanco -->
