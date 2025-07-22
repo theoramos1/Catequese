@@ -97,7 +97,7 @@ $menu->renderHTML();
 
 	?>
 	
-  <h2> Registos de actividade do sistema</h2>
+  <h2><?= Translation::t('system_activity_log_title') ?></h2>
   
    
   <div class="row" style="margin-bottom:40px; "></div>

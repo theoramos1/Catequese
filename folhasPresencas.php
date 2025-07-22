@@ -164,7 +164,7 @@ $menu->renderHTML();
     </div>
 
   <div class="no-print">
-      <h2> Área de Impressão</h2>
+      <h2><?= Translation::t('print_area_title') ?></h2>
 
       <div class="row" style="margin-top:40px; "></div>
 
