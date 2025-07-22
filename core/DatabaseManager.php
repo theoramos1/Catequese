@@ -162,8 +162,13 @@ interface DatabaseManager
     public function unenrollCatechumenFromGroup(int $cid, int $catecheticalYear, int $catechism, string $group);        // Unenrolls a catechumen from a catechesis group
     public function unenrollCatechumenFromAllGroups(int $cid, bool $useTransaction=true);                               // Unenrolls a catechumen from all the groups where he/she is enrolled
     public function updateCatechumenEnrollmentPayment(int $cid, int $catecheticalYear, int $catechism, string $group,   // Updates the payment status of a catechumen enrollment
-                                                       bool $paid);
+                                                        bool $paid);
     public function getCatecheticalYearsWhereCatechumenIsNotEnrolled(int $cid);                                         // Returns all the catechetical years where the catechumen is NOT enrolled
+
+    // Payments
+    public function insertPayment(int $cid, float $valor, string $username, string $status);                           // Registers a new payment for a catechumen
+    public function getPaymentsByUser(string $username);                                                                // Returns all payments made by a given user
+    public function getPaymentsByCatechumen(int $cid);                                                                  // Returns all payments associated with a catechumen
 
 
     // Sacraments

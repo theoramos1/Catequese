@@ -10,10 +10,10 @@ require_once(__DIR__ . '/gui/widgets/Navbar/MainNavbar.php');
 use catechesis\Authenticator;
 use catechesis\PdoDatabaseManager;
 use catechesis\Utils;
+use catechesis\DatabaseAccessMode;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\MainNavbar;
 use catechesis\gui\MainNavbar\MENU_OPTION;
-use catechesis\DatabaseAccessMode;
 
 // Create the widgets manager
 $pageUI = new WidgetManager();
@@ -50,10 +50,12 @@ try {
     $payments = [];
     $message = "<div class='alert alert-danger'><strong>Erro!</strong> " . $e->getMessage() . "</div>";
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt">
 <head>
+
   <title>Pagamentos</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -91,7 +93,8 @@ $menu->renderHTML();
     </div>
     <button type="submit" class="btn btn-primary">Registar R$100.00</button>
   </form>
-</div>
+
 <?php $pageUI->renderJS(); ?>
 </body>
 </html>
+
