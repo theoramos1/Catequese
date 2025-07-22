@@ -42,7 +42,7 @@ $menu = new MainNavbar(null, MENU_OPTION::ENROLMENTS, true);
 $pageUI->addWidget($menu);
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
   <title>
       <?php

@@ -31,7 +31,7 @@ $menu = new MainNavbar(null, MENU_OPTION::SACRAMENTS);
 $pageUI->addWidget($menu);
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
   <title>Registar sacramentos</title>
   <meta charset="utf-8">
@@ -598,7 +598,10 @@ if(Authenticator::isAdmin() || group_belongs_to_catechist($ano_precedente, $cate
 $pageUI->renderJS(); // Render the widgets' JS code
 ?>
 <script src="js/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js"></script>
-<script src="js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.pt.min.js"></script>
+<?php
+    $dpLocale = (\catechesis\Configurator::getConfigurationValueOrDefault(\catechesis\Configurator::KEY_LOCALIZATION_CODE) == \core\domain\Locale::BRASIL) ? 'pt-BR' : 'pt';
+?>
+<script src="js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.<?= $dpLocale ?>.min.js"></script>
 <script src="js/rowlink.js"></script>
 <script src="js/bootstrap-switch.js"></script>
 
