@@ -11,6 +11,7 @@ require_once(__DIR__ . '/core/UserData.php');
 require_once(__DIR__ . "/core/DataValidationUtils.php");
 require_once(__DIR__ . '/core/catechist_belongings.php');
 require_once(__DIR__ . "/core/PdoDatabaseManager.php");
+require_once(__DIR__ . '/core/PaymentVerificationService.php');
 require_once(__DIR__ . "/core/domain/Sacraments.php");
 require_once(__DIR__ . "/core/domain/Marriage.php");
 require_once(__DIR__ . "/gui/widgets/WidgetManager.php");
@@ -22,6 +23,7 @@ use catechesis\Authenticator;
 use catechesis\Configurator;
 use catechesis\UserData;
 use catechesis\utils;
+use catechesis\PaymentVerificationService;
 use core\domain\Marriage;
 use core\domain\Sacraments;
 use catechesis\gui\WidgetManager;
@@ -228,8 +230,23 @@ $menu->renderHTML();
 
 		$_SESSION['quer_inscrever'] = $quer_inscrever;
 		$_SESSION['catecismo'] = $catecismo;
-		$_SESSION['turma'] = $turma;
-		$_SESSION['pago'] = $pago;
+                $_SESSION['turma'] = $turma;
+                $_SESSION['pago'] = $pago;
+
+                // Try to automatically confirm payment using configured provider
+                try
+                {
+                    $entity = Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_ENTITY);
+                    $reference = Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_REFERENCE);
+                    $amount = floatval(Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT));
+                    $verifier = new PaymentVerificationService();
+                    if ($verifier->verifyPayment(intval($entity), strval($reference), $amount))
+                        $pago = 'on';
+                }
+                catch (Exception $e)
+                {
+                    // Ignore verification errors and proceed with submitted value
+                }
  		
 		
 	  	
