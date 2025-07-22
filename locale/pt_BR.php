@@ -9,5 +9,8 @@ $lang = [
     'welcome_enrollment_platform' => 'Bem-vindo à plataforma de inscrições da catequese da %s!',
     'login_button' => 'Iniciar sessão'
     ,'welcome_update_assistant' => 'Bem-vindo ao assistente de atualização do CatecheSis!'
+    ,'cookie_message' => 'Este sítio utiliza cookies para melhorar a sua experiência de navegação. <br>Ao continuar está a consentir essa utilização.'
+    ,'cookie_dismiss' => 'Aceito'
+    ,'cookie_learn_more' => 'Mais info'
 ];
 return $lang;
