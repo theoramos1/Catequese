@@ -227,12 +227,12 @@ $footer->renderHTML();
 
         if(telefone!=="" && telefone!==undefined && !telefone_valido(telefone, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-            alert("O número de telefone que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.");
+            alert(<?= json_encode(Translation::t('invalid_phone')) ?>);
             return false;
         }
         if(email!=="" && email!==undefined && !email_valido(email))
         {
-            alert("O endereço de e-mail que introduziu é inválido.");
+            alert(<?= json_encode(Translation::t('invalid_email')) ?>);
             return false;
         }
 

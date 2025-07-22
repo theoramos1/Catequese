@@ -10,7 +10,13 @@ $lang = [
     'login_button' => 'Iniciar sessão',
     'welcome_update_assistant' => 'Bem-vindo ao assistente de atualização do CatecheSis!',
 
-    // Novas saudações
+    // Mensagens de validação
+    'invalid_postal_code' => "O CEP informado é inválido. Use o formato 'xxxxx-xxx Localidade'.",
+    'invalid_phone' => "O número de telefone informado é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 dígitos.",
+    'invalid_email' => 'O e-mail informado é inválido.',
+    'invalid_security_code' => 'O código de segurança informado não confere com a imagem.',
+
+    // Saudações
     'greeting_early' => 'Acordou cedo, %s?',
     'greeting_morning' => 'Bom dia, %s!',
     'greeting_afternoon' => 'Boa tarde, %s!',
@@ -45,4 +51,5 @@ $lang = [
     'enrollment_only_title' => 'Inscrição na catequese'
 ];
 return $lang;
+
 

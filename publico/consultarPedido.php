@@ -114,7 +114,7 @@ $navbar->renderHTML();
         //Captcha validator
         if (!isset($captchaCode) || !Securimage::checkByCaptchaId($captchaId, $captchaCode, $captcha_options))
         {
-            echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O código de segurança que introduziu não corresponde ao mostrado na imagem.</div>");
+            echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> " . Translation::t('invalid_security_code') . "</div>");
             echo("<p>Por favor <a href='javascript:history.go(-1)'>volte a tentar</a></p>");
             $inputs_invalidos = true;
         }

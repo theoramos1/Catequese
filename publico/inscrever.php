@@ -779,11 +779,11 @@ function validar()
         }
         
         
-	if(!codigo_postal_valido(cod_postal, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
-	{
-		alert("O código postal que introduziu é inválido. Deve ser da forma 'xxxx-yyy Localidade'.");
-		return false;
-	}
+        if(!codigo_postal_valido(cod_postal, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
+        {
+                alert(<?= json_encode(Translation::t('invalid_postal_code')) ?>);
+                return false;
+        }
                 
         
         
@@ -794,13 +794,13 @@ function validar()
         }
         else if(telefone!=="" && telefone!==undefined && !telefone_valido(telefone, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-        	alert("O número de telefone que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.");
-		return false; 
+                alert(<?= json_encode(Translation::t('invalid_phone')) ?>);
+                return false;
         }
         else if(telemovel!=="" && telemovel!==undefined && !telefone_valido(telemovel, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-        	alert("O número de telemóvel que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.");
-		return false; 
+                alert(<?= json_encode(Translation::t('invalid_phone')) ?>);
+                return false;
         }
         
         
