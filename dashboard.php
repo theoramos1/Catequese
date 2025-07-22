@@ -1,5 +1,5 @@
 <?php
-
+require_once(__DIR__ . '/core/session_init.php');
 require_once(__DIR__ . '/core/config/catechesis_config.inc.php');
 require_once(__DIR__ . '/authentication/Authenticator.php');
 require_once(__DIR__ . '/authentication/utils/authentication_verify.php');
@@ -11,7 +11,7 @@ require_once(__DIR__ . "/gui/widgets/Navbar/MainNavbar.php");
 require_once(__DIR__ . "/gui/widgets/MyGroups/MyGroupsWidget.php");
 require_once(__DIR__ . "/gui/widgets/CatechumensProblemsReportSummary/CatechumensProblemsReportSummaryWidget.php");
 require_once(__DIR__ . "/gui/widgets/QuickAccess/QuickAccessWidget.php");
-require_once(__DIR__ . '/core/session_init.php');
+
 
 
 
@@ -56,6 +56,7 @@ $pageUI->addWidget($quickAccess);
   <?php $pageUI->renderCSS(); // Render the widgets' CSS ?>
   <link rel="stylesheet" href="css/custom-navbar-colors.css">
   <link rel="stylesheet" href="css/dashboard.css">
+ 
 
   <style>
   	@media print
