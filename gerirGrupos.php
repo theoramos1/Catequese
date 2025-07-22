@@ -122,26 +122,26 @@ $menu->renderHTML();
 	$db = new PdoDatabaseManager();
 
 	//Acabou de ser criado um novo ano catequetico?
-	if($_REQUEST['msg'] && $_REQUEST['msg']==1)
-	{
+        if(isset($_REQUEST['msg']) && $_REQUEST['msg']==1)
+        {
         $ano_catequetico_sel = intval($_REQUEST['sel_ano_catequetico']);
-		echo("<div class=\"alert alert-success\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Sucesso!</strong> Criados 10 novos grupos de catequese, para o ano catequético " . Utils::formatCatecheticalYear($ano_catequetico_sel) . " </div>");
-	}
-	else if($_REQUEST['msg'] && $_REQUEST['msg']==2)
-	{
-		$count = intval($_REQUEST['count']);
+                echo("<div class=\"alert alert-success\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Sucesso!</strong> Criados 10 novos grupos de catequese, para o ano catequético " . Utils::formatCatecheticalYear($ano_catequetico_sel) . " </div>");
+        }
+        else if(isset($_REQUEST['msg']) && $_REQUEST['msg']==2)
+        {
+                $count = intval($_REQUEST['count']);
         $ano_catequetico_sel = intval($_REQUEST['sel_ano_catequetico']);
-		echo("<div class=\"alert alert-success\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Sucesso!</strong> Criados $count novos grupos de catequese, para o ano catequético " . Utils::formatCatecheticalYear($ano_catequetico_sel) . " </div>");
-	}
+                echo("<div class=\"alert alert-success\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Sucesso!</strong> Criados $count novos grupos de catequese, para o ano catequético " . Utils::formatCatecheticalYear($ano_catequetico_sel) . " </div>");
+        }
 	
 
 	
 	//Adicionar grupo de catequese
-	if($_REQUEST['op']=="adicionar")
-	{
-		$ad_ano_catequetico = intval($_REQUEST['sel_ano_catequetico']);
-		$ad_catecismo = intval($_REQUEST['catecismo']);
-		$ad_turma = Utils::sanitizeInput($_REQUEST['turma']);
+        if(isset($_REQUEST['op']) && $_REQUEST['op']=="adicionar")
+        {
+                $ad_ano_catequetico = intval($_REQUEST['sel_ano_catequetico']);
+                $ad_catecismo = intval($_REQUEST['catecismo']);
+                $ad_turma = Utils::sanitizeInput($_REQUEST['turma']);
 		
 		if($ad_ano_catequetico < 1000000)	//Tem de ser da forma '20152016', logo, com 8 digitos
 		{
@@ -181,11 +181,11 @@ $menu->renderHTML();
 	
 	
 	//Eliminar grupo de catequese
-	if($_REQUEST['op']=="elg")
-	{		
-		$el_ano_catequetico = intval($_REQUEST['el_ano_catequetico']);
-		$el_catecismo = intval($_REQUEST['el_catecismo']);
-		$el_turma = Utils::sanitizeInput($_REQUEST['el_turma']);
+        if(isset($_REQUEST['op']) && $_REQUEST['op']=="elg")
+        {
+                $el_ano_catequetico = intval($_REQUEST['el_ano_catequetico']);
+                $el_catecismo = intval($_REQUEST['el_catecismo']);
+                $el_turma = Utils::sanitizeInput($_REQUEST['el_turma']);
 	
 		if($el_ano_catequetico < 1000000)	//Tem de ser da forma '20152016', logo, com 8 digitos
 		{
@@ -240,8 +240,8 @@ $menu->renderHTML();
 	
 	
 	//Adicionar catequista
-	if($_POST['cat_accao'] && $_POST['cat_accao']=="adicionar")
-	{
+        if(isset($_POST['cat_accao']) && $_POST['cat_accao']=="adicionar")
+        {
 
 		$cat_ano_catequetico = intval($_POST['sel_ano_catequetico']);
 		$cat_catecismo = intval($_POST['cat_catecismo']);
@@ -289,8 +289,8 @@ $menu->renderHTML();
 	
 	
 	//Remover catequista
-	if($_POST['cat_accao'] && $_POST['cat_accao']=="remover")
-	{
+        if(isset($_POST['cat_accao']) && $_POST['cat_accao']=="remover")
+        {
 		$cat_ano_catequetico = intval($_POST['sel_ano_catequetico']);
 		$cat_catecismo = intval($_POST['cat_catecismo']);
 		$cat_turma = Utils::sanitizeInput($_POST['cat_turma']);
@@ -533,10 +533,10 @@ $menu->renderHTML();
 
 
 <?php
-	if($_REQUEST['op']=="editar" || ($_POST['cat_accao'] && ($_POST['cat_accao']=="adicionar" || $_POST['cat_accao']=="remover")))
-	{ 
-		if(($_POST['cat_accao'] && ($_POST['cat_accao']=="adicionar" || $_POST['cat_accao']=="remover")))
-		{
+        if((isset($_REQUEST['op']) && $_REQUEST['op']=="editar") || (isset($_POST['cat_accao']) && ($_POST['cat_accao']=="adicionar" || $_POST['cat_accao']=="remover")))
+        {
+                if(isset($_POST['cat_accao']) && ($_POST['cat_accao']=="adicionar" || $_POST['cat_accao']=="remover"))
+                {
 			$ed_ano_catequetico = intval($_POST['sel_ano_catequetico']);
 			$ed_catecismo = intval($_REQUEST['cat_catecismo']);
 			$ed_turma = Utils::sanitizeInput($_REQUEST['cat_turma']);
@@ -860,7 +860,7 @@ $(document).ready(function(){
 </script>
 
 <?php
-if($_REQUEST['op']=="editar" || ($_POST['cat_accao'] && ($_POST['cat_accao']=="adicionar" || $_POST['cat_accao']=="remover")))
+if((isset($_REQUEST['op']) && $_REQUEST['op']=="editar") || (isset($_POST['cat_accao']) && ($_POST['cat_accao']=="adicionar" || $_POST['cat_accao']=="remover")))
 {
     //Fazer scroll automaticamente ate a caixa para editar os catequistas
     echo("<script> $('html, body').animate({ scrollTop: $('#painel_editar').offset().top }, 1000); </script>");
