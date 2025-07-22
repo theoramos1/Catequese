@@ -1,4 +1,5 @@
 <?php
+require_once(__DIR__ . '/../core/Configurator.php');
 require_once(__DIR__ . '/../core/config/catechesis_config.inc.php');
 require_once(__DIR__ . '/../authentication/utils/authentication_verify.php');
 require_once(__DIR__ . '/../authentication/Authenticator.php');
@@ -10,6 +11,7 @@ require_once(__DIR__ . '/Checker.php');
 require_once(__DIR__ . '/utils.php');
 require_once(__DIR__ . '/../core/UpdateChecker.php');
 require_once(__DIR__ . '/../core/log_functions.php');
+require_once(__DIR__ . '/../core/Translation.php');
 
 
 use catechesis\DataValidationUtils;
@@ -20,6 +22,7 @@ use MirazMac\Requirements\Checker;
 use catechesis\PdoDatabaseManager;
 use catechesis\Configurator;
 use catechesis\Authenticator;
+use catechesis\Translation;
 
 
 if(!Authenticator::isAdmin())
@@ -228,7 +231,7 @@ $_SESSION['setup_step'] = $current_step;
 
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -317,7 +320,7 @@ $_SESSION['setup_step'] = $current_step;
                         <form class="form-horizontal" id="form-wizard" role="form" action="index.php" method="post">
 
                             <h1>Atualização</h1>
-                            <h2>Bem-vindo ao assistente de atualização do CatecheSis!</h2>
+                            <h2><?= Translation::t('welcome_update_assistant') ?></h2>
 
                             <?php
                             if($updateChecker->isUpdateAvailable())
@@ -441,7 +444,7 @@ $_SESSION['setup_step'] = $current_step;
                             ?>
                         <form class="form-horizontal" id="form-wizard" role="form" action="index.php" method="post">
                             <h1>Termos e condições</h1>
-                            <h2>A utilização do CatecheSis está sujeita aos seguintes termos e condições.</h2>
+                            <h2><?= Translation::t('terms_usage_heading') ?></h2>
 
                             <div style="height: 40vh;  overflow: scroll">
                                 <label>Resumo da licença <a href="../licenses/CatecheSis/LICENSE" target="_blank">AGPL-3.0</a></label>
@@ -668,7 +671,7 @@ $_SESSION['setup_step'] = $current_step;
                             }
                             ?>
                             <h1>Atualização concluída!</h1>
-                            <h2>Concluiu com sucesso a atualização do CatecheSis!</h2>
+                            <h2><?= Translation::t('update_complete_message') ?></h2>
 
                             <?php
                             if(!$cleanup_success)
@@ -732,7 +735,13 @@ $_SESSION['setup_step'] = $current_step;
 
 <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
 <script type="text/javascript">
-    window.cookieconsent_options = {"message":"Este sítio utiliza cookies para melhorar a sua experiência de navegação. <br>Ao continuar está a consentir essa utilização.","dismiss":"Aceito","learnMore":"Mais info","link":null,"theme":"light-floating"};
+    window.cookieconsent_options = {
+        "message": <?= json_encode(Translation::t('cookie_message')) ?>,
+        "dismiss": <?= json_encode(Translation::t('cookie_dismiss')) ?>,
+        "learnMore": <?= json_encode(Translation::t('cookie_learn_more')) ?>,
+        "link": null,
+        "theme": "light-floating"
+    };
 </script>
 <script type="text/javascript" src="../js/cookieconsent2-1.0.10/cookieconsent.min.js"></script>
 <!-- End Cookie Consent plugin -->

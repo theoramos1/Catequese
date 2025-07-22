@@ -49,7 +49,7 @@ $pageUI->addWidget($footer);
 
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
     <meta charset="UTF-8">
     <title>Renovação de matrícula</title>
@@ -227,12 +227,12 @@ $footer->renderHTML();
 
         if(telefone!=="" && telefone!==undefined && !telefone_valido(telefone, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-            alert("O número de telefone que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.");
+            alert(<?= json_encode(Translation::t('invalid_phone')) ?>);
             return false;
         }
         if(email!=="" && email!==undefined && !email_valido(email))
         {
-            alert("O endereço de e-mail que introduziu é inválido.");
+            alert(<?= json_encode(Translation::t('invalid_email')) ?>);
             return false;
         }
 
@@ -258,7 +258,13 @@ $footer->renderHTML();
 
 <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
 <script type="text/javascript">
-    window.cookieconsent_options = {"message":"Este sítio utiliza cookies para melhorar a sua experiência de navegação. <br>Ao continuar está a consentir essa utilização.","dismiss":"Aceito","learnMore":"Mais info","link":null,"theme":"light-floating"};
+    window.cookieconsent_options = {
+        "message": <?= json_encode(Translation::t('cookie_message')) ?>,
+        "dismiss": <?= json_encode(Translation::t('cookie_dismiss')) ?>,
+        "learnMore": <?= json_encode(Translation::t('cookie_learn_more')) ?>,
+        "link": null,
+        "theme": "light-floating"
+    };
 </script>
 
 <script type="text/javascript" src="../js/cookieconsent2-1.0.10/cookieconsent.min.js"></script>

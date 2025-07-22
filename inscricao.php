@@ -37,7 +37,7 @@ $db = new PdoDatabaseManager();
 
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
   <title>
   	<?php
@@ -67,7 +67,7 @@ $menu->renderHTML();
 
     if($_REQUEST['modo']=='editar')
     {
-        echo("<h2>Editar ficha</h2>");
+        echo("<h2>" . Translation::t('edit_form_title') . "</h2>");
 
         if(!Authenticator::isAdmin() && !catechumen_belongs_to_catechist($_SESSION['cid'], Authenticator::getUsername()))
         {
@@ -78,7 +78,7 @@ $menu->renderHTML();
     }
     else
     {
-        echo('<h2>Matrícula e inscrição na catequese</h2>');
+        echo('<h2>' . Translation::t('enrollment_title') . '</h2>');
 
         if(!Authenticator::isAdmin())
         {
@@ -597,7 +597,10 @@ $menu->renderHTML();
 $pageUI->renderJS(); // Render the widgets' JS code
 ?>
 <script src="js/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js"></script>
-<script src="js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.pt.min.js"></script>
+<?php
+    $dpLocale = (\catechesis\Configurator::getConfigurationValueOrDefault(\catechesis\Configurator::KEY_LOCALIZATION_CODE) == \core\domain\Locale::BRASIL) ? 'pt-BR' : 'pt';
+?>
+<script src="js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.<?= $dpLocale ?>.min.js"></script>
 <script type="text/javascript" src="webcamjs-master/webcam.js"></script>
 
 <script language="JavaScript">    
@@ -714,11 +717,11 @@ function validar()
         }
         
         
-	if(!codigo_postal_valido(cod_postal, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
-	{
-		alert("O código postal que introduziu é inválido. Deve ser da forma 'xxxx-yyy Localidade'.");
-		return false;
-	}
+        if(!codigo_postal_valido(cod_postal, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
+        {
+                alert(<?= json_encode(Translation::t('invalid_postal_code')) ?>);
+                return false;
+        }
                 
         
         
@@ -729,13 +732,13 @@ function validar()
         }
         else if(telefone!="" && telefone!=undefined && !telefone_valido(telefone, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-        	alert("O número de telefone que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.");
-		return false; 
+                alert(<?= json_encode(Translation::t('invalid_phone')) ?>);
+                return false;
         }
         else if(telemovel!="" && telemovel!=undefined && !telefone_valido(telemovel, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-        	alert("O número de telemóvel que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.");
-		return false; 
+                alert(<?= json_encode(Translation::t('invalid_phone')) ?>);
+                return false;
         }
         
         

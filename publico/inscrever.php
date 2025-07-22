@@ -52,7 +52,7 @@ $pageUI->addWidget($footer);
 
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
   <title>
   	<?php
@@ -91,9 +91,9 @@ $pageUI->addWidget($footer);
     <h2>
     <?php
         if($_REQUEST['modo']=='editar')
-            echo("Editar ficha");
+            echo(Translation::t('edit_form_title'));
         else
-            echo('Inscrição na catequese');
+            echo(Translation::t('enrollment_only_title'));
     ?>
     </h2>
     <h4>Ano catequético de <?= Utils::formatCatecheticalYear(Utils::currentCatecheticalYear());?></h4>
@@ -666,7 +666,10 @@ $footer->renderHTML();
 
 <?php $pageUI->renderJS(); ?>
 <script src="../js/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js"></script>
-<script src="../js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.pt.min.js"></script>
+<?php
+    $dpLocale = (\catechesis\Configurator::getConfigurationValueOrDefault(\catechesis\Configurator::KEY_LOCALIZATION_CODE) == \core\domain\Locale::BRASIL) ? 'pt-BR' : 'pt';
+?>
+<script src="../js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.<?= $dpLocale ?>.min.js"></script>
 <script type="text/javascript" src="../webcamjs-master/webcam.js"></script>
 <script src="../js/form-validation-utils.js"></script>
 
@@ -776,11 +779,11 @@ function validar()
         }
         
         
-	if(!codigo_postal_valido(cod_postal, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
-	{
-		alert("O código postal que introduziu é inválido. Deve ser da forma 'xxxx-yyy Localidade'.");
-		return false;
-	}
+        if(!codigo_postal_valido(cod_postal, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
+        {
+                alert(<?= json_encode(Translation::t('invalid_postal_code')) ?>);
+                return false;
+        }
                 
         
         
@@ -791,13 +794,13 @@ function validar()
         }
         else if(telefone!=="" && telefone!==undefined && !telefone_valido(telefone, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-        	alert("O número de telefone que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.");
-		return false; 
+                alert(<?= json_encode(Translation::t('invalid_phone')) ?>);
+                return false;
         }
         else if(telemovel!=="" && telemovel!==undefined && !telefone_valido(telemovel, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-        	alert("O número de telemóvel que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.");
-		return false; 
+                alert(<?= json_encode(Translation::t('invalid_phone')) ?>);
+                return false;
         }
         
         
@@ -1160,7 +1163,13 @@ $(document).ready(function()
     
 <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
 <script type="text/javascript">
-    window.cookieconsent_options = {"message":"Este sítio utiliza cookies para melhorar a sua experiência de navegação. <br>Ao continuar está a consentir essa utilização.","dismiss":"Aceito","learnMore":"Mais info","link":null,"theme":"light-floating"};
+    window.cookieconsent_options = {
+        "message": <?= json_encode(Translation::t('cookie_message')) ?>,
+        "dismiss": <?= json_encode(Translation::t('cookie_dismiss')) ?>,
+        "learnMore": <?= json_encode(Translation::t('cookie_learn_more')) ?>,
+        "link": null,
+        "theme": "light-floating"
+    };
 </script>
 
 <script type="text/javascript" src="../js/cookieconsent2-1.0.10/cookieconsent.min.js"></script>

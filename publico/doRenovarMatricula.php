@@ -50,7 +50,7 @@ $pageUI->addWidget($footer);
 
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
     <meta charset="UTF-8">
     <title>Renovação de matrícula</title>
@@ -143,13 +143,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
     if(!isset($enc_edu_tel) || $enc_edu_tel=="" || !DataValidationUtils::validatePhoneNumber($enc_edu_tel, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))
     {
-        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O número de telefone que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.</div>");
+        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> " . Translation::t('invalid_phone') . "</div>");
         $inputs_invalidos = true;
     }
 
     if(isset($enc_edu_email) && $enc_edu_email!="" && !DataValidationUtils::validateEmail($enc_edu_email))
     {
-        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O e-mail que introduziu é inválido.</div>");
+        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> " . Translation::t('invalid_email') . "</div>");
         $inputs_invalidos = true;
     }
     else if(!isset($enc_edu_email) || $enc_edu_email=="")
@@ -158,7 +158,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     //Captcha validator
     if (!isset($captchaCode) || !Securimage::checkByCaptchaId($captchaId, $captchaCode, $captcha_options))
     {
-        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O código de segurança que introduziu não corresponde ao mostrado na imagem.</div>");
+        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> " . Translation::t('invalid_security_code') . "</div>");
         echo("<p>Por favor <a href='javascript:history.go(-1)'>volte a tentar</a></p>");
         $inputs_invalidos = true;
     }

@@ -1,4 +1,5 @@
 <?php
+require_once(__DIR__ . '/core/Configurator.php');
 
 require_once(__DIR__ . '/core/config/catechesis_config.inc.php');
 require_once(__DIR__ . '/authentication/utils/authentication_verify.php');
@@ -64,7 +65,7 @@ if($result && count($result) > 0)
 
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
   <title>Os meus catequizandos</title>
   <meta charset="utf-8">
@@ -159,7 +160,7 @@ $menu->renderHTML();
 <div class="container" id="contentor">
 
  <div class="no-print">
-  <h2> Listar catequizandos</h2>
+  <h2><?= Translation::t('list_catechumens_title') ?></h2>
 
   <div class="row" style="margin-top:20px; "></div>
     

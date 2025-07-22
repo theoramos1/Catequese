@@ -5,6 +5,7 @@ require_once(__DIR__ . '/core/Configurator.php');
 require_once(__DIR__ . '/core/Fortune.php');
 require_once(__DIR__ . '/core/DataValidationUtils.php');
 require_once(__DIR__ . '/core/Utils.php');
+require_once(__DIR__ . '/core/Translation.php');
 require_once(__DIR__ . '/gui/widgets/WidgetManager.php');
 require_once(__DIR__ . '/gui/widgets/Footer/SimpleFooter.php');
 require_once(__DIR__ . '/core/check_maintenance_mode.php'); //Check if maintenance mode is active and redirect visitor
@@ -16,6 +17,7 @@ use catechesis\DataValidationUtils;
 use catechesis\Utils;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\SimpleFooter;
+use catechesis\Translation;
 
 if (!defined('CATECHESIS_BASE_URL')) {
     define('CATECHESIS_BASE_URL', '/catechesis');
@@ -136,7 +138,7 @@ $pageUI->addWidget($footer);
 
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -194,7 +196,7 @@ $pageUI->addWidget($footer);
                 <div id="right-form" class="col-md-6">
                     <div class="row" style="margin-bottom: 80px;"></div>
                     <h1>Entrar</h1>
-                    <h2>Bem-vindo ao CatecheSis!</h2>
+                    <h2><?= Translation::t('welcome_catechesis') ?></h2>
 
                     <form class="form-horizontal" role="form" action="login.php" method="post" onsubmit="onSubmit()">
                         <div class="input_box">
@@ -234,7 +236,7 @@ $pageUI->addWidget($footer);
                         }
                         ?>
 
-                        <button id="login_button" type="submit" class="btn btn-primary"><strong>Iniciar sessão</strong></button>
+                        <button id="login_button" type="submit" class="btn btn-primary"><strong><?= Translation::t('login_button') ?></strong></button>
                     </form>
 
                     <div class="row" style="margin-bottom: 80px;"></div>
@@ -255,7 +257,13 @@ $footer->renderHTML();
 
 <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
 <script type="text/javascript">
-    window.cookieconsent_options = {"message":"Este sítio utiliza cookies para melhorar a sua experiência de navegação. <br>Ao continuar está a consentir essa utilização.","dismiss":"Aceito","learnMore":"Mais info","link":null,"theme":"light-floating"};
+    window.cookieconsent_options = {
+        "message": <?= json_encode(Translation::t('cookie_message')) ?>,
+        "dismiss": <?= json_encode(Translation::t('cookie_dismiss')) ?>,
+        "learnMore": <?= json_encode(Translation::t('cookie_learn_more')) ?>,
+        "link": null,
+        "theme": "light-floating"
+    };
 </script>
 <script type="text/javascript" src="js/cookieconsent2-1.0.10/cookieconsent.min.js"></script>
 <!-- End Cookie Consent plugin -->
@@ -266,7 +274,7 @@ $footer->renderHTML();
     function onSubmit()
     {
         var login_button = document.getElementById("login_button");
-        login_button.innerHTML = '<i class="fas fa-spinner fa-pulse"></i>&nbsp; Iniciar sessão';
+        login_button.innerHTML = '<i class="fas fa-spinner fa-pulse"></i>&nbsp; ' + <?= json_encode(Translation::t('login_button')) ?>;
         login_button.disabled = true;
     }
 </script>

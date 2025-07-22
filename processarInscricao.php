@@ -42,7 +42,7 @@ $menu = new MainNavbar(null, MENU_OPTION::ENROLMENTS, true);
 $pageUI->addWidget($menu);
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
   <title>
       <?php
@@ -75,7 +75,7 @@ $menu->renderHTML();
 
 	if($_REQUEST['modo']=="editar")
 	{
-		echo("<h2>Actualização de dados</h2>");
+                echo("<h2>" . Translation::t('data_update_title') . "</h2>");
 
         if(!Authenticator::isAdmin() && !catechumen_belongs_to_catechist($_SESSION['cid'], Authenticator::getUsername()))
         {
@@ -86,7 +86,7 @@ $menu->renderHTML();
 	}
 	else
     {
-        echo("<h2>Matrícula e inscrição na catequese</h2>");
+        echo("<h2>" . Translation::t('enrollment_title') . "</h2>");
 
         if(!Authenticator::isAdmin())
         {
@@ -280,25 +280,25 @@ $menu->renderHTML();
 	  	}
 	  	
 	  		  	
-	  	if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))
-	  	{
-	  		echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O código postal que introduziu é inválido. Deve ser da forma 'xxxx-yyy Localidade'.</div>");
-	  		var_dump($codigo_postal);
-	  		$inputs_invalidos = true;	  	
-	  	}
+                if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))
+                {
+                        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> " . Translation::t('invalid_postal_code') . "</div>");
+                        var_dump($codigo_postal);
+                        $inputs_invalidos = true;
+                }
 	  	
 	  	
-	  	if($telefone!="" && !DataValidationUtils::validatePhoneNumber($telefone, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))
-	  	{
-	  		echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O número de telefone que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.</div>");
-	  		$inputs_invalidos = true;	  	
-	  	}
+                if($telefone!="" && !DataValidationUtils::validatePhoneNumber($telefone, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))
+                {
+                        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> " . Translation::t('invalid_phone') . "</div>");
+                        $inputs_invalidos = true;
+                }
 	  	
-	  	if($telemovel!="" && !DataValidationUtils::validatePhoneNumber($telemovel, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))
-	  	{
-	  		echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O número de telemóvel que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.</div>");
-	  		$inputs_invalidos = true;	  	
-	  	}
+                if($telemovel!="" && !DataValidationUtils::validatePhoneNumber($telemovel, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))
+                {
+                        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> " . Translation::t('invalid_phone') . "</div>");
+                        $inputs_invalidos = true;
+                }
 	  	
 	  	
 	  	if($baptizado && !DataValidationUtils::validateDate($data_baptismo))
@@ -347,7 +347,7 @@ $menu->renderHTML();
 	  	
 	  	if($email && $email!="" && !DataValidationUtils::validateEmail($email))
 	  	{
-	  		echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O e-mail que introduziu é inválido.</div>");
+                    echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> " . Translation::t('invalid_email') . "</div>");
 	  		$inputs_invalidos = true;	  	
 	  	}
 	  	

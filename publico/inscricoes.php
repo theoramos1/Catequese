@@ -6,6 +6,7 @@ require_once(__DIR__ . '/../gui/widgets/WidgetManager.php');
 require_once(__DIR__ . '/../gui/widgets/Navbar/MinimalNavbar.php');
 require_once(__DIR__ . '/../gui/widgets/Footer/SimpleFooter.php');
 require_once(__DIR__ . '/../core/check_maintenance_mode.php'); //Check if maintenance mode is active and redirect visitor
+require_once(__DIR__ . '/../core/Translation.php');
 
 
 use catechesis\Configurator;
@@ -13,6 +14,7 @@ use catechesis\Utils;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\MinimalNavbar;
 use catechesis\gui\SimpleFooter;
+use catechesis\Translation;
 
 
 //Verificar se o periodo de inscricoes esta ativo
@@ -36,7 +38,7 @@ $pageUI->addWidget($footer);
 
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
     <meta charset="UTF-8">
     <title>Inscrição na catequese</title>
@@ -74,7 +76,7 @@ $navbar->renderHTML();
     if($periodo_activo)
     {
     ?>
-        <p>Bem-vindo à plataforma de inscrições da catequese da <?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_PARISH_NAME); ?>!<br>
+        <p><?= sprintf(Translation::t('welcome_enrollment_platform'), Configurator::getConfigurationValueOrDefault(Configurator::KEY_PARISH_NAME)); ?><br>
         Selecione a opção que melhor se ajusta ao seu caso:</p>
 
 
@@ -106,7 +108,7 @@ $navbar->renderHTML();
     {
     ?>
 
-    <p>Bem-vindo à plataforma de inscrições da catequese da <?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_PARISH_NAME); ?>!<br>
+    <p><?= sprintf(Translation::t('welcome_enrollment_platform'), Configurator::getConfigurationValueOrDefault(Configurator::KEY_PARISH_NAME)); ?><br>
         De momento, as inscrições estão fechadas. Se desejar efetuar uma inscrição ou renovação de matrícula, contacte a catequese.</p>
 
     <div class="row" style="margin-top: 40px"></div>
@@ -142,7 +144,13 @@ $footer->renderHTML();
 
 <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
 <script type="text/javascript">
-    window.cookieconsent_options = {"message":"Este sítio utiliza cookies para melhorar a sua experiência de navegação. <br>Ao continuar está a consentir essa utilização.","dismiss":"Aceito","learnMore":"Mais info","link":null,"theme":"light-floating"};
+    window.cookieconsent_options = {
+        "message": <?= json_encode(Translation::t('cookie_message')) ?>,
+        "dismiss": <?= json_encode(Translation::t('cookie_dismiss')) ?>,
+        "learnMore": <?= json_encode(Translation::t('cookie_learn_more')) ?>,
+        "link": null,
+        "theme": "light-floating"
+    };
 </script>
 
 <script type="text/javascript" src="../js/cookieconsent2-1.0.10/cookieconsent.min.js"></script>

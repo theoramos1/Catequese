@@ -9,6 +9,7 @@ require_once(__DIR__ . '/../fonts/quill-fonts.php');
 require_once(__DIR__ . '/../gui/widgets/WidgetManager.php');
 require_once(__DIR__ . '/../gui/widgets/Footer/SimpleFooter.php');
 require_once(__DIR__ . '/../core/check_maintenance_mode.php'); //Check if maintenance mode is active and redirect visitor
+require_once(__DIR__ . '/../core/Translation.php');
 
 
 use catechesis\Authenticator;
@@ -18,6 +19,7 @@ use catechesis\PdoDatabaseManager;
 use catechesis\Utils;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\SimpleFooter;
+use catechesis\Translation;
 
 // Start a secure session if none is running
 Authenticator::startSecureSession();
@@ -32,7 +34,7 @@ $pageUI->addWidget($footer);
 
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
     <title>Catequese Virtual</title>
     <meta charset="utf-8">
@@ -253,7 +255,8 @@ $pageUI->addWidget($footer);
 
                 <h2><?= $catecismo ?>º Catecismo <?php if(isset($turma) && $turma !== "" && $turma !== "_") echo(" - Grupo $turma");?></h2>
                 <h4><?php
-                    setlocale(LC_TIME, 'pt_PT', 'pt_PT.utf-8', 'pt_PT.utf-8', 'portuguese');
+                    $localeCode = (\catechesis\Configurator::getConfigurationValueOrDefault(\catechesis\Configurator::KEY_LOCALIZATION_CODE) == \core\domain\Locale::BRASIL) ? 'pt_BR' : 'pt_PT';
+                    setlocale(LC_TIME, $localeCode, $localeCode.'.utf-8', $localeCode.'.utf8', 'portuguese');
                     echo(Utils::toUTF8(strftime('%A, %d de %B de %Y', strtotime($data_sessao))));
                     //echo(strftime('%A, %d de %B de %Y', strtotime($data_sessao))); //Usar este se o de cima der problemas de encoding
                     ?></h4>
@@ -301,7 +304,7 @@ $pageUI->addWidget($footer);
 
                             <div id="block-title">
                                 <h3>Novos desafios exigem novas respostas!</h3>
-                                <h1>Bem-vindo à <span class="catequese-virtual-destaque">Catequese Virtual!</span></h1>
+                                <h1><?= Translation::t('welcome_catechesis_virtual') ?></h1>
                             </div>
 
                             <div class="row" style="margin-bottom: 80px"></div>
@@ -367,7 +370,10 @@ if($on_landing_page)
 <script src="../js/quill-1.3.6/quill.min.js"></script>
 <script src="../js/quill-image-resize-module/image-resize.min.js"></script>
 <script src="../js/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js"></script>
-<script src="../js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.pt.min.js"></script>
+<?php
+    $dpLocale = (\catechesis\Configurator::getConfigurationValueOrDefault(\catechesis\Configurator::KEY_LOCALIZATION_CODE) == \core\domain\Locale::BRASIL) ? 'pt-BR' : 'pt';
+?>
+<script src="../js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.<?= $dpLocale ?>.min.js"></script>
 
 <script>
     $(document).ready(function () {
@@ -481,7 +487,13 @@ if($on_landing_page)
 
 <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
 <script type="text/javascript">
-    window.cookieconsent_options = {"message":"Este sítio utiliza cookies para melhorar a sua experiência de navegação. <br>Ao continuar está a consentir essa utilização.","dismiss":"Aceito","learnMore":"Mais info","link":null,"theme":"light-floating"};
+    window.cookieconsent_options = {
+        "message": <?= json_encode(Translation::t('cookie_message')) ?>,
+        "dismiss": <?= json_encode(Translation::t('cookie_dismiss')) ?>,
+        "learnMore": <?= json_encode(Translation::t('cookie_learn_more')) ?>,
+        "link": null,
+        "theme": "light-floating"
+    };
 </script>
 
 <script type="text/javascript" src="../js/cookieconsent2-1.0.10/cookieconsent.min.js"></script>

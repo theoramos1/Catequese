@@ -40,7 +40,7 @@ $pageUI->addWidget($deleteFamilyMemberDialog);
 
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
   <title>Detalhes do catequizando</title>
   <meta charset="utf-8">
@@ -152,7 +152,7 @@ $menu->renderHTML();
 
 <div class="container" id="contentor">
 
-    <h2> Detalhes do catequizando</h2>
+    <h2><?= Translation::t('catechumen_details_title') ?></h2>
 
 <?php
 
@@ -350,7 +350,7 @@ $menu->renderHTML();
                 }
                 if($telemovel_familiar=="" || !DataValidationUtils::validatePhoneNumber($telemovel_familiar, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))
                 {
-                    echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O número de telemóvel que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.</div>");
+                    echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> " . Translation::t('invalid_phone') . "</div>");
                     $inputs_invalidos = true;
                 }
 
@@ -767,7 +767,7 @@ function valida_dados_familiar()
     var telemovel = document.getElementById('telemovel').value;
     if(!telefone_valido(telemovel, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
     {
-        alert("O número de telemóvel que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.");
+        alert(<?= json_encode(Translation::t('invalid_phone')) ?>);
         return false;
     }
     return true;

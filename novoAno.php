@@ -200,7 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 }
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
   <title>Gerir grupos de catequese</title>
   <meta charset="utf-8">
@@ -256,7 +256,7 @@ $menu->renderHTML();
 
 
 <div class="container" id="contentor">
-  <h2> Gerir grupos de catequese</h2>
+  <h2><?= Translation::t('manage_groups_title') ?></h2>
   
   <div class="row" style="margin-bottom:40px; "></div>
 

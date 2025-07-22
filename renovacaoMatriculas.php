@@ -41,7 +41,7 @@ $pageUI->addWidget($renewalDetailsDialog);
 
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
   <title>Renovação de matrículas</title>
   <meta charset="utf-8">
@@ -979,6 +979,11 @@ $pageUI->renderJS(); // Render the widgets' JS code
 <script src="js/bootstrap-switch.js"></script>
 <script type="text/javascript" src="js/DataTables/datatables.min.js"></script>
 <script src="js/btn-group-hover.js"></script>
+<?php
+$dtLangUrl = (\catechesis\Configurator::getConfigurationValueOrDefault(\catechesis\Configurator::KEY_LOCALIZATION_CODE) == \core\domain\Locale::BRASIL)
+    ? 'js/DataTables/Portuguese-BR.json'
+    : 'js/DataTables/Portuguese.json';
+?>
 
 <script>
 	
@@ -1014,7 +1019,7 @@ $(document).ready( function () {
         paging: false,
         info: false,
         language: {
-            url: 'js/DataTables/Portuguese.json'
+            url: '<?= $dtLangUrl ?>'
         }
     });
 } );
@@ -1024,7 +1029,7 @@ $(document).ready( function () {
         paging: false,
         info: false,
         language: {
-            url: 'js/DataTables/Portuguese.json'
+            url: '<?= $dtLangUrl ?>'
         }
     });
 });
@@ -1034,7 +1039,7 @@ $(document).ready( function () {
         paging: false,
         info: false,
         language: {
-            url: 'js/DataTables/Portuguese.json'
+            url: '<?= $dtLangUrl ?>'
         }
     });
 } );

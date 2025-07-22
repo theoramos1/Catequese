@@ -1,4 +1,5 @@
 <?php
+require_once(__DIR__ . '/core/Configurator.php');
 
 require_once(__DIR__ . '/core/config/catechesis_config.inc.php');
 require_once(__DIR__ . '/authentication/utils/authentication_verify.php');
@@ -44,7 +45,7 @@ $pageUI->addWidget($userAccountSettingsPanel);
 
 ?>
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
 <head>
   <title>Gerir utilizadores e catequistas</title>
   <meta charset="utf-8">
@@ -93,7 +94,7 @@ $menu->renderHTML();
 
 	?>
 	
-  <h2> Gerir utilizadores e catequistas</h2>
+  <h2><?= Translation::t('manage_users_title') ?></h2>
   
   <div class="row" style="margin-bottom:40px; "></div>
   
