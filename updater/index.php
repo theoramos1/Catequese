@@ -10,6 +10,7 @@ require_once(__DIR__ . '/Checker.php');
 require_once(__DIR__ . '/utils.php');
 require_once(__DIR__ . '/../core/UpdateChecker.php');
 require_once(__DIR__ . '/../core/log_functions.php');
+require_once(__DIR__ . '/../core/Translation.php');
 
 
 use catechesis\DataValidationUtils;
@@ -20,6 +21,7 @@ use MirazMac\Requirements\Checker;
 use catechesis\PdoDatabaseManager;
 use catechesis\Configurator;
 use catechesis\Authenticator;
+use catechesis\Translation;
 
 
 if(!Authenticator::isAdmin())
@@ -317,7 +319,7 @@ $_SESSION['setup_step'] = $current_step;
                         <form class="form-horizontal" id="form-wizard" role="form" action="index.php" method="post">
 
                             <h1>Atualização</h1>
-                            <h2>Bem-vindo ao assistente de atualização do CatecheSis!</h2>
+                            <h2><?= Translation::t('welcome_update_assistant') ?></h2>
 
                             <?php
                             if($updateChecker->isUpdateAvailable())

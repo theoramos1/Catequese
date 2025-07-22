@@ -10,12 +10,14 @@ require_once(__DIR__ . '/../../../../core/Utils.php');
 require_once(__DIR__ . '/../../../../core/UserData.php');
 require_once(__DIR__ . '/../../../../core/domain/Locale.php');
 require_once(__DIR__ . '/../../../../core/log_functions.php');
+require_once(__DIR__ . '/../../../../core/Translation.php');
 
 use catechesis\Authenticator;
 use catechesis\PdoDatabaseManager;
 use catechesis\Configurator;
 use catechesis\UserData;
 use catechesis\Utils;
+use catechesis\Translation;
 use core\domain\Locale;
 use uLogin;
 
@@ -339,6 +341,7 @@ class ParishSettingsPanelWidget extends AbstractSettingsPanelWidget
                 Configurator::setConfigurationValue(Configurator::KEY_PARISH_PLACE, $editParishPlace);
                 Configurator::setConfigurationValue(Configurator::KEY_PARISH_DIOCESE, $editParishDiocese);
                 Configurator::setConfigurationValue(Configurator::KEY_LOCALIZATION_CODE, $editLocale);
+                Translation::setLocale($editLocale);
                 Configurator::setConfigurationValue(Configurator::KEY_PARISH_CUSTOM_TABLE_FOOTER, $editParishCustomFooter);
 
                 writeLogEntry("Modificou os dados da paróquia.");
