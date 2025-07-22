@@ -22,6 +22,10 @@ use catechesis\gui\MainNavbar\MENU_OPTION;
 use catechesis\UserData;
 use core\domain\Locale;
 
+// Default to no special mode if none was specified to avoid undefined index
+if (!isset($_REQUEST['modo']))
+    $_REQUEST['modo'] = '';
+
 // Create the widgets manager
 $pageUI = new WidgetManager();
 

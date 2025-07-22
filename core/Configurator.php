@@ -169,7 +169,7 @@ class Configurator
                 self::KEY_ENROLLMENT_SHOW_PAYMENT_DATA => new ConfigurationObject(self::KEY_ENROLLMENT_SHOW_PAYMENT_DATA, ConfigurationObject::TYPE_BOOL, false),
                 self::KEY_ENROLLMENT_PAYMENT_ENTITY => new ConfigurationObject(self::KEY_ENROLLMENT_PAYMENT_ENTITY, ConfigurationObject::TYPE_INT, null),
                 self::KEY_ENROLLMENT_PAYMENT_REFERENCE => new ConfigurationObject(self::KEY_ENROLLMENT_PAYMENT_REFERENCE, ConfigurationObject::TYPE_INT, null),
-                self::KEY_ENROLLMENT_PAYMENT_AMOUNT => new ConfigurationObject(self::KEY_ENROLLMENT_PAYMENT_AMOUNT, ConfigurationObject::TYPE_FLOAT, 0.0),
+                self::KEY_ENROLLMENT_PAYMENT_AMOUNT => new ConfigurationObject(self::KEY_ENROLLMENT_PAYMENT_AMOUNT, ConfigurationObject::TYPE_FLOAT, 100.0),
                 self::KEY_ENROLLMENT_PAYMENT_ACCEPT_BIGGER_DONATIONS => new ConfigurationObject(self::KEY_ENROLLMENT_PAYMENT_ACCEPT_BIGGER_DONATIONS, ConfigurationObject::TYPE_BOOL, true),
                 self::KEY_ENROLLMENT_PAYMENT_PROOF => new ConfigurationObject(self::KEY_ENROLLMENT_PAYMENT_PROOF, ConfigurationObject::TYPE_STRING, null),
 
