@@ -146,7 +146,7 @@ $menu->renderHTML();
     <div class="col-xs-5">
  	 <label for="ano_catequetico">Ano catequético: </label> 
  	 <select name="ano_catequetico" >
-    		<option value="" <?php if (!$_POST['ano_catequetico'] || $_POST['ano_catequetico']=="") echo("selected"); ?>>Todos</option>
+                <option value="" <?php if (!isset($_POST['ano_catequetico']) || $_POST['ano_catequetico']=="") echo("selected"); ?>>Todos</option>
 	<?php
 
     //Funcao para criar link de retorno em caso de erro
@@ -171,7 +171,7 @@ $menu->renderHTML();
         foreach($result as $row)
         {
             echo("<option value='" . $row['ano_lectivo'] . "'");
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['ano_catequetico']==$row['ano_lectivo'])
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ano_catequetico']) && $_POST['ano_catequetico']==$row['ano_lectivo'])
                 echo(" selected");
             echo(">");
             echo(Utils::formatCatecheticalYear($row['ano_lectivo']) . "</option>\n");
@@ -187,7 +187,7 @@ $menu->renderHTML();
    	<div class="col-xs-4">
    		<label for="catecismo">Catecismo:</label>
 		<select name="catecismo">
-			<option value="" <?php if (!$_POST['catecismo'] || $_POST['catecismo']=="") echo("selected"); ?>>Todos</option>
+                <option value="" <?php if (!isset($_POST['catecismo']) || $_POST['catecismo']=="") echo("selected"); ?>>Todos</option>
 	<?php
 
         //Get catechisms
@@ -205,7 +205,7 @@ $menu->renderHTML();
 			foreach($result as $row)
 			{
 				echo("<option value='" . $row['ano_catecismo'] . "'");
-				if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['catecismo']==$row['ano_catecismo']) 
+                                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['catecismo']) && $_POST['catecismo']==$row['ano_catecismo'])
 					echo(" selected");
 				echo(">");
 				echo("" . $row['ano_catecismo'] . "º" . "</option>\n"); 
@@ -225,7 +225,7 @@ $menu->renderHTML();
    	<div class="col-xs-3">
    		<label for="turma">Grupo:</label>
 		<select name="turma">
-			<option value="" <?php if (!$_POST['catecismo'] || $_POST['catecismo']=="") echo("selected"); ?>>Todas</option>
+                        <option value="" <?php if (!isset($_POST['catecismo']) || $_POST['catecismo']=="") echo("selected"); ?>>Todas</option>
 	<?php
 
         //Get distinct catechesis group letters
@@ -243,7 +243,7 @@ $menu->renderHTML();
 			foreach($result as $row)
 			{
 				echo("<option value='" . Utils::sanitizeOutput($row['turma']) . "'");
-				if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['turma']==$row['turma']) 
+                                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['turma']) && $_POST['turma']==$row['turma'])
 					echo(" selected");
 				echo(">");
 				echo("" . Utils::sanitizeOutput($row['turma']) . "</option>\n");
@@ -266,22 +266,22 @@ $menu->renderHTML();
   <a style="cursor: pointer;" data-toggle="collapse" data-target="#filtros">Aplicar filtros <span class="glyphicon glyphicon-chevron-down"></span></a>
   <div style="margin-bottom: 10px"></div>
   
-  <div id="filtros" class="collapse <?php if (($_POST['filtro_bap']!='' && $_POST['filtro_bap']!=0) ||($_POST['filtro_com']!='' && $_POST['filtro_com']!=0) || ($_POST['excluir_1']=='on') || ($_POST['excluir_2']=='on') || ($_POST['excluir_3']=='on') || ($_POST['excluir_4']=='on') || ($_POST['excluir_5']=='on') || ($_POST['excluir_6']=='on') || ($_POST['excluir_7']=='on') || ($_POST['excluir_8']=='on') || ($_POST['excluir_9']=='on') || ($_POST['excluir_10']=='on')) echo('in'); ?>">  
+  <div id="filtros" class="collapse <?php if ((isset($_POST['filtro_bap']) && $_POST['filtro_bap']!='' && $_POST['filtro_bap']!=0) || (isset($_POST['filtro_com']) && $_POST['filtro_com']!='' && $_POST['filtro_com']!=0) || (isset($_POST['excluir_1']) && $_POST['excluir_1']=='on') || (isset($_POST['excluir_2']) && $_POST['excluir_2']=='on') || (isset($_POST['excluir_3']) && $_POST['excluir_3']=='on') || (isset($_POST['excluir_4']) && $_POST['excluir_4']=='on') || (isset($_POST['excluir_5']) && $_POST['excluir_5']=='on') || (isset($_POST['excluir_6']) && $_POST['excluir_6']=='on') || (isset($_POST['excluir_7']) && $_POST['excluir_7']=='on') || (isset($_POST['excluir_8']) && $_POST['excluir_8']=='on') || (isset($_POST['excluir_9']) && $_POST['excluir_9']=='on') || (isset($_POST['excluir_10']) && $_POST['excluir_10']=='on')) echo('in'); ?>">
   	<div class="form-group">
    	<div class="col-xs-6">
    		<label for="filtro_bap">Baptismo:</label>
 		<select name="filtro_bap">
-			<option value="0" <?php if (!$_POST['filtro_bap'] || $_POST['filtro_bap']=="" || $_POST['filtro_bap']==0) echo("selected"); ?>>Indiferente</option>
-			<option value="1" <?php if ($_POST['filtro_bap']==1) echo("selected"); ?>>Fez</option>
-			<option value="2" <?php if ($_POST['filtro_bap']==2) echo("selected"); ?>>Não fez</option>
+                        <option value="0" <?php if (!isset($_POST['filtro_bap']) || $_POST['filtro_bap']=="" || $_POST['filtro_bap']==0) echo("selected"); ?>>Indiferente</option>
+                        <option value="1" <?php if (isset($_POST['filtro_bap']) && $_POST['filtro_bap']==1) echo("selected"); ?>>Fez</option>
+                        <option value="2" <?php if (isset($_POST['filtro_bap']) && $_POST['filtro_bap']==2) echo("selected"); ?>>Não fez</option>
 		</select>
 	</div>
 	<div class="col-xs-6">
    		<label for="filtro_com">Primeira comunhão:</label>
 		<select name="filtro_com">
-			<option value="0" <?php if (!$_POST['filtro_com'] || $_POST['filtro_com']=="" || $_POST['filtro_com']==0) echo("selected"); ?>>Indiferente</option>
-			<option value="1" <?php if ($_POST['filtro_com']==1) echo("selected"); ?>>Fez</option>
-			<option value="2" <?php if ($_POST['filtro_com']==2) echo("selected"); ?>>Não fez</option>
+                        <option value="0" <?php if (!isset($_POST['filtro_com']) || $_POST['filtro_com']=="" || $_POST['filtro_com']==0) echo("selected"); ?>>Indiferente</option>
+                        <option value="1" <?php if (isset($_POST['filtro_com']) && $_POST['filtro_com']==1) echo("selected"); ?>>Fez</option>
+                        <option value="2" <?php if (isset($_POST['filtro_com']) && $_POST['filtro_com']==2) echo("selected"); ?>>Não fez</option>
 		</select>
 	</div>
 	</div>
@@ -295,7 +295,7 @@ $menu->renderHTML();
         for($i = 1; $i <= intval(Configurator::getConfigurationValueOrDefault(Configurator::KEY_NUM_CATECHISMS)); $i++)
         {
             ?>
-            <input name="excluir_<?= $i ?>" type="checkbox" <?php if($_POST['excluir_' . $i]=='on') echo('checked'); ?>><?= $i ?>º
+            <input name="excluir_<?= $i ?>" type="checkbox" <?php if(isset($_POST['excluir_' . $i]) && $_POST['excluir_' . $i]=='on') echo('checked'); ?>><?= $i ?>º
             <?php
         }
         ?>
@@ -318,7 +318,7 @@ $menu->renderHTML();
     
     
     <?php
-	if($_POST['ano_catequetico'] && $_POST['catecismo'] && $_POST['turma'])
+        if(isset($_POST['ano_catequetico'], $_POST['catecismo'], $_POST['turma']) && $_POST['ano_catequetico'] && $_POST['catecismo'] && $_POST['turma'])
 	{
 		$ano_catequetico = intval($_POST['ano_catequetico']);
 		$catecismo = intval($_POST['catecismo']);
@@ -354,19 +354,19 @@ $menu->renderHTML();
     if ($_SERVER["REQUEST_METHOD"] == "POST")
 	{
 		
-		if($_POST['ano_catequetico'])
-			$ano_catequetico = intval($_POST['ano_catequetico']);
-		if($_POST['catecismo'])
-			$catecismo = intval($_POST['catecismo']);
-		if($_POST['turma'])
-			$turma = Utils::sanitizeInput($_POST['turma']);
+                if(isset($_POST['ano_catequetico']) && $_POST['ano_catequetico'])
+                        $ano_catequetico = intval($_POST['ano_catequetico']);
+                if(isset($_POST['catecismo']) && $_POST['catecismo'])
+                        $catecismo = intval($_POST['catecismo']);
+                if(isset($_POST['turma']) && $_POST['turma'])
+                        $turma = Utils::sanitizeInput($_POST['turma']);
 		if(isset($_POST['filtro_bap']))
 			$bap = intval($_POST['filtro_bap']);
 		if(isset($_POST['filtro_com']))
 			$com = intval($_POST['filtro_com']);
         for($i = 1; $i <= intval(Configurator::getConfigurationValueOrDefault(Configurator::KEY_NUM_CATECHISMS)); $i++)
         {
-            if($_POST["excluir_" . $i])
+            if(isset($_POST["excluir_" . $i]) && $_POST["excluir_" . $i])
             {
                 array_push($excludedCatechisms, $i);
                 $exclusoes = true;
@@ -439,7 +439,7 @@ $menu->renderHTML();
   
 
   <?php
-	if($_POST['ano_catequetico'] && $_POST['catecismo'] && $_POST['turma'])
+        if(isset($_POST['ano_catequetico'], $_POST['catecismo'], $_POST['turma']) && $_POST['ano_catequetico'] && $_POST['catecismo'] && $_POST['turma'])
 	{
 		$ano_catequetico = intval($_POST['ano_catequetico']);
 		$catecismo = intval($_POST['catecismo']);
@@ -466,7 +466,7 @@ $menu->renderHTML();
 </div>
 
 <?php
-if($_POST['ano_catequetico'] && $_POST['catecismo'] && $_POST['turma'])
+if(isset($_POST['ano_catequetico'], $_POST['catecismo'], $_POST['turma']) && $_POST['ano_catequetico'] && $_POST['catecismo'] && $_POST['turma'])
 {
     $ano_catequetico = intval($_POST['ano_catequetico']);
     $catecismo = intval($_POST['catecismo']);
