@@ -143,7 +143,7 @@ $evaluationPeriodPanel->handlePost();
 
 
     //Guardar alteracoes
-    if($_REQUEST['op']=="guardar" && $periodo_activo)
+    if (isset($_REQUEST['op']) && $_REQUEST['op'] == "guardar" && $periodo_activo)
     {
         $catequizandos_passam = $_POST['catequizando'];	//Lista de cid de catequizandos que passam
 
