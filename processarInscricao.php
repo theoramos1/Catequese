@@ -30,6 +30,10 @@ use catechesis\gui\WidgetManager;
 use catechesis\gui\MainNavbar;
 use catechesis\gui\MainNavbar\MENU_OPTION;
 
+// Default to no special mode if none was specified
+if (!isset($_REQUEST['modo']))
+    $_REQUEST['modo'] = '';
+
 // Create the widgets manager
 $pageUI = new WidgetManager();
 
