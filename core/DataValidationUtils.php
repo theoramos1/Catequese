@@ -139,4 +139,34 @@ class DataValidationUtils
         $letterNumber = '/^(?=.*[a-zA-Z])(?=.*[0-9])/';
         return (strlen($password)>=$MIN_LENGHT && preg_match($letterNumber, $password));
     }
+
+    /**
+     * Validates a Multibanco entity number. It should contain exactly five digits.
+     * @param string $value
+     * @return bool
+     */
+    public static function validateMbEntity(string $value)
+    {
+        return preg_match('/^[0-9]{5}$/', $value);
+    }
+
+    /**
+     * Validates a Multibanco reference number. It should contain exactly nine digits.
+     * @param string $value
+     * @return bool
+     */
+    public static function validateMbReference(string $value)
+    {
+        return preg_match('/^[0-9]{9}$/', $value);
+    }
+
+    /**
+     * Checks whether a numeric string represents a positive float value.
+     * @param string $value
+     * @return bool
+     */
+    public static function validatePositiveFloat(string $value)
+    {
+        return is_numeric($value) && floatval($value) > 0;
+    }
 }

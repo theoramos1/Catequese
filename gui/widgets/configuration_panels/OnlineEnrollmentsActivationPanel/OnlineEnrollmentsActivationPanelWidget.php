@@ -359,28 +359,57 @@ class OnlineEnrollmentsActivationPanelWidget extends AbstractSettingsPanelWidget
 
             $enrollmentCustomText =  Utils::sanitizeKeepFormattingTags($_POST['info_text']);
             $showPaymentData =  Utils::sanitizeInput($_POST['enable_payment']); $showPaymentData = ($showPaymentData=="on");
-            $paymentEntity =  intval(Utils::removeWhiteSpaces(Utils::sanitizeInput($_POST['entity'])));
-            $paymentReference = intval(Utils::removeWhiteSpaces(Utils::sanitizeInput($_POST['reference'])));
-            $paymentAmount =  floatval(Utils::sanitizeInput($_POST['amount']));
+            $paymentEntity =  Utils::removeWhiteSpaces(Utils::sanitizeInput($_POST['entity']));
+            $paymentReference = Utils::removeWhiteSpaces(Utils::sanitizeInput($_POST['reference']));
+            $paymentAmount =  Utils::sanitizeInput($_POST['amount']);
             $acceptDonations = Utils::sanitizeInput($_POST['allow_donations']); $acceptDonations = ($acceptDonations=="on");
             $paymentProof = Utils::sanitizeInput($_POST['proof']);
 
-            try
+            $inputs_valid = true;
+            if($showPaymentData)
             {
-                Configurator::setConfigurationValue(Configurator::KEY_ENROLLMENT_CUSTOM_TEXT, $enrollmentCustomText);
-                Configurator::setConfigurationValue(Configurator::KEY_ENROLLMENT_SHOW_PAYMENT_DATA, $showPaymentData);
-                Configurator::setConfigurationValue(Configurator::KEY_ENROLLMENT_PAYMENT_ENTITY, $paymentEntity);
-                Configurator::setConfigurationValue(Configurator::KEY_ENROLLMENT_PAYMENT_REFERENCE, $paymentReference);
-                Configurator::setConfigurationValue(Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT, $paymentAmount);
-                Configurator::setConfigurationValue(Configurator::KEY_ENROLLMENT_PAYMENT_ACCEPT_BIGGER_DONATIONS, $acceptDonations);
-                Configurator::setConfigurationValue(Configurator::KEY_ENROLLMENT_PAYMENT_PROOF, $paymentProof);
+                if(!DataValidationUtils::validateMbEntity($paymentEntity))
+                {
+                    echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> A entidade indicada é inválida.</div>");
+                    $inputs_valid = false;
+                }
 
-                writeLogEntry("Modificou configurações das inscrições/renovações de matrícula online.");
-                echo("<div class=\"alert alert-success\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Sucesso!</strong> Modificou as configurações das inscrições/renovações de matrícula online.</div>");
+                if(!DataValidationUtils::validateMbReference($paymentReference))
+                {
+                    echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> A referência indicada é inválida.</div>");
+                    $inputs_valid = false;
+                }
+
+                if(!DataValidationUtils::validatePositiveFloat($paymentAmount))
+                {
+                    echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O montante indicado é inválido.</div>");
+                    $inputs_valid = false;
+                }
             }
-            catch (\Exception $e)
+
+            $paymentEntity = intval($paymentEntity);
+            $paymentReference = intval($paymentReference);
+            $paymentAmount = floatval($paymentAmount);
+
+            if($inputs_valid)
             {
-                echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> " . $e->getMessage() . "</div>");
+                try
+                {
+                    Configurator::setConfigurationValue(Configurator::KEY_ENROLLMENT_CUSTOM_TEXT, $enrollmentCustomText);
+                    Configurator::setConfigurationValue(Configurator::KEY_ENROLLMENT_SHOW_PAYMENT_DATA, $showPaymentData);
+                    Configurator::setConfigurationValue(Configurator::KEY_ENROLLMENT_PAYMENT_ENTITY, $paymentEntity);
+                    Configurator::setConfigurationValue(Configurator::KEY_ENROLLMENT_PAYMENT_REFERENCE, $paymentReference);
+                    Configurator::setConfigurationValue(Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT, $paymentAmount);
+                    Configurator::setConfigurationValue(Configurator::KEY_ENROLLMENT_PAYMENT_ACCEPT_BIGGER_DONATIONS, $acceptDonations);
+                    Configurator::setConfigurationValue(Configurator::KEY_ENROLLMENT_PAYMENT_PROOF, $paymentProof);
+
+                    writeLogEntry("Modificou configurações das inscrições/renovações de matrícula online.");
+                    echo("<div class=\"alert alert-success\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Sucesso!</strong> Modificou as configurações das inscrições/renovações de matrícula online.</div>");
+                }
+                catch (\Exception $e)
+                {
+                    echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> " . $e->getMessage() . "</div>");
+                }
             }
         }
     }
