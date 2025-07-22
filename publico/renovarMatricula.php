@@ -1,6 +1,7 @@
 <?php
 
 require_once(__DIR__ . '/../core/Configurator.php');
+require_once(__DIR__ . '/../core/session_init.php');
 require_once(__DIR__ . '/../authentication/securimage/securimage.php');
 require_once(__DIR__ . '/../core/Utils.php');
 require_once(__DIR__ . '/../gui/widgets/WidgetManager.php');
@@ -86,6 +87,7 @@ $navbar->renderHTML();
 
 
     <form role="form" action="doRenovarMatricula.php" method="post" id="form_renovar_matricula" onsubmit="return validar();">
+        <input type="hidden" name="csrf_token" value="<?= \catechesis\Utils::getCSRFToken() ?>">
         <div class="panel panel-default collapse in" id="painel_renovacao">
             <div class="panel-heading">Preencher todos os campos</div>
             <div class="panel-body">

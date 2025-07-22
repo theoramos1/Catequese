@@ -1,6 +1,7 @@
 <?php
 
 require_once(__DIR__ . '/../core/Utils.php');
+require_once(__DIR__ . '/../core/session_init.php');
 require_once(__DIR__ . '/../core/DataValidationUtils.php');
 require_once(__DIR__ . '/../core/enrollment_functions.php');
 require_once(__DIR__ . '/../authentication/securimage/securimage.php'); //Captcha
@@ -93,6 +94,11 @@ $navbar->renderHTML();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
+    if(!Utils::verifyCSRFToken($_POST['csrf_token'] ?? null))
+    {
+        echo("<div class=\"alert alert-danger\"><strong>ERRO!</strong> Pedido inválido.</div>");
+        die();
+    }
     $enc_edu_nome = Utils::sanitizeInput($_POST['enc_edu_nome']);
     $enc_edu_email = Utils::sanitizeInput($_POST['enc_edu_email']);
     $enc_edu_tel = Utils::sanitizeInput($_POST['enc_edu_tel']);

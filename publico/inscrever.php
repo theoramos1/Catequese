@@ -1,6 +1,7 @@
 <?php
 
 require_once(__DIR__ . '/../core/config/catechesis_config.inc.php');
+require_once(__DIR__ . '/../core/session_init.php');
 require_once(__DIR__ . '/../core/Utils.php');
 require_once(__DIR__ . '/../core/Configurator.php');
 require_once(__DIR__ . '/../core/domain/Locale.php');
@@ -101,6 +102,7 @@ $pageUI->addWidget($footer);
     <div class="container">
 
         <form role="form" onsubmit="return validar();" action="doInscrever.php<?php if($_REQUEST['modo']=='editar'){ echo('?modo=editar');}?>" method="post">
+            <input type="hidden" name="csrf_token" value="<?= \catechesis\Utils::getCSRFToken() ?>">
 
           <div class="panel panel-default" id="painel_ficha">
            <div class="panel-body">

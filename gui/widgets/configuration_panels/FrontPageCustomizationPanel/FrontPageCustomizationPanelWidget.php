@@ -215,6 +215,11 @@ class FrontPageCustomizationPanelWidget extends AbstractSettingsPanelWidget
      */
     public function handlePost()
     {
+        if(!Utils::verifyCSRFToken($_POST['csrf_token'] ?? null))
+        {
+            echo("<div class=\"alert alert-danger\"><strong>Erro!</strong> Pedido inválido.</div>");
+            return;
+        }
         $action = Utils::sanitizeInput($_POST['action']);
 
         //Edit public front page data
