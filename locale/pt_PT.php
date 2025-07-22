@@ -9,5 +9,9 @@ $lang = [
     'welcome_enrollment_platform' => 'Bem-vindo à plataforma de inscrições da catequese da %s!',
     'login_button' => 'Iniciar sessão'
     ,'welcome_update_assistant' => 'Bem-vindo ao assistente de atualização do CatecheSis!'
+    ,'greeting_early' => 'A madrugar, %s?'
+    ,'greeting_morning' => 'Bom dia, %s!'
+    ,'greeting_afternoon' => 'Boa tarde, %s!'
+    ,'greeting_evening' => 'Boa noite, %s!'
 ];
 return $lang;
