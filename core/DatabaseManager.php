@@ -166,8 +166,6 @@ interface DatabaseManager
     public function getCatecheticalYearsWhereCatechumenIsNotEnrolled(int $cid);                                         // Returns all the catechetical years where the catechumen is NOT enrolled
 
     // Payments
-    public function insertPayment(int $cid, float $valor, string $username, string $status);                           // Registers a new payment for a catechumen
-    public function getPaymentsByUser(string $username);                                                                // Returns all payments made by a given user
     public function getPaymentsByCatechumen(int $cid);                                                                  // Returns all payments associated with a catechumen
 
 
