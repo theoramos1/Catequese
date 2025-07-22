@@ -227,6 +227,11 @@ interface DatabaseManager
     public function updateCatechumenArchiveLog(int $cid, int $lsn);                                                     // Updates the log sequence number for the last modification of a catechumen's archive
     public function updateCatechumenAuthorizationsLog(int $cid, int $lsn);                                              // Updates the log sequence number for the last modification of a catechumen's authorizations
     public function getOldestLSNtoKeep(int $maxRecords);                                                                // Returns the oldest LSN to keep when doing a cleanup, maintaining the most recent $maxRecords records
+    // Payments
+    public function getPaymentsByUser(string $username);
+                                        // Returns all payment records for the given user
+    public function insertPayment(string $username, int $cid, float $amount, string $status);
+                                        // Inserts a new payment record
     public function deleteLogEntriesOlderThan(int $lsn);                                                                // Deletes CatecheSis log entries older than the provided LSN
 }
 
