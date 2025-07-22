@@ -261,6 +261,9 @@ interface PdoDatabaseManagerInterface extends DatabaseManager
     public function updateCatechumenArchiveLog(int $cid, int $lsn);
     public function updateCatechumenAuthorizationsLog(int $cid, int $lsn);
     public function getOldestLSNtoKeep(int $maxRecords);
+    // Payments
+    public function getPaymentsByUser(string $username);
+    public function insertPayment(string $username, int $cid, float $amount, string $status);
     public function deleteLogEntriesOlderThan(int $lsn);
 
 
@@ -5842,6 +5845,66 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
     }
 
+
+    /**
+     * Returns the list of payments registered by the given user.
+     * @param string $username
+     * @return array
+     * @throws Exception
+     */
+    public function getPaymentsByUser(string $username)
+    {
+        if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
+            throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
+
+        try
+        {
+            $sql = "SELECT pid, cid, valor, estado, data_pagamento FROM pagamentos WHERE username=:username ORDER BY data_pagamento DESC;";
+            $stm = $this->_connection->prepare($sql);
+            $stm->bindParam(':username', $username);
+
+            if($stm->execute())
+                return $stm->fetchAll();
+            else
+                throw new Exception('Falha ao obter pagamentos.');
+        }
+        catch(PDOException $e)
+        {
+            throw new Exception('Falha interna ao tentar aceder à base de dados.');
+        }
+    }
+
+    /**
+     * Inserts a new payment record.
+     * @param string $username
+     * @param int $cid
+     * @param float $amount
+     * @param string $status
+     * @return bool
+     * @throws Exception
+     */
+    public function insertPayment(string $username, int $cid, float $amount, string $status)
+    {
+        if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_EDIT))
+            throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
+
+        try
+        {
+            $sql = "INSERT INTO pagamentos(username, cid, valor, estado, data_pagamento) VALUES (:username, :cid, :valor, :estado, NOW());";
+            $stm = $this->_connection->prepare($sql);
+
+            $stm->bindParam(':username', $username);
+            $stm->bindParam(':cid', $cid, PDO::PARAM_INT);
+            $stm->bindParam(':valor', $amount);
+            $stm->bindParam(':estado', $status);
+
+            return $stm->execute();
+        }
+        catch(PDOException $e)
+        {
+            throw new Exception('Falha interna ao tentar aceder à base de dados.');
+        }
+    }
 
 
     
