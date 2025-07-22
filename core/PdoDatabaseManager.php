@@ -195,7 +195,7 @@ interface PdoDatabaseManagerInterface extends DatabaseManager
     public function getCatecheticalYearsWhereCatechumenIsNotEnrolled(int $cid);
 
     // Payments
-    public function insertPayment(int $cid, float $valor, string $username, string $status);
+    public function insertPayment(string $username, int $cid, float $amount, string $status);
     public function getPaymentsByUser(string $username);
     public function getPaymentsByCatechumen(int $cid);
 
@@ -262,8 +262,6 @@ interface PdoDatabaseManagerInterface extends DatabaseManager
     public function updateCatechumenAuthorizationsLog(int $cid, int $lsn);
     public function getOldestLSNtoKeep(int $maxRecords);
     // Payments
-    public function getPaymentsByUser(string $username);
-    public function insertPayment(string $username, int $cid, float $amount, string $status);
     public function deleteLogEntriesOlderThan(int $lsn);
 
 
@@ -4094,93 +4092,6 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
 
 
     /**
-     * Inserts a payment record for a catechumen.
-     * @param int $cid
-     * @param float $valor
-     * @param string $username
-     * @param string $status
-     */
-    public function insertPayment(int $cid, float $valor, string $username, string $status)
-    {
-        if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_EDIT))
-            throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
-
-        try
-        {
-            $sql = "INSERT INTO pagamento(cid, username, valor, status) VALUES(:cid, :username, :valor, :status);";
-            $stm = $this->_connection->prepare($sql);
-
-            $stm->bindParam(":cid", $cid, PDO::PARAM_INT);
-            $stm->bindParam(":username", $username);
-            $stm->bindParam(":valor", $valor);
-            $stm->bindParam(":status", $status);
-
-            return $stm->execute();
-        }
-        catch (PDOException $e)
-        {
-            throw new Exception("Falha interna ao tentar aceder à base de dados.");
-        }
-    }
-
-
-    /**
-     * Returns all payments registered by a user.
-     * @param string $username
-     */
-    public function getPaymentsByUser(string $username)
-    {
-        if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
-            throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
-
-        try
-        {
-            $sql = "SELECT * FROM pagamento WHERE username=:username ORDER BY data_hora DESC;";
-            $stm = $this->_connection->prepare($sql);
-
-            $stm->bindParam(":username", $username);
-
-            if($stm->execute())
-                return $stm->fetchAll();
-            else
-                throw new Exception("Falha ao obter pagamentos do utilizador.");
-        }
-        catch (PDOException $e)
-        {
-            throw new Exception("Falha interna ao tentar aceder à base de dados.");
-        }
-    }
-
-
-    /**
-     * Returns all payments associated with a catechumen.
-     * @param int $cid
-     */
-    public function getPaymentsByCatechumen(int $cid)
-    {
-        if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
-            throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
-
-        try
-        {
-            $sql = "SELECT * FROM pagamento WHERE cid=:cid ORDER BY data_hora DESC;";
-            $stm = $this->_connection->prepare($sql);
-
-            $stm->bindParam(":cid", $cid, PDO::PARAM_INT);
-
-            if($stm->execute())
-                return $stm->fetchAll();
-            else
-                throw new Exception("Falha ao obter pagamentos do catequizando.");
-        }
-        catch (PDOException $e)
-        {
-            throw new Exception("Falha interna ao tentar aceder à base de dados.");
-        }
-    }
-
-
-    /**
      * Returns all the civil years in the database for which there are records of the sacrament type provided.
      * @param int $sacrament  - one of the core::domain::Sacraments class constants
      * @return mixed
@@ -5899,6 +5810,35 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
             $stm->bindParam(':estado', $status);
 
             return $stm->execute();
+        }
+        catch(PDOException $e)
+        {
+            throw new Exception('Falha interna ao tentar aceder à base de dados.');
+        }
+    }
+
+    /**
+     * Returns all payments associated with a catechumen.
+     * @param int $cid
+     * @return array
+     * @throws Exception
+     */
+    public function getPaymentsByCatechumen(int $cid)
+    {
+        if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
+            throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
+
+        try
+        {
+            $sql = "SELECT pid, cid, valor, estado, data_pagamento FROM pagamentos WHERE cid=:cid ORDER BY data_pagamento DESC;";
+            $stm = $this->_connection->prepare($sql);
+
+            $stm->bindParam(':cid', $cid, PDO::PARAM_INT);
+
+            if($stm->execute())
+                return $stm->fetchAll();
+            else
+                throw new Exception('Falha ao obter pagamentos do catequizando.');
         }
         catch(PDOException $e)
         {
