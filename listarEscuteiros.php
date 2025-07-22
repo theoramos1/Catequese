@@ -135,7 +135,7 @@ $menu->renderHTML();
 
 <div class="no-print">
 
-  <h2> Listar catequizandos</h2>
+  <h2><?= Translation::t('list_catechumens_title') ?></h2>
 
   <div class="row" style="margin-top:20px; "></div>
     

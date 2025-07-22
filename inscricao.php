@@ -67,7 +67,7 @@ $menu->renderHTML();
 
     if($_REQUEST['modo']=='editar')
     {
-        echo("<h2>Editar ficha</h2>");
+        echo("<h2>" . Translation::t('edit_form_title') . "</h2>");
 
         if(!Authenticator::isAdmin() && !catechumen_belongs_to_catechist($_SESSION['cid'], Authenticator::getUsername()))
         {
@@ -78,7 +78,7 @@ $menu->renderHTML();
     }
     else
     {
-        echo('<h2>Matrícula e inscrição na catequese</h2>');
+        echo('<h2>' . Translation::t('enrollment_title') . '</h2>');
 
         if(!Authenticator::isAdmin())
         {

@@ -65,7 +65,7 @@ $db = new PdoDatabaseManager();
 
 
 <div class="container">
-  <h2>Pedido de inscrição</h2>
+  <h2><?= Translation::t('enrollment_request_title') ?></h2>
   
   <div class="clearfix" style="margin-bottom: 20px;"></div>
   <div class="container">

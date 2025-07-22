@@ -85,7 +85,7 @@ catch(Exception $e)
 
 <div class="container">
 
-	<h2> Área de Impressão</h2>
+        <h2><?= Translation::t('print_area_title') ?></h2>
 
 	<div class="row" style="margin-bottom:20px; "></div>
 	

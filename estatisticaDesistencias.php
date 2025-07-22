@@ -93,7 +93,7 @@ $menu->renderHTML();
 <div class="container" id="contentor">
 
 
-  <h2> Estatísticas</h2>
+  <h2><?= Translation::t('statistics_title') ?></h2>
   
   <div class="row" style="margin-bottom:40px; "></div>
 

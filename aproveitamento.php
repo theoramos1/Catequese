@@ -117,7 +117,7 @@ $evaluationPeriodPanel->handlePost();
 <div class="container" id="contentor">
 
  <div class="no-print">
-  <h2> Aproveitamento dos catequizandos</h2>
+  <h2><?= Translation::t('students_performance_title') ?></h2>
   
   <div class="row" style="margin-bottom:40px; "></div>
 

@@ -117,7 +117,7 @@ $menu->renderHTML();
 <div class="container" id="contentor">
 
  <div class="no-print">
-  <h2> Registar sacramentos</h2>
+  <h2><?= Translation::t('register_sacraments_title') ?></h2>
   
   <div class="row" style="margin-bottom:40px; "></div>
 </div>

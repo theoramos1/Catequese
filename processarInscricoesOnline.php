@@ -121,7 +121,7 @@ $pageUI->addWidget($orderDetailsDialog);
 <div class="container" id="contentor">
 
     <div class="no-print">
-        <h2> Processar pedidos de inscrição online</h2>
+        <h2><?= Translation::t('process_online_enrollments_title') ?></h2>
     </div>
     <div class="row" style="margin-top:40px; "></div>
 
