@@ -32,6 +32,16 @@ $pageUI->addWidget($menu);
 $searchResults = new CatechumensListWidget();
 $pageUI->addWidget($searchResults);
 
+// Initialize POST parameters to avoid undefined index warnings
+foreach (['ano_catequetico', 'catecismo', 'turma', 'filtro_bap', 'filtro_com'] as $param) {
+    if (!isset($_POST[$param]))
+        $_POST[$param] = '';
+}
+for ($i = 1; $i <= intval(Configurator::getConfigurationValueOrDefault(Configurator::KEY_NUM_CATECHISMS)); $i++) {
+    if (!isset($_POST['excluir_' . $i]))
+        $_POST['excluir_' . $i] = '';
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt">
