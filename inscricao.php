@@ -135,7 +135,7 @@ $menu->renderHTML();
     <div class="form-group">
      <div class="col-xs-2">
      <div class="input-append date" id="data_nasc_div" data-date="" data-date-format="dd-mm-yyyy">
-      <label for="data_nasc">Nasceu a:</label>
+      <label for="data_nasc">Data de nascimento:</label>
       <!--<div class="input-group">-->
       <input class="form-control" id="data_nasc" name="data_nasc" size="16" type="text" onclick="verifica_data_nasc()" onchange="verifica_data_nasc()" placeholder="dd-mm-aaaa" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['data_nasc'] . '');} else {echo('');} ?>"  required>
       <!--<span class="input-group-addon glyphicon glyphicon-calendar" id="sizing-addon2"></span>
@@ -149,7 +149,7 @@ $menu->renderHTML();
    <!--local nascimento-->
     <div class="form-group">
     <div class="col-xs-3">
-      <label for="localidade">Em:</label>
+      <label for="localidade">Local de nascimento:</label>
       <input type="text" class="form-control" id="localidade" name="localidade" placeholder="Local de nascimento" list="locais_nascimento" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['local_nasc'] . '');} else {echo('');} ?>" required>
     </div>
     </div>
@@ -170,8 +170,8 @@ $menu->renderHTML();
    <!--morada-->
     <div class="form-group">
     <div class="col-xs-12">
-      <label for="morada">Morada:</label>
-      <input type="text" class="form-control" id="morada" name="morada" placeholder="Morada do encarregado de educação" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['morada'] . '');} else {echo('');} ?>" required>
+      <label for="morada">Endereço:</label>
+      <input type="text" class="form-control" id="morada" name="morada" placeholder="Endereço do responsável legal" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['morada'] . '');} else {echo('');} ?>" required>
     </div>
     </div>
     
@@ -181,7 +181,7 @@ $menu->renderHTML();
     <div class="form-group">
     <div class="col-xs-4">
     <div id="codigo_postal_div">
-      <label for="codigo_postal">Código postal:</label>
+      <label for="codigo_postal">CEP:</label>
       <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'xxxxx-xxx':'xxxx-xxx Localidade' ?>" list="codigos_postais" onclick="verifica_codigo_postal()" onchange="verifica_codigo_postal()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['cod_postal'] . '');} else {echo('');} ?>" required>
       <span id="erro_postal_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
     </div>
@@ -193,7 +193,7 @@ $menu->renderHTML();
     <div class="col-xs-2">
     <div id="telefone_div">
       <label for="tel">Telefone:</label>
-      <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Telefone do encarregado de educação" onclick="verifica_telefone()" onchange="verifica_telefone()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telefone'] . '');} else {echo('');} ?>">
+      <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Telefone do responsável legal" onclick="verifica_telefone()" onchange="verifica_telefone()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telefone'] . '');} else {echo('');} ?>">
       <span id="erro_telefone_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
     </div>
     </div>
@@ -204,7 +204,7 @@ $menu->renderHTML();
     <div class="col-xs-2">
     <div id="telemovel_div">
       <label for="telm"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?"Celular":"Telemóvel" ?>:</label>
-      <input type="tel" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?"Celular":"Telemóvel" ?> do encarregado de educação" onclick="verifica_telemovel()" onchange="verifica_telemovel()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telemovel'] . '');} else {echo('');} ?>">
+      <input type="tel" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?"Celular":"Telemóvel" ?> do responsável legal" onclick="verifica_telemovel()" onchange="verifica_telemovel()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telemovel'] . '');} else {echo('');} ?>">
       <span id="erro_telemovel_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
     </div>
     <div class="clearfix"></div>
@@ -237,7 +237,7 @@ $menu->renderHTML();
     <div class="form-group">
     <div class="col-xs-8">
     <div class="row" style="margin-top:20px; "></div>
-    	<label for="e_baptizado">É baptizado(a):</label>
+        <label for="e_baptizado">É batizado(a):</label>
     	<label class="radio-inline"><input type="radio" id="baptizado1" name="baptizado" value="Sim" <?php  if($_REQUEST['modo']=='regresso' && $_SESSION['baptizado']=='Sim'){ echo('checked');} ?>>Sim</label>
 	<label class="radio-inline"><input type="radio" id="baptizado2" name="baptizado" value="Nao" <?php  if($_REQUEST['modo']!='regresso' || ($_REQUEST['modo']=='regresso' && $_SESSION['baptizado']!='Sim')){ echo('checked');} ?>>Não</label>
     </div>
@@ -246,17 +246,17 @@ $menu->renderHTML();
     <?php if($_REQUEST['modo']=='editar'){ echo("-->");} ?>
     
     
-    <!--paroquia de baptismo-->
+    <!--paroquia de batismo-->
     <?php if($_REQUEST['modo']=='editar'){ echo("<!--");} ?>
     <div class="form-group collapse <?php  if($_REQUEST['modo']=='regresso' && $_SESSION['baptizado']=='Sim'){ echo('in');} ?>" id="paroquia_baptismo_collapse">
     <div class="col-xs-4">
-      <label for="paroquia_baptismo"> Paróquia de baptismo: </label>
-      <input type="text" class="form-control" id="paroquia_baptismo" name="paroquia_baptismo" placeholder="Paróquia de baptismo" list="paroquias" value="<?php  if($_REQUEST['modo']=='regresso'){ echo('' . $_SESSION['paroquia_baptismo'] . '');} else {echo('');} ?>">
+      <label for="paroquia_baptismo"> Paróquia de batismo: </label>
+      <input type="text" class="form-control" id="paroquia_baptismo" name="paroquia_baptismo" placeholder="Paróquia de batismo" list="paroquias" value="<?php  if($_REQUEST['modo']=='regresso'){ echo('' . $_SESSION['paroquia_baptismo'] . '');} else {echo('');} ?>">
     </div>
      <?php if($_REQUEST['modo']=='editar'){ echo("-->");} ?>
     
     
-    <!--data de baptismo-->
+    <!--data de batismo-->
     <?php if($_REQUEST['modo']=='editar'){ echo("<!--");} ?>
     <div class="form-group">
      <div class="col-xs-2">
@@ -320,7 +320,7 @@ $menu->renderHTML();
     <div class="form-group">
     <div class="col-xs-8">
         <div class="row" style="margin-top:20px; "></div>
-    	<label for="encarregado educacao">Encarregado de educação:</label>
+        <label for="encarregado educacao">Responsável legal:</label>
     	<label class="radio-inline"><input type="radio" id="enc_edu1" name="enc_edu" value="Pai" onchange="mostrar_ocultar_campo_outro_enc_edu();" <?php  if(($_REQUEST['modo']!='regresso' && $_REQUEST['modo']!='editar') || (($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar') && $_SESSION['enc_edu']=='Pai')){ echo('checked');} ?>>Pai</label>
 	    <label class="radio-inline"><input type="radio" id="enc_edu2" name="enc_edu" value="Mae" onchange="mostrar_ocultar_campo_outro_enc_edu();" <?php  if(($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar') && $_SESSION['enc_edu']=='Mae'){ echo('checked');} ?>>Mãe</label>
 	    <label class="radio-inline"><input type="radio" id="enc_edu3" name="enc_edu" value="Outro" onchange="mostrar_ocultar_campo_outro_enc_edu();" <?php  if(($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar') && $_SESSION['enc_edu']=='Outro'){ echo('checked');} ?>>Outro</label>
@@ -345,13 +345,13 @@ $menu->renderHTML();
     <!--outro encarregado educacao nome-->
     <div class="col-xs-6">
       <label for="nome_end_edu"> Nome:</label>
-      <input type="text" class="form-control" id="nome_enc_edu" name="nome_enc_edu" placeholder="Nome completo do encarregado de educação" list="familiares" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['nome_enc_edu'] . '');} else {echo('');} ?>">
+      <input type="text" class="form-control" id="nome_enc_edu" name="nome_enc_edu" placeholder="Nome completo do responsável legal" list="familiares" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['nome_enc_edu'] . '');} else {echo('');} ?>">
     </div>
     
    <!--outro encarregado educacao profissao-->
     <div class="col-xs-4">
       <label for="prof_enc_edu"> Profissão:</label>
-      <input type="text" class="form-control" id="prof_enc_edu" name="prof_enc_edu" placeholder="Profissão do encarregado de educação" list="profissoes" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['prof_enc_edu'] . '');} else {echo('');} ?>">
+      <input type="text" class="form-control" id="prof_enc_edu" name="prof_enc_edu" placeholder="Profissão do responsável legal" list="profissoes" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['prof_enc_edu'] . '');} else {echo('');} ?>">
     </div>
     </div>
     <div class="clearfix"></div>
@@ -412,7 +412,7 @@ $menu->renderHTML();
     	<label for="casados_como">Se respondeu <i>Sim</i> indique:</label>
     	<label class="radio-inline"><input type="radio" name="casados_como" value="igreja" <?php  if(($_REQUEST['modo']!='regresso' && $_REQUEST['modo']!='irmao' &&  $_REQUEST['modo']=='editar') || ($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='editar') && $_SESSION['casados_como']=='igreja'){ echo('checked');} ?>>Igreja</label>
 	<label class="radio-inline"><input type="radio" name="casados_como" value="civil"  <?php  if(($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='editar') && $_SESSION['casados_como']=='civil'){ echo('checked');} ?>>Civil</label>
-	<label class="radio-inline"><input type="radio" name="casados_como" value="uniao de facto" <?php  if(($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='editar') && $_SESSION['casados_como']=='uniao de facto'){ echo('checked');} ?> >União de facto</label>
+        <label class="radio-inline"><input type="radio" name="casados_como" value="uniao de facto" <?php  if(($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='editar') && $_SESSION['casados_como']=='uniao de facto'){ echo('checked');} ?> >União estável</label>
     </div>
     <div class="clearfix"></div>
     </div>
@@ -422,7 +422,7 @@ $menu->renderHTML();
      <!--email-->  
     <div class="form-group">
     <div class="col-xs-12">
-      <label for="email">Para que seja informado de notícias e actividades da nossa catequese, indique-nos o seu e-mail. Assim poderá organizar melhor a sua vida e planear a sua agenda.<br>E-mail:</label>
+      <label for="email">Para que seja informado de notícias e atividades da nossa catequese, informe o seu e-mail. Assim poderá organizar melhor a sua vida e planejar a sua agenda.<br>E-mail:</label>
       <input type="email" class="form-control" id="email" name="email" placeholder="endereco@example.com" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['email'] . '');} else {echo('');} ?>">
     </div>
     <div class="clearfix"></div>
@@ -432,7 +432,7 @@ $menu->renderHTML();
     
     <!--autoriza fotografias-->
     <div class="checkbox">
-      <label><input id="autorizacao" name="autorizacao" type="checkbox" <?php 	if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='irmao') && ($_SESSION['autorizacao']=='on' || $_SESSION['autorizacao']==1)){ echo("checked");}?> > Autoriza a utilização e divulgação de fotografias do educando, tiradas no âmbito das actividades catequéticas.</label>
+      <label><input id="autorizacao" name="autorizacao" type="checkbox" <?php 	if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='irmao') && ($_SESSION['autorizacao']=='on' || $_SESSION['autorizacao']==1)){ echo("checked");}?> > Autoriza a utilização e divulgação de fotografias do educando, tiradas no âmbito das atividades catequéticas.</label>
     </div>
     <!--<div class="row" style="margin-bottom:60px; "></div>-->
 
@@ -742,20 +742,20 @@ function validar()
         <?php if($_REQUEST['modo']!='editar') :?>
         if( baptizado && (paroquia_baptismo=="" || paroquia_baptismo==undefined))
         {
-        	alert("Deve especificar a paróquia de baptismo.");
-		return false; 
+                alert("É necessário informar a paróquia de batismo.");
+                return false;
         }
         
         if( baptizado && (data_baptismo=="" || data_baptismo==undefined))
         {
-        	alert("Deve especificar a data de baptismo.");
-		return false; 
+                alert("É necessário informar a data de batismo.");
+                return false;
         }
         
         if( baptizado && !data_valida(data_baptismo))
         {
-        	alert("A data de baptismo que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
-		return false; 
+                alert("A data de batismo que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
+                return false;
         }
         
         if( comunhao  && (paroquia_comunhao=="" || paroquia_comunhao==undefined))
@@ -778,18 +778,18 @@ function validar()
         <?php endif ?>
         
         
-        if( (enc_edu_pai && (pai=="" || pai==undefined)) || (enc_edu_mae && (mae=="" || mae==undefined)) ) 
-	{
-		alert("Deve especificar o nome e profissão do encarregado de educação.");
-		return false; 
-	}
+        if( (enc_edu_pai && (pai=="" || pai==undefined)) || (enc_edu_mae && (mae=="" || mae==undefined)) )
+        {
+                alert("É necessário informar o nome e profissão do responsável legal.");
+                return false;
+        }
         
         
-	if( enc_edu_outro && ((enc_edu_parentesco=="" || enc_edu_parentesco==undefined) || (enc_edu_nome=="" || enc_edu_nome==undefined) || (enc_edu_prof=="" || enc_edu_prof==undefined)) )
-	{
-		alert("Deve especificar o grau de parentesco, nome e profissão do encarregado de educação.");
-		return false; 
-	}
+        if( enc_edu_outro && ((enc_edu_parentesco=="" || enc_edu_parentesco==undefined) || (enc_edu_nome=="" || enc_edu_nome==undefined) || (enc_edu_prof=="" || enc_edu_prof==undefined)) )
+        {
+                alert("É necessário especificar o grau de parentesco, nome e profissão do responsável legal.");
+                return false;
+        }
         
         
     if( (pai!="" && pai!=undefined) && (prof_pai=="" | prof_pai==undefined) )
