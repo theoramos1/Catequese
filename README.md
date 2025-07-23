@@ -41,6 +41,23 @@ Payment details for online enrollments are stored in the application database an
 
 These settings are stored in the table `configuracoes` and can also be updated manually if needed.
 
+## Pix payment
+
+Brazilian donors may contribute using Pix. Configure the following keys in the **Configurações** page:
+
+- `PIX_KEY` – Pix key associated with the parish
+- `PIX_RECEIVER` – name of the receiver shown on the QR code
+- `PIX_CITY` – receiver city required by the Pix standard
+- `PIX_DESCRIPTION` – text description included in the payment data
+- `PIX_TXID` – default transaction identifier
+- `PIX_API_URL` – optional endpoint used to generate the QR code
+- `PIX_API_TOKEN` – token for the Pix API
+- `PIX_API_TIMEOUT` – timeout in seconds when calling the API
+
+Call `PixQRCode::generatePixQRCode($amount)` to generate the QR image for the desired amount. When used for enrollments this amount usually corresponds to `ENROLLMENT_PAYMENT_AMOUNT` (default R$100).
+
+Payment confirmation can optionally be automated with `PixPaymentVerificationService`, which expects the provider endpoint, token and timeout to be set via `PIX_PROVIDER_URL`, `PIX_PROVIDER_TOKEN` and `PIX_PROVIDER_TIMEOUT`.
+
 ## Updating and database migrations
 
 The `updater/` directory contains a web based assistant that downloads new versions and executes SQL scripts found under `updater/sql_scripts`. To run the updater navigate to `updater/index.php` in your browser (you must be logged in as an administrator) or execute it from the command line with `php updater/index.php`.
