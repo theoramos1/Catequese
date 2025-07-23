@@ -26,6 +26,12 @@ $db = new PdoDatabaseManager();
 $message = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cid'])) {
+    if(!Utils::verifyCSRFToken($_POST['csrf_token'] ?? null))
+    {
+        echo("<div class='alert alert-danger'><strong>ERRO!</strong> Pedido inválido.</div>");
+        die();
+    }
+
     $cid = intval(Utils::sanitizeInput($_POST['cid']));
     $amount = 100.0; // Fixed amount
     $status = 'confirmado';
@@ -49,6 +55,14 @@ try {
 } catch (Exception $e) {
     $payments = [];
     $message = "<div class='alert alert-danger'><strong>Erro!</strong> " . $e->getMessage() . "</div>";
+}
+
+try {
+    $catechisms = $db->getCatechisms(Utils::currentCatecheticalYear());
+    $groups = $db->getGroupLetters(Utils::currentCatecheticalYear());
+} catch (Exception $e) {
+    $catechisms = [];
+    $groups = [];
 }
 
 ?>
@@ -87,12 +101,43 @@ $menu->renderHTML();
   <hr>
   <h3>Registar novo pagamento</h3>
   <form method="post" action="pagamentos.php" class="form-inline">
+    <input type="hidden" name="csrf_token" value="<?= \catechesis\Utils::getCSRFToken() ?>">
     <div class="form-group">
       <label for="cid">Catequizando:</label>
       <input type="number" class="form-control" id="cid" name="cid" required>
     </div>
-    <button type="submit" class="btn btn-primary">Registar R$100.00</button>
+    <div class="checkbox" style="margin-left: 10px;">
+      <label><input type="checkbox" id="mark_enrollment" name="mark_enrollment" onclick="toggleEnrollmentSelectors()"> Marcar inscrição paga</label>
+    </div>
+    <div id="enrollment_selectors" style="display:none; margin-left: 10px;" class="form-inline">
+      <div class="form-group">
+        <label for="mark_enrollment_catechism">Catecismo:</label>
+        <select class="form-control" id="mark_enrollment_catechism" name="mark_enrollment_catechism">
+          <?php foreach($catechisms as $c) { ?>
+            <option value="<?= intval($c['ano_catecismo']) ?>"><?= intval($c['ano_catecismo']) ?>º</option>
+          <?php } ?>
+        </select>
+      </div>
+      <div class="form-group" style="margin-left: 5px;">
+        <label for="mark_enrollment_group">Grupo:</label>
+        <select class="form-control" id="mark_enrollment_group" name="mark_enrollment_group">
+          <?php foreach($groups as $g) { $val = Utils::sanitizeOutput($g['turma']); ?>
+            <option value="<?= $val ?>"><?= $val ?></option>
+          <?php } ?>
+        </select>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" style="margin-left: 10px;">Registar R$100.00</button>
   </form>
+  <script type="text/javascript">
+    function toggleEnrollmentSelectors() {
+      var cb = document.getElementById('mark_enrollment');
+      var div = document.getElementById('enrollment_selectors');
+      if(cb && div) {
+        div.style.display = cb.checked ? 'inline-block' : 'none';
+      }
+    }
+  </script>
 
 <?php $pageUI->renderJS(); ?>
 </body>
