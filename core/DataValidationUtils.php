@@ -72,7 +72,8 @@ class DataValidationUtils
         if($locale == Locale::PORTUGAL)
             $pattern = '/^[0-9]{4}\-[0-9]{3}\s\S+/';
         else if($locale == Locale::BRASIL)
-            $pattern = '/^[0-9]{5}\-[0-9]{3}\s\S+/';
+            // Brazilian zip code with optional locality
+            $pattern = '/^[0-9]{5}\-[0-9]{3}(\s\S+)?/';
 
         return (preg_match($pattern, $postal));
     }
