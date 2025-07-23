@@ -127,6 +127,13 @@ class Configurator
     const KEY_PAYMENT_PROVIDER_TOKEN = "PAYMENT_PROVIDER_TOKEN";        //Authentication token for the payment provider API
     const KEY_PAYMENT_PROVIDER_TIMEOUT = "PAYMENT_PROVIDER_TIMEOUT";    //Timeout in seconds when contacting the provider
 
+    // Pix payment details
+    const KEY_PIX_RECEIVER = "PIX_RECEIVER";            // Name of the receiver displayed on the Pix slip
+    const KEY_PIX_CITY = "PIX_CITY";                    // City used in Pix payload
+    const KEY_PIX_KEY = "PIX_KEY";                      // Pix key identifier
+    const KEY_PIX_API_URL = "PIX_API_URL";              // Endpoint for Pix payment generation
+    const KEY_PIX_API_TOKEN = "PIX_API_TOKEN";          // Authentication token for the Pix API
+
 
     const KEY_CATECHESIS_NEXTCLOUD_BASE_URL = "CATECHESIS_NEXTCLOUD_BASE_URL";                                          //Path to Nextcloud front page
     const KEY_CATECHESIS_NEXTCLOUD_VIRTUAL_RESOURCES_URL = "CATECHESIS_NEXTCLOUD_VIRTUAL_RESOURCES_URL";                //Path to public shared folder in Nextcloud to store virtual catechesis resources
@@ -179,6 +186,11 @@ class Configurator
                 self::KEY_PAYMENT_PROVIDER_URL => new ConfigurationObject(self::KEY_PAYMENT_PROVIDER_URL, ConfigurationObject::TYPE_STRING, null),
                 self::KEY_PAYMENT_PROVIDER_TOKEN => new ConfigurationObject(self::KEY_PAYMENT_PROVIDER_TOKEN, ConfigurationObject::TYPE_STRING, null),
                 self::KEY_PAYMENT_PROVIDER_TIMEOUT => new ConfigurationObject(self::KEY_PAYMENT_PROVIDER_TIMEOUT, ConfigurationObject::TYPE_INT, 10),
+                self::KEY_PIX_RECEIVER => new ConfigurationObject(self::KEY_PIX_RECEIVER, ConfigurationObject::TYPE_STRING, null),
+                self::KEY_PIX_CITY => new ConfigurationObject(self::KEY_PIX_CITY, ConfigurationObject::TYPE_STRING, null),
+                self::KEY_PIX_KEY => new ConfigurationObject(self::KEY_PIX_KEY, ConfigurationObject::TYPE_STRING, null),
+                self::KEY_PIX_API_URL => new ConfigurationObject(self::KEY_PIX_API_URL, ConfigurationObject::TYPE_STRING, null),
+                self::KEY_PIX_API_TOKEN => new ConfigurationObject(self::KEY_PIX_API_TOKEN, ConfigurationObject::TYPE_STRING, null),
                 self::KEY_CATECHESIS_NEXTCLOUD_BASE_URL => new ConfigurationObject(self::KEY_CATECHESIS_NEXTCLOUD_BASE_URL, ConfigurationObject::TYPE_STRING, null),
                 self::KEY_CATECHESIS_NEXTCLOUD_VIRTUAL_RESOURCES_URL => new ConfigurationObject(self::KEY_CATECHESIS_NEXTCLOUD_VIRTUAL_RESOURCES_URL, ConfigurationObject::TYPE_STRING, null),
 
