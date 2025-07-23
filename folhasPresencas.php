@@ -43,7 +43,7 @@ $pageUI->addWidget($printDialog);
 
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
+<html lang="pt">
 <head>
   <title>Folha de presenças</title>
   <meta charset="utf-8">
@@ -164,7 +164,7 @@ $menu->renderHTML();
     </div>
 
   <div class="no-print">
-      <h2><?= Translation::t('print_area_title') ?></h2>
+      <h2> Área de Impressão</h2>
 
       <div class="row" style="margin-top:40px; "></div>
 
@@ -219,8 +219,7 @@ $menu->renderHTML();
         $weekDay = WeekDay::toString(Configurator::getConfigurationValueOrDefault(Configurator::KEY_CATECHESIS_WEEK_DAY));
 		$timestamp = strtotime('first ' . $weekDay . ' of ' . Locale::catechesisStartMonth(Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)), strtotime('1-1-' . $ano_i));
 
-            $localeCode = (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == \core\domain\Locale::BRASIL) ? 'pt_BR' : 'pt_PT';
-            setlocale(LC_TIME, $localeCode);
+		setlocale(LC_TIME, "pt_PT");
 		$mes_actual = strftime('%m', $timestamp);
 		$ultimo_mes = strftime('%m', $timestamp);
 	
@@ -257,8 +256,7 @@ $menu->renderHTML();
 		
 		$timestamp = strtotime('first ' . $weekDay . ' of ' . $months[intval($mes)], strtotime('1-1-' . $ano));
 
-                $localeCode = (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == \core\domain\Locale::BRASIL) ? 'pt_BR' : 'pt_PT';
-                setlocale(LC_TIME, $localeCode);
+		setlocale(LC_TIME, "pt_PT");
 		$mes_actual = strftime('%m', $timestamp);
 		$ultimo_mes = strftime('%m', $timestamp);
 		

@@ -77,7 +77,7 @@ if($action == UserAccountConfigurationPanelWidget::$ACTION_PARAMETER)
 
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
+<html lang="pt">
 <head>
   <title>Configurações</title>
   <meta charset="utf-8">
@@ -168,7 +168,7 @@ $menu->renderHTML();
             <div class="container" id="contentor">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2><?= Translation::t('settings_title') ?></h2>
+                        <h2>Configurações</h2>
 
                         <div class="row" style="margin-bottom: 60px;"></div>
 

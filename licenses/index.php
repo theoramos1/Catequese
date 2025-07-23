@@ -66,7 +66,7 @@
 
 
 <div class="container" id="contentor">
-  <h2><?= Translation::t('third_party_software_title') ?></h2>
+  <h2> Software de terceiros</h2>
   
  <div class="row clearfix" style="margin-top:40px; "></div>
  

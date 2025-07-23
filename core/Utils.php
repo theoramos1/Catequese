@@ -4,7 +4,6 @@ namespace catechesis;
 
 //require_once(__DIR__ . '/Configurator.php'); //NOTE: Do not import the Configurator here since it will break the setup wizard. We assume it is already imported in pages using the Utils...
 require_once(__DIR__ . '/domain/Locale.php');
-require_once(__DIR__ . '/Translation.php');
 
 use core\domain\Locale;
 use core\domain\Marriage;
@@ -619,27 +618,17 @@ class Utils
      */
     public static function greeting($username): string
     {
-        $locale = Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE);
-        switch ($locale) {
-            case Locale::BRASIL:
-                date_default_timezone_set('America/Sao_Paulo');
-                break;
-            case Locale::PORTUGAL:
-            default:
-                date_default_timezone_set('Europe/Lisbon');
-                break;
-        }
-
+        date_default_timezone_set('Europe/Lisbon'); //FIXME Make this a configurable setting
         $hour = date('H');
 
-        if ($hour >= 2 && $hour < 7)
-            return sprintf(Translation::t('greeting_early'), $username);
-        else if ($hour >= 7 && $hour < 12)
-            return sprintf(Translation::t('greeting_morning'), $username);
-        else if ($hour >= 12 && $hour < 20)
-            return sprintf(Translation::t('greeting_afternoon'), $username);
-        else if ($hour >= 20 || $hour < 2)
-            return sprintf(Translation::t('greeting_evening'), $username);
+        if($hour >= 2 && $hour < 7)
+            return "A madrugar, $username?";
+        else if($hour >= 7 && $hour < 12)
+            return "Bom dia, $username!";
+        else if($hour >= 12 && $hour < 20)
+            return "Boa tarde, $username!";
+        else if($hour >= 20 || $hour < 2)
+            return "Boa noite, $username!";
     }
 
 

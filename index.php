@@ -5,12 +5,10 @@ require_once(__DIR__ . '/gui/widgets/WidgetManager.php');
 require_once(__DIR__ . '/gui/widgets/Footer/SimpleFooter.php');
 require_once(__DIR__ . '/core/check_maintenance_mode.php'); //Check if maintenance mode is active and redirect visitor
 require_once(__DIR__ . '/core/session_init.php');
-require_once(__DIR__ . '/core/Translation.php');
 
 use catechesis\Configurator;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\SimpleFooter;
-use catechesis\Translation;
 
 // Instantiate a widget manager
 $pageUI = new WidgetManager();
@@ -21,7 +19,7 @@ $pageUI->addWidget($footer);
 
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -93,14 +91,14 @@ $pageUI->addWidget($footer);
                         </div>
                         <div class="col-md-6 vertical-align-center">
                             <div class="valign-center">
-                                <h2 class="card-title"><?= Translation::t('online_enrollments') ?></h2>
+                                <h2 class="card-title">Inscrições Online</h2>
                                 <span><strong>Inscrição</strong> na catequese ou <strong>renovação</strong> de matrícula.</span><br>
                                 <span><strong>Consulta</strong> do estado do pedido de incrição ou renovação.</span>
                             </div>
                         </div>
                         <div class="col-md-3 vertical-align-center">
                             <div class="valign-center">
-                                <button type="button" class="btn btn-primary card-button" onclick="goto_online_enrollments();"><?= Translation::t('go_to_online_enrollments') ?></button>
+                                <button type="button" class="btn btn-primary card-button" onclick="goto_online_enrollments();">Ir para Inscrições Online</button>
                             </div>
                         </div>
                     </div>
@@ -118,14 +116,14 @@ $pageUI->addWidget($footer);
                         </div>
                         <div class="col-md-6 vertical-align-center">
                             <div class="valign-center">
-                                <h2 class="card-title"><?= Translation::t('virtual_catechesis') ?></h2>
+                                <h2 class="card-title">Catequese Virtual</h2>
                                 <span>Acesso a <strong>conteúdos</strong> digitais.</span><br>
                                 <span>Dinamização de catequeses à distância, por <strong>videochamada</strong>.</span>
                             </div>
                         </div>
                         <div class="col-md-3 vertical-align-center">
                             <div class="valign-center">
-                                <button type="button" class="btn btn-primary card-button" onclick="goto_virtual_catechesis();"><?= Translation::t('go_to_virtual_catechesis') ?></button>
+                                <button type="button" class="btn btn-primary card-button" onclick="goto_virtual_catechesis();">Ir para Catequese Virtual</button>
                             </div>
                         </div>
                     </div>
@@ -150,13 +148,7 @@ $footer->renderHTML();
 
 <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
 <script type="text/javascript">
-    window.cookieconsent_options = {
-        "message": <?= json_encode(Translation::t('cookie_message')) ?>,
-        "dismiss": <?= json_encode(Translation::t('cookie_dismiss')) ?>,
-        "learnMore": <?= json_encode(Translation::t('cookie_learn_more')) ?>,
-        "link": null,
-        "theme": "light-floating"
-    };
+    window.cookieconsent_options = {"message":"Este sítio utiliza cookies para melhorar a sua experiência de navegação. <br>Ao continuar está a consentir essa utilização.","dismiss":"Aceito","learnMore":"Mais info","link":null,"theme":"light-floating"};
 </script>
 <script type="text/javascript" src="js/cookieconsent2-1.0.10/cookieconsent.min.js"></script>
 <!-- End Cookie Consent plugin -->

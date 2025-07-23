@@ -48,8 +48,7 @@ class SacramentRecordPanelWidget extends AbstractSettingsPanelWidget
         $this->addCSSDependency('css/jquery.fileupload.css');
         $this->addCSSDependency('css/dropzone.css');
         $this->addJSDependency('js/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js');
-        $dpLocale = (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == \core\domain\Locale::BRASIL) ? 'pt-BR' : 'pt';
-        $this->addJSDependency("js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.$dpLocale.min.js");
+        $this->addJSDependency('js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.pt.min.js');
         $this->addJSDependency('js/jquery.ui.widget.js');
         $this->addJSDependency('js/jquery.iframe-transport.js');    //The Iframe Transport is required for browsers without support for XHR file uploads
         $this->addJSDependency('js/jquery.fileupload.js');          //The basic File Upload plugin

@@ -14,7 +14,7 @@ $dpoAddress = Configurator::getConfigurationValueOrDefault(Configurator::KEY_GDP
 $dpoEmail = Configurator::getConfigurationValueOrDefault(Configurator::KEY_GDPR_DPO_EMAIL);
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
+<html lang="pt">
 <head>
     <meta charset="UTF-8" />
     <title>Declaração de consentimento</title>

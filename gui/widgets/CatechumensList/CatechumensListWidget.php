@@ -318,7 +318,7 @@ class CatechumensListWidget extends AbstractCatechumensListingWidget
                     paging: false,
                     info: false,
                     language: {
-                        url: '<?= (\catechesis\Configurator::getConfigurationValueOrDefault(\catechesis\Configurator::KEY_LOCALIZATION_CODE) == \core\domain\Locale::BRASIL) ? "js/DataTables/Portuguese-BR.json" : "js/DataTables/Portuguese.json" ?>'
+                        url: 'js/DataTables/Portuguese.json'
                     },
                     "aaSorting": [], //Do not sort anything at start, to keep the provided order (only when the user clicks on a column),
                     "columnDefs": [
