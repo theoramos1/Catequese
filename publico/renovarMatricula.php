@@ -227,7 +227,7 @@ $footer->renderHTML();
 
         if(telefone!=="" && telefone!==undefined && !telefone_valido(telefone, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-            alert("O número de telefone que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.");
+            alert("O número de telefone que introduziu é inválido. Deve estar no formato '(99) 9999-9999'.");
             return false;
         }
         if(email!=="" && email!==undefined && !email_valido(email))
