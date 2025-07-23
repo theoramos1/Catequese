@@ -44,7 +44,7 @@ $pageUI->addWidget($footer);
 
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <title>Estado do pedido de inscrição na catequese</title>
@@ -114,7 +114,7 @@ $navbar->renderHTML();
         //Captcha validator
         if (!isset($captchaCode) || !Securimage::checkByCaptchaId($captchaId, $captchaCode, $captcha_options))
         {
-            echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> " . Translation::t('invalid_security_code') . "</div>");
+            echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O código de segurança que introduziu não corresponde ao mostrado na imagem.</div>");
             echo("<p>Por favor <a href='javascript:history.go(-1)'>volte a tentar</a></p>");
             $inputs_invalidos = true;
         }
@@ -324,13 +324,7 @@ $footer->renderHTML();
 
 <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
 <script type="text/javascript">
-    window.cookieconsent_options = {
-        "message": <?= json_encode(Translation::t('cookie_message')) ?>,
-        "dismiss": <?= json_encode(Translation::t('cookie_dismiss')) ?>,
-        "learnMore": <?= json_encode(Translation::t('cookie_learn_more')) ?>,
-        "link": null,
-        "theme": "light-floating"
-    };
+    window.cookieconsent_options = {"message":"Este sítio utiliza cookies para melhorar a sua experiência de navegação. <br>Ao continuar está a consentir essa utilização.","dismiss":"Aceito","learnMore":"Mais info","link":null,"theme":"light-floating"};
 </script>
 
 <script type="text/javascript" src="../js/cookieconsent2-1.0.10/cookieconsent.min.js"></script>

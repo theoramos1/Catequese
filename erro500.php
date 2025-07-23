@@ -1,9 +1,8 @@
 <?php
-require_once(__DIR__ . '/core/Configurator.php');
 require_once(__DIR__ . '/core/config/catechesis_config.inc.php');
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
+<html lang="pt">
 <head>
   <title>CatecheSis - Erro interno</title>
   <meta charset="utf-8">

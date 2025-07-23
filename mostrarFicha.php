@@ -40,7 +40,7 @@ $pageUI->addWidget($deleteDialog);
 
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
+<html lang="pt">
 <head>
   <title>Detalhes do catequizando</title>
   <meta charset="utf-8">
@@ -84,7 +84,7 @@ $menu->renderHTML();
 ?>
 
 <div class="container" id="contentor">
-  <h2><?= Translation::t('catechumen_details_title') ?></h2>
+  <h2> Detalhes do catequizando</h2>
   
   <?php
 

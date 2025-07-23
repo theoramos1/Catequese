@@ -1,5 +1,4 @@
 <?php
-require_once(__DIR__ . '/core/Configurator.php');
 
 require_once(__DIR__ . '/core/config/catechesis_config.inc.php');
 require_once(__DIR__ . '/authentication/utils/authentication_verify.php');
@@ -22,7 +21,7 @@ $menu = new MainNavbar(null, MENU_OPTION::ANALYSIS);
 $pageUI->addWidget($menu);
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
+<html lang="pt">
 <head>
   <title>Estatísticas</title>
   <meta charset="utf-8">
@@ -93,7 +92,7 @@ $menu->renderHTML();
 <div class="container" id="contentor">
 
 
-  <h2><?= Translation::t('statistics_title') ?></h2>
+  <h2> Estatísticas</h2>
   
   <div class="row" style="margin-bottom:40px; "></div>
 
