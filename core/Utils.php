@@ -4,6 +4,7 @@ namespace catechesis;
 
 //require_once(__DIR__ . '/Configurator.php'); //NOTE: Do not import the Configurator here since it will break the setup wizard. We assume it is already imported in pages using the Utils...
 require_once(__DIR__ . '/domain/Locale.php');
+require_once(__DIR__ . '/Translation.php');
 
 use core\domain\Locale;
 use core\domain\Marriage;
