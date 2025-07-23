@@ -760,11 +760,10 @@ $pageUI->renderJS(); // Render the widgets' JS code
 ?>
 <?php if(Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL): ?>
 <script src="js/jQuery-Mask-Plugin-1.14.16/jquery.mask.min.js"></script>
+<script src="js/form-mask-utils.js"></script>
 <script>
 $(function(){
-    $('#telefone').mask('(00) 0000-0000');
-    $('#telemovel').mask('(00) 0 0000-0000');
-    $('#codigo_postal').mask('00000-000');
+    applyBrazilianMasks();
 });
 </script>
 <?php endif; ?>
