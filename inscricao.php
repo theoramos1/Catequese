@@ -185,9 +185,18 @@ $menu->renderHTML();
       <label for="codigo_postal">
         <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL) ? 'CEP' : 'Código postal' ?>
       </label>
+      <?php
+        $codigo_postal_list_attr = '';
+        if (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) != Locale::BRASIL) {
+            $codigo_postal_list_attr = ' list="codigos_postais"';
+        }
+        $placeholder = (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)
+            ? 'Ex: 78015-085'
+            : 'xxxx-xxx Localidade';
+      ?>
       <input type="text" class="form-control" id="codigo_postal" name="codigo_postal"
-        placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL) ? 'Ex: 78015-085' : 'xxxx-xxx Localidade' ?>"
-        list="codigos_postais"
+        placeholder="<?= $placeholder ?>"
+        <?= $codigo_postal_list_attr ?>
         onclick="verifica_codigo_postal()" onchange="verifica_codigo_postal()"
         value="<?php if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['cod_postal'] . '');} else {echo('');} ?>"
         required>
@@ -195,6 +204,7 @@ $menu->renderHTML();
     </div>
   </div>
 </div>
+
 
     
     
@@ -1068,21 +1078,23 @@ function mostrar_ocultar_campo_outro_enc_edu()
 
 
     //Criar lista com codigos postais
-    echo("<datalist id='codigos_postais'>\n");
-	try
-    {
-		$result = $db->getAllDistinctZipCodes();
+    if(Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) != Locale::BRASIL) {
+        echo("<datalist id='codigos_postais'>\n");
+        try
+        {
+            $result = $db->getAllDistinctZipCodes();
 
-        foreach ($result as $postal_existente)
-            echo("\t<option value=\"" . $postal_existente['cod_postal'] . "\">\n");
-	}
-	catch(Exception $e)
-    {
-        //Simply fail silently, since this is not very important
-        //echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> " . $e->getMessage() . "</div>");
-        //die();
+            foreach ($result as $postal_existente)
+                echo("\t<option value=\"" . $postal_existente['cod_postal'] . "\">\n");
+        }
+        catch(Exception $e)
+        {
+            //Simply fail silently, since this is not very important
+            //echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> " . $e->getMessage() . "</div>");
+            //die();
+        }
+        echo("</datalist>\n");
     }
-    echo("</datalist>\n");
 
 
     //Criar lista com locais de nascimento
