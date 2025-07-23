@@ -113,17 +113,346 @@ $menu->renderHTML();
   </div>
  
     
+
+ 
+    
   <div class="clearfix" style="margin-bottom: 20px;"></div>
 
   <!--<div class="container">-->
 
-  <!-- ... O restante do formulário permanece inalterado ... -->
+  
+  
+  <!--nome-->
+    <div class="form-group">
+    <div class="col-xs-6">
+      <label for="nome">Nome:</label>
+      <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome completo do catequizando" onchange="verifica_catequizando_inscrito()" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['nome'] . '');} else {echo('');} ?>" required>
+      <div class="alert alert-danger" id="catequizando_inscrito" style="display:none;"><span class="glyphicon glyphicon-exclamation-sign"></span> Catequizando já inscrito anteriormente!</div>
+    </div>
+    </div>
+    
+    
+   <!--data nascimento-->
+    <div class="form-group">
+     <div class="col-xs-2">
+     <div class="input-append date" id="data_nasc_div" data-date="" data-date-format="dd-mm-yyyy">
+      <label for="data_nasc">Data de nascimento:</label>
+      <!--<div class="input-group">-->
+      <input class="form-control" id="data_nasc" name="data_nasc" size="16" type="text" onclick="verifica_data_nasc()" onchange="verifica_data_nasc()" placeholder="dd-mm-aaaa" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['data_nasc'] . '');} else {echo('');} ?>"  required>
+      <!--<span class="input-group-addon glyphicon glyphicon-calendar" id="sizing-addon2"></span>
+      </div>-->
+      <span id="erro_nasc_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
+     </div>
+    </div>
+    </div>
+    
+    
+   <!--local nascimento-->
+    <div class="form-group">
+    <div class="col-xs-3">
+      <label for="localidade">Local de nascimento:</label>
+      <input type="text" class="form-control" id="localidade" name="localidade" placeholder="Local de nascimento" list="locais_nascimento" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['local_nasc'] . '');} else {echo('');} ?>" required>
+    </div>
+    </div>
+    
+    
+     <!--numero irmaos-->
+    <div class="col-xs-1">
+    <div id="num_irmaos_div">
+      <label for="num_irmaos">Irmãos:</label>
+      <input type="number" min=0 class="form-control" id="num_irmaos" name="num_irmaos" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['num_irmaos'] . '');} else {echo('0');} ?>">
+    </div>
+    </div>   
+    <div class="clearfix"></div>
+    
+    
+    <div class="row" style="margin-top:20px; "></div>
 
-  <!-- (Deixei o HTML do formulário idêntico ao seu original para não quebrar layout nem lógicas condicionais PHP) -->
+   <!--morada-->
+    <div class="form-group">
+    <div class="col-xs-12">
+      <label for="morada">Endereço:</label>
+      <input type="text" class="form-control" id="morada" name="morada" placeholder="Endereço do responsável legal" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['morada'] . '');} else {echo('');} ?>" required>
+    </div>
+    </div>
+    
+    
+    
+    <!--codigo postal-->
+    <div class="form-group">
+    <div class="col-xs-4">
+    <div id="codigo_postal_div">
+      <label for="codigo_postal">CEP:</label>
+      <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'xxxxx-xxx':'xxxx-xxx Localidade' ?>" list="codigos_postais" onclick="verifica_codigo_postal()" onchange="verifica_codigo_postal()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['cod_postal'] . '');} else {echo('');} ?>" required>
+      <span id="erro_postal_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
+    </div>
+    </div>
+    
+    
+    
+    <!--telefone-->
+    <div class="col-xs-2">
+    <div id="telefone_div">
+      <label for="tel">Telefone:</label>
+      <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Telefone do responsável legal" onclick="verifica_telefone()" onchange="verifica_telefone()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telefone'] . '');} else {echo('');} ?>">
+      <span id="erro_telefone_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
+    </div>
+    </div>
+    
+    
+    
+    <!--telemovel-->
+    <div class="col-xs-2">
+    <div id="telemovel_div">
+      <label for="telm"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?"Celular":"Telemóvel" ?>:</label>
+      <input type="tel" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?"Celular":"Telemóvel" ?> do responsável legal" onclick="verifica_telemovel()" onchange="verifica_telemovel()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telemovel'] . '');} else {echo('');} ?>">
+      <span id="erro_telemovel_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
+    </div>
+    <div class="clearfix"></div>
+    </div>   
+    </div>
+    
+   
+   
+  
+   
+   
+   
+   <!--escuteiro-->
+    <div class="form-group">
+    <div class="col-xs-8">
+    <div class="row" style="margin-top:20px; "></div>
+    	<label for="e_escuteiro">É escuteiro(a):</label>
+    	<label class="radio-inline"><input type="radio" name="escuteiro" value="Sim" <?php  if(($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar') && ($_SESSION['escuteiro']=='Sim' || $_SESSION['escuteiro']==1)){ echo('checked');} ?>>Sim</label>
+	<label class="radio-inline"><input type="radio" name="escuteiro" value="Nao" <?php  if(($_REQUEST['modo']!='regresso' && $_REQUEST['modo']!='editar') || (($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar') && $_SESSION['escuteiro']!='Sim' && $_SESSION['escuteiro']!=1)){ echo('checked');} ?>>Não</label>
+    </div>
+    <div class="clearfix"></div>
+    </div>
+    
+    
+    
+    <div class="row" style="margin-top:20px; "></div>
+    
+    <!--baptizado-->
+    <?php if($_REQUEST['modo']=='editar'){ echo("<!--");} ?>
+    <div class="form-group">
+    <div class="col-xs-8">
+    <div class="row" style="margin-top:20px; "></div>
+        <label for="e_baptizado">É batizado(a):</label>
+    	<label class="radio-inline"><input type="radio" id="baptizado1" name="baptizado" value="Sim" <?php  if($_REQUEST['modo']=='regresso' && $_SESSION['baptizado']=='Sim'){ echo('checked');} ?>>Sim</label>
+	<label class="radio-inline"><input type="radio" id="baptizado2" name="baptizado" value="Nao" <?php  if($_REQUEST['modo']!='regresso' || ($_REQUEST['modo']=='regresso' && $_SESSION['baptizado']!='Sim')){ echo('checked');} ?>>Não</label>
+    </div>
+    <div class="clearfix"></div>
+    </div>
+    <?php if($_REQUEST['modo']=='editar'){ echo("-->");} ?>
+    
+    
+    <!--paroquia de batismo-->
+    <?php if($_REQUEST['modo']=='editar'){ echo("<!--");} ?>
+    <div class="form-group collapse <?php  if($_REQUEST['modo']=='regresso' && $_SESSION['baptizado']=='Sim'){ echo('in');} ?>" id="paroquia_baptismo_collapse">
+    <div class="col-xs-4">
+      <label for="paroquia_baptismo"> Paróquia de batismo: </label>
+      <input type="text" class="form-control" id="paroquia_baptismo" name="paroquia_baptismo" placeholder="Paróquia de batismo" list="paroquias" value="<?php  if($_REQUEST['modo']=='regresso'){ echo('' . $_SESSION['paroquia_baptismo'] . '');} else {echo('');} ?>">
+    </div>
+     <?php if($_REQUEST['modo']=='editar'){ echo("-->");} ?>
+    
+    
+    <!--data de batismo-->
+    <?php if($_REQUEST['modo']=='editar'){ echo("<!--");} ?>
+    <div class="form-group">
+     <div class="col-xs-2">
+     <div class="input-append date" id="data_baptismo_div" data-date="" data-date-format="dd-mm-yyyy">
+      <label for="data_baptismo">Data:</label>
+      <input class="form-control" id="data_baptismo" name="data_baptismo" size="16" type="text" onclick="verifica_data_baptismo()" onchange="verifica_data_baptismo()" placeholder="dd-mm-aaaa" value="<?php  if($_REQUEST['modo']=='regresso'){ echo('' . $_SESSION['data_baptismo'] . '');} else {echo('');} ?>" >
+      <span id="erro_data_baptismo_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
+     </div>
+    </div>
+    </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row" style="margin-bottom:20px; "></div>
+    <?php if($_REQUEST['modo']=='editar'){ echo("-->");} ?>
+    
+    
+    
+    
+    <!--primeira comunhao-->
+    <?php if($_REQUEST['modo']=='editar'){ echo("<!--");} ?>
+    <div class="form-group">
+    <div class="col-xs-8">
+    	<label for="fez_primeira_comunhao">Fez primeira comunhão:</label>
+    	<label class="radio-inline"><input type="radio" id="comunhao1" name="comunhao" value="Sim" <?php  if($_REQUEST['modo']=='regresso' && $_SESSION['comunhao']=='Sim'){ echo('checked');} ?>>Sim</label>
+	<label class="radio-inline"><input type="radio" id="comunhao2" name="comunhao" value="Nao" <?php  if($_REQUEST['modo']!='regresso' || ($_REQUEST['modo']=='regresso' && $_SESSION['comunhao']!='Sim')){ echo('checked');} ?>>Não</label>
+    </div>
+    <div class="clearfix"></div>
+    </div>
+    <?php if($_REQUEST['modo']=='editar'){ echo("-->");} ?>
+    
+    
+    <!--paroquia primeira comunhao-->
+     <?php if($_REQUEST['modo']=='editar'){ echo("<!--");} ?>
+    <div class="form-group collapse <?php  if($_REQUEST['modo']=='regresso' && $_SESSION['comunhao']=='Sim'){ echo('in');} ?>" id="paroquia_comunhao_collapse">
+    <div class="col-xs-4">
+      <label for="paroquia_comunhao"> Paróquia 1ª comunhão:</label>
+      <input type="text" class="form-control" id="paroquia_comunhao" name="paroquia_comunhao" placeholder="Paróquia 1ª comunhão" list="paroquias" value="<?php  if($_REQUEST['modo']=='regresso'){ echo('' . $_SESSION['paroquia_comunhao'] . '');} else {echo('');} ?>">
+    </div>
+    <?php if($_REQUEST['modo']=='editar'){ echo("-->");} ?>
+    
+    <!--data primeira comunhao-->
+    <?php if($_REQUEST['modo']=='editar'){ echo("<!--");} ?>
+    <div class="form-group">
+     <div class="col-xs-2">
+     <div class="input-append date" id="data_comunhao_div" data-date="" data-date-format="dd-mm-yyyy">
+      <label for="data_comunhao">Data:</label>
+      <input class="form-control" id="data_comunhao" name="data_comunhao" size="16" type="text" onclick="verifica_data_comunhao()" onchange="verifica_data_comunhao()" placeholder="dd-mm-aaaa" value="<?php  if($_REQUEST['modo']=='regresso'){ echo('' . $_SESSION['data_comunhao'] . '');} else {echo('');} ?>" >
+      <span id="erro_data_comunhao_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
+     </div>
+    </div>
+    </div>
+    </div>
+    <div class="clearfix"></div>
+    <?php if($_REQUEST['modo']=='editar'){ echo("-->");} ?>
+    
+    
+    
+    
+    
+     <!--encarregado educacao-->
+    <div class="form-group">
+    <div class="col-xs-8">
+        <div class="row" style="margin-top:20px; "></div>
+        <label for="encarregado educacao">Responsável legal:</label>
+    	<label class="radio-inline"><input type="radio" id="enc_edu1" name="enc_edu" value="Pai" onchange="mostrar_ocultar_campo_outro_enc_edu();" <?php  if(($_REQUEST['modo']!='regresso' && $_REQUEST['modo']!='editar') || (($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar') && $_SESSION['enc_edu']=='Pai')){ echo('checked');} ?>>Pai</label>
+	    <label class="radio-inline"><input type="radio" id="enc_edu2" name="enc_edu" value="Mae" onchange="mostrar_ocultar_campo_outro_enc_edu();" <?php  if(($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar') && $_SESSION['enc_edu']=='Mae'){ echo('checked');} ?>>Mãe</label>
+	    <label class="radio-inline"><input type="radio" id="enc_edu3" name="enc_edu" value="Outro" onchange="mostrar_ocultar_campo_outro_enc_edu();" <?php  if(($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar') && $_SESSION['enc_edu']=='Outro'){ echo('checked');} ?>>Outro</label>
+    </div>
+    <div class="clearfix"></div>
+    </div>
+    
+    
+    <!--outro encarregado educacao quem-->
+    <div class="form-group collapse <?php  if(($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar') && $_SESSION['enc_edu']=='Outro'){ echo('in');} ?>" id="encarregado_educacao_collapse">
+    <div class="col-xs-2">
+      <label for="outro_enc_edu_quem"> Parentesco:</label>
+      <input type="text" class="form-control" id="outro_enc_edu_quem" name="outro_enc_edu_quem" placeholder="Ex: Avó" list="parentesco" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['outro_enc_edu_quem'] . '');} else {echo('');} ?>">
+    </div>
+    <datalist id='parentesco'>
+    	<option value='Avô'>
+    	<option value='Avó'>
+    	<option value='Irmão'>
+    	<option value='Irmã'>
+    </datalist>
+    
+    <!--outro encarregado educacao nome-->
+    <div class="col-xs-6">
+      <label for="nome_end_edu"> Nome:</label>
+      <input type="text" class="form-control" id="nome_enc_edu" name="nome_enc_edu" placeholder="Nome completo do responsável legal" list="familiares" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['nome_enc_edu'] . '');} else {echo('');} ?>">
+    </div>
+    
+   <!--outro encarregado educacao profissao-->
+    <div class="col-xs-4">
+      <label for="prof_enc_edu"> Profissão:</label>
+      <input type="text" class="form-control" id="prof_enc_edu" name="prof_enc_edu" placeholder="Profissão do responsável legal" list="profissoes" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['prof_enc_edu'] . '');} else {echo('');} ?>">
+    </div>
+    </div>
+    <div class="clearfix"></div>
+    
+    
+    
+    
+    
+    
+    
+    <!--pai-->
+    <div class="form-group">
+    <div class="col-xs-8">
+      <label for="pai">Pai:</label>
+      <input type="text" class="form-control" id="pai" name="pai" placeholder="Nome completo do pai" list="familiares" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['pai'] . '');} else {echo('');} ?>">
+    </div>
+    
+    <!--profissao pai-->
+    <div class="col-xs-4">
+      <label for="prof_pai">Profissão:</label>
+      <input type="text" class="form-control" id="prof_pai" name="prof_pai" placeholder="Profissão do pai" list="profissoes" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['prof_pai'] . '');} else {echo('');} ?>">
+    </div>
+    </div>
+    
+    
+    
+    <!--mae-->
+    <div class="form-group">
+    <div class="col-xs-8">
+      <label for="mae">Mãe:</label>
+      <input type="text" class="form-control" id="mae" name="mae" placeholder="Nome completo da mãe" list="familiares" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['mae'] . '');} else {echo('');} ?>">
+    </div>
+    
+    <!--profissao mae-->
+    <div class="col-xs-4">
+      <label for="prof_mae">Profissão:</label>
+      <input type="text" class="form-control" id="prof_mae" name="prof_mae" placeholder="Profissão da mãe" list="profissoes" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['prof_mae'] . '');} else {echo('');} ?>">
+    </div>
+    <div class="clearfix"></div>
+    </div>
+    
+    
+    
+    <!--casados-->
+    <div class="form-group">
+    <div class="col-xs-8">
+    	<label for="casados">Casados:</label>
+    	<label class="radio-inline"><input type="radio" id="casados1" name="casados" value="Sim" <?php  if(($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='editar') && $_SESSION['casados']=='Sim'){ echo('checked');} ?>>Sim</label>
+	<label class="radio-inline"><input type="radio" id="casados2" name="casados" value="Nao" <?php  if(($_REQUEST['modo']!='regresso' && $_REQUEST['modo']!='irmao' && $_REQUEST['modo']!='editar') || (($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='editar') && $_SESSION['casados']!='Sim')){ echo('checked');} ?>>Não</label>
+    </div>
+    <div class="clearfix"></div>
+    </div>
+     
+     
+     <!--casados como-->
+    <div class="form-group collapse <?php  if(($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='editar') && $_SESSION['casados']=='Sim'){ echo('in');} ?>" id="casados_como">
+    <div class="col-xs-8">
+    	<label for="casados_como">Se respondeu <i>Sim</i> indique:</label>
+    	<label class="radio-inline"><input type="radio" name="casados_como" value="igreja" <?php  if(($_REQUEST['modo']!='regresso' && $_REQUEST['modo']!='irmao' &&  $_REQUEST['modo']=='editar') || ($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='editar') && $_SESSION['casados_como']=='igreja'){ echo('checked');} ?>>Igreja</label>
+	<label class="radio-inline"><input type="radio" name="casados_como" value="civil"  <?php  if(($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='editar') && $_SESSION['casados_como']=='civil'){ echo('checked');} ?>>Civil</label>
+        <label class="radio-inline"><input type="radio" name="casados_como" value="uniao de facto" <?php  if(($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='editar') && $_SESSION['casados_como']=='uniao de facto'){ echo('checked');} ?> >União estável</label>
+    </div>
+    <div class="clearfix"></div>
+    </div>
+    
+       
+       
+     <!--email-->  
+    <div class="form-group">
+    <div class="col-xs-12">
+      <label for="email">Para que seja informado de notícias e atividades da nossa catequese, informe o seu e-mail. Assim poderá organizar melhor a sua vida e planejar a sua agenda.<br>E-mail:</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="endereco@example.com" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['email'] . '');} else {echo('');} ?>">
+    </div>
+    <div class="clearfix"></div>
+    </div>
+    
+    
+    
+    <!--autoriza fotografias-->
+    <div class="checkbox">
+      <label><input id="autorizacao" name="autorizacao" type="checkbox" <?php 	if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='irmao') && ($_SESSION['autorizacao']=='on' || $_SESSION['autorizacao']==1)){ echo("checked");}?> > Autoriza a utilização e divulgação de fotografias do educando, tiradas no âmbito das atividades catequéticas.</label>
+    </div>
+    <!--<div class="row" style="margin-bottom:60px; "></div>-->
+
+   <!--Consentimento tratamento de dados (RGPD)-->
+   <div class="checkbox">
+       <label><input id="consentimento_rgpd" name="consentimento_rgpd" type="checkbox" <?php 	if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='irmao') && ($_SESSION['RGPD_assinado']=='on' || $_SESSION['RGPD_assinado']==1)){ echo("checked");}?> > Assinou e entregou o consentimento de tratamento de dados (RGPD).</label>
+   </div>
+   <div class="row" style="margin-bottom:60px; "></div>
+    
+    
+    <!-- fotografia tirada com webcam -->
+    <input type="hidden" id="foto_data" name="foto_data" value="<?php if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso') && $_SESSION['foto']!="") echo(base64_encode(file_get_contents(UserData::getCatechumensPhotosFolder() . '/' . $_SESSION['foto'])));?>">
+    <input type="hidden" id="original_foto_data" name="original_foto_data" value="<?php if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso') && $_SESSION['foto']!="") echo(base64_encode(file_get_contents(UserData::getCatechumensPhotosFolder() . '/' . $_SESSION['foto'])));?>">
+        <input type="hidden" id="debug_foto" name="debug_foto" value="<?php if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso') && $_SESSION['foto']!="") echo($_SESSION['foto']);?>">
+        <input type="hidden" id="debug_base64" name="debug_base64" value="<?php if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso') && $_SESSION['foto']!="") echo(base64_encode('abcd'));?>">
+
 
     </div>
   </div>
-
 
 
   <?php   if($_REQUEST['modo']!='editar')
