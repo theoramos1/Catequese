@@ -11,14 +11,14 @@ class DataValidationUtils
 {
 
     /**
-     * Checks if a date has the format 'dd-mm-YYYY' and if it is actually valid (e.g. a real calendar date).
+     * Checks if a date has the format 'dd/mm/YYYY' and if it is actually valid (e.g. a real calendar date).
      * @param string $date
      * @return bool
      */
     public static function validateDate(string $date)
     {
-        $format = 'd-m-Y';
-        $pattern = '/^[0-9]{1,2}\-[0-9]{1,2}\-[0-9]{4}$/';
+        $format = 'd/m/Y';
+        $pattern = '/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/';
         $matches = array();
         $res = preg_match($pattern, $date, $matches);
 
