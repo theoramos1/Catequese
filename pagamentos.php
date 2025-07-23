@@ -51,6 +51,14 @@ try {
     $message = "<div class='alert alert-danger'><strong>Erro!</strong> " . $e->getMessage() . "</div>";
 }
 
+try {
+    $catechisms = $db->getCatechisms(Utils::currentCatecheticalYear());
+    $groups = $db->getGroupLetters(Utils::currentCatecheticalYear());
+} catch (Exception $e) {
+    $catechisms = [];
+    $groups = [];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -91,8 +99,38 @@ $menu->renderHTML();
       <label for="cid">Catequizando:</label>
       <input type="number" class="form-control" id="cid" name="cid" required>
     </div>
-    <button type="submit" class="btn btn-primary">Registar R$100.00</button>
+    <div class="checkbox" style="margin-left: 10px;">
+      <label><input type="checkbox" id="mark_enrollment" name="mark_enrollment" onclick="toggleEnrollmentSelectors()"> Marcar inscrição paga</label>
+    </div>
+    <div id="enrollment_selectors" style="display:none; margin-left: 10px;" class="form-inline">
+      <div class="form-group">
+        <label for="mark_enrollment_catechism">Catecismo:</label>
+        <select class="form-control" id="mark_enrollment_catechism" name="mark_enrollment_catechism">
+          <?php foreach($catechisms as $c) { ?>
+            <option value="<?= intval($c['ano_catecismo']) ?>"><?= intval($c['ano_catecismo']) ?>º</option>
+          <?php } ?>
+        </select>
+      </div>
+      <div class="form-group" style="margin-left: 5px;">
+        <label for="mark_enrollment_group">Grupo:</label>
+        <select class="form-control" id="mark_enrollment_group" name="mark_enrollment_group">
+          <?php foreach($groups as $g) { $val = Utils::sanitizeOutput($g['turma']); ?>
+            <option value="<?= $val ?>"><?= $val ?></option>
+          <?php } ?>
+        </select>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" style="margin-left: 10px;">Registar R$100.00</button>
   </form>
+  <script type="text/javascript">
+    function toggleEnrollmentSelectors() {
+      var cb = document.getElementById('mark_enrollment');
+      var div = document.getElementById('enrollment_selectors');
+      if(cb && div) {
+        div.style.display = cb.checked ? 'inline-block' : 'none';
+      }
+    }
+  </script>
 
 <?php $pageUI->renderJS(); ?>
 </body>
