@@ -68,13 +68,13 @@ class PixQRCode{
         $file = $tmp . '.png';
         unlink($tmp);
 
-        QrCode::png($payload, $file, 5, 2);
+        QrCode::png($payload, $file, 300, 0);
         if(is_readable($file)){
             return $file;
         }
 
         ob_start();
-        QrCode::png($payload, null, 5, 2);
+        QrCode::png($payload, null, 300, 0);
         $data = ob_get_clean();
         return 'data:image/png;base64,'.base64_encode($data);
     }
