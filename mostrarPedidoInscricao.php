@@ -309,7 +309,7 @@ $db = new PdoDatabaseManager();
                 <div class="col-lg-4">
                 <div id="codigo_postal_div">
                   <label for="codigo_postal"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL) ? 'CEP' : 'Código postal' ?></label>
-                  <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'00000-000':'xxxx-xxx Localidade' ?>" onclick="verifica_codigo_postal()" onchange="verifica_codigo_postal()" value="<?php echo($submission['cod_postal']);?>" readonly required>
+                  <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: 78015-085':'xxxx-xxx Localidade' ?>" onclick="verifica_codigo_postal()" onchange="verifica_codigo_postal()" value="<?php echo($submission['cod_postal']);?>" readonly required>
                   <span id="erro_postal_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
                 </div>
                 </div>
@@ -320,7 +320,7 @@ $db = new PdoDatabaseManager();
                 <div class="col-lg-2">
                 <div id="telefone_div">
                   <label for="tel">Telefone:</label>
-                  <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Telefone do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" onclick="verifica_telefone()" onchange="verifica_telefone(); atualiza_tabela_autorizacoes();" value="<?php echo($submission['telefone']);?>" readonly>
+                  <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (65) 3322-7788':'Telefone do ' . ((Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação') ?>" onclick="verifica_telefone()" onchange="verifica_telefone(); atualiza_tabela_autorizacoes();" value="<?php echo($submission['telefone']);?>" readonly>
                   <span id="erro_telefone_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
                 </div>
                 </div>
@@ -331,7 +331,7 @@ $db = new PdoDatabaseManager();
                 <div class="col-lg-2">
                     <div id="telemovel_div">
                       <label for="telm"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?"Celular":"Telemóvel" ?>:</label>
-                      <input type="tel" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?"Celular":"Telemóvel" ?> do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" onclick="verifica_telemovel()" onchange="verifica_telemovel(); atualiza_tabela_autorizacoes();" value="<?php echo($submission['telemovel']);?>" readonly>
+                      <input type="tel" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (65) 99800-3774':'Telemóvel do ' . ((Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação') ?>" onclick="verifica_telemovel()" onchange="verifica_telemovel(); atualiza_tabela_autorizacoes();" value="<?php echo($submission['telemovel']);?>" readonly>
                       <span id="erro_telemovel_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
                     </div>
                     <div class="clearfix"></div>
