@@ -749,6 +749,7 @@ $pageUI->renderJS(); // Render the widgets' JS code
 ?>
 <script src="js/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js"></script>
 <script src="js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.pt.min.js"></script>
+<script src="js/form-validation-utils.js"></script>
 
 <script>
 function validar()
@@ -919,13 +920,6 @@ function codigo_postal_valido(codigo, locale)
 }
 
 
-function data_valida(data)
-{
-	var pattern = /^[0-9]{1,2}\-[0-9]{1,2}\-[0-9]{4}$/;
-	
-	return (pattern.test(data));
-
-}
 </script>
 
 

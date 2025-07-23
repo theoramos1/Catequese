@@ -32,6 +32,6 @@ function codigo_postal_valido(codigo, locale)
 
 function data_valida(data)
 {
-    var pattern = /^[0-9]{1,2}\-[0-9]{1,2}\-[0-9]{4}$/;
+    var pattern = /^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/;
     return (pattern.test(data));
 }
