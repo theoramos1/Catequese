@@ -302,15 +302,16 @@ $pageUI->addWidget($footer);
 
 
 
-                    <!--codigo postal-->
-                    <div class="form-group">
-                        <div class="col-lg-4">
-                        <div id="codigo_postal_div">
-                          <label for="codigo_postal"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL) ? 'CEP' : 'Código postal' ?></label>
-                          <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'99999-999':'xxxx-xxx Localidade' ?>" onclick="verifica_codigo_postal()" onchange="verifica_codigo_postal()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['cod_postal'] . '');} else {echo('');} ?>" required>
-                          <span id="erro_postal_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
-                        </div>
-                        </div>
+<!--codigo postal-->
+<div class="form-group">
+    <div class="col-lg-4">
+    <div id="codigo_postal_div">
+      <label for="codigo_postal"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL) ? 'CEP' : 'Código postal' ?></label>
+      <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: 78015-085':'xxxx-xxx Localidade' ?>" onclick="verifica_codigo_postal()" onchange="verifica_codigo_postal()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['cod_postal'] . '');} else {echo('');} ?>" required>
+      <span id="erro_postal_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
+    </div>
+    </div>
+
 
 
 
@@ -318,7 +319,7 @@ $pageUI->addWidget($footer);
                         <div class="col-lg-2">
                         <div id="telefone_div">
                           <label for="tel">Telefone:</label>
-                          <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Telefone do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" onclick="verifica_telefone()" onchange="verifica_telefone(); atualiza_tabela_autorizacoes();" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telefone'] . '');} else {echo('');} ?>">
+                          <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (65) 3322-7788':'Telefone do ' . ((Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação') ?>" onclick="verifica_telefone()" onchange="verifica_telefone(); atualiza_tabela_autorizacoes();" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telefone'] . '');} else {echo('');} ?>">
                           <span id="erro_telefone_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
                         </div>
                         </div>
@@ -329,7 +330,7 @@ $pageUI->addWidget($footer);
                         <div class="col-lg-2">
                             <div id="telemovel_div">
                               <label for="telm"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?"Celular":"Telemóvel" ?>:</label>
-                              <input type="tel" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?"Celular":"Telemóvel" ?> do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" onclick="verifica_telemovel()" onchange="verifica_telemovel(); atualiza_tabela_autorizacoes();" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telemovel'] . '');} else {echo('');} ?>">
+                              <input type="tel" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (65) 99800-3774':'Telemóvel do ' . ((Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação') ?>" onclick="verifica_telemovel()" onchange="verifica_telemovel(); atualiza_tabela_autorizacoes();" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telemovel'] . '');} else {echo('');} ?>">
                               <span id="erro_telemovel_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
                             </div>
                             <div class="clearfix"></div>
@@ -795,8 +796,8 @@ function validar()
         
         if((telefone==="" || telefone===undefined) && (telemovel==="" || telemovel===undefined) )
         {
-		alert("Deve introduzir pelo menos um número de telefone ou telemóvel.");
-		return false; 
+                alert("Deve introduzir pelo menos um número de telefone ou <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'celular':'telemóvel' ?>.");
+                return false;
         }
         else if(telefone!=="" && telefone!==undefined && !telefone_valido(telefone, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
@@ -805,8 +806,8 @@ function validar()
         }
         else if(telemovel!=="" && telemovel!==undefined && !telefone_valido(telemovel, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-                alert("O número de telemóvel que introduziu é inválido. Deve estar no formato '(99) 9 9999-9999'.");
-		return false; 
+                alert("O número de <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'celular':'telemóvel' ?> que introduziu é inválido. Deve estar no formato '(99) 9 9999-9999'.");
+                return false;
         }
         
         

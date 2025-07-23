@@ -7,8 +7,8 @@ function telefone_valido(num, locale)
     }
     else if(locale === "BR")
     {
-        const mobile = /^(\+\d{1,}[-\s]{0,1})?\s*\(?(\d{2}|\d{0})\)?[-. ]?9\d{4}[-. ]?\d{4}\s*$/;
-        const landline = /^(\+\d{1,}[-\s]{0,1})?\s*\(?(\d{2}|\d{0})\)?[-. ]?\d{4}[-. ]?\d{4}\s*$/;
+        const mobile = /^\(\d{2}\) 9 \d{4}-\d{4}$/;
+        const landline = /^\(\d{2}\) \d{4}-\d{4}$/;
         return mobile.test(num) || landline.test(num);
     }
 
@@ -27,8 +27,8 @@ function codigo_postal_valido(codigo, locale)
     if(locale==="PT")
         pattern = /^[0-9]{4}\-[0-9]{3}\s\S+/;
     else if(locale==="BR")
-        // Brazilian zip code with optional locality
-        pattern = /^[0-9]{5}\-[0-9]{3}(\s\S+)?/;
+        // Brazilian zip code without locality
+        pattern = /^[0-9]{5}\-[0-9]{3}$/;
 
     return (pattern.test(codigo));
 }

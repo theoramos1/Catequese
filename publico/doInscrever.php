@@ -25,6 +25,7 @@ use catechesis\gui\WidgetManager;
 use catechesis\gui\MinimalNavbar;
 use catechesis\gui\SimpleFooter;
 use catechesis\PixQRCode;
+use core\domain\Locale;
 
 $db = new PdoDatabaseManager();
 
@@ -319,15 +320,18 @@ $navbar->renderHTML();
 	  	}
 	  	
 	  		  	
-                if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))
-                {
-                        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> " .
-                             (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL ?
-                              "O CEP que introduziu é inválido. Deve ser da forma '99999-999'." :
-                              "O código postal que introduziu é inválido. Deve ser da forma 'xxxx-xxx Localidade'.") .
-                             "</div>");
-                        $inputs_invalidos = true;
-                }
+if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))
+{
+    $locale = Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE);
+    if($locale == Locale::BRASIL)
+        $msg = "O CEP que introduziu é inválido. Deve ser da forma '99999-999'.";
+    else
+        $msg = "O código postal que introduziu é inválido. Deve ser da forma 'xxxx-xxx Localidade'.";
+
+    echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> $msg</div>");
+    $inputs_invalidos = true;
+}
+
 	  	
 	  	
 	  	if($telefone!="" && !DataValidationUtils::validatePhoneNumber($telefone, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))
