@@ -26,6 +26,12 @@ $db = new PdoDatabaseManager();
 $message = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cid'])) {
+    if(!Utils::verifyCSRFToken($_POST['csrf_token'] ?? null))
+    {
+        echo("<div class='alert alert-danger'><strong>ERRO!</strong> Pedido inválido.</div>");
+        die();
+    }
+
     $cid = intval(Utils::sanitizeInput($_POST['cid']));
     $amount = 100.0; // Fixed amount
     $status = 'confirmado';
@@ -87,6 +93,7 @@ $menu->renderHTML();
   <hr>
   <h3>Registar novo pagamento</h3>
   <form method="post" action="pagamentos.php" class="form-inline">
+    <input type="hidden" name="csrf_token" value="<?= \catechesis\Utils::getCSRFToken() ?>">
     <div class="form-group">
       <label for="cid">Catequizando:</label>
       <input type="number" class="form-control" id="cid" name="cid" required>
