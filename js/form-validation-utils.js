@@ -1,14 +1,18 @@
 
 function telefone_valido(num, locale)
 {
-    var phoneno = '';
+    if(locale === "PT")
+    {
+        return /^(\+\d{1,}[-\s]{0,1})?\d{9}$/.test(num);
+    }
+    else if(locale === "BR")
+    {
+        const mobile = /^(\+\d{1,}[-\s]{0,1})?\s*\(?(\d{2}|\d{0})\)?[-. ]?9\d{4}[-. ]?\d{4}\s*$/;
+        const landline = /^(\+\d{1,}[-\s]{0,1})?\s*\(?(\d{2}|\d{0})\)?[-. ]?\d{4}[-. ]?\d{4}\s*$/;
+        return mobile.test(num) || landline.test(num);
+    }
 
-    if(locale==="PT")
-        phoneno = /^(\+\d{1,}[-\s]{0,1})?\d{9}$/;
-    else if(locale==="BR")
-        phoneno = /^(\+\d{1,}[-\s]{0,1})?\s*\(?(\d{2}|\d{0})\)?[-. ]?(\d{5}|\d{4})[-. ]?(\d{4})[-. ]?\s*$/;
-
-    return !!num.match(phoneno);
+    return false;
 }
 
 function email_valido(email)
@@ -32,6 +36,6 @@ function codigo_postal_valido(codigo, locale)
 
 function data_valida(data)
 {
-    var pattern = /^[0-9]{1,2}\-[0-9]{1,2}\-[0-9]{4}$/;
+    var pattern = /^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/;
     return (pattern.test(data));
 }
