@@ -769,6 +769,7 @@ $(function(){
 </script>
 <?php endif; ?>
 <script src="js/bootstrap-switch.js"></script>
+<script src="js/form-validation-utils.js"></script>
 
 <script>
 
@@ -783,17 +784,6 @@ function valida_dados_familiar()
     return true;
 }
 
-function telefone_valido(num, locale)
-{
-    var phoneno = '';
-
-    if(locale==="PT")
-        phoneno = /^(\+\d{1,}[-\s]{0,1})?\d{9}$/;
-    else if(locale==="BR")
-        phoneno = /^(\+\d{1,}[-\s]{0,1})?\s*\(?(\d{2}|\d{0})\)?[-. ]?(\d{5}|\d{4})[-. ]?(\d{4})[-. ]?\s*$/;
-
-    return num.match(phoneno);
-}
 
 function preparar_eliminacao_autorizacao_familiar(fid)
 {

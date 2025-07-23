@@ -908,27 +908,24 @@ function telefone_valido(num, locale)
 {
     var phoneno = '';
 
-    if(locale==="PT")
+    if(locale === "PT")
         phoneno = /^(\+\d{1,}[-\s]{0,1})?\d{9}$/;
-    else if(locale==="BR")
-        phoneno = /^(\+\d{1,}[-\s]{0,1})?\s*\(?(\d{2}|\d{0})\)?[-. ]?(\d{5}|\d{4})[-. ]?(\d{4})[-. ]?\s*$/;
+    else if(locale === "BR")
+        phoneno = /^(\+\d{1,}[-\s]{0,1})?\s*\(?(\d{2})\)?[-. ]?(\d{4,5})[-. ]?(\d{4})[-. ]?\s*$/;
 
-    return num.match(phoneno);
+    return phoneno.test(num);
 }
-
 
 function codigo_postal_valido(codigo, locale)
 {
-    var pattern="";
-    if(locale==="PT")
+    var pattern = "";
+    if(locale === "PT")
         pattern = /^[0-9]{4}\-[0-9]{3}\s\S+/;
-    else if(locale==="BR")
-        pattern = /^[0-9]{5}\-[0-9]{3}\s\S+/;
-	
-	return (pattern.test(codigo));
-
+    else if(locale === "BR")
+        pattern = /^[0-9]{5}\-[0-9]{3}$/;
+    
+    return pattern.test(codigo);
 }
-
 
 </script>
 
