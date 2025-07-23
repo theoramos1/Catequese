@@ -795,8 +795,8 @@ function validar()
         
         if((telefone==="" || telefone===undefined) && (telemovel==="" || telemovel===undefined) )
         {
-		alert("Deve introduzir pelo menos um número de telefone ou telemóvel.");
-		return false; 
+                alert("Deve introduzir pelo menos um número de telefone ou <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'celular':'telemóvel' ?>.");
+                return false;
         }
         else if(telefone!=="" && telefone!==undefined && !telefone_valido(telefone, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
@@ -805,8 +805,8 @@ function validar()
         }
         else if(telemovel!=="" && telemovel!==undefined && !telefone_valido(telemovel, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-                alert("O número de telemóvel que introduziu é inválido. Deve estar no formato '(99) 9 9999-9999'.");
-		return false; 
+                alert("O número de <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'celular':'telemóvel' ?> que introduziu é inválido. Deve estar no formato '(99) 9 9999-9999'.");
+                return false;
         }
         
         
