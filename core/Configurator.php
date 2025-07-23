@@ -125,6 +125,7 @@ class Configurator
     const KEY_ENROLLMENT_PAYMENT_PROOF = "ENROLLMENT_PAYMENT_PROOF";                                                    //E-mail address or URL (ex: a cloud folder) to which payers should send the proof of payment
     const KEY_PAYMENT_PROVIDER_URL = "PAYMENT_PROVIDER_URL";            //Endpoint used to verify enrollment payments
     const KEY_PAYMENT_PROVIDER_TOKEN = "PAYMENT_PROVIDER_TOKEN";        //Authentication token for the payment provider API
+    const KEY_PAYMENT_PROVIDER_TIMEOUT = "PAYMENT_PROVIDER_TIMEOUT";    //Timeout in seconds when contacting the provider
 
 
     const KEY_CATECHESIS_NEXTCLOUD_BASE_URL = "CATECHESIS_NEXTCLOUD_BASE_URL";                                          //Path to Nextcloud front page
@@ -177,6 +178,7 @@ class Configurator
                 self::KEY_ENROLLMENT_PAYMENT_PROOF => new ConfigurationObject(self::KEY_ENROLLMENT_PAYMENT_PROOF, ConfigurationObject::TYPE_STRING, null),
                 self::KEY_PAYMENT_PROVIDER_URL => new ConfigurationObject(self::KEY_PAYMENT_PROVIDER_URL, ConfigurationObject::TYPE_STRING, null),
                 self::KEY_PAYMENT_PROVIDER_TOKEN => new ConfigurationObject(self::KEY_PAYMENT_PROVIDER_TOKEN, ConfigurationObject::TYPE_STRING, null),
+                self::KEY_PAYMENT_PROVIDER_TIMEOUT => new ConfigurationObject(self::KEY_PAYMENT_PROVIDER_TIMEOUT, ConfigurationObject::TYPE_INT, 10),
                 self::KEY_CATECHESIS_NEXTCLOUD_BASE_URL => new ConfigurationObject(self::KEY_CATECHESIS_NEXTCLOUD_BASE_URL, ConfigurationObject::TYPE_STRING, null),
                 self::KEY_CATECHESIS_NEXTCLOUD_VIRTUAL_RESOURCES_URL => new ConfigurationObject(self::KEY_CATECHESIS_NEXTCLOUD_VIRTUAL_RESOURCES_URL, ConfigurationObject::TYPE_STRING, null),
 
