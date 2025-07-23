@@ -23,7 +23,8 @@ function codigo_postal_valido(codigo, locale)
     if(locale==="PT")
         pattern = /^[0-9]{4}\-[0-9]{3}\s\S+/;
     else if(locale==="BR")
-        pattern = /^[0-9]{5}\-[0-9]{3}\s\S+/;
+        // Brazilian zip code with optional locality
+        pattern = /^[0-9]{5}\-[0-9]{3}(\s\S+)?/;
 
     return (pattern.test(codigo));
 }
