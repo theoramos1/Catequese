@@ -320,17 +320,18 @@ $navbar->renderHTML();
 	  	}
 	  	
 	  		  	
-                if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))
-                {
-                        $locale = Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE);
-                        if($locale == Locale::BRASIL)
-                            $msg = "O CEP que você introduziu é inválido. Deve ser da forma '99999-999'.";
-                        else
-                            $msg = "O código postal que introduziu é inválido. Deve ser da forma 'xxxx-xxx Localidade'.";
+if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))
+{
+    $locale = Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE);
+    if($locale == Locale::BRASIL)
+        $msg = "O CEP que introduziu é inválido. Deve ser da forma '99999-999'.";
+    else
+        $msg = "O código postal que introduziu é inválido. Deve ser da forma 'xxxx-xxx Localidade'.";
 
-                        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> $msg</div>");
-                        $inputs_invalidos = true;
-                }
+    echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> $msg</div>");
+    $inputs_invalidos = true;
+}
+
 	  	
 	  	
 	  	if($telefone!="" && !DataValidationUtils::validatePhoneNumber($telefone, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))

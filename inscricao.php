@@ -179,14 +179,23 @@ $menu->renderHTML();
     
     
     <!--codigo postal-->
-    <div class="form-group">
-    <div class="col-xs-4">
+<div class="form-group">
+  <div class="col-xs-4">
     <div id="codigo_postal_div">
-      <label for="codigo_postal"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL) ? 'CEP' : 'Código postal' ?></label>
-      <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: 78015-085':'xxxx-xxx Localidade' ?>" list="codigos_postais" onclick="verifica_codigo_postal()" onchange="verifica_codigo_postal()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['cod_postal'] . '');} else {echo('');} ?>" required>
+      <label for="codigo_postal">
+        <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL) ? 'CEP' : 'Código postal' ?>
+      </label>
+      <input type="text" class="form-control" id="codigo_postal" name="codigo_postal"
+        placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL) ? 'Ex: 78015-085' : 'xxxx-xxx Localidade' ?>"
+        list="codigos_postais"
+        onclick="verifica_codigo_postal()" onchange="verifica_codigo_postal()"
+        value="<?php if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['cod_postal'] . '');} else {echo('');} ?>"
+        required>
       <span id="erro_postal_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
     </div>
-    </div>
+  </div>
+</div>
+
     
     
     
@@ -715,7 +724,7 @@ function validar()
         
     if(!codigo_postal_valido(cod_postal, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
     {
-        alert("O código postal que introduziu é inválido. Deve ser da forma '<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'00000-000':'xxxx-xxx Localidade' ?>'.");
+        alert("<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL) ? 'O CEP que introduziu é inválido. Deve ser da forma \u002799999-999\u0027.' : 'O código postal que introduziu é inválido. Deve ser da forma \u0027xxxx-xxx Localidade\u0027.' ?>");
         return false;
     }
         
