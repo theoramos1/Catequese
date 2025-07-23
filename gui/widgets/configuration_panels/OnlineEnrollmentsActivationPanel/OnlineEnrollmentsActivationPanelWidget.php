@@ -57,6 +57,11 @@ class OnlineEnrollmentsActivationPanelWidget extends AbstractSettingsPanelWidget
         $paymentAmount = 0.0;
         $acceptDonations = true;
         $paymentProof = null;
+        $pixReceiver = null;
+        $pixCity = null;
+        $pixKey = null;
+        $pixApiUrl = null;
+        $pixApiToken = null;
 
         //Load configuration settings
         try
@@ -69,6 +74,11 @@ class OnlineEnrollmentsActivationPanelWidget extends AbstractSettingsPanelWidget
             $paymentAmount =  Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT);
             $acceptDonations =  Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_ACCEPT_BIGGER_DONATIONS);
             $paymentProof =  Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_PROOF);
+            $pixReceiver = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_RECEIVER);
+            $pixCity = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_CITY);
+            $pixKey = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_KEY);
+            $pixApiUrl = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_API_URL);
+            $pixApiToken = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_API_TOKEN);
         }
         catch(\Exception $e)
         {
@@ -165,6 +175,37 @@ class OnlineEnrollmentsActivationPanelWidget extends AbstractSettingsPanelWidget
                         <input type="text" class="form-control" id="<?=$this->getID()?>_proof" name="proof" placeholder="" style="cursor: auto;" value="<?= $paymentProof ?>" readonly>
                         <input type="hidden" class="form-control" id="<?=$this->getID()?>_proof_backup" value="<?= $paymentProof ?>" readonly>
                     </div>
+
+                    <div class="row clearfix" style="margin-bottom: 10px;"></div>
+                    <div class="col-md-4">
+                        <label for="<?=$this->getID()?>_pix_receiver">Destinatário PIX:</label>
+                        <input type="text" class="form-control" id="<?=$this->getID()?>_pix_receiver" name="pix_receiver" placeholder="" style="cursor: auto;" value="<?= $pixReceiver ?>" readonly>
+                        <input type="hidden" class="form-control" id="<?=$this->getID()?>_pix_receiver_backup" value="<?= $pixReceiver ?>" readonly>
+                    </div>
+                    <div class="row clearfix" style="margin-bottom: 10px;"></div>
+                    <div class="col-md-4">
+                        <label for="<?=$this->getID()?>_pix_city">Cidade PIX:</label>
+                        <input type="text" class="form-control" id="<?=$this->getID()?>_pix_city" name="pix_city" placeholder="" style="cursor: auto;" value="<?= $pixCity ?>" readonly>
+                        <input type="hidden" class="form-control" id="<?=$this->getID()?>_pix_city_backup" value="<?= $pixCity ?>" readonly>
+                    </div>
+                    <div class="row clearfix" style="margin-bottom: 10px;"></div>
+                    <div class="col-md-4">
+                        <label for="<?=$this->getID()?>_pix_key">Chave PIX:</label>
+                        <input type="text" class="form-control" id="<?=$this->getID()?>_pix_key" name="pix_key" placeholder="" style="cursor: auto;" value="<?= $pixKey ?>" readonly>
+                        <input type="hidden" class="form-control" id="<?=$this->getID()?>_pix_key_backup" value="<?= $pixKey ?>" readonly>
+                    </div>
+
+                    <div class="row clearfix" style="margin-bottom: 10px;"></div>
+                    <div class="col-md-6">
+                        <label for="<?=$this->getID()?>_pix_api_url">PIX API URL:</label>
+                        <input type="text" class="form-control" id="<?=$this->getID()?>_pix_api_url" name="pix_api_url" placeholder="" style="cursor: auto;" value="<?= $pixApiUrl ?>" readonly>
+                        <input type="hidden" class="form-control" id="<?=$this->getID()?>_pix_api_url_backup" value="<?= $pixApiUrl ?>" readonly>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="<?=$this->getID()?>_pix_api_token">PIX API Token:</label>
+                        <input type="text" class="form-control" id="<?=$this->getID()?>_pix_api_token" name="pix_api_token" placeholder="" style="cursor: auto;" value="<?= $pixApiToken ?>" readonly>
+                        <input type="hidden" class="form-control" id="<?=$this->getID()?>_pix_api_token_backup" value="<?= $pixApiToken ?>" readonly>
+                    </div>
                 </div>
             </div>
 
@@ -206,6 +247,11 @@ class OnlineEnrollmentsActivationPanelWidget extends AbstractSettingsPanelWidget
         document.getElementById("<?=$this->getID()?>_allow_donations").disabled = false;
         document.getElementById("<?=$this->getID()?>_div_allow_donations").classList.remove("disabled");
         document.getElementById("<?=$this->getID()?>_proof").readOnly = false;
+        document.getElementById("<?=$this->getID()?>_pix_receiver").readOnly = false;
+        document.getElementById("<?=$this->getID()?>_pix_city").readOnly = false;
+        document.getElementById("<?=$this->getID()?>_pix_key").readOnly = false;
+        document.getElementById("<?=$this->getID()?>_pix_api_url").readOnly = false;
+        document.getElementById("<?=$this->getID()?>_pix_api_token").readOnly = false;
         document.getElementById("<?=$this->getID()?>_form_action").value = "<?= self::$ACTION_CHANGE_DETAILS ?>"; //Change form mode to details
         <?php
     }
@@ -227,12 +273,22 @@ class OnlineEnrollmentsActivationPanelWidget extends AbstractSettingsPanelWidget
         document.getElementById("<?=$this->getID()?>_allow_donations").disabled = true;
         document.getElementById("<?=$this->getID()?>_div_allow_donations").classList.add("disabled");
         document.getElementById("<?=$this->getID()?>_proof").readOnly = true;
+        document.getElementById("<?=$this->getID()?>_pix_receiver").readOnly = true;
+        document.getElementById("<?=$this->getID()?>_pix_city").readOnly = true;
+        document.getElementById("<?=$this->getID()?>_pix_key").readOnly = true;
+        document.getElementById("<?=$this->getID()?>_pix_api_url").readOnly = true;
+        document.getElementById("<?=$this->getID()?>_pix_api_token").readOnly = true;
 
         <?=$this->getID()?>_quill.root.innerHTML = document.getElementById("<?=$this->getID()?>_info_text_backup").value;
         document.getElementById("<?=$this->getID()?>_entity").value = document.getElementById("<?=$this->getID()?>_entity_backup").value;
         document.getElementById("<?=$this->getID()?>_reference").value = document.getElementById("<?=$this->getID()?>_reference_backup").value;
         document.getElementById("<?=$this->getID()?>_amount").value = document.getElementById("<?=$this->getID()?>_amount_backup").value;
         document.getElementById("<?=$this->getID()?>_proof").value = document.getElementById("<?=$this->getID()?>_proof_backup").value;
+        document.getElementById("<?=$this->getID()?>_pix_receiver").value = document.getElementById("<?=$this->getID()?>_pix_receiver_backup").value;
+        document.getElementById("<?=$this->getID()?>_pix_city").value = document.getElementById("<?=$this->getID()?>_pix_city_backup").value;
+        document.getElementById("<?=$this->getID()?>_pix_key").value = document.getElementById("<?=$this->getID()?>_pix_key_backup").value;
+        document.getElementById("<?=$this->getID()?>_pix_api_url").value = document.getElementById("<?=$this->getID()?>_pix_api_url_backup").value;
+        document.getElementById("<?=$this->getID()?>_pix_api_token").value = document.getElementById("<?=$this->getID()?>_pix_api_token_backup").value;
 
         if(document.getElementById("<?=$this->getID()?>_enable_payment_backup").value == "on")
             document.getElementById("<?=$this->getID()?>_enable_payment").checked = true;
@@ -370,6 +426,11 @@ class OnlineEnrollmentsActivationPanelWidget extends AbstractSettingsPanelWidget
             $paymentAmount =  Utils::sanitizeInput($_POST['amount']);
             $acceptDonations = Utils::sanitizeInput($_POST['allow_donations']); $acceptDonations = ($acceptDonations=="on");
             $paymentProof = Utils::sanitizeInput($_POST['proof']);
+            $pixReceiver = Utils::sanitizeInput($_POST['pix_receiver']);
+            $pixCity = Utils::sanitizeInput($_POST['pix_city']);
+            $pixKey = Utils::sanitizeInput($_POST['pix_key']);
+            $pixApiUrl = Utils::sanitizeInput($_POST['pix_api_url']);
+            $pixApiToken = Utils::sanitizeInput($_POST['pix_api_token']);
 
             $inputs_valid = true;
             if($showPaymentData)
@@ -408,6 +469,11 @@ class OnlineEnrollmentsActivationPanelWidget extends AbstractSettingsPanelWidget
                     Configurator::setConfigurationValue(Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT, $paymentAmount);
                     Configurator::setConfigurationValue(Configurator::KEY_ENROLLMENT_PAYMENT_ACCEPT_BIGGER_DONATIONS, $acceptDonations);
                     Configurator::setConfigurationValue(Configurator::KEY_ENROLLMENT_PAYMENT_PROOF, $paymentProof);
+                    Configurator::setConfigurationValue(Configurator::KEY_PIX_RECEIVER, $pixReceiver);
+                    Configurator::setConfigurationValue(Configurator::KEY_PIX_CITY, $pixCity);
+                    Configurator::setConfigurationValue(Configurator::KEY_PIX_KEY, $pixKey);
+                    Configurator::setConfigurationValue(Configurator::KEY_PIX_API_URL, $pixApiUrl);
+                    Configurator::setConfigurationValue(Configurator::KEY_PIX_API_TOKEN, $pixApiToken);
 
                     writeLogEntry("Modificou configurações das inscrições/renovações de matrícula online.");
                     echo("<div class=\"alert alert-success\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Sucesso!</strong> Modificou as configurações das inscrições/renovações de matrícula online.</div>");
