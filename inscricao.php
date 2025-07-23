@@ -183,7 +183,7 @@ $menu->renderHTML();
     <div class="col-xs-4">
     <div id="codigo_postal_div">
       <label for="codigo_postal"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL) ? 'CEP' : 'Código postal' ?></label>
-      <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'xxxxx-xxx':'xxxx-xxx Localidade' ?>" list="codigos_postais" onclick="verifica_codigo_postal()" onchange="verifica_codigo_postal()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['cod_postal'] . '');} else {echo('');} ?>" required>
+      <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'00000-000':'xxxx-xxx Localidade' ?>" list="codigos_postais" onclick="verifica_codigo_postal()" onchange="verifica_codigo_postal()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['cod_postal'] . '');} else {echo('');} ?>" required>
       <span id="erro_postal_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
     </div>
     </div>
@@ -594,11 +594,10 @@ $pageUI->renderJS(); // Render the widgets' JS code
 ?>
 <?php if(Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL): ?>
 <script src="js/jQuery-Mask-Plugin-1.14.16/jquery.mask.min.js"></script>
+<script src="js/form-mask-utils.js"></script>
 <script>
 $(function(){
-    $('#telefone').mask('(00) 0000-0000');
-    $('#telemovel').mask('(00) 0 0000-0000');
-    $('#codigo_postal').mask('00000-000');
+    applyBrazilianMasks();
 });
 </script>
 <?php endif; ?>
@@ -717,7 +716,7 @@ function validar()
         
     if(!codigo_postal_valido(cod_postal, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
     {
-        alert("O código postal que introduziu é inválido. Deve ser da forma '<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'xxxxx-xxx':'xxxx-xxx Localidade' ?>'.");
+        alert("O código postal que introduziu é inválido. Deve ser da forma '<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'00000-000':'xxxx-xxx Localidade' ?>'.");
         return false;
     }
         
