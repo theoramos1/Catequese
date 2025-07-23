@@ -491,6 +491,22 @@ $navbar->renderHTML();
                     Pode utilizá-lo para consultar o estado do seu pedido.<br>
                     Se necessitar de contactar a catequese para algum
                     esclarecimento ou correção sobre a sua inscrição, indique este número.</p>
+                <?php
+                    try {
+                        $pixAvailable = Configurator::configurationExists('ENROLLMENT_PIX_KEY');
+                    } catch (Exception $e) {
+                        $pixAvailable = false;
+                    }
+                    if ($pixAvailable && function_exists('generatePixQRCode')) {
+                        $pixImg = generatePixQRCode(Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT));
+                        ?>
+                        <div style="margin-top:20px;text-align:center;">
+                            <p>Para efetuar o seu donativo via <strong>Pix</strong>, utilize o QR code abaixo:</p>
+                            <img src="<?= $pixImg ?>" alt="Pix QR Code" />
+                        </div>
+                        <?php
+                    }
+                ?>
                 </div>
 
                 <div class="row" style="margin-bottom: 60px"></div>
