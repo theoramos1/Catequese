@@ -330,13 +330,13 @@ $menu->renderHTML();
 	  	
 	  	if($baptizado && !DataValidationUtils::validateDate($data_baptismo))
 	  	{
-	  		echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> A data de baptismo que introduziu é inválida. Deve ser da forma dd-mm-aaaa.</div>");
+                        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> A data de batismo que introduziu é inválida. Deve ser da forma dd-mm-aaaa.</div>");
 	  		$inputs_invalidos = true;	  	
 	  	}
 	  	
 	  	if($baptizado && (!$paroquia_baptismo || $paroquia_baptismo==""))
 	  	{
-	  		echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> Deve especificar a paróquia de baptismo.</div>");
+                        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> Deve especificar a paróquia de batismo.</div>");
 	  		$inputs_invalidos = true;	  	
 	  	}
 	  	

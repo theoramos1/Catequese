@@ -418,7 +418,7 @@ $db = new PdoDatabaseManager();
             <div class="form-group">
             <div class="col-lg-8">
             <div class="row" style="margin-top:20px; "></div>
-                <label for="e_baptizado">É baptizado(a):</label>
+                <label for="e_baptizado">É batizado(a):</label>
                 <label class="radio-inline"><input type="radio" id="baptizado1" name="baptizado" value="Sim" <?php  if($baptizado){ echo('checked');}else{echo("disabled");} ?> readonly>Sim</label>
             <label class="radio-inline"><input type="radio" id="baptizado2" name="baptizado" value="Nao" <?php  if(!$baptizado){ echo('checked');}else{echo("disabled");} ?> readonly>Não</label>
             </div>
@@ -429,8 +429,8 @@ $db = new PdoDatabaseManager();
             <!--paroquia de baptismo-->
             <div class="form-group collapse <?php  if($baptizado){ echo('in');} ?>" id="paroquia_baptismo_collapse">
             <div class="col-lg-4">
-              <label for="paroquia_baptismo"> Paróquia de baptismo: </label>
-              <input type="text" class="form-control" id="paroquia_baptismo" name="paroquia_baptismo" placeholder="Paróquia de baptismo"  value="<?php echo($submission['paroquia_baptismo']);?>" readonly>
+              <label for="paroquia_baptismo"> Paróquia de batismo: </label>
+              <input type="text" class="form-control" id="paroquia_baptismo" name="paroquia_baptismo" placeholder="Paróquia de batismo"  value="<?php echo($submission['paroquia_baptismo']);?>" readonly>
             </div>
 
 
@@ -813,19 +813,19 @@ function validar()
         <?php if($_REQUEST['modo']!='editar') :?>
         if( baptizado && (paroquia_baptismo==="" || paroquia_baptismo===undefined))
         {
-        	alert("Deve especificar a paróquia de baptismo.");
+            alert("Deve especificar a paróquia de batismo.");
 		return false; 
         }
         
         if( baptizado && (data_baptismo==="" || data_baptismo===undefined))
         {
-        	alert("Deve especificar a data de baptismo.");
+            alert("Deve especificar a data de batismo.");
 		return false; 
         }
         
         if( baptizado && !data_valida(data_baptismo))
         {
-        	alert("A data de baptismo que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
+            alert("A data de batismo que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
 		return false; 
         }
         

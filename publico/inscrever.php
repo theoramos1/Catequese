@@ -345,7 +345,7 @@ $pageUI->addWidget($footer);
                        <div class="col-lg-12">
                            <label for="email">E-mail:</label>
                            <input type="email" class="form-control" id="email" name="email" placeholder="endereco@example.com" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['email'] . '');} else {echo('');} ?>">
-                           <span>Para que seja informado de notícias e actividades da nossa catequese, indique-nos o seu e-mail. Assim poderá organizar melhor a sua vida e planear a sua agenda.</span>
+                           <span>Para que seja informado de notícias e atividades da nossa catequese, informe seu e-mail. Assim você poderá organizar melhor sua vida e planejar sua agenda.</span>
                        </div>
                        <div class="clearfix"></div>
                    </div>
@@ -396,7 +396,7 @@ $pageUI->addWidget($footer);
                     <?php if($_REQUEST['modo']=='editar'){ echo("<!--");} ?>
                     <div class="form-group">
                         <div class="col-lg-8">
-                            <label for="e_baptizado">É baptizado(a):</label>
+                            <label for="e_baptizado">É batizado(a):</label>
                             <label class="radio-inline"><input type="radio" id="baptizado1" name="baptizado" value="Sim" <?php  if($_REQUEST['modo']=='regresso' && $_SESSION['baptizado']=='Sim'){ echo('checked');} ?>>Sim</label>
                             <label class="radio-inline"><input type="radio" id="baptizado2" name="baptizado" value="Nao" <?php  if($_REQUEST['modo']!='regresso' || ($_REQUEST['modo']=='regresso' && $_SESSION['baptizado']!='Sim')){ echo('checked');} ?>>Não</label>
                         </div>
@@ -409,8 +409,8 @@ $pageUI->addWidget($footer);
                     <?php if($_REQUEST['modo']=='editar'){ echo("<!--");} ?>
                     <div class="form-group collapse <?php  if($_REQUEST['modo']=='regresso' && $_SESSION['baptizado']=='Sim'){ echo('in');} ?>" id="paroquia_baptismo_collapse">
                         <div class="col-lg-4">
-                          <label for="paroquia_baptismo"> Paróquia de baptismo: </label>
-                          <input type="text" class="form-control" id="paroquia_baptismo" name="paroquia_baptismo" placeholder="Paróquia de baptismo"  value="<?php  if($_REQUEST['modo']=='regresso'){ echo('' . $_SESSION['paroquia_baptismo'] . '');} else {echo('');} ?>">
+                          <label for="paroquia_baptismo"> Paróquia de batismo: </label>
+                          <input type="text" class="form-control" id="paroquia_baptismo" name="paroquia_baptismo" placeholder="Paróquia de batismo"  value="<?php  if($_REQUEST['modo']=='regresso'){ echo('' . $_SESSION['paroquia_baptismo'] . '');} else {echo('');} ?>">
                         </div>
                          <?php if($_REQUEST['modo']=='editar'){ echo("-->");} ?>
 
@@ -804,19 +804,19 @@ function validar()
         <?php if($_REQUEST['modo']!='editar') :?>
         if( baptizado && (paroquia_baptismo==="" || paroquia_baptismo===undefined))
         {
-        	alert("Deve especificar a paróquia de baptismo.");
+                alert("Deve especificar a paróquia de batismo.");
 		return false; 
         }
         
         if( baptizado && (data_baptismo==="" || data_baptismo===undefined))
         {
-        	alert("Deve especificar a data de baptismo.");
+                alert("Deve especificar a data de batismo.");
 		return false; 
         }
         
         if( baptizado && !data_valida(data_baptismo))
         {
-        	alert("A data de baptismo que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
+                alert("A data de batismo que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
 		return false; 
         }
         
