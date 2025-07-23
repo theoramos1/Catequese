@@ -237,7 +237,7 @@ $menu->renderHTML();
     <div class="form-group">
     <div class="col-xs-8">
     <div class="row" style="margin-top:20px; "></div>
-    	<label for="e_baptizado">É baptizado(a):</label>
+        <label for="e_baptizado">É batizado(a):</label>
     	<label class="radio-inline"><input type="radio" id="baptizado1" name="baptizado" value="Sim" <?php  if($_REQUEST['modo']=='regresso' && $_SESSION['baptizado']=='Sim'){ echo('checked');} ?>>Sim</label>
 	<label class="radio-inline"><input type="radio" id="baptizado2" name="baptizado" value="Nao" <?php  if($_REQUEST['modo']!='regresso' || ($_REQUEST['modo']=='regresso' && $_SESSION['baptizado']!='Sim')){ echo('checked');} ?>>Não</label>
     </div>
@@ -250,8 +250,8 @@ $menu->renderHTML();
     <?php if($_REQUEST['modo']=='editar'){ echo("<!--");} ?>
     <div class="form-group collapse <?php  if($_REQUEST['modo']=='regresso' && $_SESSION['baptizado']=='Sim'){ echo('in');} ?>" id="paroquia_baptismo_collapse">
     <div class="col-xs-4">
-      <label for="paroquia_baptismo"> Paróquia de baptismo: </label>
-      <input type="text" class="form-control" id="paroquia_baptismo" name="paroquia_baptismo" placeholder="Paróquia de baptismo" list="paroquias" value="<?php  if($_REQUEST['modo']=='regresso'){ echo('' . $_SESSION['paroquia_baptismo'] . '');} else {echo('');} ?>">
+      <label for="paroquia_baptismo"> Paróquia de batismo: </label>
+      <input type="text" class="form-control" id="paroquia_baptismo" name="paroquia_baptismo" placeholder="Paróquia de batismo" list="paroquias" value="<?php  if($_REQUEST['modo']=='regresso'){ echo('' . $_SESSION['paroquia_baptismo'] . '');} else {echo('');} ?>">
     </div>
      <?php if($_REQUEST['modo']=='editar'){ echo("-->");} ?>
     
@@ -742,19 +742,19 @@ function validar()
         <?php if($_REQUEST['modo']!='editar') :?>
         if( baptizado && (paroquia_baptismo=="" || paroquia_baptismo==undefined))
         {
-        	alert("Deve especificar a paróquia de baptismo.");
+                alert("Deve especificar a paróquia de batismo.");
 		return false; 
         }
         
         if( baptizado && (data_baptismo=="" || data_baptismo==undefined))
         {
-        	alert("Deve especificar a data de baptismo.");
+                alert("Deve especificar a data de batismo.");
 		return false; 
         }
         
         if( baptizado && !data_valida(data_baptismo))
         {
-        	alert("A data de baptismo que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
+                alert("A data de batismo que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
 		return false; 
         }
         
