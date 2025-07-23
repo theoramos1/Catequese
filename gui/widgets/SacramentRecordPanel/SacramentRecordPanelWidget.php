@@ -107,9 +107,9 @@ class SacramentRecordPanelWidget extends AbstractSettingsPanelWidget
 
             <!-- Sacrament date -->
             <div class="col-xs-4">
-                <div class="input-append date" id="<?= $this->getID() ?>_sacrament_date_div" data-date="" data-date-format="dd-mm-yyyy">
+                <div class="input-append date" id="<?= $this->getID() ?>_sacrament_date_div" data-date="" data-date-format="dd/mm/yyyy">
                     <label for="<?= $this->getID() ?>_sacrament_date_input">Data:</label>
-                    <input class="form-control" id="<?= $this->getID() ?>_sacrament_date_input" name="sacrament_date" size="16" type="text" placeholder="dd-mm-aaaa" style="cursor: auto;" <?php if($this->_has_sacrament){ echo('value="' . date( "d-m-Y", strtotime($this->_date)) . '"');} ?> onclick="check_sacrament_date('<?= $this->getID() ?>_sacrament_date_input', '<?= $this->getID() ?>_sacrament_date_div', '<?= $this->getID() ?>_sacrament_date_error_icon')" onchange="check_sacrament_date('<?= $this->getID() ?>_sacrament_date_input', '<?= $this->getID() ?>_sacrament_date_div', '<?= $this->getID() ?>_sacrament_date_error_icon')" readonly>
+                    <input class="form-control" id="<?= $this->getID() ?>_sacrament_date_input" name="sacrament_date" size="16" type="text" placeholder="dd/mm/aaaa" style="cursor: auto;" <?php if($this->_has_sacrament){ echo('value="' . date( "d-m-Y", strtotime($this->_date)) . '"');} ?> onclick="check_sacrament_date('<?= $this->getID() ?>_sacrament_date_input', '<?= $this->getID() ?>_sacrament_date_div', '<?= $this->getID() ?>_sacrament_date_error_icon')" onchange="check_sacrament_date('<?= $this->getID() ?>_sacrament_date_input', '<?= $this->getID() ?>_sacrament_date_div', '<?= $this->getID() ?>_sacrament_date_error_icon')" readonly>
                     <span id="<?= $this->getID() ?>_sacrament_date_error_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
                     <input id="<?= $this->getID() ?>_sacrament_date_backup" type="hidden" style="display: none;" <?php if($this->_has_sacrament){ echo('value="' . date( "d-m-Y", strtotime($this->_date)) . '"');} ?> readonly>
                 </div>
@@ -248,7 +248,7 @@ class SacramentRecordPanelWidget extends AbstractSettingsPanelWidget
         document.getElementById("<?= $this->getID() ?>_sacrament_parish").readOnly = false;
 
         $('#<?= $this->getID() ?>_sacrament_date_input').datepicker({
-            format: "dd-mm-yyyy",
+            format: "dd/mm/yyyy",
             defaultViewDate: { year: <?= date("Y") ?>, month: 1, day: 1 },
             startView: 2,
             language: "pt",
@@ -271,7 +271,7 @@ class SacramentRecordPanelWidget extends AbstractSettingsPanelWidget
 
         if(!data_valida(date) && date!=="" && date!==undefined)
         {
-            alert("A data de <?= Sacraments::toExternalString($this->_sacrament) ?> que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
+            alert("A data de <?= Sacraments::toExternalString($this->_sacrament) ?> que introduziu é inválida. Deve ser da forma dd/mm/aaaa.");
             return false;
         }
         else
@@ -403,7 +403,7 @@ class SacramentRecordPanelWidget extends AbstractSettingsPanelWidget
             {
                 if(!DataValidationUtils::validateDate($new_sacrament_date))
                 {
-                    echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> A data de " . Sacraments::toExternalString($this->_sacrament) . " que introduziu é inválida. Deve ser da forma dd-mm-aaaa.</div>");
+                    echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> A data de " . Sacraments::toExternalString($this->_sacrament) . " que introduziu é inválida. Deve ser da forma dd/mm/aaaa.</div>");
                 }
                 else
                 {

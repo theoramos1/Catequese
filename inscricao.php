@@ -135,10 +135,10 @@ $menu->renderHTML();
    <!--data nascimento-->
     <div class="form-group">
      <div class="col-xs-2">
-     <div class="input-append date" id="data_nasc_div" data-date="" data-date-format="dd-mm-yyyy">
+     <div class="input-append date" id="data_nasc_div" data-date="" data-date-format="dd/mm/yyyy">
       <label for="data_nasc">Data de nascimento:</label>
       <!--<div class="input-group">-->
-      <input class="form-control" id="data_nasc" name="data_nasc" size="16" type="text" onclick="verifica_data_nasc()" onchange="verifica_data_nasc()" placeholder="dd-mm-aaaa" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['data_nasc'] . '');} else {echo('');} ?>"  required>
+      <input class="form-control" id="data_nasc" name="data_nasc" size="16" type="text" onclick="verifica_data_nasc()" onchange="verifica_data_nasc()" placeholder="dd/mm/aaaa" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['data_nasc'] . '');} else {echo('');} ?>"  required>
       <!--<span class="input-group-addon glyphicon glyphicon-calendar" id="sizing-addon2"></span>
       </div>-->
       <span id="erro_nasc_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
@@ -261,9 +261,9 @@ $menu->renderHTML();
     <?php if($_REQUEST['modo']=='editar'){ echo("<!--");} ?>
     <div class="form-group">
      <div class="col-xs-2">
-     <div class="input-append date" id="data_baptismo_div" data-date="" data-date-format="dd-mm-yyyy">
+     <div class="input-append date" id="data_baptismo_div" data-date="" data-date-format="dd/mm/yyyy">
       <label for="data_baptismo">Data:</label>
-      <input class="form-control" id="data_baptismo" name="data_baptismo" size="16" type="text" onclick="verifica_data_baptismo()" onchange="verifica_data_baptismo()" placeholder="dd-mm-aaaa" value="<?php  if($_REQUEST['modo']=='regresso'){ echo('' . $_SESSION['data_baptismo'] . '');} else {echo('');} ?>" >
+      <input class="form-control" id="data_baptismo" name="data_baptismo" size="16" type="text" onclick="verifica_data_baptismo()" onchange="verifica_data_baptismo()" placeholder="dd/mm/aaaa" value="<?php  if($_REQUEST['modo']=='regresso'){ echo('' . $_SESSION['data_baptismo'] . '');} else {echo('');} ?>" >
       <span id="erro_data_baptismo_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
      </div>
     </div>
@@ -302,9 +302,9 @@ $menu->renderHTML();
     <?php if($_REQUEST['modo']=='editar'){ echo("<!--");} ?>
     <div class="form-group">
      <div class="col-xs-2">
-     <div class="input-append date" id="data_comunhao_div" data-date="" data-date-format="dd-mm-yyyy">
+     <div class="input-append date" id="data_comunhao_div" data-date="" data-date-format="dd/mm/yyyy">
       <label for="data_comunhao">Data:</label>
-      <input class="form-control" id="data_comunhao" name="data_comunhao" size="16" type="text" onclick="verifica_data_comunhao()" onchange="verifica_data_comunhao()" placeholder="dd-mm-aaaa" value="<?php  if($_REQUEST['modo']=='regresso'){ echo('' . $_SESSION['data_comunhao'] . '');} else {echo('');} ?>" >
+      <input class="form-control" id="data_comunhao" name="data_comunhao" size="16" type="text" onclick="verifica_data_comunhao()" onchange="verifica_data_comunhao()" placeholder="dd/mm/aaaa" value="<?php  if($_REQUEST['modo']=='regresso'){ echo('' . $_SESSION['data_comunhao'] . '');} else {echo('');} ?>" >
       <span id="erro_data_comunhao_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
      </div>
     </div>
@@ -700,7 +700,7 @@ function validar()
 
     if(!data_valida(data_nasc))
     {
-        alert("A data de nascimento que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
+        alert("A data de nascimento que introduziu é inválida. Deve ser da forma dd/mm/aaaa.");
         return false;
     }
         
@@ -741,7 +741,7 @@ function validar()
 
     if( baptizado && !data_valida(data_baptismo))
     {
-        alert("A data de batismo que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
+        alert("A data de batismo que introduziu é inválida. Deve ser da forma dd/mm/aaaa.");
         return false;
     }
 
@@ -759,7 +759,7 @@ function validar()
 
     if( comunhao && !data_valida(data_comunhao))
     {
-        alert("A data da primeira comunhão que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
+        alert("A data da primeira comunhão que introduziu é inválida. Deve ser da forma dd/mm/aaaa.");
         return false; 
     }
     <?php endif ?>
@@ -839,7 +839,7 @@ function codigo_postal_valido(codigo, locale)
 <script>
 $(function(){
    $('#data_nasc').datepicker({
-       format: "dd-mm-yyyy",
+       format: "dd/mm/yyyy",
        defaultViewDate: { year: 2010, month: 1, day: 1 },
        startView: 2,
        language: "pt",
@@ -849,7 +849,7 @@ $(function(){
 
 $(function(){
    $('#data_baptismo').datepicker({
-       format: "dd-mm-yyyy",
+       format: "dd/mm/yyyy",
        defaultViewDate: { year: 2010, month: 1, day: 1 },
        startView: 2,
        language: "pt",
@@ -859,7 +859,7 @@ $(function(){
 
 $(function(){
    $('#data_comunhao').datepicker({
-       format: "dd-mm-yyyy",
+       format: "dd/mm/yyyy",
        defaultViewDate: { year: 2010, month: 1, day: 1 },
        startView: 2,
        language: "pt",

@@ -528,7 +528,7 @@ $menu->renderHTML();
                         <!--data nascimento-->
                         <div class="col-xs-2">
                             <label for="data_nasc">Nasceu a:</label>
-                            <input class="form-control" id="data_nasc" name="data_nasc" size="16" type="text" placeholder="dd-mm-aaaa" style="cursor: auto;"
+                            <input class="form-control" id="data_nasc" name="data_nasc" size="16" type="text" placeholder="dd/mm/aaaa" style="cursor: auto;"
                                 <?php
                                 if($_SESSION['data_nasc'])
                                 {
