@@ -1,21 +1,25 @@
 <?php
 namespace resources\phpqrcode;
 
-class QrCode{
-    public static function png(string $data, ?string $file = null, int $size = 3, int $margin = 4): void{
-        $imgSize = 100;
-        $im = imagecreatetruecolor($imgSize, $imgSize);
-        $white = imagecolorallocate($im, 255, 255, 255);
-        $black = imagecolorallocate($im, 0, 0, 0);
-        imagefilledrectangle($im, 0, 0, $imgSize - 1, $imgSize - 1, $white);
-        imagerectangle($im, 0, 0, $imgSize - 1, $imgSize - 1, $black);
-        imagestring($im, 2, 5, ($imgSize/2)-7, 'QR', $black);
-        if($file){
-            imagepng($im, $file);
-        }else{
-            imagepng($im);
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\Writer\PngWriter;
+
+class QrCode {
+    public static function png(string $data, ?string $file = null, int $size = 300, int $margin = 0): void {
+        $result = Builder::create()
+            ->writer(new PngWriter())
+            ->data($data)
+            ->size($size)
+            ->margin($margin)
+            ->build();
+
+        if ($file) {
+            $result->saveToFile($file);
+        } else {
+            echo $result->getString();
         }
-        imagedestroy($im);
     }
 }
 ?>
