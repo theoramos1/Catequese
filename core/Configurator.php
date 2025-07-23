@@ -165,7 +165,7 @@ class Configurator
                 self::KEY_PARISH_DIOCESE => new ConfigurationObject(self::KEY_PARISH_DIOCESE, ConfigurationObject::TYPE_STRING, null),
                 self::KEY_PARISH_CUSTOM_TABLE_FOOTER => new ConfigurationObject(self::KEY_PARISH_CUSTOM_TABLE_FOOTER, ConfigurationObject::TYPE_STRING, null),
 
-                self::KEY_LOCALIZATION_CODE => new ConfigurationObject(self::KEY_LOCALIZATION_CODE, ConfigurationObject::TYPE_STRING, "PT"),
+                self::KEY_LOCALIZATION_CODE => new ConfigurationObject(self::KEY_LOCALIZATION_CODE, ConfigurationObject::TYPE_STRING, "BR"),
 
                 self::KEY_GDPR_RESPONSIBLE_NAME => new ConfigurationObject(self::KEY_GDPR_RESPONSIBLE_NAME, ConfigurationObject::TYPE_STRING, "a Catequese Paroquial NOME DA PARÓQUIA"),
                 self::KEY_GDPR_RESPONSBILE_ADDRESS => new ConfigurationObject(self::KEY_GDPR_RESPONSBILE_ADDRESS, ConfigurationObject::TYPE_STRING, null),
