@@ -10,6 +10,7 @@ require_once(__DIR__ . '/../core/PdoDatabaseManager.php');
 require_once(__DIR__ . '/../gui/widgets/WidgetManager.php');
 require_once(__DIR__ . '/../gui/widgets/Navbar/MinimalNavbar.php');
 require_once(__DIR__ . '/../gui/widgets/Footer/SimpleFooter.php');
+require_once(__DIR__ . '/../core/PixQRCode.php');
 
 
 use catechesis\Configurator;
@@ -19,6 +20,7 @@ use catechesis\Utils;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\MinimalNavbar;
 use catechesis\gui\SimpleFooter;
+use catechesis\PixQRCode;
 
 $db = new PdoDatabaseManager();
 
@@ -188,18 +190,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                     esclarecimento ou correção sobre a sua inscrição, indique este número.</p>
             <?php
                 try {
-                    $pixAvailable = Configurator::configurationExists('ENROLLMENT_PIX_KEY');
+                    $pixAvailable = Configurator::configurationExists(Configurator::KEY_PIX_KEY);
                 } catch (Exception $e) {
                     $pixAvailable = false;
                 }
-                if ($pixAvailable && function_exists('generatePixQRCode')) {
-                    $pixImg = generatePixQRCode(Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT));
-                    ?>
-                    <div style="margin-top:20px;text-align:center;">
-                        <p>Para efetuar o seu donativo via <strong>Pix</strong>, utilize o QR code abaixo:</p>
-                        <img src="<?= $pixImg ?>" alt="Pix QR Code" />
-                    </div>
-                    <?php
+                if ($pixAvailable) {
+                    try {
+                        $pixImg = PixQRCode::generatePixQRCode(Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT));
+                    } catch (Exception $e) {
+                        $pixImg = null;
+                    }
+                    if ($pixImg) {
+                        ?>
+                        <div style="margin-top:20px;text-align:center;">
+                            <p>Para efetuar o seu donativo via <strong>Pix</strong>, utilize o QR code abaixo:</p>
+                            <img src="<?= $pixImg ?>" alt="Pix QR Code" />
+                        </div>
+                        <?php
+                    }
                 }
             ?>
             </div>
