@@ -3,7 +3,7 @@ function applyBrazilianMasks() {
         return;
     }
     $('#telefone').mask('(00) 0000-0000');
-    $('#codigo_postal').mask('00000-000');
+    $('#codigo_postal').mask('99999-999');
     $('#telemovel').mask('(00) Z 0000-0000', {
         translation: {
             'Z': { pattern: /9/ },
