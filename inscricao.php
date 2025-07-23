@@ -8,6 +8,7 @@ require_once(__DIR__ . '/core/domain/Locale.php');
 require_once(__DIR__ . "/core/PdoDatabaseManager.php");
 require_once(__DIR__ . '/core/Utils.php');
 require_once(__DIR__ . '/core/UserData.php');
+require_once(__DIR__ . '/core/Translation.php');
 require_once(__DIR__ . "/gui/widgets/WidgetManager.php");
 require_once(__DIR__ . '/gui/widgets/Navbar/MainNavbar.php');
 require_once(__DIR__ . '/core/catechist_belongings.php');
@@ -21,6 +22,7 @@ use catechesis\gui\MainNavbar;
 use catechesis\gui\MainNavbar\MENU_OPTION;
 use catechesis\UserData;
 use core\domain\Locale;
+use catechesis\Translation;
 
 // Default to no special mode if none was specified to avoid undefined index
 if (!isset($_REQUEST['modo']))
