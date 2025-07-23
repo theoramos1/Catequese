@@ -532,20 +532,20 @@ $db = new PdoDatabaseManager();
                            <tr>
                                <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][0]->nome);?>" readonly></td>
                                <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][0]->parentesco);?>" readonly></td>
-                               <td><input type="tel" class="form-control" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][0]->telefone);?>" readonly></td>
+                                <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][0]->telefone);?>" readonly></td>
                            </tr>
                            <tr>
                                <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][1]->nome);?>" readonly></td>
                                <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][1]->parentesco);?>" readonly></td>
-                               <td><input type="tel" class="form-control" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][1]->telefone);?>" readonly></td>
+                                <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][1]->telefone);?>" readonly></td>
                            </tr><tr>
                                <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][2]->nome);?>" readonly></td>
                                <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][2]->parentesco);?>" readonly></td>
-                               <td><input type="tel" class="form-control" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][2]->telefone);?>" readonly></td>
+                                <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][2]->telefone);?>" readonly></td>
                            </tr><tr>
                                <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][3]->nome);?>" readonly></td>
                                <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][3]->parentesco);?>" readonly></td>
-                               <td><input type="tel" class="form-control" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][3]->telefone);?>" readonly></td>
+                                <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][3]->telefone);?>" readonly></td>
                            </tr>
                            </tbody>
                        </table>
