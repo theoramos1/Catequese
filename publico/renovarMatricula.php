@@ -120,8 +120,8 @@ $navbar->renderHTML();
                 <!--Encarregado de educacao-->
                 <div class="form-group">
                     <div class="col-lg-9">
-                        <label for="enc_edu_nome">Encarregado de educação:</label>
-                        <input type="text" class="form-control" id="enc_edu_nome" name="enc_edu_nome" placeholder="Nome do encarregado de educação" style="cursor: auto;" value="" required>
+                        <label for="enc_edu_nome"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Responsável legal':'Encarregado de educação' ?>:</label>
+                        <input type="text" class="form-control" id="enc_edu_nome" name="enc_edu_nome" placeholder="Nome do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" style="cursor: auto;" value="" required>
                     </div>
                     <div class="col-lg-6">
                         <label for="enc_edu_email">E-mail:</label>
