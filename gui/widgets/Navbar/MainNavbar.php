@@ -141,7 +141,7 @@ class MainNavbar extends Widget
                             <li class="dropdown<?php if($this->menuOption==MENU_OPTION::ENROLMENTS) echo(', active'); ?>"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fas fa-signature"></i> Inscrições <?php if($totalPendingEnrollmentsAndRenewals > 0) echo("<span class=\"badge\">" . $totalPendingEnrollmentsAndRenewals . "</span> ");?><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li role="presentation" class="dropdown-header"><i class="fas fa-edit"></i> Inscrições e renovações</li>
-                                    <li><a href="inscricao.php">Inscrever novo catequizando</a></li>
+                                    <li><a href="inscricao.php">Cadastrar novo catequizando</a></li>
                                     <li class="<?php if(!$this->allowsSiblingEnrollment) echo('disabled'); ?>"><a href="<?php if($this->allowsSiblingEnrollment) echo('inscricao.php?modo=irmao'); ?>">Inscrever um irmão deste catequizando</a></li>
                                     <li><a href="renovacaoMatriculas.php">Renovar matrículas <?php if($pendingRenewals > 0) echo("<span class=\"badge\">" . $pendingRenewals . "</span>");?></a></li>
                                     <li class="divider"></li>
