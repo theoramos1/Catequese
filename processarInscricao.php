@@ -12,6 +12,7 @@ require_once(__DIR__ . "/core/DataValidationUtils.php");
 require_once(__DIR__ . '/core/catechist_belongings.php');
 require_once(__DIR__ . "/core/PdoDatabaseManager.php");
 require_once(__DIR__ . '/core/PaymentVerificationService.php');
+require_once(__DIR__ . '/core/PixPaymentVerificationService.php');
 require_once(__DIR__ . "/core/domain/Sacraments.php");
 require_once(__DIR__ . "/core/domain/Marriage.php");
 require_once(__DIR__ . "/gui/widgets/WidgetManager.php");
@@ -24,6 +25,7 @@ use catechesis\Configurator;
 use catechesis\UserData;
 use catechesis\utils;
 use catechesis\PaymentVerificationService;
+use catechesis\PixPaymentVerificationService;
 use core\domain\Marriage;
 use core\domain\Sacraments;
 use catechesis\gui\WidgetManager;
@@ -237,19 +239,41 @@ $menu->renderHTML();
                 $_SESSION['turma'] = $turma;
                 $_SESSION['pago'] = $pago;
 
-                // Try to automatically confirm payment using configured provider
+                // Try to automatically confirm payment using configured providers
+                $payment_confirmed = false;
+                $payment_amount = floatval(Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT));
                 try
                 {
                     $entity = Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_ENTITY);
                     $reference = Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_REFERENCE);
-                    $amount = floatval(Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT));
                     $verifier = new PaymentVerificationService();
-                    if ($verifier->verifyPayment(intval($entity), strval($reference), $amount))
-                        $pago = 'on';
+                    $payment_confirmed = $verifier->verifyPayment(intval($entity), strval($reference), $payment_amount);
                 }
                 catch (Exception $e)
                 {
                     error_log('Payment verification failed: ' . $e->getMessage());
+                }
+
+                if (!$payment_confirmed)
+                {
+                    try
+                    {
+                        $pixKey = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_KEY);
+                        $pixVerifier = new PixPaymentVerificationService();
+                        $payment_confirmed = $pixVerifier->verifyPayment($iid ?? null, $pixKey, $payment_amount);
+                    }
+                    catch (Exception $e)
+                    {
+                        error_log('Pix payment verification failed: ' . $e->getMessage());
+                    }
+                }
+
+                if ($payment_confirmed)
+                {
+                    $pago = 'on';
+                }
+                else
+                {
                     echo("<div class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Atenção!</strong> Não foi possível verificar automaticamente o pagamento. Por favor confirme manualmente.</div>");
                 }
  		
@@ -1078,8 +1102,14 @@ $menu->renderHTML();
                     if($db->enrollCatechumenInGroup($cid, $ins_ano_catequetico, $ins_catecismo, $ins_turma, true, $ins_pago, Authenticator::getUsername()))
                     {
                             catechumenArchiveLog($cid, "Catequizando com id=" . $cid . " inscrito no " . $ins_catecismo . "º" . $ins_turma . ", no ano catequético de " . Utils::formatCatecheticalYear($ins_ano_catequetico) . ".");
-                            if($ins_pago)
+                            if($ins_pago) {
                                 catechumenArchiveLog($cid, "Pagamento do catequizando com id=" . $cid . " referente ao catecismo " . $ins_catecismo . "º" . $ins_turma . " do ano catequético de " . Utils::formatCatecheticalYear($ins_ano_catequetico) . ".");
+                                try {
+                                    $db->insertPayment(Authenticator::getUsername(), $cid, $payment_amount, 'confirmado');
+                                } catch (Exception $e) {
+                                    error_log('Failed to record payment: ' . $e->getMessage());
+                                }
+                            }
                             echo("<div class=\"alert alert-success\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Sucesso!</strong> Catequizando inscrito no " . $ins_catecismo . "º catecismo!</div>");
                     }
                     else
