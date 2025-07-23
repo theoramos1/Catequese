@@ -532,20 +532,20 @@ $db = new PdoDatabaseManager();
                            <tr>
                                <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][0]->nome);?>" readonly></td>
                                <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][0]->parentesco);?>" readonly></td>
-                               <td><input type="tel" class="form-control" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][0]->telefone);?>" readonly></td>
+                                <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][0]->telefone);?>" readonly></td>
                            </tr>
                            <tr>
                                <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][1]->nome);?>" readonly></td>
                                <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][1]->parentesco);?>" readonly></td>
-                               <td><input type="tel" class="form-control" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][1]->telefone);?>" readonly></td>
+                                <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][1]->telefone);?>" readonly></td>
                            </tr><tr>
                                <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][2]->nome);?>" readonly></td>
                                <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][2]->parentesco);?>" readonly></td>
-                               <td><input type="tel" class="form-control" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][2]->telefone);?>" readonly></td>
+                                <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][2]->telefone);?>" readonly></td>
                            </tr><tr>
                                <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][3]->nome);?>" readonly></td>
                                <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][3]->parentesco);?>" readonly></td>
-                               <td><input type="tel" class="form-control" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][3]->telefone);?>" readonly></td>
+                                <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][3]->telefone);?>" readonly></td>
                            </tr>
                            </tbody>
                        </table>
@@ -810,12 +810,12 @@ function validar()
         }
         else if(telefone!=="" && telefone!==undefined && !telefone_valido(telefone, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-        	alert("O número de telefone que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.");
+                alert("O número de telefone que introduziu é inválido. Deve estar no formato '(99) 9999-9999'.");
 		return false; 
         }
         else if(telemovel!=="" && telemovel!==undefined && !telefone_valido(telemovel, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-        	alert("O número de telemóvel que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.");
+                alert("O número de telemóvel que introduziu é inválido. Deve estar no formato '(99) 9 9999-9999'.");
 		return false; 
         }
         
@@ -903,28 +903,6 @@ function validar()
 
 
 
-function telefone_valido(num, locale)
-{
-    var phoneno = '';
-
-    if(locale === "PT")
-        phoneno = /^(\+\d{1,}[-\s]{0,1})?\d{9}$/;
-    else if(locale === "BR")
-        phoneno = /^(\+\d{1,}[-\s]{0,1})?\s*\(?(\d{2})\)?[-. ]?(\d{4,5})[-. ]?(\d{4})[-. ]?\s*$/;
-
-    return phoneno.test(num);
-}
-
-function codigo_postal_valido(codigo, locale)
-{
-    var pattern = "";
-    if(locale === "PT")
-        pattern = /^[0-9]{4}\-[0-9]{3}\s\S+/;
-    else if(locale === "BR")
-        pattern = /^[0-9]{5}\-[0-9]{3}$/;
-    
-    return pattern.test(codigo);
-}
 
 </script>
 

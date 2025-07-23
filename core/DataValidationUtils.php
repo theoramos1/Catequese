@@ -52,8 +52,8 @@ class DataValidationUtils
         }
         else if($locale==Locale::BRASIL)
         {
-            $mobilePattern = '/^(\+\d{1,}[-\s]{0,1})?\s*\(?(\d{2}|\d{0})\)?[-. ]?9\d{4}[-. ]?\d{4}\s*$/';
-            $landlinePattern = '/^(\+\d{1,}[-\s]{0,1})?\s*\(?(\d{2}|\d{0})\)?[-. ]?\d{4}[-. ]?\d{4}\s*$/';
+            $mobilePattern = '/^\(\d{2}\) 9 \d{4}-\d{4}$/';
+            $landlinePattern = '/^\(\d{2}\) \d{4}-\d{4}$/';
             $antipattern1 = "0000-0000";
             $antipattern2 = "1111-1111";
             $antipattern3 = "1234-5678";
@@ -79,8 +79,8 @@ class DataValidationUtils
         if($locale == Locale::PORTUGAL)
             $pattern = '/^[0-9]{4}\-[0-9]{3}\s\S+/';
         else if($locale == Locale::BRASIL)
-            // Brazilian zip code with optional locality
-            $pattern = '/^[0-9]{5}\-[0-9]{3}(\s\S+)?/';
+            // Brazilian zip code without locality
+            $pattern = '/^[0-9]{5}-[0-9]{3}$/';
 
         return (preg_match($pattern, $postal));
     }

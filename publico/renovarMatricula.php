@@ -218,6 +218,16 @@ $footer->renderHTML();
 
 
 <?php $pageUI->renderJS(); ?>
+<?php if(Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL): ?>
+<script src="../js/jQuery-Mask-Plugin-1.14.16/jquery.mask.min.js"></script>
+<script src="../js/form-mask-utils.js"></script>
+<script>
+$(function(){
+    applyBrazilianMasks();
+    $('#enc_edu_tel').mask('(00) 0000-0000');
+});
+</script>
+<?php endif; ?>
 <script src="../js/form-validation-utils.js"></script>
 <script>
     function validar()
@@ -227,7 +237,7 @@ $footer->renderHTML();
 
         if(telefone!=="" && telefone!==undefined && !telefone_valido(telefone, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-            alert("O número de telefone que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.");
+            alert("O número de telefone que introduziu é inválido. Deve estar no formato '(99) 9999-9999'.");
             return false;
         }
         if(email!=="" && email!==undefined && !email_valido(email))

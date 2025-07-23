@@ -605,7 +605,6 @@ $(function(){
 <script src="js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.pt.min.js"></script>
 <script src="js/form-validation-utils.js"></script>
 <script type="text/javascript" src="webcamjs-master/webcam.js"></script>
-<script src="js/form-validation-utils.js"></script>
 
 <script language="JavaScript">
 
@@ -727,12 +726,12 @@ function validar()
     }
     else if(telefone!="" && telefone!=undefined && !telefone_valido(telefone, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
     {
-        alert("O número de telefone que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.");
+        alert("O número de telefone que introduziu é inválido. Deve estar no formato '(99) 9999-9999'.");
         return false; 
     }
     else if(telemovel!="" && telemovel!=undefined && !telefone_valido(telemovel, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
     {
-        alert("O número de telemóvel que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.");
+        alert("O número de telemóvel que introduziu é inválido. Deve estar no formato '(99) 9 9999-9999'.");
         return false; 
     }
 
@@ -813,29 +812,6 @@ function validar()
     return true;
 }
 
-
-function telefone_valido(num, locale)
-{
-    var phoneno = '';
-
-    if(locale === "PT")
-        phoneno = /^(\+\d{1,}[-\s]{0,1})?\d{9}$/;
-    else if(locale === "BR")
-        phoneno = /^(\+\d{1,}[-\s]{0,1})?\s*\(?(\d{2})\)?[-. ]?(\d{4,5})[-. ]?(\d{4})[-. ]?\s*$/;
-
-    return phoneno.test(num);
-}
-
-function codigo_postal_valido(codigo, locale)
-{
-    var pattern = "";
-    if(locale === "PT")
-        pattern = /^[0-9]{4}\-[0-9]{3}\s\S+/;
-    else if(locale === "BR")
-        pattern = /^[0-9]{5}\-[0-9]{3}$/;
-    
-    return pattern.test(codigo);
-}
 
 </script>
 

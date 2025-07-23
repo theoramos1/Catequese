@@ -350,7 +350,7 @@ $menu->renderHTML();
                 }
                 if($telemovel_familiar=="" || !DataValidationUtils::validatePhoneNumber($telemovel_familiar, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))
                 {
-                    echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O número de telemóvel que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.</div>");
+                    echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O número de telemóvel que introduziu é inválido. Deve estar no formato '(99) 9 9999-9999'.</div>");
                     $inputs_invalidos = true;
                 }
 
@@ -683,7 +683,7 @@ $menu->renderHTML();
                                     <div class="input-group input-group-sm"><input type="text" class="form-control" id="nome_familiar" name="nome_familiar" placeholder="Nome" list="nomes_familiares" required></div></div></td>
                             <td><div class="input-group input-group-sm"><input type="text" class="form-control" id="parentesco" name="parentesco" placeholder="Avó" list="parentescos_familiares" required></div></td>
                             <td><div class="btn-group-xs" role="group" aria-label="...">
-                                    <div class="input-group input-group-sm"><input type="text" class="form-control" id="telemovel" name="telemovel" placeholder="9xxxxxxxx" list="" required></div></div></td>
+                                    <div class="input-group input-group-sm"><input type="text" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'(65) 99800-1234':'' ?>" list="" required></div></div></td>
                             <td><div class="btn-group-xs" role="group" aria-label="...">
                                     <button type="submit" class="btn btn-default pull-right"><span class="glyphicon glyphicon-plus text-success">Adicionar</span></button>
                                 </div></td>
@@ -764,6 +764,7 @@ $pageUI->renderJS(); // Render the widgets' JS code
 <script>
 $(function(){
     applyBrazilianMasks();
+    $('#telemovel').mask('(00) 9 0000-0000');
 });
 </script>
 <?php endif; ?>
@@ -777,7 +778,7 @@ function valida_dados_familiar()
     var telemovel = document.getElementById('telemovel').value;
     if(!telefone_valido(telemovel, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
     {
-        alert("O número de telemóvel que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.");
+        alert("O número de telemóvel que introduziu é inválido. Deve estar no formato '(99) 9 9999-9999'.");
         return false;
     }
     return true;

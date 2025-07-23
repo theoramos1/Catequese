@@ -525,20 +525,20 @@ $pageUI->addWidget($footer);
                                    <tr>
                                        <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['autorizacao_nome'][0] . '');} else {echo('');} ?>"></td>
                                        <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['autorizacao_parentesco'][0] . '');} else {echo('');} ?>"></td>
-                                       <td><input type="tel" class="form-control" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['autorizacao_telefone'][0] . '');} else {echo('');} ?>"></td>
+                                       <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['autorizacao_telefone'][0] . '');} else {echo('');} ?>"></td>
                                    </tr>
                                    <tr>
                                        <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['autorizacao_nome'][1] . '');} else {echo('');} ?>"></td>
                                        <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['autorizacao_parentesco'][1] . '');} else {echo('');} ?>"></td>
-                                       <td><input type="tel" class="form-control" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['autorizacao_telefone'][1] . '');} else {echo('');} ?>"></td>
+                                       <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['autorizacao_telefone'][1] . '');} else {echo('');} ?>"></td>
                                    </tr><tr>
                                        <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['autorizacao_nome'][2] . '');} else {echo('');} ?>"></td>
                                        <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['autorizacao_parentesco'][2] . '');} else {echo('');} ?>"></td>
-                                       <td><input type="tel" class="form-control" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['autorizacao_telefone'][2] . '');} else {echo('');} ?>"></td>
+                                       <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['autorizacao_telefone'][2] . '');} else {echo('');} ?>"></td>
                                    </tr><tr>
                                        <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['autorizacao_nome'][3] . '');} else {echo('');} ?>"></td>
                                        <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['autorizacao_parentesco'][3] . '');} else {echo('');} ?>"></td>
-                                       <td><input type="tel" class="form-control" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['autorizacao_telefone'][3] . '');} else {echo('');} ?>"></td>
+                                       <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['autorizacao_telefone'][3] . '');} else {echo('');} ?>"></td>
                                    </tr>
                                    </tbody>
                                </table>
@@ -800,12 +800,12 @@ function validar()
         }
         else if(telefone!=="" && telefone!==undefined && !telefone_valido(telefone, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-        	alert("O número de telefone que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.");
+                alert("O número de telefone que introduziu é inválido. Deve estar no formato '(99) 9999-9999'.");
 		return false; 
         }
         else if(telemovel!=="" && telemovel!==undefined && !telefone_valido(telemovel, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-        	alert("O número de telemóvel que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 digitos.");
+                alert("O número de telemóvel que introduziu é inválido. Deve estar no formato '(99) 9 9999-9999'.");
 		return false; 
         }
         
