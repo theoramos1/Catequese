@@ -249,7 +249,8 @@ $menu->renderHTML();
                 }
                 catch (Exception $e)
                 {
-                    // Ignore verification errors and proceed with submitted value
+                    error_log('Payment verification failed: ' . $e->getMessage());
+                    echo("<div class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Atenção!</strong> Não foi possível verificar automaticamente o pagamento. Por favor confirme manualmente.</div>");
                 }
  		
 		

@@ -15,11 +15,13 @@ class PaymentVerificationService
     private string $token;
     private int $timeout;
 
-    public function __construct(string $endpoint = null, string $token = null, int $timeout = 10)
+    public function __construct(?string $endpoint = null, ?string $token = null, ?int $timeout = null)
     {
         $this->endpoint = $endpoint ?? Configurator::getConfigurationValueOrDefault(Configurator::KEY_PAYMENT_PROVIDER_URL);
         $this->token     = $token ?? Configurator::getConfigurationValueOrDefault(Configurator::KEY_PAYMENT_PROVIDER_TOKEN);
-        $this->timeout   = $timeout;
+        if ($timeout === null)
+            $timeout = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PAYMENT_PROVIDER_TIMEOUT);
+        $this->timeout   = $timeout ?? 10;
     }
 
     /**
@@ -41,22 +43,35 @@ class PaymentVerificationService
         $query = http_build_query(['entity' => $entity, 'reference' => $reference]);
         $url   = rtrim($this->endpoint, '/') . '/?' . $query;
 
-        $options = [
-            'http' => [
-                'header' => "Authorization: Bearer {$this->token}\r\n",
-                'method' => 'GET',
-                'timeout' => $this->timeout,
-            ],
-        ];
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ["Authorization: Bearer {$this->token}"]);
+        curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->timeout);
 
-        $context  = stream_context_create($options);
-        $response = @file_get_contents($url, false, $context);
+        if (stripos($url, 'https://') === 0) {
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+        }
+
+        $response = curl_exec($ch);
+        $status   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if ($response === false) {
+            $error = curl_error($ch);
+            curl_close($ch);
+            error_log('Payment provider connection error: ' . $error);
             throw new Exception('Failed to connect to payment provider.');
+        }
+        curl_close($ch);
+
+        if ($status < 200 || $status >= 300) {
+            error_log("Payment provider HTTP error ({$status}): {$response}");
+            throw new Exception('Payment provider returned an error.');
         }
 
         $data = json_decode($response, true);
         if (!is_array($data) || !isset($data['paid']) || !isset($data['amount'])) {
+            error_log('Payment provider invalid response: ' . $response);
             throw new Exception('Invalid response from payment provider.');
         }
 
