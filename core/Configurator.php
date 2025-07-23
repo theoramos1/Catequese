@@ -127,13 +127,14 @@ class Configurator
     const KEY_PAYMENT_PROVIDER_TOKEN = "PAYMENT_PROVIDER_TOKEN";        //Authentication token for the payment provider API
     const KEY_PAYMENT_PROVIDER_TIMEOUT = "PAYMENT_PROVIDER_TIMEOUT";    //Timeout in seconds when contacting the provider
 
-    // Pix / BR Code configuration keys
-    const KEY_PIX_KEY = "PIX_KEY";                 //Pix key (e-mail, phone, etc)
-    const KEY_PIX_MERCHANT_NAME = "PIX_MERCHANT_NAME"; //Merchant name
-    const KEY_PIX_MERCHANT_CITY = "PIX_MERCHANT_CITY"; //Merchant city
-    const KEY_PIX_DESCRIPTION = "PIX_DESCRIPTION";     //Payment description
-    const KEY_PIX_TXID = "PIX_TXID";               //Default transaction ID
-
+    // Pix / BR Code configuration keys - unificado e sem duplicidade!
+    const KEY_PIX_KEY = "PIX_KEY";                        // Pix key (e-mail, phone, CPF/CNPJ, random key)
+    const KEY_PIX_MERCHANT_NAME = "PIX_MERCHANT_NAME";    // Name of the receiver displayed on Pix
+    const KEY_PIX_MERCHANT_CITY = "PIX_MERCHANT_CITY";    // City used in Pix payload
+    const KEY_PIX_DESCRIPTION = "PIX_DESCRIPTION";        // Payment description
+    const KEY_PIX_TXID = "PIX_TXID";                      // Default transaction ID
+    const KEY_PIX_API_URL = "PIX_API_URL";                // API endpoint for Pix dynamic QR code
+    const KEY_PIX_API_TOKEN = "PIX_API_TOKEN";            // Authentication token for Pix API
 
     const KEY_CATECHESIS_NEXTCLOUD_BASE_URL = "CATECHESIS_NEXTCLOUD_BASE_URL";                                          //Path to Nextcloud front page
     const KEY_CATECHESIS_NEXTCLOUD_VIRTUAL_RESOURCES_URL = "CATECHESIS_NEXTCLOUD_VIRTUAL_RESOURCES_URL";                //Path to public shared folder in Nextcloud to store virtual catechesis resources
@@ -141,7 +142,6 @@ class Configurator
     const KEY_MAINTENANCE_MODE = "MAINTENANCE_MODE";                                                                    //Enabling the maintenance mode forbids logins and shows the error 500 page on the landing page
 
     private static $CONFIGURATIONS = null; //Stores the configuration objects
-
 
     /**
      * Initializes the array $CONFIGURATIONS (if needed), populating it with
@@ -187,11 +187,15 @@ class Configurator
                 self::KEY_PAYMENT_PROVIDER_TOKEN => new ConfigurationObject(self::KEY_PAYMENT_PROVIDER_TOKEN, ConfigurationObject::TYPE_STRING, null),
                 self::KEY_PAYMENT_PROVIDER_TIMEOUT => new ConfigurationObject(self::KEY_PAYMENT_PROVIDER_TIMEOUT, ConfigurationObject::TYPE_INT, 10),
 
+                // Pix / BR Code configs
                 self::KEY_PIX_KEY => new ConfigurationObject(self::KEY_PIX_KEY, ConfigurationObject::TYPE_STRING, null),
                 self::KEY_PIX_MERCHANT_NAME => new ConfigurationObject(self::KEY_PIX_MERCHANT_NAME, ConfigurationObject::TYPE_STRING, null),
                 self::KEY_PIX_MERCHANT_CITY => new ConfigurationObject(self::KEY_PIX_MERCHANT_CITY, ConfigurationObject::TYPE_STRING, null),
                 self::KEY_PIX_DESCRIPTION => new ConfigurationObject(self::KEY_PIX_DESCRIPTION, ConfigurationObject::TYPE_STRING, null),
                 self::KEY_PIX_TXID => new ConfigurationObject(self::KEY_PIX_TXID, ConfigurationObject::TYPE_STRING, '***'),
+                self::KEY_PIX_API_URL => new ConfigurationObject(self::KEY_PIX_API_URL, ConfigurationObject::TYPE_STRING, null),
+                self::KEY_PIX_API_TOKEN => new ConfigurationObject(self::KEY_PIX_API_TOKEN, ConfigurationObject::TYPE_STRING, null),
+
                 self::KEY_CATECHESIS_NEXTCLOUD_BASE_URL => new ConfigurationObject(self::KEY_CATECHESIS_NEXTCLOUD_BASE_URL, ConfigurationObject::TYPE_STRING, null),
                 self::KEY_CATECHESIS_NEXTCLOUD_VIRTUAL_RESOURCES_URL => new ConfigurationObject(self::KEY_CATECHESIS_NEXTCLOUD_VIRTUAL_RESOURCES_URL, ConfigurationObject::TYPE_STRING, null),
 
