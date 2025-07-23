@@ -306,7 +306,7 @@ $pageUI->addWidget($footer);
                     <div class="form-group">
                         <div class="col-lg-4">
                         <div id="codigo_postal_div">
-                          <label for="codigo_postal">Código postal:</label>
+                          <label for="codigo_postal"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL) ? 'CEP' : 'Código postal' ?></label>
                           <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'xxxxx-xxx':'xxxx-xxx Localidade' ?>" onclick="verifica_codigo_postal()" onchange="verifica_codigo_postal()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['cod_postal'] . '');} else {echo('');} ?>" required>
                           <span id="erro_postal_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
                         </div>
