@@ -40,7 +40,7 @@ $pageUI->addWidget($printDialog);
 
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
+<html lang="pt">
 <head>
   <title>Fichas dos catequizandos</title>
   <meta charset="utf-8">
@@ -107,7 +107,7 @@ $menu->renderHTML();
   
   <div class="no-print">
   
-  <h2><?= Translation::t('print_area_title') ?></h2>
+  <h2> Área de Impressão</h2>
 
     
   <div class="row" style="margin-top:20px; "></div>

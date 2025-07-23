@@ -34,7 +34,7 @@ $pageUI->addWidget($evaluationPeriodPanel);
 
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo \core\domain\Locale::htmlLang(\catechesis\Configurator::getConfigurationValueOrDefault(catechesis\Configurator::KEY_LOCALIZATION_CODE)); ?>">
+<html lang="pt">
 <head>
   <title>Aproveitamento</title>
   <meta charset="utf-8">
@@ -117,7 +117,7 @@ $evaluationPeriodPanel->handlePost();
 <div class="container" id="contentor">
 
  <div class="no-print">
-  <h2><?= Translation::t('students_performance_title') ?></h2>
+  <h2> Aproveitamento dos catequizandos</h2>
   
   <div class="row" style="margin-bottom:40px; "></div>
 

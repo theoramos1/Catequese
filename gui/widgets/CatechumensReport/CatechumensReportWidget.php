@@ -458,7 +458,7 @@ class CatechumensReportWidget extends AbstractCatechumensListingWidget
                                 paging: false,
                                 info: false,
                                 language: {
-                                    url: '<?= (\catechesis\Configurator::getConfigurationValueOrDefault(\catechesis\Configurator::KEY_LOCALIZATION_CODE) == \core\domain\Locale::BRASIL) ? "js/DataTables/Portuguese-BR.json" : "js/DataTables/Portuguese.json" ?>'
+                                    url: 'js/DataTables/Portuguese.json'
                                 },
                                 "dom": '<"wrapper"<"col-sm-12" f> lipt>', //Customizations to make the table fill the accordion wihtout padding
                                 "aaSorting": [], //Do not sort anything at start, to keep the provided order (only when the user clicks on a column),
