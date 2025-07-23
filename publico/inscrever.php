@@ -345,7 +345,7 @@ $pageUI->addWidget($footer);
                        <div class="col-lg-12">
                            <label for="email">E-mail:</label>
                            <input type="email" class="form-control" id="email" name="email" placeholder="endereco@example.com" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['email'] . '');} else {echo('');} ?>">
-                           <span>Para que seja informado de notícias e actividades da nossa catequese, indique-nos o seu e-mail. Assim poderá organizar melhor a sua vida e planear a sua agenda.</span>
+                           <span>Para que seja informado de notícias e atividades da nossa catequese, informe seu e-mail. Assim você poderá organizar melhor sua vida e planejar sua agenda.</span>
                        </div>
                        <div class="clearfix"></div>
                    </div>
