@@ -143,10 +143,10 @@ $pageUI->addWidget($footer);
                    <!--data nascimento-->
                     <div class="form-group">
                      <div class="col-lg-2">
-                     <div class="input-append date" id="data_nasc_div" data-date="" data-date-format="dd-mm-yyyy">
+                     <div class="input-append date" id="data_nasc_div" data-date="" data-date-format="dd/mm/yyyy">
                       <label for="data_nasc">Nasceu a:</label>
                       <!--<div class="input-group">-->
-                      <input class="form-control" id="data_nasc" name="data_nasc" size="16" type="text" onclick="verifica_data_nasc()" onchange="verifica_data_nasc()" placeholder="dd-mm-aaaa" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['data_nasc'] . '');} else {echo('');} ?>"  required>
+                      <input class="form-control" id="data_nasc" name="data_nasc" size="16" type="text" onclick="verifica_data_nasc()" onchange="verifica_data_nasc()" placeholder="dd/mm/aaaa" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['data_nasc'] . '');} else {echo('');} ?>"  required>
                       <!--<span class="input-group-addon glyphicon glyphicon-calendar" id="sizing-addon2"></span>
                       </div>-->
                       <span id="erro_nasc_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
@@ -188,7 +188,7 @@ $pageUI->addWidget($footer);
                    <div class="form-group">
                        <div class="col-lg-12">
                            <div class="row" style="margin-top:20px; "></div>
-                           <label for="encarregado educacao">Encarregado de educação:</label>
+                           <label for="encarregado educacao"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Responsável legal':'Encarregado de educação' ?>:</label>
                            <label class="radio-inline"><input type="radio" id="enc_edu1" name="enc_edu" value="Pai"  onchange="mostrar_ocultar_campo_outro_enc_edu(); atualiza_tabela_autorizacoes();" <?php  if(($_REQUEST['modo']!='regresso' && $_REQUEST['modo']!='editar') || (($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar') && $_SESSION['enc_edu']=='Pai')){ echo('checked');} ?>>Pai</label>
                            <label class="radio-inline"><input type="radio" id="enc_edu2" name="enc_edu" value="Mae"  onchange="mostrar_ocultar_campo_outro_enc_edu(); atualiza_tabela_autorizacoes();" <?php  if(($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar') && $_SESSION['enc_edu']=='Mae'){ echo('checked');} ?>>Mãe</label>
                            <label class="radio-inline"><input type="radio" id="enc_edu3" name="enc_edu" value="Outro" onchange="mostrar_ocultar_campo_outro_enc_edu(); atualiza_tabela_autorizacoes();" <?php  if(($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar') && $_SESSION['enc_edu']=='Outro'){ echo('checked');} ?>>Outro</label>
@@ -214,13 +214,13 @@ $pageUI->addWidget($footer);
                        <!--outro encarregado educacao nome-->
                        <div class="col-lg-6">
                            <label for="nome_end_edu"> Nome:</label>
-                           <input type="text" class="form-control" id="nome_enc_edu" name="nome_enc_edu" placeholder="Nome completo do encarregado de educação" onchange="atualiza_tabela_autorizacoes()" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['nome_enc_edu'] . '');} else {echo('');} ?>">
+                           <input type="text" class="form-control" id="nome_enc_edu" name="nome_enc_edu" placeholder="Nome completo do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" onchange="atualiza_tabela_autorizacoes()" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['nome_enc_edu'] . '');} else {echo('');} ?>">
                        </div>
 
                        <!--outro encarregado educacao profissao-->
                        <div class="col-lg-4">
                            <label for="prof_enc_edu"> Profissão:</label>
-                           <input type="text" class="form-control" id="prof_enc_edu" name="prof_enc_edu" placeholder="Profissão do encarregado de educação" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['prof_enc_edu'] . '');} else {echo('');} ?>">
+                           <input type="text" class="form-control" id="prof_enc_edu" name="prof_enc_edu" placeholder="Profissão do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" value="<?php  if($_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['prof_enc_edu'] . '');} else {echo('');} ?>">
                        </div>
                    </div>
                    <div class="clearfix"></div>
@@ -296,7 +296,7 @@ $pageUI->addWidget($footer);
                     <div class="form-group">
                     <div class="col-lg-12">
                       <label for="morada">Morada:</label>
-                      <input type="text" class="form-control" id="morada" name="morada" placeholder="Morada do encarregado de educação" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['morada'] . '');} else {echo('');} ?>" required>
+                      <input type="text" class="form-control" id="morada" name="morada" placeholder="Morada do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['morada'] . '');} else {echo('');} ?>" required>
                     </div>
                     </div>
 
@@ -306,7 +306,7 @@ $pageUI->addWidget($footer);
                     <div class="form-group">
                         <div class="col-lg-4">
                         <div id="codigo_postal_div">
-                          <label for="codigo_postal">Código postal:</label>
+                          <label for="codigo_postal"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL) ? 'CEP' : 'Código postal' ?></label>
                           <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'xxxxx-xxx':'xxxx-xxx Localidade' ?>" onclick="verifica_codigo_postal()" onchange="verifica_codigo_postal()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['cod_postal'] . '');} else {echo('');} ?>" required>
                           <span id="erro_postal_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
                         </div>
@@ -318,7 +318,7 @@ $pageUI->addWidget($footer);
                         <div class="col-lg-2">
                         <div id="telefone_div">
                           <label for="tel">Telefone:</label>
-                          <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Telefone do encarregado de educação" onclick="verifica_telefone()" onchange="verifica_telefone(); atualiza_tabela_autorizacoes();" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telefone'] . '');} else {echo('');} ?>">
+                          <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Telefone do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" onclick="verifica_telefone()" onchange="verifica_telefone(); atualiza_tabela_autorizacoes();" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telefone'] . '');} else {echo('');} ?>">
                           <span id="erro_telefone_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
                         </div>
                         </div>
@@ -329,7 +329,7 @@ $pageUI->addWidget($footer);
                         <div class="col-lg-2">
                             <div id="telemovel_div">
                               <label for="telm"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?"Celular":"Telemóvel" ?>:</label>
-                              <input type="tel" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?"Celular":"Telemóvel" ?> do encarregado de educação" onclick="verifica_telemovel()" onchange="verifica_telemovel(); atualiza_tabela_autorizacoes();" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telemovel'] . '');} else {echo('');} ?>">
+                              <input type="tel" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?"Celular":"Telemóvel" ?> do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" onclick="verifica_telemovel()" onchange="verifica_telemovel(); atualiza_tabela_autorizacoes();" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telemovel'] . '');} else {echo('');} ?>">
                               <span id="erro_telemovel_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
                             </div>
                             <div class="clearfix"></div>
@@ -418,9 +418,9 @@ $pageUI->addWidget($footer);
                         <?php if($_REQUEST['modo']=='editar'){ echo("<!--");} ?>
                         <div class="form-group">
                             <div class="col-lg-2">
-                                <div class="input-append date" id="data_baptismo_div" data-date="" data-date-format="dd-mm-yyyy">
+                                <div class="input-append date" id="data_baptismo_div" data-date="" data-date-format="dd/mm/yyyy">
                                     <label for="data_baptismo">Data:</label>
-                                    <input class="form-control" id="data_baptismo" name="data_baptismo" size="16" type="text" onclick="verifica_data_baptismo()" onchange="verifica_data_baptismo()" placeholder="dd-mm-aaaa" value="<?php  if($_REQUEST['modo']=='regresso'){ echo('' . $_SESSION['data_baptismo'] . '');} else {echo('');} ?>" >
+                                    <input class="form-control" id="data_baptismo" name="data_baptismo" size="16" type="text" onclick="verifica_data_baptismo()" onchange="verifica_data_baptismo()" placeholder="dd/mm/aaaa" value="<?php  if($_REQUEST['modo']=='regresso'){ echo('' . $_SESSION['data_baptismo'] . '');} else {echo('');} ?>" >
                                     <span id="erro_data_baptismo_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
                                 </div>
                             </div>
@@ -460,9 +460,9 @@ $pageUI->addWidget($footer);
                         <?php if($_REQUEST['modo']=='editar'){ echo("<!--");} ?>
                         <div class="form-group">
                             <div class="col-lg-2">
-                                <div class="input-append date" id="data_comunhao_div" data-date="" data-date-format="dd-mm-yyyy">
+                                <div class="input-append date" id="data_comunhao_div" data-date="" data-date-format="dd/mm/yyyy">
                                     <label for="data_comunhao">Data:</label>
-                                    <input class="form-control" id="data_comunhao" name="data_comunhao" size="16" type="text" onclick="verifica_data_comunhao()" onchange="verifica_data_comunhao()" placeholder="dd-mm-aaaa" value="<?php  if($_REQUEST['modo']=='regresso'){ echo('' . $_SESSION['data_comunhao'] . '');} else {echo('');} ?>" >
+                                    <input class="form-control" id="data_comunhao" name="data_comunhao" size="16" type="text" onclick="verifica_data_comunhao()" onchange="verifica_data_comunhao()" placeholder="dd/mm/aaaa" value="<?php  if($_REQUEST['modo']=='regresso'){ echo('' . $_SESSION['data_comunhao'] . '');} else {echo('');} ?>" >
                                     <span id="erro_data_comunhao_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
                                 </div>
                             </div>
@@ -665,6 +665,16 @@ $footer->renderHTML();
 
 
 <?php $pageUI->renderJS(); ?>
+<?php if(Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL): ?>
+<script src="../js/jQuery-Mask-Plugin-1.14.16/jquery.mask.min.js"></script>
+<script>
+$(function(){
+    $('#telefone').mask('(00) 0000-0000');
+    $('#telemovel').mask('(00) 0 0000-0000');
+    $('#codigo_postal').mask('00000-000');
+});
+</script>
+<?php endif; ?>
 <script src="../js/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js"></script>
 <script src="../js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.pt.min.js"></script>
 <script type="text/javascript" src="../webcamjs-master/webcam.js"></script>
@@ -771,7 +781,7 @@ function validar()
 	
 	if(!data_valida(data_nasc))
         {
-        	alert("A data de nascimento que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
+        	alert("A data de nascimento que introduziu é inválida. Deve ser da forma dd/mm/aaaa.");
         	return false;
         }
         
@@ -816,7 +826,7 @@ function validar()
         
         if( baptizado && !data_valida(data_baptismo))
         {
-                alert("A data de batismo que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
+                alert("A data de batismo que introduziu é inválida. Deve ser da forma dd/mm/aaaa.");
 		return false; 
         }
         
@@ -834,7 +844,7 @@ function validar()
         
         if( comunhao && !data_valida(data_comunhao))
         {
-        	alert("A data da primeira comunhão que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
+        	alert("A data da primeira comunhão que introduziu é inválida. Deve ser da forma dd/mm/aaaa.");
 		return false; 
         }
         <?php endif ?>
@@ -889,7 +899,7 @@ function validar()
 <script>
 $(function(){
    $('#data_nasc').datepicker({
-       format: "dd-mm-yyyy",
+       format: "dd/mm/yyyy",
        defaultViewDate: { year: 2010, month: 1, day: 1 },
        startView: 2,
        language: "pt",
@@ -899,7 +909,7 @@ $(function(){
 
 $(function(){
    $('#data_baptismo').datepicker({
-       format: "dd-mm-yyyy",
+       format: "dd/mm/yyyy",
        defaultViewDate: { year: 2010, month: 1, day: 1 },
        startView: 2,
        language: "pt",
@@ -909,7 +919,7 @@ $(function(){
 
 $(function(){
    $('#data_comunhao').datepicker({
-       format: "dd-mm-yyyy",
+       format: "dd/mm/yyyy",
        defaultViewDate: { year: 2010, month: 1, day: 1 },
        startView: 2,
        language: "pt",
@@ -1134,7 +1144,7 @@ $(document).ready(function()
         var autorizacao_tel_enc_edu = document.getElementById('autorizacao_tel_enc_edu');
 
         autorizacao_nome_enc_edu.innerText = enc_edu_nome;
-        autorizacao_parentesco_enc_edu.innerText = enc_edu_parentesco + " (Encarregado de educação)";
+        autorizacao_parentesco_enc_edu.innerText = enc_edu_parentesco + " (" + <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'\'Responsável legal\'':'\'Encarregado de educação\'' ?> + ")";
         autorizacao_tel_enc_edu.innerText = enc_edu_tel;
     }
 </script>

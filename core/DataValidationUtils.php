@@ -11,14 +11,14 @@ class DataValidationUtils
 {
 
     /**
-     * Checks if a date has the format 'dd-mm-YYYY' and if it is actually valid (e.g. a real calendar date).
+     * Checks if a date has the format 'dd/mm/YYYY' and if it is actually valid (e.g. a real calendar date).
      * @param string $date
      * @return bool
      */
     public static function validateDate(string $date)
     {
-        $format = 'd-m-Y';
-        $pattern = '/^[0-9]{1,2}\-[0-9]{1,2}\-[0-9]{4}$/';
+        $format = 'd/m/Y';
+        $pattern = '/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/';
         $matches = array();
         $res = preg_match($pattern, $date, $matches);
 
@@ -48,16 +48,23 @@ class DataValidationUtils
             $antipattern1 = "000000000";
             $antipattern2 = "111111111";
             $antipattern3 = "123456789";
+            $match = preg_match($pattern, $tel);
         }
         else if($locale==Locale::BRASIL)
         {
-            $pattern = '/^(\+\d{1,}[-\s]{0,1})?\s*\(?(\d{2}|\d{0})\)?[-. ]?(\d{5}|\d{4})[-. ]?(\d{4})[-. ]?\s*$/';
+            $mobilePattern = '/^(\+\d{1,}[-\s]{0,1})?\s*\(?(\d{2}|\d{0})\)?[-. ]?9\d{4}[-. ]?\d{4}\s*$/';
+            $landlinePattern = '/^(\+\d{1,}[-\s]{0,1})?\s*\(?(\d{2}|\d{0})\)?[-. ]?\d{4}[-. ]?\d{4}\s*$/';
             $antipattern1 = "0000-0000";
             $antipattern2 = "1111-1111";
             $antipattern3 = "1234-5678";
+            $match = preg_match($mobilePattern, $tel) || preg_match($landlinePattern, $tel);
+        }
+        else
+        {
+            $match = false;
         }
 
-        return preg_match($pattern, $tel) && (!$checkAntiPatterns ||
+        return $match && (!$checkAntiPatterns ||
                 (strpos($tel, $antipattern1)===false && strpos($tel, $antipattern2)===false && strpos($tel, $antipattern3)===false));
     }
 

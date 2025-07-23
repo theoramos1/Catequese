@@ -142,9 +142,9 @@ $menu->renderHTML();
         <!--data nascimento-->
         <div class="form-group">
             <div class="col-xs-2">
-                <div class="input-append date" id="data_nasc_div" data-date="" data-date-format="dd-mm-yyyy">
+                <div class="input-append date" id="data_nasc_div" data-date="" data-date-format="dd/mm/yyyy">
                   <label for="data_nasc">Nasceu a:</label>
-                  <input class="form-control" id="data_nasc" name="data_nasc" size="16" type="text" onclick="verifica_data_nasc()" onchange="verifica_data_nasc()" placeholder="dd-mm-aaaa">
+                  <input class="form-control" id="data_nasc" name="data_nasc" size="16" type="text" onclick="verifica_data_nasc()" onchange="verifica_data_nasc()" placeholder="dd/mm/aaaa">
                   <span id="erro_nasc_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
                 </div>
             </div>
@@ -177,7 +177,7 @@ $menu->renderHTML();
 	
 		if(!DataValidationUtils::validateDate($data_nasc) && $data_nasc && $data_nasc!="")
 	  	{
-	  		echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> A data de nascimento que introduziu é inválida. Deve ser da forma dd-mm-aaaa.</div>");
+	  		echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> A data de nascimento que introduziu é inválida. Deve ser da forma dd/mm/aaaa.</div>");
 	  		die();	  	
 	  	}
 
@@ -250,7 +250,7 @@ function pesquisar()
 <script>
 $(function(){
    $('#data_nasc').datepicker({
-       format: "dd-mm-yyyy",
+       format: "dd/mm/yyyy",
        defaultViewDate: { year: 2010, month: 1, day: 1 },
        startView: 2,
        language: "pt",
@@ -287,7 +287,7 @@ function validar()
 	
 	if(!data_valida(data_nasc) && data_nasc!=="" && data_nasc!==undefined)
     {
-        alert("A data de nascimento que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
+        alert("A data de nascimento que introduziu é inválida. Deve ser da forma dd/mm/aaaa.");
         return false;
     }
 

@@ -528,7 +528,7 @@ $menu->renderHTML();
                         <!--data nascimento-->
                         <div class="col-xs-2">
                             <label for="data_nasc">Nasceu a:</label>
-                            <input class="form-control" id="data_nasc" name="data_nasc" size="16" type="text" placeholder="dd-mm-aaaa" style="cursor: auto;"
+                            <input class="form-control" id="data_nasc" name="data_nasc" size="16" type="text" placeholder="dd/mm/aaaa" style="cursor: auto;"
                                 <?php
                                 if($_SESSION['data_nasc'])
                                 {
@@ -758,7 +758,18 @@ HTML_CODE
 <?php
 $pageUI->renderJS(); // Render the widgets' JS code
 ?>
+<?php if(Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL): ?>
+<script src="js/jQuery-Mask-Plugin-1.14.16/jquery.mask.min.js"></script>
+<script>
+$(function(){
+    $('#telefone').mask('(00) 0000-0000');
+    $('#telemovel').mask('(00) 0 0000-0000');
+    $('#codigo_postal').mask('00000-000');
+});
+</script>
+<?php endif; ?>
 <script src="js/bootstrap-switch.js"></script>
+<script src="js/form-validation-utils.js"></script>
 
 <script>
 
@@ -773,17 +784,6 @@ function valida_dados_familiar()
     return true;
 }
 
-function telefone_valido(num, locale)
-{
-    var phoneno = '';
-
-    if(locale==="PT")
-        phoneno = /^(\+\d{1,}[-\s]{0,1})?\d{9}$/;
-    else if(locale==="BR")
-        phoneno = /^(\+\d{1,}[-\s]{0,1})?\s*\(?(\d{2}|\d{0})\)?[-. ]?(\d{5}|\d{4})[-. ]?(\d{4})[-. ]?\s*$/;
-
-    return num.match(phoneno);
-}
 
 function preparar_eliminacao_autorizacao_familiar(fid)
 {

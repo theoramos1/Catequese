@@ -145,10 +145,10 @@ $db = new PdoDatabaseManager();
            <!--data nascimento-->
             <div class="form-group">
              <div class="col-lg-2">
-             <div class="input-append date" id="data_nasc_div" data-date="" data-date-format="dd-mm-yyyy">
+             <div class="input-append date" id="data_nasc_div" data-date="" data-date-format="dd/mm/yyyy">
               <label for="data_nasc">Nasceu a:</label>
               <!--<div class="input-group">-->
-              <input class="form-control" id="data_nasc" name="data_nasc" size="16" type="text" onclick="verifica_data_nasc()" onchange="verifica_data_nasc()" placeholder="dd-mm-aaaa" value="<?php echo(date( "d-m-Y", strtotime($submission['data_nasc'])));?>" readonly  required>
+              <input class="form-control" id="data_nasc" name="data_nasc" size="16" type="text" onclick="verifica_data_nasc()" onchange="verifica_data_nasc()" placeholder="dd/mm/aaaa" value="<?php echo(date( "d-m-Y", strtotime($submission['data_nasc'])));?>" readonly  required>
               <!--<span class="input-group-addon glyphicon glyphicon-calendar" id="sizing-addon2"></span>
               </div>-->
               <span id="erro_nasc_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
@@ -190,7 +190,7 @@ $db = new PdoDatabaseManager();
            <div class="form-group">
                <div class="col-lg-12">
                    <div class="row" style="margin-top:20px; "></div>
-                   <label for="encarregado educacao">Encarregado de educação:</label>
+                   <label for="encarregado educacao"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Responsável legal':'Encarregado de educação' ?>:</label>
                    <label class="radio-inline"><input type="radio" id="enc_edu1" name="enc_edu" value="Pai"  onchange="atualiza_tabela_autorizacoes()" <?php  if($submission['enc_edu']==0){ echo('checked');}else{echo("disabled");} ?> readonly>Pai</label>
                    <label class="radio-inline"><input type="radio" id="enc_edu2" name="enc_edu" value="Mae"  onchange="atualiza_tabela_autorizacoes()" <?php  if($submission['enc_edu']==1){ echo('checked');}else{echo("disabled");} ?> readonly>Mãe</label>
                    <label class="radio-inline"><input type="radio" id="enc_edu3" name="enc_edu" value="Outro" onchange="atualiza_tabela_autorizacoes()" <?php  if($submission['enc_edu']==2){ echo('checked');}else{echo("disabled");} ?> readonly>Outro</label>
@@ -216,13 +216,13 @@ $db = new PdoDatabaseManager();
                <!--outro encarregado educacao nome-->
                <div class="col-lg-6">
                    <label for="nome_end_edu"> Nome:</label>
-                   <input type="text" class="form-control" id="nome_enc_edu" name="nome_enc_edu" placeholder="Nome completo do encarregado de educação" onchange="atualiza_tabela_autorizacoes()" value="<?php echo($submission['enc_edu_nome']);?>" readonly>
+                   <input type="text" class="form-control" id="nome_enc_edu" name="nome_enc_edu" placeholder="Nome completo do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" onchange="atualiza_tabela_autorizacoes()" value="<?php echo($submission['enc_edu_nome']);?>" readonly>
                </div>
 
                <!--outro encarregado educacao profissao-->
                <div class="col-lg-4">
                    <label for="prof_enc_edu"> Profissão:</label>
-                   <input type="text" class="form-control" id="prof_enc_edu" name="prof_enc_edu" placeholder="Profissão do encarregado de educação" value="<?php echo($submission['prof_enc_edu']);?>" readonly>
+                   <input type="text" class="form-control" id="prof_enc_edu" name="prof_enc_edu" placeholder="Profissão do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" value="<?php echo($submission['prof_enc_edu']);?>" readonly>
                </div>
            </div>
            <div class="clearfix"></div>
@@ -298,7 +298,7 @@ $db = new PdoDatabaseManager();
             <div class="form-group">
             <div class="col-lg-12">
               <label for="morada">Morada:</label>
-              <input type="text" class="form-control" id="morada" name="morada" placeholder="Morada do encarregado de educação" value="<?php  echo($submission['morada']);?>" readonly required>
+              <input type="text" class="form-control" id="morada" name="morada" placeholder="Morada do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" value="<?php  echo($submission['morada']);?>" readonly required>
             </div>
             </div>
 
@@ -308,7 +308,7 @@ $db = new PdoDatabaseManager();
             <div class="form-group">
                 <div class="col-lg-4">
                 <div id="codigo_postal_div">
-                  <label for="codigo_postal">Código postal:</label>
+                  <label for="codigo_postal"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL) ? 'CEP' : 'Código postal' ?></label>
                   <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'xxxxx-xxx':'xxxx-xxx Localidade' ?>" onclick="verifica_codigo_postal()" onchange="verifica_codigo_postal()" value="<?php echo($submission['cod_postal']);?>" readonly required>
                   <span id="erro_postal_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
                 </div>
@@ -320,7 +320,7 @@ $db = new PdoDatabaseManager();
                 <div class="col-lg-2">
                 <div id="telefone_div">
                   <label for="tel">Telefone:</label>
-                  <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Telefone do encarregado de educação" onclick="verifica_telefone()" onchange="verifica_telefone(); atualiza_tabela_autorizacoes();" value="<?php echo($submission['telefone']);?>" readonly>
+                  <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Telefone do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" onclick="verifica_telefone()" onchange="verifica_telefone(); atualiza_tabela_autorizacoes();" value="<?php echo($submission['telefone']);?>" readonly>
                   <span id="erro_telefone_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
                 </div>
                 </div>
@@ -331,7 +331,7 @@ $db = new PdoDatabaseManager();
                 <div class="col-lg-2">
                     <div id="telemovel_div">
                       <label for="telm"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?"Celular":"Telemóvel" ?>:</label>
-                      <input type="tel" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?"Celular":"Telemóvel" ?> do encarregado de educação" onclick="verifica_telemovel()" onchange="verifica_telemovel(); atualiza_tabela_autorizacoes();" value="<?php echo($submission['telemovel']);?>" readonly>
+                      <input type="tel" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?"Celular":"Telemóvel" ?> do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" onclick="verifica_telemovel()" onchange="verifica_telemovel(); atualiza_tabela_autorizacoes();" value="<?php echo($submission['telemovel']);?>" readonly>
                       <span id="erro_telemovel_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
                     </div>
                     <div class="clearfix"></div>
@@ -437,9 +437,9 @@ $db = new PdoDatabaseManager();
             <!--data de baptismo-->
             <div class="form-group">
              <div class="col-lg-2">
-             <div class="input-append date" id="data_baptismo_div" data-date="" data-date-format="dd-mm-yyyy">
+             <div class="input-append date" id="data_baptismo_div" data-date="" data-date-format="dd/mm/yyyy">
               <label for="data_baptismo">Data:</label>
-              <input class="form-control" id="data_baptismo" name="data_baptismo" size="16" type="text" onclick="verifica_data_baptismo()" onchange="verifica_data_baptismo()" placeholder="dd-mm-aaaa" value="<?php echo(date( "d-m-Y", strtotime($submission['data_baptismo'])));?>" readonly>
+              <input class="form-control" id="data_baptismo" name="data_baptismo" size="16" type="text" onclick="verifica_data_baptismo()" onchange="verifica_data_baptismo()" placeholder="dd/mm/aaaa" value="<?php echo(date( "d-m-Y", strtotime($submission['data_baptismo'])));?>" readonly>
               <span id="erro_data_baptismo_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
              </div>
             </div>
@@ -480,9 +480,9 @@ $db = new PdoDatabaseManager();
             <?php if($_REQUEST['modo']=='editar'){ echo("<!--");} ?>
             <div class="form-group">
              <div class="col-lg-2">
-             <div class="input-append date" id="data_comunhao_div" data-date="" data-date-format="dd-mm-yyyy">
+             <div class="input-append date" id="data_comunhao_div" data-date="" data-date-format="dd/mm/yyyy">
               <label for="data_comunhao">Data:</label>
-              <input class="form-control" id="data_comunhao" name="data_comunhao" size="16" type="text" onclick="verifica_data_comunhao()" onchange="verifica_data_comunhao()" placeholder="dd-mm-aaaa" value="<?php echo(date( "d-m-Y", strtotime($submission['data_comunhao'])));?>" readonly>
+              <input class="form-control" id="data_comunhao" name="data_comunhao" size="16" type="text" onclick="verifica_data_comunhao()" onchange="verifica_data_comunhao()" placeholder="dd/mm/aaaa" value="<?php echo(date( "d-m-Y", strtotime($submission['data_comunhao'])));?>" readonly>
               <span id="erro_data_comunhao_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
              </div>
             </div>
@@ -747,8 +747,19 @@ if(!isset($submission['cid']))
 <?php
 $pageUI->renderJS(); // Render the widgets' JS code
 ?>
+<?php if(Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL): ?>
+<script src="js/jQuery-Mask-Plugin-1.14.16/jquery.mask.min.js"></script>
+<script>
+$(function(){
+    $('#telefone').mask('(00) 0000-0000');
+    $('#telemovel').mask('(00) 0 0000-0000');
+    $('#codigo_postal').mask('00000-000');
+});
+</script>
+<?php endif; ?>
 <script src="js/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js"></script>
 <script src="js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.pt.min.js"></script>
+<script src="js/form-validation-utils.js"></script>
 
 <script>
 function validar()
@@ -780,7 +791,7 @@ function validar()
 	
 	if(!data_valida(data_nasc))
         {
-        	alert("A data de nascimento que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
+        	alert("A data de nascimento que introduziu é inválida. Deve ser da forma dd/mm/aaaa.");
         	return false;
         }
         
@@ -825,7 +836,7 @@ function validar()
         
         if( baptizado && !data_valida(data_baptismo))
         {
-            alert("A data de batismo que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
+            alert("A data de batismo que introduziu é inválida. Deve ser da forma dd/mm/aaaa.");
 		return false; 
         }
         
@@ -843,7 +854,7 @@ function validar()
         
         if( comunhao && !data_valida(data_comunhao))
         {
-        	alert("A data da primeira comunhão que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
+        	alert("A data da primeira comunhão que introduziu é inválida. Deve ser da forma dd/mm/aaaa.");
 		return false; 
         }
         <?php endif ?>
@@ -851,14 +862,14 @@ function validar()
         
         if( (enc_edu_pai && (pai==="" || pai===undefined)) || (enc_edu_mae && (mae==="" || mae===undefined)) )
 	{
-		alert("Deve especificar o nome e profissão do encarregado de educação.");
+                alert("Deve especificar o nome e profissão do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>.");
 		return false; 
 	}
         
         
 	if( enc_edu_outro && ((enc_edu_parentesco==="" || enc_edu_parentesco===undefined) || (enc_edu_nome==="" || enc_edu_nome===undefined) || (enc_edu_prof==="" || enc_edu_prof===undefined)) )
 	{
-		alert("Deve especificar o grau de parentesco, nome e profissão do encarregado de educação.");
+                alert("Deve especificar o grau de parentesco, nome e profissão do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>.");
 		return false; 
 	}
         
@@ -897,35 +908,25 @@ function telefone_valido(num, locale)
 {
     var phoneno = '';
 
-    if(locale==="PT")
+    if(locale === "PT")
         phoneno = /^(\+\d{1,}[-\s]{0,1})?\d{9}$/;
-    else if(locale==="BR")
-        phoneno = /^(\+\d{1,}[-\s]{0,1})?\s*\(?(\d{2}|\d{0})\)?[-. ]?(\d{5}|\d{4})[-. ]?(\d{4})[-. ]?\s*$/;
+    else if(locale === "BR")
+        phoneno = /^(\+\d{1,}[-\s]{0,1})?\s*\(?(\d{2})\)?[-. ]?(\d{4,5})[-. ]?(\d{4})[-. ]?\s*$/;
 
-    return num.match(phoneno);
+    return phoneno.test(num);
 }
-
 
 function codigo_postal_valido(codigo, locale)
 {
-    var pattern="";
-    if(locale==="PT")
+    var pattern = "";
+    if(locale === "PT")
         pattern = /^[0-9]{4}\-[0-9]{3}\s\S+/;
-    else if(locale==="BR")
-        pattern = /^[0-9]{5}\-[0-9]{3}\s\S+/;
-	
-	return (pattern.test(codigo));
-
+    else if(locale === "BR")
+        pattern = /^[0-9]{5}\-[0-9]{3}$/;
+    
+    return pattern.test(codigo);
 }
 
-
-function data_valida(data)
-{
-	var pattern = /^[0-9]{1,2}\-[0-9]{1,2}\-[0-9]{4}$/;
-	
-	return (pattern.test(data));
-
-}
 </script>
 
 
@@ -1091,7 +1092,7 @@ $(document).ready(function(){
         var autorizacao_tel_enc_edu = document.getElementById('autorizacao_tel_enc_edu');
 
         autorizacao_nome_enc_edu.innerText = enc_edu_nome;
-        autorizacao_parentesco_enc_edu.innerText = enc_edu_parentesco + " (Encarregado de educação)";
+        autorizacao_parentesco_enc_edu.innerText = enc_edu_parentesco + " (" + <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'\'Responsável legal\'':'\'Encarregado de educação\'' ?> + ")";
         autorizacao_tel_enc_edu.innerText = enc_edu_tel;
     }
 </script>

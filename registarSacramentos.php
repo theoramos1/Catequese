@@ -420,8 +420,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_REQUEST['op']=="guardar" )
  	<div class="form-group">
 	<div class="col-xs-4">
 	 <label for="turma">Data: </label>
-	 <div class="input-append date" id="data_sacramento_div" data-date="" data-date-format="dd-mm-yyyy">
-	 	<input class="form-control" id="data_sacramento" name="data_sacramento" value="<?php if($data_sacramento!='') echo($data_sacramento); ?>" size="16" type="text" placeholder="dd-mm-aaaa" style="cursor: auto;" onclick="verifica_data_sacramento()" onchange="verifica_data_sacramento()" required>
+	 <div class="input-append date" id="data_sacramento_div" data-date="" data-date-format="dd/mm/yyyy">
+	 	<input class="form-control" id="data_sacramento" name="data_sacramento" value="<?php if($data_sacramento!='') echo($data_sacramento); ?>" size="16" type="text" placeholder="dd/mm/aaaa" style="cursor: auto;" onclick="verifica_data_sacramento()" onchange="verifica_data_sacramento()" required>
 	 	<span id="erro_data_sacramento_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
 	 </div>
     </div>
@@ -601,6 +601,7 @@ $pageUI->renderJS(); // Render the widgets' JS code
 <script src="js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.pt.min.js"></script>
 <script src="js/rowlink.js"></script>
 <script src="js/bootstrap-switch.js"></script>
+<script src="js/form-validation-utils.js"></script>
 
 <script>
 	
@@ -698,13 +699,6 @@ $('input[class="checkbox-geral"]').on('switchChange.bootstrapSwitch', function(e
 
 <script>
 
-function data_valida(data)
-{
-	var pattern = /^[0-9]{1,2}\-[0-9]{1,2}\-[0-9]{4}$/;
-	
-	return (pattern.test(data));
-
-}
 
 function verifica_data_sacramento()
 {
@@ -740,7 +734,7 @@ function guardar()
 
 <script>
 	$('#data_sacramento').datepicker({
-        format: "dd-mm-yyyy",
+        format: "dd/mm/yyyy",
         defaultViewDate: { year: <?= date("Y") ?>, month: 1, day: 1 },
         startView: 2,
         language: "pt",
