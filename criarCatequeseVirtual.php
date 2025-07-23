@@ -342,9 +342,9 @@ $menu->renderHTML();
     <div class="form-group">
     <div class="col-xs-2" id="data_sessao_group">
        <label for="data_sessao">Data da sessão:</label>
-       <div class="input-group date" id="data_nasc_div" data-date="" data-date-format="dd-mm-yyyy">
+       <div class="input-group date" id="data_nasc_div" data-date="" data-date-format="dd/mm/yyyy">
          <input class="form-control" id="data_sessao" name="data_sessao" size="16" type="text" onclick="verifica_data()" onchange="verifica_data(); this.form.submit();" \
-                placeholder="dd-mm-aaaa" value="<?php echo($data_sessao); ?>" readonly>
+                placeholder="dd/mm/aaaa" value="<?php echo($data_sessao); ?>" readonly>
          <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
      </div>
     </div>
@@ -697,7 +697,7 @@ var highlighted_dates = [
 
 $(function(){
    $('#data_sessao_group .input-group.date').datepicker({
-       format: "dd-mm-yyyy",
+       format: "dd/mm/yyyy",
        language: "pt",
        todayBtn: true,
        /*daysOfWeekDisabled: "0,1,2,3,4,5",
@@ -751,7 +751,7 @@ function validar()
 	
 	if(!data_valida(data_nasc) && data_nasc!=="" && data_nasc!==undefined)
         {
-        	alert("A data de nascimento que introduziu é inválida. Deve ser da forma dd-mm-aaaa.");
+        	alert("A data de nascimento que introduziu é inválida. Deve ser da forma dd/mm/aaaa.");
         	return false;
         }
         

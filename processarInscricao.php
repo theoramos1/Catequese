@@ -299,7 +299,7 @@ $menu->renderHTML();
 	  	
 	  	if(!DataValidationUtils::validateDate($data_nasc))
 	  	{
-	  		echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> A data de nascimento que introduziu é inválida. Deve ser da forma dd-mm-aaaa.</div>");
+	  		echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> A data de nascimento que introduziu é inválida. Deve ser da forma dd/mm/aaaa.</div>");
 	  		var_dump($data_nasc);
 	  		$inputs_invalidos = true;
 	  	}
@@ -330,7 +330,7 @@ $menu->renderHTML();
 	  	
 	  	if($baptizado && !DataValidationUtils::validateDate($data_baptismo))
 	  	{
-                        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> A data de batismo que introduziu é inválida. Deve ser da forma dd-mm-aaaa.</div>");
+                        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> A data de batismo que introduziu é inválida. Deve ser da forma dd/mm/aaaa.</div>");
 	  		$inputs_invalidos = true;	  	
 	  	}
 	  	
@@ -342,7 +342,7 @@ $menu->renderHTML();
 	  	
 	  	if($comunhao && !DataValidationUtils::validateDate($data_comunhao))
 	  	{
-	  		echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> A data de primeira comunhão que introduziu é inválida. Deve ser da forma dd-mm-aaaa.</div>");
+	  		echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> A data de primeira comunhão que introduziu é inválida. Deve ser da forma dd/mm/aaaa.</div>");
 	  		$inputs_invalidos = true;	  	
 	  	}
 	  	
