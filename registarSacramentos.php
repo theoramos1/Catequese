@@ -601,6 +601,7 @@ $pageUI->renderJS(); // Render the widgets' JS code
 <script src="js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.pt.min.js"></script>
 <script src="js/rowlink.js"></script>
 <script src="js/bootstrap-switch.js"></script>
+<script src="js/form-validation-utils.js"></script>
 
 <script>
 	
@@ -698,13 +699,6 @@ $('input[class="checkbox-geral"]').on('switchChange.bootstrapSwitch', function(e
 
 <script>
 
-function data_valida(data)
-{
-	var pattern = /^[0-9]{1,2}\-[0-9]{1,2}\-[0-9]{4}$/;
-	
-	return (pattern.test(data));
-
-}
 
 function verifica_data_sacramento()
 {

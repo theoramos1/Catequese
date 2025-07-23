@@ -506,6 +506,7 @@ quill_render_js_scripts();
 <script src="js/quill-1.3.6/quill.min.js"></script>
 <script src="js/quill-image-resize-module/image-resize.min.js"></script>
 <script src="js/bootoast-1.0.1/bootoast.js"></script>
+<script src="js/form-validation-utils.js"></script>
 
 <script>
 
@@ -716,13 +717,6 @@ $(function(){
 
 
 <script>
-function data_valida(data)
-{
-	var pattern = /^[0-9]{1,2}\-[0-9]{1,2}\-[0-9]{4}$/;
-	
-	return (pattern.test(data));
-
-}
 
 
 function verifica_data()
