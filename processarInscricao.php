@@ -126,38 +126,38 @@ $menu->renderHTML();
 	// Carregamento das variáveis através do metodo POST
 	if ($_SERVER["REQUEST_METHOD"] == "POST")
 	{
-	  	$nome = Utils::sanitizeInput($_POST['nome']);
-	  	$data_nasc = Utils::sanitizeInput($_POST['data_nasc']);
-	  	$local_nasc = Utils::sanitizeInput($_POST['localidade']);
-	  	$num_irmaos = Utils::sanitizeInput($_POST['num_irmaos']);
-	  	$morada = Utils::sanitizeInput($_POST['morada']);
-	  	$codigo_postal = Utils::sanitizeInput($_POST['codigo_postal']);
-	  	$telefone = Utils::sanitizeInput($_POST['telefone']);
-	  	$telemovel = Utils::sanitizeInput($_POST['telemovel']);
-	  	$escuteiro = Utils::sanitizeInput($_POST['escuteiro']);
-	  	$baptizado = Utils::sanitizeInput($_POST['baptizado']);
-	  	$paroquia_baptismo = Utils::sanitizeInput($_POST['paroquia_baptismo']);
-	  	$data_baptismo = Utils::sanitizeInput($_POST['data_baptismo']);
-	  	$comunhao = Utils::sanitizeInput($_POST['comunhao']);
-	  	$paroquia_comunhao = Utils::sanitizeInput($_POST['paroquia_comunhao']);
-	  	$data_comunhao = Utils::sanitizeInput($_POST['data_comunhao']);
-	  	$enc_edu = Utils::sanitizeInput($_POST['enc_edu']);
-	  	$outro_enc_edu_quem = Utils::sanitizeInput($_POST['outro_enc_edu_quem']);
-	  	$outro_enc_edu_nome = Utils::sanitizeInput($_POST['nome_enc_edu']);
-	  	$outro_enc_edu_prof = Utils::sanitizeInput($_POST['prof_enc_edu']);
-	  	$pai = Utils::sanitizeInput($_POST['pai']);
-	  	$prof_pai = Utils::sanitizeInput($_POST['prof_pai']);
-	  	$mae = Utils::sanitizeInput($_POST['mae']);
-	  	$prof_mae = Utils::sanitizeInput($_POST['prof_mae']);
-	  	$casados = Utils::sanitizeInput($_POST['casados']);
-	  	$casados_como = Utils::sanitizeInput($_POST['casados_como']);
-	  	$email = Utils::sanitizeInput($_POST['email']);
-	  	$rgpd_ee = Utils::sanitizeInput($_POST['consentimento_rgpd']);
+                $nome = Utils::sanitizeInput($_POST['nome'] ?? '');
+                $data_nasc = Utils::sanitizeInput($_POST['data_nasc'] ?? '');
+                $local_nasc = Utils::sanitizeInput($_POST['localidade'] ?? '');
+                $num_irmaos = Utils::sanitizeInput($_POST['num_irmaos'] ?? '');
+                $morada = Utils::sanitizeInput($_POST['morada'] ?? '');
+                $codigo_postal = Utils::sanitizeInput($_POST['codigo_postal'] ?? '');
+                $telefone = Utils::sanitizeInput($_POST['telefone'] ?? '');
+                $telemovel = Utils::sanitizeInput($_POST['telemovel'] ?? '');
+                $escuteiro = Utils::sanitizeInput($_POST['escuteiro'] ?? '');
+                $baptizado = Utils::sanitizeInput($_POST['baptizado'] ?? '');
+                $paroquia_baptismo = Utils::sanitizeInput($_POST['paroquia_baptismo'] ?? '');
+                $data_baptismo = Utils::sanitizeInput($_POST['data_baptismo'] ?? '');
+                $comunhao = Utils::sanitizeInput($_POST['comunhao'] ?? '');
+                $paroquia_comunhao = Utils::sanitizeInput($_POST['paroquia_comunhao'] ?? '');
+                $data_comunhao = Utils::sanitizeInput($_POST['data_comunhao'] ?? '');
+                $enc_edu = Utils::sanitizeInput($_POST['enc_edu'] ?? '');
+                $outro_enc_edu_quem = Utils::sanitizeInput($_POST['outro_enc_edu_quem'] ?? '');
+                $outro_enc_edu_nome = Utils::sanitizeInput($_POST['nome_enc_edu'] ?? '');
+                $outro_enc_edu_prof = Utils::sanitizeInput($_POST['prof_enc_edu'] ?? '');
+                $pai = Utils::sanitizeInput($_POST['pai'] ?? '');
+                $prof_pai = Utils::sanitizeInput($_POST['prof_pai'] ?? '');
+                $mae = Utils::sanitizeInput($_POST['mae'] ?? '');
+                $prof_mae = Utils::sanitizeInput($_POST['prof_mae'] ?? '');
+                $casados = Utils::sanitizeInput($_POST['casados'] ?? '');
+                $casados_como = Utils::sanitizeInput($_POST['casados_como'] ?? '');
+                $email = Utils::sanitizeInput($_POST['email'] ?? '');
+                $rgpd_ee = Utils::sanitizeInput($_POST['consentimento_rgpd'] ?? '');
 
-        $quer_inscrever = Utils::sanitizeInput($_POST['quer_inscrever']);
-        $catecismo = Utils::sanitizeInput($_POST['catecismo']);
-        $turma = Utils::sanitizeInput($_POST['turma']);
-        $pago = Utils::sanitizeInput($_POST['pago']);
+        $quer_inscrever = Utils::sanitizeInput($_POST['quer_inscrever'] ?? '');
+        $catecismo = Utils::sanitizeInput($_POST['catecismo'] ?? '');
+        $turma = Utils::sanitizeInput($_POST['turma'] ?? '');
+        $pago = Utils::sanitizeInput($_POST['pago'] ?? '');
 
         $foto_data = null;
         $foto_cam = null;
@@ -167,37 +167,37 @@ $menu->renderHTML();
         $observacoes = null;
         if($_REQUEST['modo']=="aprovar")
         {
-            $foto_cam = Utils::sanitizeInput($_POST['foto_file']);         // Caminho do ficheiro da foto, ja registada
-            $autorizacao_fotos = Utils::sanitizeInput($_POST['autorizacao_fotos']);
-            $observacoes = Utils::escapeSingleQuotes(Utils::escapeDoubleQuotes(Utils::removeLineManipulators(Utils::sanitizeInput(($_POST['observacoes'])))));
+            $foto_cam = Utils::sanitizeInput($_POST['foto_file'] ?? '');         // Caminho do ficheiro da foto, ja registada
+            $autorizacao_fotos = Utils::sanitizeInput($_POST['autorizacao_fotos'] ?? '');
+            $observacoes = Utils::escapeSingleQuotes(Utils::escapeDoubleQuotes(Utils::removeLineManipulators(Utils::sanitizeInput($_POST['observacoes'] ?? ''))));
 
             //Autorizacao saida menores
-            $autoriza_saida = Utils::sanitizeInput($_POST['autorizacao_saida']);
+            $autoriza_saida = Utils::sanitizeInput($_POST['autorizacao_saida'] ?? '');
             $autorizacoes_saida_menores = array();
-            $table_lines = count($_POST['autorizacao_nome']);
+            $table_lines = count($_POST['autorizacao_nome'] ?? []);
             for($i = 0; $i < $table_lines; $i = $i + 1)
             {
                 $familiar = new stdClass();
-                $familiar->nome = Utils::sanitizeInput($_POST['autorizacao_nome'][$i]);
-                $familiar->parentesco = Utils::sanitizeInput($_POST['autorizacao_parentesco'][$i]);
-                $familiar->telefone = Utils::sanitizeInput($_POST['autorizacao_telefone'][$i]);
+                $familiar->nome = Utils::sanitizeInput($_POST['autorizacao_nome'][$i] ?? '');
+                $familiar->parentesco = Utils::sanitizeInput($_POST['autorizacao_parentesco'][$i] ?? '');
+                $familiar->telefone = Utils::sanitizeInput($_POST['autorizacao_telefone'][$i] ?? '');
                 array_push($autorizacoes_saida_menores, $familiar);
             }
 
-            $iid = intval(Utils::sanitizeInput($_POST['iid']));
+            $iid = intval(Utils::sanitizeInput($_POST['iid'] ?? ''));
         }
         else
         {
             try
             {
-                $foto_data = Utils::sanitizeInput($_POST['foto_data']);                             // Foto codificada em base64
+                $foto_data = Utils::sanitizeInput($_POST['foto_data'] ?? '');                             // Foto codificada em base64
                 $foto_cam = UserData::saveUploadedCatechumenPhoto($foto_data);                      // Devolve o nome do ficheiro onde a foto foi guardada (se existir)
             }
             catch(Exception $e)
             {
                 echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong>" . $e->getMessage() . "</div>");
             }
-            $autorizacao_fotos = Utils::sanitizeInput($_POST['autorizacao']);
+            $autorizacao_fotos = Utils::sanitizeInput($_POST['autorizacao'] ?? '');
         }
 
 
