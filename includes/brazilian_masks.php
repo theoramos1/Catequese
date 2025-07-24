@@ -1,4 +1,8 @@
 <?php
+
+// Import classes used to check the current locale
+use catechesis\Configurator;
+use core\domain\Locale;
 // Include jQuery mask plugin and apply default Brazilian input masks when locale is BR
 
 // Optionally specify $maskPathPrefix before including this file to adjust the
