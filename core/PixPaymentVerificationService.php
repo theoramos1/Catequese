@@ -16,8 +16,8 @@ class PixPaymentVerificationService
 
     public function __construct(?string $endpoint = null, ?string $token = null, ?int $timeout = null)
     {
-        $this->endpoint = $endpoint ?? Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_API_URL);
-        $this->token     = $token ?? Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_API_TOKEN);
+        $this->endpoint = ($endpoint ?? Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_API_URL)) ?? '';
+        $this->token     = ($token ?? Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_API_TOKEN)) ?? '';
         if ($timeout === null)
             $timeout = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_API_TIMEOUT);
         $this->timeout   = $timeout ?? 10;
