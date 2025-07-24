@@ -8,7 +8,7 @@ use catechesis\Configurator;
  * Service to verify Pix payments for an enrolment using an external API.
  * The API is expected to return a JSON payload with fields 'paid' and 'amount'.
  */
-class PixPaymentVerificationService
+class PaymentVerificationService
 {
     private string $endpoint;
     private string $token;
