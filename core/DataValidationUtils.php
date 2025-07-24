@@ -52,7 +52,7 @@ class DataValidationUtils
         }
         else if($locale==Locale::BRASIL)
         {
-            $mobilePattern = '/^\(\d{2}\) 9 \d{4}-\d{4}$/';
+            $mobilePattern = '/^\(\d{2}\) 9\d{4}-\d{4}$/';
             $landlinePattern = '/^\(\d{2}\) \d{4}-\d{4}$/';
             $antipattern1 = "0000-0000";
             $antipattern2 = "1111-1111";
