@@ -10,7 +10,7 @@ class DataValidationUtilsTest extends TestCase
 {
     public function testValidatePhoneNumberValidMobile(): void
     {
-        $this->assertTrue(DataValidationUtils::validatePhoneNumber('(11) 9 1234-5678', Locale::BRASIL));
+        $this->assertTrue(DataValidationUtils::validatePhoneNumber('(11) 91234-5678', Locale::BRASIL));
     }
 
     public function testValidatePhoneNumberValidLandline(): void
