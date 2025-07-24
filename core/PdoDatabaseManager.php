@@ -5441,10 +5441,10 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
             if ($stm->execute())
             {
                 $result = $stm->fetch();
-                if(isset($result))
+                if (is_array($result) && isset($result['valor'])) {
                     return $result['valor'];
-                else
-                    return null;
+                }
+                return null;
             }
             else
                 throw new Exception("Falha ao obter valor de configuração.");
