@@ -309,7 +309,7 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
 {
     $locale = Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE);
     if($locale == Locale::BRASIL)
-        $msg = "O CEP que introduziu é inválido. Deve ser da forma '99999-999'.";
+        $msg = "O CEP que introduziu é inválido. Deve ser da forma '00000-000'.";
     else
         $msg = "O código postal que introduziu é inválido. Deve ser da forma 'xxxx-xxx Localidade'.";
 
@@ -321,13 +321,13 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
 	  	
 	  	if($telefone!="" && !DataValidationUtils::validatePhoneNumber($telefone, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))
 	  	{
-	  		echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O número de telefone que introduziu é inválido. Deve estar no formato '(99) 9999-9999'.</div>");
+                    echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O número de telefone que introduziu é inválido. Deve estar no formato '(99) 3333-4444'.</div>");
 	  		$inputs_invalidos = true;	  	
 	  	}
 	  	
 	  	if($telemovel!="" && !DataValidationUtils::validatePhoneNumber($telemovel, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))
 	  	{
-	  		echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O número de celular que introduziu é inválido. Deve estar no formato '(99) 9 9999-9999'.</div>");
+                    echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O número de celular que introduziu é inválido. Deve estar no formato '(99) 91234-5678'.</div>");
 	  		$inputs_invalidos = true;	  	
 	  	}
 	  	

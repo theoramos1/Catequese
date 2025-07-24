@@ -191,7 +191,7 @@ $menu->renderHTML();
             $codigo_postal_list_attr = ' list="codigos_postais"';
         }
         $placeholder = (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)
-            ? 'Ex: 78015-085'
+            ? '00000-000'
             : 'xxxx-xxx Localidade';
       ?>
       <input type="text" class="form-control" id="codigo_postal" name="codigo_postal"
@@ -213,7 +213,7 @@ $menu->renderHTML();
     <div class="col-xs-2">
     <div id="telefone_div">
       <label for="tel">Telefone:</label>
-      <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (65) 3322-7788':'Telefone do responsável legal' ?>" onclick="verifica_telefone()" onchange="verifica_telefone()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telefone'] . '');} else {echo('');} ?>">
+      <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (65) 3333-4444':'Telefone do responsável legal' ?>" onclick="verifica_telefone()" onchange="verifica_telefone()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telefone'] . '');} else {echo('');} ?>">
       <span id="erro_telefone_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
     </div>
     </div>
@@ -224,7 +224,7 @@ $menu->renderHTML();
     <div class="col-xs-2">
     <div id="telemovel_div">
       <label for="telm"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?"Celular":"Telemóvel" ?>:</label>
-      <input type="tel" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (65) 99800-3774':'Telemóvel do responsável legal' ?>" onclick="verifica_telemovel()" onchange="verifica_telemovel()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telemovel'] . '');} else {echo('');} ?>">
+      <input type="tel" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (65) 91234-5678':'Telemóvel do responsável legal' ?>" onclick="verifica_telemovel()" onchange="verifica_telemovel()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telemovel'] . '');} else {echo('');} ?>">
       <span id="erro_telemovel_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
     </div>
     <div class="clearfix"></div>
@@ -729,7 +729,7 @@ function validar()
         
     if(!codigo_postal_valido(cod_postal, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
     {
-        alert("<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL) ? 'O CEP que introduziu é inválido. Deve ser da forma \u002799999-999\u0027.' : 'O código postal que introduziu é inválido. Deve ser da forma \u0027xxxx-xxx Localidade\u0027.' ?>");
+        alert("<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL) ? 'O CEP que introduziu é inválido. Deve ser da forma \u002700000-000\u0027.' : 'O código postal que introduziu é inválido. Deve ser da forma \u0027xxxx-xxx Localidade\u0027.' ?>");
         return false;
     }
         
@@ -740,12 +740,12 @@ function validar()
     }
     else if(telefone!="" && telefone!=undefined && !telefone_valido(telefone, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
     {
-        alert("O número de telefone que introduziu é inválido. Deve estar no formato '(99) 9999-9999'.");
+        alert("O número de telefone que introduziu é inválido. Deve estar no formato '(99) 3333-4444'.");
         return false; 
     }
     else if(telemovel!="" && telemovel!=undefined && !telefone_valido(telemovel, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
     {
-        alert("O número de <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'celular':'telemóvel' ?> que introduziu é inválido. Deve estar no formato '(99) 9 9999-9999'.");
+        alert("O número de <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'celular':'telemóvel' ?> que introduziu é inválido. Deve estar no formato '(99) 91234-5678'.");
         return false;
     }
 
