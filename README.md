@@ -58,6 +58,21 @@ Call `PixQRCode::generatePixQRCode($amount)` to generate the QR image for the de
 
 Payment confirmation can optionally be automated with `PixPaymentVerificationService`, which expects the provider endpoint, token and timeout to be set via `PIX_PROVIDER_URL`, `PIX_PROVIDER_TOKEN` and `PIX_PROVIDER_TIMEOUT`.
 
+## Localization
+
+Administrators can select the country used for address and phone formats in
+**Configurações** → **País**.  The configuration key for this setting is
+`LOCALIZATION_CODE` and it accepts the values `PT` (Portugal) and `BR`
+(Brazil).  The choice affects several labels and validation rules across the
+application.
+
+If changing the value through the interface is not possible, update it directly
+in the database:
+
+```sql
+UPDATE configuracoes SET valor='PT' WHERE chave='LOCALIZATION_CODE';
+```
+
 ## Updating and database migrations
 
 The `updater/` directory contains a web based assistant that downloads new versions and executes SQL scripts found under `updater/sql_scripts`. To run the updater navigate to `updater/index.php` in your browser (you must be logged in as an administrator) or execute it from the command line with `php updater/index.php`.
