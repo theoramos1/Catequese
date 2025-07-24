@@ -5,11 +5,10 @@ use Exception;
 use catechesis\Configurator;
 
 /**
- * Service to check whether a multibanco reference was paid using an external
- * payment provider API. This implementation expects the API to return a JSON
- * payload with fields 'paid' and 'amount'.
+ * Service to verify Pix payments for an enrolment using an external API.
+ * The API is expected to return a JSON payload with fields 'paid' and 'amount'.
  */
-class PaymentVerificationService
+class PixPaymentVerificationService
 {
     private string $endpoint;
     private string $token;
@@ -17,30 +16,42 @@ class PaymentVerificationService
 
     public function __construct(?string $endpoint = null, ?string $token = null, ?int $timeout = null)
     {
-        $this->endpoint = ($endpoint ?? Configurator::getConfigurationValueOrDefault(Configurator::KEY_PAYMENT_PROVIDER_URL)) ?? '';
-        $this->token     = ($token ?? Configurator::getConfigurationValueOrDefault(Configurator::KEY_PAYMENT_PROVIDER_TOKEN)) ?? '';
+        $this->endpoint = ($endpoint ?? Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_API_URL)) ?? '';
+        $this->token     = ($token ?? Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_API_TOKEN)) ?? '';
         if ($timeout === null)
-            $timeout = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PAYMENT_PROVIDER_TIMEOUT);
+            $timeout = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_API_TIMEOUT);
         $this->timeout   = $timeout ?? 10;
     }
 
     /**
-     * Queries the provider and checks if the reference has been paid.
+     * Queries the Pix provider and checks if payment was received.
+     * Either $enrollmentId or $pixKey must be provided.
      *
-     * @param int    $entity   Payment entity number
-     * @param string $reference Payment reference number
-     * @param float  $amount    Expected amount
+     * @param int|null    $enrollmentId  Enrollment identifier
+     * @param string|null $pixKey        Pix key
+     * @param float       $amount        Expected amount
      *
-     * @return bool True if the provider reports the reference was paid with at least the given amount.
+     * @return bool True if the provider reports payment with at least the given amount.
      * @throws Exception When the provider is unreachable or returns an invalid response.
      */
-    public function verifyPayment(int $entity, string $reference, float $amount): bool
+    public function verifyPayment(?int $enrollmentId, ?string $pixKey, float $amount): bool
     {
         if (!$this->endpoint || !$this->token) {
-            throw new Exception('Payment provider not configured.');
+            throw new Exception('Pix provider not configured.');
+        }
+        if ($enrollmentId === null && $pixKey === null) {
+            throw new Exception('Enrollment ID or Pix key must be provided.');
         }
 
-        $query = http_build_query(['entity' => $entity, 'reference' => $reference]);
+        $params = [];
+        if ($enrollmentId !== null) {
+            $params['enrollment_id'] = $enrollmentId;
+        }
+        if ($pixKey !== null) {
+            $params['pix_key'] = $pixKey;
+        }
+
+        $query = http_build_query($params);
         $url   = rtrim($this->endpoint, '/') . '/?' . $query;
 
         $ch = curl_init($url);
@@ -59,20 +70,20 @@ class PaymentVerificationService
         if ($response === false) {
             $error = curl_error($ch);
             curl_close($ch);
-            error_log('Payment provider connection error: ' . $error);
-            throw new Exception('Failed to connect to payment provider.');
+            error_log('Pix provider connection error: ' . $error);
+            throw new Exception('Failed to connect to Pix provider.');
         }
         curl_close($ch);
 
         if ($status < 200 || $status >= 300) {
-            error_log("Payment provider HTTP error ({$status}): {$response}");
-            throw new Exception('Payment provider returned an error.');
+            error_log("Pix provider HTTP error ({$status}): {$response}");
+            throw new Exception('Pix provider returned an error.');
         }
 
         $data = json_decode($response, true);
         if (!is_array($data) || !isset($data['paid']) || !isset($data['amount'])) {
-            error_log('Payment provider invalid response: ' . $response);
-            throw new Exception('Invalid response from payment provider.');
+            error_log('Pix provider invalid response: ' . $response);
+            throw new Exception('Invalid response from Pix provider.');
         }
 
         return ($data['paid'] === true || $data['paid'] === 1 || $data['paid'] === '1')
