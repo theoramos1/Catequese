@@ -11,14 +11,14 @@ use catechesis\Configurator;
  */
 class PaymentVerificationService
 {
-    private string $endpoint;
-    private string $token;
+    private ?string $endpoint;
+    private ?string $token;
     private int $timeout;
 
     public function __construct(?string $endpoint = null, ?string $token = null, ?int $timeout = null)
     {
-        $this->endpoint = $endpoint ?? Configurator::getConfigurationValueOrDefault(Configurator::KEY_PAYMENT_PROVIDER_URL);
-        $this->token     = $token ?? Configurator::getConfigurationValueOrDefault(Configurator::KEY_PAYMENT_PROVIDER_TOKEN);
+        $this->endpoint = $endpoint ?? Configurator::getConfigurationValueOrDefault(Configurator::KEY_PAYMENT_PROVIDER_URL) ?? '';
+        $this->token     = $token ?? Configurator::getConfigurationValueOrDefault(Configurator::KEY_PAYMENT_PROVIDER_TOKEN) ?? '';
         if ($timeout === null)
             $timeout = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PAYMENT_PROVIDER_TIMEOUT);
         $this->timeout   = $timeout ?? 10;
