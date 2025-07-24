@@ -760,12 +760,12 @@ HTML_CODE
 <?php
 $pageUI->renderJS(); // Render the widgets' JS code
 ?>
+<?php
+    include __DIR__ . '/includes/brazilian_masks.php';
+?>
 <?php if(Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL): ?>
-<script src="js/jQuery-Mask-Plugin-1.14.16/jquery.mask.min.js"></script>
-<script src="js/form-mask-utils.js"></script>
 <script>
 $(function(){
-    applyBrazilianMasks();
     $('#telemovel').mask('(00) 9 0000-0000');
 });
 </script>

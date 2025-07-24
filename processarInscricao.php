@@ -301,8 +301,7 @@ $menu->renderHTML();
 	  	if(!DataValidationUtils::validateDate($data_nasc))
 	  	{
 	  		echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> A data de nascimento que introduziu é inválida. Deve ser da forma dd/mm/aaaa.</div>");
-	  		var_dump($data_nasc);
-	  		$inputs_invalidos = true;
+                        $inputs_invalidos = true;
 	  	}
 	  	
 	  		  	
@@ -315,7 +314,6 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
         $msg = "O código postal que introduziu é inválido. Deve ser da forma 'xxxx-xxx Localidade'.";
 
     echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> $msg</div>");
-    var_dump($codigo_postal);
     $inputs_invalidos = true;
 }
 

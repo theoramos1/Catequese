@@ -754,15 +754,9 @@ if(!isset($submission['cid']))
 <?php
 $pageUI->renderJS(); // Render the widgets' JS code
 ?>
-<?php if(Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL): ?>
-<script src="js/jQuery-Mask-Plugin-1.14.16/jquery.mask.min.js"></script>
-<script src="js/form-mask-utils.js"></script>
-<script>
-$(function(){
-    applyBrazilianMasks();
-});
-</script>
-<?php endif; ?>
+<?php
+    include __DIR__ . '/includes/brazilian_masks.php';
+?>
 <script src="js/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js"></script>
 <script src="js/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.pt.min.js"></script>
 <script src="js/form-validation-utils.js"></script>
