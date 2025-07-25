@@ -7,15 +7,11 @@ require_once(__DIR__ . '/core/Utils.php');
 require_once(__DIR__ . "/core/PdoDatabaseManager.php");
 require_once(__DIR__ . "/gui/widgets/WidgetManager.php");
 require_once(__DIR__ . '/gui/widgets/Navbar/MainNavbar.php');
-require_once(__DIR__ . '/core/Configurator.php');
-require_once(__DIR__ . '/core/domain/Locale.php');
 
 use catechesis\Authenticator;
 use catechesis\PdoDatabaseManager;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\MainNavbar;
-use catechesis\Configurator;
-use core\domain\Locale;
 use catechesis\gui\MainNavbar\MENU_OPTION;
 
 
