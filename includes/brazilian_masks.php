@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../core/Configurator.php';
+require_once __DIR__ . '/../core/domain/Locale.php';
 
 // Import classes used to check the current locale
 use catechesis\Configurator;
