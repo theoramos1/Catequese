@@ -5879,6 +5879,39 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
     }
 
+    /**
+     * Returns the payment status of all enrollments in a catechetical year.
+     * Each entry contains cid, nome, ano_catecismo, turma, pago and total_pago.
+     * @param int $catecheticalYear
+     * @return array
+     * @throws Exception
+     */
+    public function getEnrollmentPaymentStatusList(int $catecheticalYear)
+    {
+        if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
+            throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
+
+        try
+        {
+            $sql = "SELECT i.cid, c.nome, i.ano_catecismo, i.turma, i.pago, COALESCE(SUM(p.valor),0) AS total_pago " .
+                   "FROM inscreve i JOIN catequizando c ON c.cid=i.cid " .
+                   "LEFT JOIN pagamentos p ON p.cid=i.cid " .
+                   "WHERE i.ano_lectivo=:ano GROUP BY i.cid, c.nome, i.ano_catecismo, i.turma, i.pago ORDER BY c.nome;";
+
+            $stm = $this->_connection->prepare($sql);
+            $stm->bindParam(':ano', $catecheticalYear, PDO::PARAM_INT);
+
+            if($stm->execute())
+                return $stm->fetchAll();
+            else
+                throw new Exception('Falha ao obter lista de pagamentos.');
+        }
+        catch(PDOException $e)
+        {
+            throw new Exception('Falha interna ao tentar aceder à base de dados.');
+        }
+    }
+
 
     
     
