@@ -12,19 +12,21 @@ function telefone_valido(num, locale)
     }
     else if(locale === "BR")
     {
-        const mobile = /^\d{2}9\d{8}$/;
-        const landline = /^\d{2}\d{8}$/;
-
-        pattern = mobile;
-        var result = mobile.test(digits);
-        if(!result)
+        // Accept either 11 digits for mobiles or 10 digits for landlines.
+        // Mobile numbers must have the third digit equal to 9, while
+        // landlines cannot start with 9 after the DDD.
+        var result = false;
+        if(digits.length === 11 && digits.charAt(2) === '9')
         {
-            pattern = landline;
-            result = landline.test(digits);
+            result = true;
+        }
+        else if(digits.length === 10 && digits.charAt(2) !== '9')
+        {
+            result = true;
         }
 
         if(typeof window !== 'undefined' && window.console)
-            console.log('telefone_valido -> locale:', locale, 'digits:', digits, 'pattern:', pattern);
+            console.log('telefone_valido -> locale:', locale, 'digits:', digits, 'result:', result);
 
         return result;
     }
