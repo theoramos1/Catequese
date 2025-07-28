@@ -94,15 +94,25 @@ $menu->renderHTML();
   <?php if ($message) echo $message; ?>
   <table class="table table-striped table-bordered">
     <thead>
-      <tr><th>CID</th><th>Valor</th><th>Estado</th><th>Data</th></tr>
+      <tr><th>CID</th><th>Valor</th><th>Estado</th><th>Data</th><th>Falta (R$)</th><th>Situação</th></tr>
     </thead>
     <tbody>
-    <?php foreach($payments as $p) { ?>
+    <?php foreach($payments as $p) { 
+        try {
+            $totalPaid = $db->getTotalPaymentsByCatechumen(intval($p['cid']));
+        } catch (Exception $e) {
+            $totalPaid = 0.0;
+        }
+        $remaining = max(0, 100 - $totalPaid);
+        $statusText = $remaining == 0 ? 'Pago' : 'Em Débito';
+    ?>
       <tr>
         <td><?= intval($p['cid']) ?></td>
         <td>R$<?= number_format((float)$p['valor'], 2, ',', '.') ?></td>
         <td><?= Utils::sanitizeOutput($p['estado']) ?></td>
         <td><?= Utils::sanitizeOutput($p['data_pagamento']) ?></td>
+        <td>R$<?= number_format((float)$remaining, 2, ',', '.') ?></td>
+        <td><?= $statusText ?></td>
       </tr>
     <?php } ?>
     </tbody>
