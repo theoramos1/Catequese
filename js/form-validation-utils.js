@@ -1,7 +1,7 @@
 function telefone_valido(num, locale)
 {
-    var digits = num.replace(/\D/g, '');
-    var pattern = null;
+    var digits = (num || '').replace(/\D/g, '');
+    var pattern;
 
     if(locale === "PT")
     {
@@ -12,10 +12,21 @@ function telefone_valido(num, locale)
     }
     else if(locale === "BR")
     {
-        pattern = /^\d{2}9?\d{8}$/;
+        const mobile = /^\d{2}9\d{8}$/;
+        const landline = /^\d{2}\d{8}$/;
+
+        pattern = mobile;
+        var result = mobile.test(digits);
+        if(!result)
+        {
+            pattern = landline;
+            result = landline.test(digits);
+        }
+
         if(typeof window !== 'undefined' && window.console)
             console.log('telefone_valido -> locale:', locale, 'digits:', digits, 'pattern:', pattern);
-        return pattern.test(digits);
+
+        return result;
     }
 
     if(typeof window !== 'undefined' && window.console)
@@ -31,7 +42,7 @@ function email_valido(email)
 
 function codigo_postal_valido(codigo, locale)
 {
-    var digits = codigo.replace(/\D/g, '');
+    var digits = (codigo || '').replace(/\D/g, '');
     var pattern = "";
     if(locale==="PT")
         pattern = /^[0-9]{4}\-[0-9]{3}\s\S+/;
@@ -44,7 +55,6 @@ function codigo_postal_valido(codigo, locale)
 
     return (pattern.test(codigo));
 }
-
 
 function data_valida(data)
 {
