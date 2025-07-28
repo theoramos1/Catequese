@@ -29,6 +29,19 @@ class PdoDatabaseManagerTest extends TestCase
             estado TEXT,
             data_pagamento TEXT
         );');
+        $this->pdo->exec('CREATE TABLE catequizando (
+            cid INTEGER PRIMARY KEY,
+            nome TEXT
+        );');
+        $this->pdo->exec('CREATE TABLE inscreve (
+            cid INTEGER,
+            ano_lectivo INTEGER
+        );');
+        $this->pdo->exec('CREATE TABLE configuracoes (
+            chave TEXT PRIMARY KEY,
+            valor TEXT
+        );');
+        $this->pdo->exec("INSERT INTO configuracoes (chave, valor) VALUES ('ENROLLMENT_PAYMENT_AMOUNT', '20')");
 
         $this->manager = new PdoDatabaseManager();
         $ref = new ReflectionClass(PdoDatabaseManager::class);
