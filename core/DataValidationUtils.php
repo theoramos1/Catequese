@@ -42,22 +42,23 @@ class DataValidationUtils
      */
     public static function validatePhoneNumber(string $tel, string $locale, bool $checkAntiPatterns = false)
     {
+        $digits = preg_replace('/\D/', '', $tel);
         if($locale==Locale::PORTUGAL)
         {
-            $pattern = '/^(\+\d{1,}[-\s]{0,1})?\d{9}$/';
+            $pattern = '/^\d{9}$/';
             $antipattern1 = "000000000";
             $antipattern2 = "111111111";
             $antipattern3 = "123456789";
-            $match = preg_match($pattern, $tel);
+            $match = preg_match($pattern, $digits);
         }
         else if($locale==Locale::BRASIL)
         {
-            $mobilePattern = '/^\(\d{2}\) 9\d{4}-\d{4}$/';
-            $landlinePattern = '/^\(\d{2}\) \d{4}-\d{4}$/';
-            $antipattern1 = "0000-0000";
-            $antipattern2 = "1111-1111";
-            $antipattern3 = "1234-5678";
-            $match = preg_match($mobilePattern, $tel) || preg_match($landlinePattern, $tel);
+            $landlinePattern = '/^\d{10}$/';
+            $mobilePattern = '/^\d{11}$/';
+            $antipattern1 = "0000000000";
+            $antipattern2 = "1111111111";
+            $antipattern3 = "1234567890";
+            $match = preg_match($landlinePattern, $digits) || (preg_match($mobilePattern, $digits) && preg_match('/^\d{2}9/', $digits));
         }
         else
         {
@@ -75,14 +76,14 @@ class DataValidationUtils
      */
     public static function validateZipCode(string $postal, string $locale)
     {
+        $digits = preg_replace('/\D/', '', $postal);
         $pattern = '';
         if($locale == Locale::PORTUGAL)
-            $pattern = '/^[0-9]{4}\-[0-9]{3}\s\S+/';
+            $pattern = '/^\d{7}$/';
         else if($locale == Locale::BRASIL)
-            // Brazilian zip code without locality
-            $pattern = '/^[0-9]{5}-[0-9]{3}$/';
+            $pattern = '/^\d{8}$/';
 
-        return (preg_match($pattern, $postal));
+        return (preg_match($pattern, $digits));
     }
 
     /**

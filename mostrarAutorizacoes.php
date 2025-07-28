@@ -685,7 +685,7 @@ $menu->renderHTML();
                                     <div class="input-group input-group-sm"><input type="text" class="form-control" id="nome_familiar" name="nome_familiar" placeholder="Nome" list="nomes_familiares" required></div></div></td>
                             <td><div class="input-group input-group-sm"><input type="text" class="form-control" id="parentesco" name="parentesco" placeholder="Avó" list="parentescos_familiares" required></div></td>
                             <td><div class="btn-group-xs" role="group" aria-label="...">
-                                    <div class="input-group input-group-sm"><input type="text" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (65) 99800-3774':'' ?>" list="" required></div></div></td>
+                                    <div class="input-group input-group-sm"><input type="text" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (99) 9XXXX-XXXX':'' ?>" list="" required></div></div></td>
                             <td><div class="btn-group-xs" role="group" aria-label="...">
                                     <button type="submit" class="btn btn-default pull-right"><span class="glyphicon glyphicon-plus text-success">Adicionar</span></button>
                                 </div></td>

@@ -213,7 +213,7 @@ $menu->renderHTML();
     <div class="col-xs-2">
     <div id="telefone_div">
       <label for="tel">Telefone:</label>
-      <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (65) 3333-4444':'Telefone do responsável legal' ?>" onclick="verifica_telefone()" onchange="verifica_telefone()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telefone'] . '');} else {echo('');} ?>">
+      <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (99) 3333-4444':'Telefone do responsável legal' ?>" onclick="verifica_telefone()" onchange="verifica_telefone()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telefone'] . '');} else {echo('');} ?>">
       <span id="erro_telefone_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
     </div>
     </div>
@@ -224,7 +224,7 @@ $menu->renderHTML();
     <div class="col-xs-2">
     <div id="telemovel_div">
       <label for="telm"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?"Celular":"Telemóvel" ?>:</label>
-      <input type="tel" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (65) 91234-5678':'Telemóvel do responsável legal' ?>" onclick="verifica_telemovel()" onchange="verifica_telemovel()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telemovel'] . '');} else {echo('');} ?>">
+      <input type="tel" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (99) 9XXXX-XXXX':'Telemóvel do responsável legal' ?>" onclick="verifica_telemovel()" onchange="verifica_telemovel()" value="<?php  if($_REQUEST['modo']=='irmao' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='editar'){ echo('' . $_SESSION['telemovel'] . '');} else {echo('');} ?>">
       <span id="erro_telemovel_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
     </div>
     <div class="clearfix"></div>
@@ -740,12 +740,12 @@ function validar()
     }
     else if(telefone!="" && telefone!=undefined && !telefone_valido(telefone, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
     {
-        alert("O número de telefone que introduziu é inválido. Deve estar no formato '(99) 3333-4444'.");
-        return false; 
+        alert("O número de telefone que introduziu é inválido. Utilize dígitos ou o formato '(99) 3333-4444'.");
+        return false;
     }
     else if(telemovel!="" && telemovel!=undefined && !telefone_valido(telemovel, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
     {
-        alert("O número de <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'celular':'telemóvel' ?> que introduziu é inválido. Deve estar no formato '(99) 91234-5678'.");
+        alert("O número de <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'celular':'telemóvel' ?> que introduziu é inválido. Utilize dígitos ou o formato '(99) 9XXXX-XXXX'.");
         return false;
     }
 

@@ -1,15 +1,17 @@
 
 function telefone_valido(num, locale)
 {
+    var digits = num.replace(/\D/g, "");
+    console.log("Validando telefone:", digits);
     if(locale === "PT")
     {
-        return /^(\+\d{1,}[-\s]{0,1})?\d{9}$/.test(num);
+        return /^(\+?\d{1,})?\d{9}$/.test(digits);
     }
     else if(locale === "BR")
     {
-        const mobile = /^\(\d{2}\) 9\d{4}-\d{4}$/;
-        const landline = /^\(\d{2}\) \d{4}-\d{4}$/;
-        return mobile.test(num) || landline.test(num);
+        var landline = /^\d{10}$/;              // e.g. 65993334444 => (65) 9933-4444
+        var mobile = /^\d{11}$/;                // e.g. 65998003774 => (65) 99800-3774
+        return (landline.test(digits) || (mobile.test(digits) && /^\d{2}9/.test(digits)));
     }
 
     return false;
@@ -23,14 +25,15 @@ function email_valido(email)
 
 function codigo_postal_valido(codigo, locale)
 {
+    var digits = codigo.replace(/\D/g, "");
+    console.log("Validando CEP:", digits);
     var pattern = "";
     if(locale==="PT")
-        pattern = /^[0-9]{4}\-[0-9]{3}\s\S+/;
+        pattern = /^[0-9]{4}[0-9]{3}$/;
     else if(locale==="BR")
-        // Brazilian zip code without locality
-        pattern = /^[0-9]{5}\-[0-9]{3}$/;
+        pattern = /^[0-9]{8}$/;
 
-    return (pattern.test(codigo));
+    return (pattern.test(digits));
 }
 
 

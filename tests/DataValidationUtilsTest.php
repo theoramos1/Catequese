@@ -11,16 +11,18 @@ class DataValidationUtilsTest extends TestCase
     public function testValidatePhoneNumberValidMobile(): void
     {
         $this->assertTrue(DataValidationUtils::validatePhoneNumber('(11) 91234-5678', Locale::BRASIL));
+        $this->assertTrue(DataValidationUtils::validatePhoneNumber('11912345678', Locale::BRASIL));
     }
 
     public function testValidatePhoneNumberValidLandline(): void
     {
         $this->assertTrue(DataValidationUtils::validatePhoneNumber('(21) 1234-5678', Locale::BRASIL));
+        $this->assertTrue(DataValidationUtils::validatePhoneNumber('2112345678', Locale::BRASIL));
     }
 
-    public function testValidatePhoneNumberInvalidMissingHyphen(): void
+    public function testValidatePhoneNumberInvalidMissingDigits(): void
     {
-        $this->assertFalse(DataValidationUtils::validatePhoneNumber('(21) 12345678', Locale::BRASIL));
+        $this->assertFalse(DataValidationUtils::validatePhoneNumber('1234567', Locale::BRASIL));
     }
 
     public function testValidatePhoneNumberInvalidLength(): void
@@ -31,11 +33,12 @@ class DataValidationUtilsTest extends TestCase
     public function testValidateZipCodeValid(): void
     {
         $this->assertTrue(DataValidationUtils::validateZipCode('12345-678', Locale::BRASIL));
+        $this->assertTrue(DataValidationUtils::validateZipCode('12345678', Locale::BRASIL));
     }
 
     public function testValidateZipCodeInvalidMissingHyphen(): void
     {
-        $this->assertFalse(DataValidationUtils::validateZipCode('12345678', Locale::BRASIL));
+        $this->assertFalse(DataValidationUtils::validateZipCode('1234567', Locale::BRASIL));
     }
 
     public function testValidateZipCodeInvalidLength(): void
