@@ -238,7 +238,7 @@ $(function(){
 
         if(telefone!=="" && telefone!==undefined && !telefone_valido(telefone, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-            alert("O número de telefone que introduziu é inválido. Deve estar no formato '(99) 9999-9999'.");
+            alert("O número de telefone que introduziu é inválido. Deve estar no formato '(99) 3333-4444'.");
             return false;
         }
         if(email!=="" && email!==undefined && !email_valido(email))
