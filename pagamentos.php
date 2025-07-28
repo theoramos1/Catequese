@@ -3,6 +3,7 @@ require_once(__DIR__ . '/core/config/catechesis_config.inc.php');
 require_once(__DIR__ . '/authentication/utils/authentication_verify.php');
 require_once(__DIR__ . '/authentication/Authenticator.php');
 require_once(__DIR__ . '/core/Utils.php');
+require_once(__DIR__ . '/core/DataValidationUtils.php');
 require_once(__DIR__ . '/core/PdoDatabaseManager.php');
 require_once(__DIR__ . '/gui/widgets/WidgetManager.php');
 require_once(__DIR__ . '/gui/widgets/Navbar/MainNavbar.php');
@@ -10,6 +11,7 @@ require_once(__DIR__ . '/gui/widgets/Navbar/MainNavbar.php');
 use catechesis\Authenticator;
 use catechesis\PdoDatabaseManager;
 use catechesis\Utils;
+use catechesis\DataValidationUtils;
 use catechesis\DatabaseAccessMode;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\MainNavbar;
@@ -33,11 +35,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cid'])) {
     }
 
     $cid = intval(Utils::sanitizeInput($_POST['cid']));
-    $amount = 100.0; // Fixed amount
-    $status = 'confirmado';
-    try {
-        $db->beginTransaction();
-        $db->insertPayment(Authenticator::getUsername(), $cid, $amount, $status);
+    $amountInput = Utils::sanitizeInput($_POST['amount'] ?? '');
+
+    if(!DataValidationUtils::validatePositiveFloat($amountInput)) {
+        $message = "<div class='alert alert-danger'><strong>Erro!</strong> Valor inválido.</div>";
+    } else {
+        $amount = floatval($amountInput);
+        $status = 'confirmado';
+        try {
+            $db->beginTransaction();
+            $db->insertPayment(Authenticator::getUsername(), $cid, $amount, $status);
         if (isset($_POST['mark_enrollment'])) {
             $year = Utils::currentCatecheticalYear();
             $db->updateCatechumenEnrollmentPayment($cid, $year, intval($_POST['mark_enrollment_catechism'] ?? 0), Utils::sanitizeInput($_POST['mark_enrollment_group'] ?? ''), true);
@@ -49,6 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cid'])) {
         $message = "<div class='alert alert-danger'><strong>Erro!</strong> " . $e->getMessage() . "</div>";
     }
 }
+}
+
 
 try {
     $payments = $db->getPaymentsByUser(Authenticator::getUsername());
@@ -153,4 +162,3 @@ $menu->renderHTML();
 <?php $pageUI->renderJS(); ?>
 </body>
 </html>
-
