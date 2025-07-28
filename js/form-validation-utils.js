@@ -1,4 +1,3 @@
-
 function telefone_valido(num, locale)
 {
     var digits = num.replace(/\D/g, '');
