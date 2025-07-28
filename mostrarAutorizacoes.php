@@ -352,7 +352,7 @@ $menu->renderHTML();
                 {
                     echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O número de "
                         . ((Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL) ? 'celular' : 'telemóvel')
-                        . " que introduziu é inválido. Deve estar no formato '(99) 9 9999-9999'.</div>");
+                        . " que introduziu é inválido. Deve estar no formato '(99) 91234-5678'.</div>");
                     $inputs_invalidos = true;
                 }
 
@@ -780,7 +780,7 @@ function valida_dados_familiar()
     var telemovel = document.getElementById('telemovel').value;
     if(!telefone_valido(telemovel, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
     {
-        alert("O número de <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'celular':'telemóvel' ?> que introduziu é inválido. Deve estar no formato '(99) 9 9999-9999'.");
+        alert("O número de <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'celular':'telemóvel' ?> que introduziu é inválido. Deve estar no formato '(99) 91234-5678'.");
         return false;
     }
     return true;

@@ -798,7 +798,7 @@ function validar()
         
         if(!codigo_postal_valido(cod_postal, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-                alert("<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL) ? 'O CEP que introduziu é inválido. Deve ser da forma \u002799999-999\u0027.' : 'O código postal que introduziu é inválido. Deve ser da forma \u0027xxxx-xxx Localidade\u0027.' ?>");
+                alert("<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL) ? 'O CEP que introduziu é inválido. Deve ser da forma \u002700000-000\u0027.' : 'O código postal que introduziu é inválido. Deve ser da forma \u0027xxxx-xxx Localidade\u0027.' ?>");
                 return false;
         }
                 
@@ -811,12 +811,12 @@ function validar()
         }
         else if(telefone!=="" && telefone!==undefined && !telefone_valido(telefone, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-                alert("O número de telefone que introduziu é inválido. Deve estar no formato '(99) 9999-9999'.");
+                alert("O número de telefone que introduziu é inválido. Deve estar no formato '(99) 3333-4444'.");
 		return false; 
         }
         else if(telemovel!=="" && telemovel!==undefined && !telefone_valido(telemovel, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-                alert("O número de <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'celular':'telemóvel' ?> que introduziu é inválido. Deve estar no formato '(99) 9 9999-9999'.");
+                alert("O número de <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'celular':'telemóvel' ?> que introduziu é inválido. Deve estar no formato '(99) 91234-5678'.");
                 return false;
         }
         
