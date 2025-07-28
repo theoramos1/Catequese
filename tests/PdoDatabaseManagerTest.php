@@ -16,6 +16,11 @@ class PdoDatabaseManagerTest extends TestCase
     {
         $this->pdo = new PDO('sqlite::memory:');
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // SQLite does not provide the NOW() function by default.  Register it so
+        // that queries using it behave like on MySQL during tests.
+        $this->pdo->sqliteCreateFunction('NOW', function () {
+            return date('Y-m-d H:i:s');
+        });
         $this->pdo->exec('CREATE TABLE pagamentos (
             pid INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT,
@@ -56,6 +61,34 @@ class PdoDatabaseManagerTest extends TestCase
 
         $total = $this->manager->getTotalPaymentsByCatechumen(1);
         $this->assertEquals(16.0, $total);
+    }
+
+    public function testListPaymentsWithStatusAndDebt(): void
+    {
+        $this->manager->insertPayment('john', 1, 30.0, 'confirmado');
+        $this->manager->insertPayment('john', 1, 20.0, 'pendente');
+        $this->manager->insertPayment('jane', 2, 50.0, 'confirmado');
+
+        $payments = $this->manager->getPaymentsByCatechumen(1);
+        $this->assertCount(2, $payments);
+
+        // Latest payment (pending) should come first due to DESC ordering by date
+        $this->assertEquals('pendente', $payments[0]['estado']);
+        $this->assertEquals(20.0, $payments[0]['valor']);
+
+        $this->assertEquals('confirmado', $payments[1]['estado']);
+        $this->assertEquals(30.0, $payments[1]['valor']);
+
+        $totalConfirmed = 0.0;
+        foreach ($payments as $p) {
+            if ($p['estado'] === 'confirmado') {
+                $totalConfirmed += floatval($p['valor']);
+            }
+        }
+
+        $expectedFee = 100.0;
+        $debt = max($expectedFee - $totalConfirmed, 0.0);
+        $this->assertEquals(70.0, $debt);
     }
 }
 ?>
