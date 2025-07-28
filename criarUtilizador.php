@@ -145,7 +145,7 @@ $menu->renderHTML();
 		     <div class="form-group">
 		    <div class="col-xs-2">
 		      <label for="tel">Telefone:</label>
-                      <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (65) 3322-7788':'Telefone' ?>">
+                      <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (65) 3333-4444':'Telefone' ?>">
 		    </div>
 		    </div>
 		    
