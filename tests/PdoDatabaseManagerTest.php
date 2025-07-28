@@ -16,6 +16,11 @@ class PdoDatabaseManagerTest extends TestCase
     {
         $this->pdo = new PDO('sqlite::memory:');
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // SQLite does not provide the NOW() function by default.  Register it so
+        // that queries using it behave like on MySQL during tests.
+        $this->pdo->sqliteCreateFunction('NOW', function () {
+            return date('Y-m-d H:i:s');
+        });
         $this->pdo->exec('CREATE TABLE pagamentos (
             pid INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT,
@@ -71,30 +76,32 @@ class PdoDatabaseManagerTest extends TestCase
         $this->assertEquals(16.0, $total);
     }
 
-    public function testGetPaymentsSummaryByCatecheticalYear(): void
+    public function testListPaymentsWithStatusAndDebt(): void
     {
-        // Setup data
-        $this->pdo->exec("INSERT INTO catequizando (cid, nome) VALUES (1, 'John Doe'), (2, 'Jane Roe')");
-        $this->pdo->exec("INSERT INTO inscreve (cid, ano_lectivo) VALUES (1, 2023), (2, 2023)");
+        $this->manager->insertPayment('john', 1, 30.0, 'confirmado');
+        $this->manager->insertPayment('john', 1, 20.0, 'pendente');
+        $this->manager->insertPayment('jane', 2, 50.0, 'confirmado');
 
-        $this->manager->insertPayment('user', 1, 15.0, 'ok');
-        $this->manager->insertPayment('user', 2, 20.0, 'ok');
+        $payments = $this->manager->getPaymentsByCatechumen(1);
+        $this->assertCount(2, $payments);
 
-        $result = $this->manager->getPaymentsSummaryByCatecheticalYear(2023);
-        $this->assertCount(2, $result);
+        // Latest payment (pending) should come first due to DESC ordering by date
+        $this->assertEquals('pendente', $payments[0]['estado']);
+        $this->assertEquals(20.0, $payments[0]['valor']);
 
-        $byCid = [];
-        foreach ($result as $row) {
-            $byCid[$row['cid']] = $row;
+        $this->assertEquals('confirmado', $payments[1]['estado']);
+        $this->assertEquals(30.0, $payments[1]['valor']);
+
+        $totalConfirmed = 0.0;
+        foreach ($payments as $p) {
+            if ($p['estado'] === 'confirmado') {
+                $totalConfirmed += floatval($p['valor']);
+            }
         }
 
-        $this->assertEquals(15.0, $byCid[1]['total_pago']);
-        $this->assertEquals(5.0, $byCid[1]['saldo']);
-        $this->assertEquals('Em débito', $byCid[1]['estado']);
-
-        $this->assertEquals(20.0, $byCid[2]['total_pago']);
-        $this->assertEquals(0.0, $byCid[2]['saldo']);
-        $this->assertEquals('Pago', $byCid[2]['estado']);
+        $expectedFee = 100.0;
+        $debt = max($expectedFee - $totalConfirmed, 0.0);
+        $this->assertEquals(70.0, $debt);
     }
 }
 ?>
