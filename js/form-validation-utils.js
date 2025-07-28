@@ -1,4 +1,3 @@
-
 function telefone_valido(num, locale)
 {
     var digits = (num || '').replace(/\D/g, '');
@@ -30,6 +29,8 @@ function telefone_valido(num, locale)
         return result;
     }
 
+    if(typeof window !== 'undefined' && window.console)
+        console.log('telefone_valido -> locale:', locale, 'digits:', digits, 'pattern:', pattern);
     return false;
 }
 
@@ -41,8 +42,8 @@ function email_valido(email)
 
 function codigo_postal_valido(codigo, locale)
 {
-    var pattern = "";
     var digits = (codigo || '').replace(/\D/g, '');
+    var pattern = "";
     if(locale==="PT")
         pattern = /^[0-9]{4}\-[0-9]{3}\s\S+/;
     else if(locale==="BR")
@@ -54,7 +55,6 @@ function codigo_postal_valido(codigo, locale)
 
     return (pattern.test(codigo));
 }
-
 
 function data_valida(data)
 {
