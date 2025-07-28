@@ -53,7 +53,9 @@ class PixQRCode{
         return $payload;
     }
 
+
     public static function generatePixQRCode(?float $amount): string{
+
         $key  = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_KEY);
         $name = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_MERCHANT_NAME);
         $city = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_MERCHANT_CITY);

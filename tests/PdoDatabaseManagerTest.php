@@ -48,5 +48,14 @@ class PdoDatabaseManagerTest extends TestCase
         $this->assertEquals(10.5, $row['valor']);
         $this->assertEquals('pendente', $row['estado']);
     }
+
+    public function testGetTotalPaymentsByCatechumen(): void
+    {
+        $this->manager->insertPayment('john', 1, 10.5, 'pendente');
+        $this->manager->insertPayment('john', 1, 5.5, 'pendente');
+
+        $total = $this->manager->getTotalPaymentsByCatechumen(1);
+        $this->assertEquals(16.0, $total);
+    }
 }
 ?>

@@ -198,6 +198,7 @@ interface PdoDatabaseManagerInterface extends DatabaseManager
     public function insertPayment(string $username, int $cid, float $amount, string $status);
     public function getPaymentsByUser(string $username);
     public function getPaymentsByCatechumen(int $cid);
+    public function getTotalPaymentsByCatechumen(int $cid);
 
 
     // Sacraments
@@ -5839,6 +5840,38 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
                 return $stm->fetchAll();
             else
                 throw new Exception('Falha ao obter pagamentos do catequizando.');
+        }
+        catch(PDOException $e)
+        {
+            throw new Exception('Falha interna ao tentar aceder à base de dados.');
+        }
+    }
+
+    /**
+     * Returns the sum of all payments associated with a catechumen.
+     * @param int $cid
+     * @return float
+     * @throws Exception
+     */
+    public function getTotalPaymentsByCatechumen(int $cid)
+    {
+        if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
+            throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
+
+        try
+        {
+            $sql = "SELECT SUM(valor) AS total FROM pagamentos WHERE cid=:cid;";
+            $stm = $this->_connection->prepare($sql);
+
+            $stm->bindParam(':cid', $cid, PDO::PARAM_INT);
+
+            if($stm->execute())
+            {
+                $row = $stm->fetch();
+                return $row && $row['total'] !== null ? floatval($row['total']) : 0.0;
+            }
+            else
+                throw new Exception('Falha ao somar pagamentos do catequizando.');
         }
         catch(PDOException $e)
         {
