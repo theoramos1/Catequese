@@ -7,8 +7,9 @@ function telefone_valido(num, locale)
     }
     else if(locale === "BR")
     {
-        const mobile = /^\(\d{2}\) 9\d{4}-\d{4}$/;
-        const landline = /^\(\d{2}\) \d{4}-\d{4}$/;
+        num = num.replace(/\D/g, '');
+        const mobile = /^\d{2}9\d{8}$/;
+        const landline = /^\d{2}\d{8}$/;
         return mobile.test(num) || landline.test(num);
     }
 
