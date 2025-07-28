@@ -38,6 +38,16 @@ class DataValidationUtilsTest extends TestCase
         $this->assertFalse(DataValidationUtils::validatePhoneNumber('(211) 1234-5678', Locale::BRASIL));
     }
 
+    public function testValidatePhoneNumberInvalidMobileWithoutNine(): void
+    {
+        $this->assertFalse(DataValidationUtils::validatePhoneNumber('(11) 81234-5678', Locale::BRASIL));
+    }
+
+    public function testValidatePhoneNumberInvalidLandlineWithNine(): void
+    {
+        $this->assertFalse(DataValidationUtils::validatePhoneNumber('2191234567', Locale::BRASIL));
+    }
+
     public function testValidateZipCodeValid(): void
     {
         $this->assertTrue(DataValidationUtils::validateZipCode('12345-678', Locale::BRASIL));
