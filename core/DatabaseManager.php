@@ -167,6 +167,8 @@ interface DatabaseManager
 
     // Payments
     public function getPaymentsByCatechumen(int $cid);                                                                  // Returns all payments associated with a catechumen
+    public function getTotalPaymentsByCatechumen(int $cid);
+                                        // Returns the sum of all payments for a catechumen
 
 
     // Sacraments
