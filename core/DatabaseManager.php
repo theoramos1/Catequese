@@ -170,6 +170,9 @@ interface DatabaseManager
     public function getTotalPaymentsByCatechumen(int $cid);
                                         // Returns the sum of all payments for a catechumen
 
+    public function getEnrollmentPaymentStatusList(int $catecheticalYear);
+                                        // Returns catechumens enrolled in a year and their total payments
+
 
     // Sacraments
     public function getSacramentsCivilYears(int $sacrament);                                                            // Returns all the distinct civil years in the database for this sacrament
