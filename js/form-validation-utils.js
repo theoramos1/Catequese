@@ -32,7 +32,12 @@ function telefone_valido(num, locale)
     }
 
     if(typeof window !== 'undefined' && window.console)
-        console.log('telefone_valido -> locale:', locale, 'digits:', digits, 'pattern:', pattern);
+    {
+        if(typeof pattern !== 'undefined' && pattern)
+            console.log('telefone_valido -> locale:', locale, 'digits:', digits, 'pattern:', pattern);
+        else
+            console.log('telefone_valido -> locale:', locale, 'digits:', digits);
+    }
     return false;
 }
 
