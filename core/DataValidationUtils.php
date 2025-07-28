@@ -54,12 +54,26 @@ class DataValidationUtils
         else if($locale==Locale::BRASIL)
         {
             $telDigits = preg_replace('/\D/', '', $tel);
-            $mobilePattern = '/^\d{2}9\d{8}$/';
-            $landlinePattern = '/^\d{2}\d{8}$/';
+
+            // Accept either 11 digits for mobiles or 10 digits for landlines.
+            // Mobile numbers must have the third digit equal to 9, while
+            // landlines cannot start with 9 after the DDD.
+            if(strlen($telDigits) === 11 && $telDigits[2] === '9')
+            {
+                $match = true;
+            }
+            else if(strlen($telDigits) === 10 && $telDigits[2] !== '9')
+            {
+                $match = true;
+            }
+            else
+            {
+                $match = false;
+            }
+
             $antipattern1 = "00000000";
             $antipattern2 = "11111111";
             $antipattern3 = "12345678";
-            $match = preg_match($mobilePattern, $telDigits) || preg_match($landlinePattern, $telDigits);
             $telCheck = $telDigits;
         }
         else
