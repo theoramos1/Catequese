@@ -49,23 +49,27 @@ class DataValidationUtils
             $antipattern2 = "111111111";
             $antipattern3 = "123456789";
             $match = preg_match($pattern, $tel);
+            $telCheck = preg_replace('/\D/', '', $tel);
         }
         else if($locale==Locale::BRASIL)
         {
-            $mobilePattern = '/^\(\d{2}\) 9\d{4}-\d{4}$/';
-            $landlinePattern = '/^\(\d{2}\) \d{4}-\d{4}$/';
-            $antipattern1 = "0000-0000";
-            $antipattern2 = "1111-1111";
-            $antipattern3 = "1234-5678";
-            $match = preg_match($mobilePattern, $tel) || preg_match($landlinePattern, $tel);
+            $telDigits = preg_replace('/\D/', '', $tel);
+            $mobilePattern = '/^\d{2}9\d{8}$/';
+            $landlinePattern = '/^\d{2}\d{8}$/';
+            $antipattern1 = "00000000";
+            $antipattern2 = "11111111";
+            $antipattern3 = "12345678";
+            $match = preg_match($mobilePattern, $telDigits) || preg_match($landlinePattern, $telDigits);
+            $telCheck = $telDigits;
         }
         else
         {
             $match = false;
+            $telCheck = $tel;
         }
 
         return $match && (!$checkAntiPatterns ||
-                (strpos($tel, $antipattern1)===false && strpos($tel, $antipattern2)===false && strpos($tel, $antipattern3)===false));
+                (strpos($telCheck, $antipattern1)===false && strpos($telCheck, $antipattern2)===false && strpos($telCheck, $antipattern3)===false));
     }
 
     /**

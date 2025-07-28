@@ -8,19 +8,29 @@ require_once __DIR__ . '/../core/domain/Locale.php';
 
 class DataValidationUtilsTest extends TestCase
 {
-    public function testValidatePhoneNumberValidMobile(): void
+    public function testValidatePhoneNumberValidMobileFormatted(): void
     {
         $this->assertTrue(DataValidationUtils::validatePhoneNumber('(11) 91234-5678', Locale::BRASIL));
     }
 
-    public function testValidatePhoneNumberValidLandline(): void
+    public function testValidatePhoneNumberValidMobileDigits(): void
+    {
+        $this->assertTrue(DataValidationUtils::validatePhoneNumber('11912345678', Locale::BRASIL));
+    }
+
+    public function testValidatePhoneNumberValidLandlineFormatted(): void
     {
         $this->assertTrue(DataValidationUtils::validatePhoneNumber('(21) 1234-5678', Locale::BRASIL));
     }
 
-    public function testValidatePhoneNumberInvalidMissingHyphen(): void
+    public function testValidatePhoneNumberValidLandlineDigits(): void
     {
-        $this->assertFalse(DataValidationUtils::validatePhoneNumber('(21) 12345678', Locale::BRASIL));
+        $this->assertTrue(DataValidationUtils::validatePhoneNumber('2112345678', Locale::BRASIL));
+    }
+
+    public function testValidatePhoneNumberValidMissingHyphen(): void
+    {
+        $this->assertTrue(DataValidationUtils::validatePhoneNumber('(21) 12345678', Locale::BRASIL));
     }
 
     public function testValidatePhoneNumberInvalidLength(): void
