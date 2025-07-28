@@ -83,3 +83,11 @@ The `updater/` directory contains a web based assistant that downloads new versi
 
 Whenever an update includes database migrations, the assistant will automatically run the provided SQL scripts. If you update files manually, execute the scripts from `updater/sql_scripts` using your database client.
 
+## Running tests
+
+After installing the Composer dependencies you can execute the test suite using PHPUnit:
+
+```bash
+vendor/bin/phpunit
+```
+
