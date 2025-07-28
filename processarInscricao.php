@@ -319,18 +319,27 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
 
 	  	
 	  	
-	  	if($telefone!="" && !DataValidationUtils::validatePhoneNumber($telefone, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))
-	  	{
-                    echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O número de telefone que introduziu é inválido. Deve estar no formato '(99) 3333-4444'.</div>");
-	  		$inputs_invalidos = true;	  	
-	  	}
 	  	
-	  	if($telemovel!="" && !DataValidationUtils::validatePhoneNumber($telemovel, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))
-	  	{
-                    echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O número de celular que introduziu é inválido. Deve estar no formato '(99) 91234-5678'.</div>");
-	  		$inputs_invalidos = true;	  	
-	  	}
-	  	
+                $locale = Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE);
+                if($telefone!="" && !DataValidationUtils::validatePhoneNumber($telefone, $locale))
+                {
+                    if($locale == Locale::PORTUGAL)
+                        $msg = "O número de telefone que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 dígitos.";
+                    else
+                        $msg = "O número de telefone que introduziu é inválido. Deve estar no formato '(99) 3333-4444'.";
+                    echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> $msg</div>");
+                        $inputs_invalidos = true;
+                }
+
+                if($telemovel!="" && !DataValidationUtils::validatePhoneNumber($telemovel, $locale))
+                {
+                    if($locale == Locale::PORTUGAL)
+                        $msg = "O número de telemóvel que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 dígitos.";
+                    else
+                        $msg = "O número de celular que introduziu é inválido. Deve estar no formato '(99) 91234-5678'.";
+                    echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> $msg</div>");
+                        $inputs_invalidos = true;
+                }
 	  	
 	  	if($baptizado && !DataValidationUtils::validateDate($data_baptismo))
 	  	{
