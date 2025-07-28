@@ -53,7 +53,9 @@ class PixQRCode{
         return $payload;
     }
 
-    public static function generatePixQRCode(?float $amount = null): string{
+
+    public static function generatePixQRCode(?float $amount): string{
+
         $key  = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_KEY);
         $name = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_MERCHANT_NAME);
         $city = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_MERCHANT_CITY);
@@ -79,6 +81,20 @@ class PixQRCode{
         QrCode::png($payload, null, 300, 0);
         $data = ob_get_clean();
         return 'data:image/png;base64,'.base64_encode($data);
+    }
+
+    public static function generatePixPayload(?float $amount): string{
+        $key  = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_KEY);
+        $name = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_MERCHANT_NAME);
+        $city = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_MERCHANT_CITY);
+        $desc = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_DESCRIPTION) ?? '';
+        $txid = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_TXID) ?? '***';
+
+        if(!$key || !$name || !$city){
+            throw new Exception('Pix configuration incomplete');
+        }
+
+        return self::buildPayload($key, $name, $city, $txid, $amount, $desc);
     }
 }
 ?>
