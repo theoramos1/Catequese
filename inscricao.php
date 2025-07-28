@@ -452,22 +452,22 @@ $menu->renderHTML();
     
     <!--autoriza fotografias-->
     <div class="checkbox">
-      <label><input id="autorizacao" name="autorizacao" type="checkbox" <?php 	if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='irmao') && ($_SESSION['autorizacao']=='on' || $_SESSION['autorizacao']==1)){ echo("checked");}?> > Autoriza a utilização e divulgação de fotografias do educando, tiradas no âmbito das atividades catequéticas.</label>
+      <label><input id="autorizacao" name="autorizacao" type="checkbox" <?php       if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='irmao') && isset($_SESSION['autorizacao']) && ($_SESSION['autorizacao']=='on' || $_SESSION['autorizacao']==1)){ echo("checked");}?> > Autoriza a utilização e divulgação de fotografias do educando, tiradas no âmbito das atividades catequéticas.</label>
     </div>
     <!--<div class="row" style="margin-bottom:60px; "></div>-->
 
    <!--Consentimento tratamento de dados (RGPD)-->
    <div class="checkbox">
-       <label><input id="consentimento_rgpd" name="consentimento_rgpd" type="checkbox" <?php 	if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='irmao') && ($_SESSION['RGPD_assinado']=='on' || $_SESSION['RGPD_assinado']==1)){ echo("checked");}?> > Assinou e entregou o consentimento de tratamento de dados (RGPD).</label>
+       <label><input id="consentimento_rgpd" name="consentimento_rgpd" type="checkbox" <?php    if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso' || $_REQUEST['modo']=='irmao') && isset($_SESSION['RGPD_assinado']) && ($_SESSION['RGPD_assinado']=='on' || $_SESSION['RGPD_assinado']==1)){ echo("checked");}?> > Assinou e entregou o consentimento de tratamento de dados (RGPD).</label>
    </div>
    <div class="row" style="margin-bottom:60px; "></div>
     
     
     <!-- fotografia tirada com webcam -->
-    <input type="hidden" id="foto_data" name="foto_data" value="<?php if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso') && $_SESSION['foto']!="") echo(base64_encode(file_get_contents(UserData::getCatechumensPhotosFolder() . '/' . $_SESSION['foto'])));?>">
-    <input type="hidden" id="original_foto_data" name="original_foto_data" value="<?php if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso') && $_SESSION['foto']!="") echo(base64_encode(file_get_contents(UserData::getCatechumensPhotosFolder() . '/' . $_SESSION['foto'])));?>">
-        <input type="hidden" id="debug_foto" name="debug_foto" value="<?php if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso') && $_SESSION['foto']!="") echo($_SESSION['foto']);?>">
-        <input type="hidden" id="debug_base64" name="debug_base64" value="<?php if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso') && $_SESSION['foto']!="") echo(base64_encode('abcd'));?>">
+    <input type="hidden" id="foto_data" name="foto_data" value="<?php if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso') && isset($_SESSION['foto']) && $_SESSION['foto']!='') echo(base64_encode(file_get_contents(UserData::getCatechumensPhotosFolder() . '/' . $_SESSION['foto'])));?>">
+    <input type="hidden" id="original_foto_data" name="original_foto_data" value="<?php if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso') && isset($_SESSION['foto']) && $_SESSION['foto']!='') echo(base64_encode(file_get_contents(UserData::getCatechumensPhotosFolder() . '/' . $_SESSION['foto'])));?>">
+        <input type="hidden" id="debug_foto" name="debug_foto" value="<?php if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso') && isset($_SESSION['foto']) && $_SESSION['foto']!='') echo($_SESSION['foto']);?>">
+        <input type="hidden" id="debug_base64" name="debug_base64" value="<?php if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso') && isset($_SESSION['foto']) && $_SESSION['foto']!='') echo(base64_encode('abcd'));?>">
 
 
     </div>
