@@ -126,7 +126,7 @@ class UserAccountConfigurationPanelWidget extends AbstractSettingsPanelWidget
             <!--telefone-->
             <div class="col-xs-2">
               <label for="tel">Telefone:</label>
-              <input type="tel" class="form-control" id="<?=$this->getID()?>_telefone" name="telefone" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (65) 3322-7788':'Telefone' ?>" style="cursor: auto;" value="<?= $ed_tel ?>" readonly>
+                <input type="tel" class="form-control" id="<?=$this->getID()?>_telefone" name="telefone" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (65) 3333-4444':'Telefone' ?>" style="cursor: auto;" value="<?= $ed_tel ?>" readonly>
               <input type="hidden" class="form-control" id="<?=$this->getID()?>_telefone_backup" value="<?= $ed_tel ?>" readonly>
             </div>
 
