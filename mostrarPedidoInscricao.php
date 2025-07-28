@@ -811,8 +811,8 @@ function validar()
         }
         else if(telefone!=="" && telefone!==undefined && !telefone_valido(telefone, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
-                alert("O número de telefone que introduziu é inválido. Deve estar no formato '(99) 3333-4444'.");
-		return false; 
+            alert("O número de telefone que introduziu é inválido. Deve estar no formato '(99) 3333-4444'.");
+            return false;
         }
         else if(telemovel!=="" && telemovel!==undefined && !telefone_valido(telemovel, '<?= Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) ?>'))
         {
