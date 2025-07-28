@@ -29,7 +29,7 @@ class PixQRCode{
         return strtoupper(sprintf('%04X', $crc));
     }
 
-    public static function buildPayload(string $key, string $merchantName, string $merchantCity, string $txid, float $amount, string $description = ''): string{
+    public static function buildPayload(string $key, string $merchantName, string $merchantCity, string $txid, ?float $amount, string $description = ''): string{
         $payload  = self::tlv('00', '01');
         $payload .= self::tlv('01', '12');
 
@@ -41,7 +41,9 @@ class PixQRCode{
         $payload .= self::tlv('26', $mai);
         $payload .= self::tlv('52', '0000');
         $payload .= self::tlv('53', '986');
-        $payload .= self::tlv('54', number_format($amount, 2, '.', ''));
+        if($amount !== null){
+            $payload .= self::tlv('54', number_format($amount, 2, '.', ''));
+        }
         $payload .= self::tlv('58', 'BR');
         $payload .= self::tlv('59', substr($merchantName, 0, 25));
         $payload .= self::tlv('60', substr($merchantCity, 0, 15));
@@ -51,7 +53,7 @@ class PixQRCode{
         return $payload;
     }
 
-    public static function generatePixQRCode(float $amount): string{
+    public static function generatePixQRCode(?float $amount): string{
         $key  = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_KEY);
         $name = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_MERCHANT_NAME);
         $city = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_MERCHANT_CITY);
@@ -77,6 +79,20 @@ class PixQRCode{
         QrCode::png($payload, null, 300, 0);
         $data = ob_get_clean();
         return 'data:image/png;base64,'.base64_encode($data);
+    }
+
+    public static function generatePixPayload(?float $amount): string{
+        $key  = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_KEY);
+        $name = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_MERCHANT_NAME);
+        $city = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_MERCHANT_CITY);
+        $desc = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_DESCRIPTION) ?? '';
+        $txid = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_TXID) ?? '***';
+
+        if(!$key || !$name || !$city){
+            throw new Exception('Pix configuration incomplete');
+        }
+
+        return self::buildPayload($key, $name, $city, $txid, $amount, $desc);
     }
 }
 ?>

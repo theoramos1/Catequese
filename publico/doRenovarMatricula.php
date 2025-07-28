@@ -196,15 +196,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 }
                 if ($pixAvailable) {
                     try {
-                        $pixImg = PixQRCode::generatePixQRCode(Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT));
+                        $pixImg = PixQRCode::generatePixQRCode(null);
+                        $pixPayload = PixQRCode::generatePixPayload(null);
                     } catch (Exception $e) {
                         $pixImg = null;
+                        $pixPayload = null;
                     }
                     if ($pixImg) {
                         ?>
                         <div style="margin-top:20px;text-align:center;">
                             <p>Para efetuar o seu donativo via <strong>Pix</strong>, utilize o QR code abaixo:</p>
                             <img src="<?= $pixImg ?>" alt="Pix QR Code" />
+                            <?php if ($pixPayload) { ?>
+                                <p style="margin-top:10px;word-break:break-all;">Pix copia e cola:</p>
+                                <pre style="white-space: pre-wrap; word-wrap: break-word;">
+                                    <?= $pixPayload ?>
+                                </pre>
+                            <?php } ?>
                         </div>
                         <?php
                     }
