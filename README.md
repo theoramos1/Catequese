@@ -67,6 +67,8 @@ Administrators can select the country used for address and phone formats in
 `LOCALIZATION_CODE` and it accepts the values `PT` (Portugal) and `BR`
 (Brazil).  The choice affects several labels and validation rules across the
 application.
+Any whitespace around this value is ignored by the configurator, so
+`LOCALIZATION_CODE` values are normalized automatically.
 
 If changing the value through the interface is not possible, update it directly
 in the database:

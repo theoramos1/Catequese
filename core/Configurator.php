@@ -80,7 +80,7 @@ class ConfigurationObject
 
             case self::TYPE_STRING:
             default:
-                return $value;
+                return trim($value);
         }
     }
 }
