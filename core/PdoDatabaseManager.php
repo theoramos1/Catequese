@@ -199,6 +199,7 @@ interface PdoDatabaseManagerInterface extends DatabaseManager
     public function getPaymentsByUser(string $username);
     public function getPaymentsByCatechumen(int $cid);
     public function getTotalPaymentsByCatechumen(int $cid);
+    public function getPaymentsSummaryByCatecheticalYear(int $catecheticalYear);
 
 
     // Sacraments
@@ -5913,6 +5914,47 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
     }
 
 
+    /**
+     * Returns each catechumen's total payments and balance for a catechetical year.
+     * @param int $catecheticalYear
+     * @return array
+     * @throws Exception
+     */
+    public function getPaymentsSummaryByCatecheticalYear(int $catecheticalYear)
+    {
+        if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
+            throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
+
+        try
+        {
+            $key = Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT;
+            $sqlAmount = "SELECT valor FROM configuracoes WHERE chave=:chave;";
+            $stmAmount = $this->_connection->prepare($sqlAmount);
+            $stmAmount->bindParam(':chave', $key);
+            $stmAmount->execute();
+            $amountRow = $stmAmount->fetch();
+            $expected = $amountRow ? floatval($amountRow['valor']) : 0;
+
+            $sql = "SELECT c.cid, c.nome, IFNULL(SUM(p.valor),0) AS total_pago, "
+                 . "(:expected - IFNULL(SUM(p.valor),0)) AS saldo, "
+                 . "CASE WHEN IFNULL(SUM(p.valor),0) >= :expected THEN 'Pago' ELSE 'Em débito' END AS estado "
+                 . "FROM catequizando c JOIN inscreve i ON c.cid=i.cid AND i.ano_lectivo=:ano "
+                 . "LEFT JOIN pagamentos p ON c.cid=p.cid "
+                 . "GROUP BY c.cid, c.nome ORDER BY c.nome;";
+            $stm = $this->_connection->prepare($sql);
+            $stm->bindParam(':ano', $catecheticalYear, PDO::PARAM_INT);
+            $stm->bindParam(':expected', $expected);
+
+            if($stm->execute())
+                return $stm->fetchAll();
+            else
+                throw new Exception('Falha ao obter informação de pagamentos.');
+        }
+        catch(PDOException $e)
+        {
+            throw new Exception('Falha interna ao tentar aceder à base de dados.');
+        }
+    }
     
     
     

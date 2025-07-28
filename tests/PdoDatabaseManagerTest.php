@@ -24,6 +24,19 @@ class PdoDatabaseManagerTest extends TestCase
             estado TEXT,
             data_pagamento TEXT
         );');
+        $this->pdo->exec('CREATE TABLE catequizando (
+            cid INTEGER PRIMARY KEY,
+            nome TEXT
+        );');
+        $this->pdo->exec('CREATE TABLE inscreve (
+            cid INTEGER,
+            ano_lectivo INTEGER
+        );');
+        $this->pdo->exec('CREATE TABLE configuracoes (
+            chave TEXT PRIMARY KEY,
+            valor TEXT
+        );');
+        $this->pdo->exec("INSERT INTO configuracoes (chave, valor) VALUES ('ENROLLMENT_PAYMENT_AMOUNT', '20')");
 
         $this->manager = new PdoDatabaseManager();
         $ref = new ReflectionClass(PdoDatabaseManager::class);
@@ -56,6 +69,32 @@ class PdoDatabaseManagerTest extends TestCase
 
         $total = $this->manager->getTotalPaymentsByCatechumen(1);
         $this->assertEquals(16.0, $total);
+    }
+
+    public function testGetPaymentsSummaryByCatecheticalYear(): void
+    {
+        // Setup data
+        $this->pdo->exec("INSERT INTO catequizando (cid, nome) VALUES (1, 'John Doe'), (2, 'Jane Roe')");
+        $this->pdo->exec("INSERT INTO inscreve (cid, ano_lectivo) VALUES (1, 2023), (2, 2023)");
+
+        $this->manager->insertPayment('user', 1, 15.0, 'ok');
+        $this->manager->insertPayment('user', 2, 20.0, 'ok');
+
+        $result = $this->manager->getPaymentsSummaryByCatecheticalYear(2023);
+        $this->assertCount(2, $result);
+
+        $byCid = [];
+        foreach ($result as $row) {
+            $byCid[$row['cid']] = $row;
+        }
+
+        $this->assertEquals(15.0, $byCid[1]['total_pago']);
+        $this->assertEquals(5.0, $byCid[1]['saldo']);
+        $this->assertEquals('Em débito', $byCid[1]['estado']);
+
+        $this->assertEquals(20.0, $byCid[2]['total_pago']);
+        $this->assertEquals(0.0, $byCid[2]['saldo']);
+        $this->assertEquals('Pago', $byCid[2]['estado']);
     }
 }
 ?>
