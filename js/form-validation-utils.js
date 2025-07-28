@@ -8,7 +8,7 @@ function telefone_valido(num, locale)
         pattern = /^(\+\d{1,}[-\s]{0,1})?\d{9}$/;
         if(typeof window !== 'undefined' && window.console)
             console.log('telefone_valido -> locale:', locale, 'digits:', digits, 'pattern:', pattern);
-        return pattern.test(num);
+        return pattern.test(digits);
     }
     else if(locale === "BR")
     {
@@ -32,7 +32,12 @@ function telefone_valido(num, locale)
     }
 
     if(typeof window !== 'undefined' && window.console)
-        console.log('telefone_valido -> locale:', locale, 'digits:', digits, 'pattern:', pattern);
+    {
+        if(typeof pattern !== 'undefined' && pattern)
+            console.log('telefone_valido -> locale:', locale, 'digits:', digits, 'pattern:', pattern);
+        else
+            console.log('telefone_valido -> locale:', locale, 'digits:', digits);
+    }
     return false;
 }
 
