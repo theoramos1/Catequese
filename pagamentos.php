@@ -92,77 +92,73 @@ $menu->renderHTML();
 <div class="container" id="contentor">
   <h2 class="no-print">Pagamentos</h2>
   <?php if ($message) echo $message; ?>
-  <table class="table table-striped table-bordered">
-    <thead>
-      <tr><th>CID</th><th>Valor</th><th>Estado</th><th>Data</th><th>Falta (R$)</th><th>Situação</th></tr>
-    </thead>
-    <tbody>
-    <?php foreach($payments as $p) { 
-        try {
-            $totalPaid = $db->getTotalPaymentsByCatechumen(intval($p['cid']));
-        } catch (Exception $e) {
-            $totalPaid = 0.0;
-        }
-        $remaining = max(0, 100 - $totalPaid);
-        $statusText = $remaining == 0 ? 'Pago' : 'Em Débito';
-    ?>
-      <tr>
-        <td><?= intval($p['cid']) ?></td>
-        <td>R$<?= number_format((float)$p['valor'], 2, ',', '.') ?></td>
-        <td><?= Utils::sanitizeOutput($p['estado']) ?></td>
-        <td><?= Utils::sanitizeOutput($p['data_pagamento']) ?></td>
-        <td>R$<?= number_format((float)$remaining, 2, ',', '.') ?></td>
-        <td><?= $statusText ?></td>
-      </tr>
-    <?php } ?>
-    </tbody>
-  </table>
-  <hr>
-  <h3>Registar novo pagamento</h3>
-  <form method="post" action="pagamentos.php" class="form-inline">
-    <input type="hidden" name="csrf_token" value="<?= \catechesis\Utils::getCSRFToken() ?>">
-    <div class="form-group">
-      <label for="cid">Catequizando:</label>
-      <input type="number" class="form-control" id="cid" name="cid" required>
-    </div>
-    <div class="form-group" style="margin-left: 10px;">
-      <label for="amount">Valor:</label>
-      <input type="number" step="0.01" min="0" class="form-control" id="amount" name="amount" required>
-    </div>
-    <div class="checkbox" style="margin-left: 10px;">
-      <label><input type="checkbox" id="mark_enrollment" name="mark_enrollment" onclick="toggleEnrollmentSelectors()"> Marcar inscrição paga</label>
-    </div>
-    <div id="enrollment_selectors" style="display:none; margin-left: 10px;" class="form-inline">
+  <?php if(Authenticator::isAdmin()) { ?>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr><th>CID</th><th>Valor</th><th>Estado</th><th>Data</th></tr>
+      </thead>
+      <tbody>
+      <?php foreach($payments as $p) { ?>
+        <tr>
+          <td><?= intval($p['cid']) ?></td>
+          <td>R$<?= number_format((float)$p['valor'], 2, ',', '.') ?></td>
+          <td><?= Utils::sanitizeOutput($p['estado']) ?></td>
+          <td><?= Utils::sanitizeOutput($p['data_pagamento']) ?></td>
+        </tr>
+      <?php } ?>
+      </tbody>
+    </table>
+    <hr>
+    <h3>Registar novo pagamento</h3>
+    <form method="post" action="pagamentos.php" class="form-inline">
+      <input type="hidden" name="csrf_token" value="<?= \catechesis\Utils::getCSRFToken() ?>">
       <div class="form-group">
-        <label for="mark_enrollment_catechism">Catecismo:</label>
-        <select class="form-control" id="mark_enrollment_catechism" name="mark_enrollment_catechism">
-          <?php foreach($catechisms as $c) { ?>
-            <option value="<?= intval($c['ano_catecismo']) ?>"><?= intval($c['ano_catecismo']) ?>º</option>
-          <?php } ?>
-        </select>
+        <label for="cid">Catequizando:</label>
+        <input type="number" class="form-control" id="cid" name="cid" required>
       </div>
-      <div class="form-group" style="margin-left: 5px;">
-        <label for="mark_enrollment_group">Grupo:</label>
-        <select class="form-control" id="mark_enrollment_group" name="mark_enrollment_group">
-          <?php foreach($groups as $g) { $val = Utils::sanitizeOutput($g['turma']); ?>
-            <option value="<?= $val ?>"><?= $val ?></option>
-          <?php } ?>
-        </select>
+      <div class="checkbox" style="margin-left: 10px;">
+        <label><input type="checkbox" id="mark_enrollment" name="mark_enrollment" onclick="toggleEnrollmentSelectors()"> Marcar inscrição paga</label>
       </div>
-    </div>
-    <button type="submit" class="btn btn-primary" style="margin-left: 10px;">Registar pagamento</button>
-  </form>
-  <script type="text/javascript">
-    function toggleEnrollmentSelectors() {
-      var cb = document.getElementById('mark_enrollment');
-      var div = document.getElementById('enrollment_selectors');
-      if(cb && div) {
-        div.style.display = cb.checked ? 'inline-block' : 'none';
+      <div id="enrollment_selectors" style="display:none; margin-left: 10px;" class="form-inline">
+        <div class="form-group">
+          <label for="mark_enrollment_catechism">Catecismo:</label>
+          <select class="form-control" id="mark_enrollment_catechism" name="mark_enrollment_catechism">
+            <?php foreach($catechisms as $c) { ?>
+              <option value="<?= intval($c['ano_catecismo']) ?>"><?= intval($c['ano_catecismo']) ?>º</option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="form-group" style="margin-left: 5px;">
+          <label for="mark_enrollment_group">Grupo:</label>
+          <select class="form-control" id="mark_enrollment_group" name="mark_enrollment_group">
+            <?php foreach($groups as $g) { $val = Utils::sanitizeOutput($g['turma']); ?>
+              <option value="<?= $val ?>"><?= $val ?></option>
+            <?php } ?>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" style="margin-left: 10px;">Registar R$100.00</button>
+    </form>
+    <script type="text/javascript">
+      function toggleEnrollmentSelectors() {
+        var cb = document.getElementById('mark_enrollment');
+        var div = document.getElementById('enrollment_selectors');
+        if(cb && div) {
+          div.style.display = cb.checked ? 'inline-block' : 'none';
+        }
       }
-    }
-  </script>
+    </script>
+  <?php } else { 
+      $total_paid = 0.0;
+      foreach($payments as $p) { $total_paid += floatval($p['valor']); }
+      $balance = 100.0 - $total_paid;
+      if($balance < 0) $balance = 0.0;
+  ?>
+    <p>O valor da inscrição é R$100,00.</p>
+    <p>Valor em aberto: R$<?= number_format($balance, 2, ',', '.') ?></p>
+    <p>Pix para pagamento: 00000000000</p>
+  <?php } ?>
 
 <?php $pageUI->renderJS(); ?>
 </body>
 </html>
-
