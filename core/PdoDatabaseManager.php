@@ -478,7 +478,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -496,7 +496,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
 
 
-        $sql = "SELECT cid FROM catequizando c WHERE c.nome = :nome AND c.data_nasc = STR_TO_DATE(:data_nasc, '%d-%m-%Y');";
+        $sql = "SELECT cid FROM catequizando c WHERE c.nome = :nome AND c.data_nasc = STR_TO_DATE(:data_nasc, '%d/%m/%Y');";
 
         try
         {
@@ -516,7 +516,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -558,7 +558,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
             }
         }
         if ($birth_date && $birth_date != "") {
-            $sql = $sql . "data_nasc=STR_TO_DATE(:data_nasc, '%d-%m-%Y') ";
+            $sql = $sql . "data_nasc=STR_TO_DATE(:data_nasc, '%d/%m/%Y') ";
         }
 
         //Complete query with sacraments and order by clause
@@ -586,7 +586,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -687,7 +687,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -746,7 +746,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -884,7 +884,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch(PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -918,7 +918,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -953,7 +953,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
 
         try
         {
-            $sql = "INSERT INTO catequizando(nome, data_nasc, local_nasc, num_irmaos, escuteiro, autorizou_fotos, autorizou_saida_sozinho, pai, mae, enc_edu, enc_edu_quem, foto, obs, criado_por, criado_em) VALUES (:nome, STR_TO_DATE(:data_nasc, '%d-%m-%Y'), :local_nasc, :num_irmaos, :escuteiro, :autorizacao_fotos, :autorizou_saida_sozinho, :fid_pai, :fid_mae, :fid_ee, :enc_edu_quem, :foto, :obs, :utilizador, NOW());";
+            $sql = "INSERT INTO catequizando(nome, data_nasc, local_nasc, num_irmaos, escuteiro, autorizou_fotos, autorizou_saida_sozinho, pai, mae, enc_edu, enc_edu_quem, foto, obs, criado_por, criado_em) VALUES (:nome, STR_TO_DATE(:data_nasc, '%d/%m/%Y'), :local_nasc, :num_irmaos, :escuteiro, :autorizacao_fotos, :autorizou_saida_sozinho, :fid_pai, :fid_mae, :fid_ee, :enc_edu_quem, :foto, :obs, :utilizador, NOW());";
 
             $stm = $this->_connection->prepare($sql);
 
@@ -1003,7 +1003,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1036,7 +1036,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
 
         try
         {
-            $sql = "UPDATE catequizando SET nome=:nome, data_nasc=STR_TO_DATE(:data_nasc, '%d-%m-%Y'), local_nasc=:local_nasc, num_irmaos=:num_irmaos, escuteiro=:escuteiro, autorizou_fotos=:autorizacao_fotos, pai=:fid_pai, mae=:fid_mae, enc_edu=:fid_ee, enc_edu_quem=:enc_edu_quem, foto=:foto WHERE cid=:cid;";
+            $sql = "UPDATE catequizando SET nome=:nome, data_nasc=STR_TO_DATE(:data_nasc, '%d/%m/%Y'), local_nasc=:local_nasc, num_irmaos=:num_irmaos, escuteiro=:escuteiro, autorizou_fotos=:autorizacao_fotos, pai=:fid_pai, mae=:fid_mae, enc_edu=:fid_ee, enc_edu_quem=:enc_edu_quem, foto=:foto WHERE cid=:cid;";
 
             $stm = $this->_connection->prepare($sql);
 
@@ -1074,7 +1074,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1107,7 +1107,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1133,7 +1133,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1163,7 +1163,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1194,7 +1194,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1225,7 +1225,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1260,7 +1260,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1298,7 +1298,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1334,7 +1334,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1379,7 +1379,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1411,7 +1411,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1439,7 +1439,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1467,7 +1467,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1497,7 +1497,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1528,7 +1528,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1558,7 +1558,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1592,7 +1592,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1628,7 +1628,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1661,7 +1661,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1762,7 +1762,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1790,7 +1790,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1820,7 +1820,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1849,7 +1849,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1908,7 +1908,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1941,7 +1941,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -1973,7 +1973,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -2003,7 +2003,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -2030,7 +2030,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -2057,7 +2057,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -2084,7 +2084,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -2133,7 +2133,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -2184,7 +2184,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch(PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -2215,7 +2215,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch(PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -2264,7 +2264,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch(PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
 
@@ -2307,7 +2307,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch(PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
 
@@ -2359,7 +2359,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch(PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -2409,7 +2409,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch(PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -2464,7 +2464,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch(PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -2552,7 +2552,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         {
             //Build query
             $sql = "INSERT INTO pedidoInscricao(data_hora, endereco_ip, nome, data_nasc, local_nasc, num_irmaos, escuteiro, autorizou_fotos, autorizou_saida_sozinho, enc_edu, foto, obs, pai_nome, prof_pai, mae_nome, prof_mae, enc_edu_parentesco, enc_edu_nome, prof_enc_edu, casados_como, morada, cod_postal, telefone, telemovel, email, data_baptismo, paroquia_baptismo, data_comunhao, paroquia_comunhao, autorizacoesSaidaMenores, ultimo_catecismo, cid)";
-            $sql = $sql . "VALUES(NOW(), :endereco_ip, :nome, STR_TO_DATE(:data_nasc, '%d-%m-%Y'), :local_nasc, :num_irmaos, :escuteiro, :autorizou_fotos, :autorizou_saida_sozinho, :enc_edu, :foto, :obs, :pai_nome, :prof_pai, :mae_nome, :prof_mae, :enc_edu_parentesco, :enc_edu_nome, :prof_enc_edu, :casados_como, :morada, :cod_postal, :telefone, :telemovel, :email, STR_TO_DATE(:data_baptismo, '%d-%m-%Y'), :paroquia_baptismo, STR_TO_DATE(:data_comunhao, '%d-%m-%Y'), :paroquia_comunhao, :autorizacoesSaidaMenores, :ultimo_catecismo, NULL);";
+            $sql = $sql . "VALUES(NOW(), :endereco_ip, :nome, STR_TO_DATE(:data_nasc, '%d/%m/%Y'), :local_nasc, :num_irmaos, :escuteiro, :autorizou_fotos, :autorizou_saida_sozinho, :enc_edu, :foto, :obs, :pai_nome, :prof_pai, :mae_nome, :prof_mae, :enc_edu_parentesco, :enc_edu_nome, :prof_enc_edu, :casados_como, :morada, :cod_postal, :telefone, :telemovel, :email, STR_TO_DATE(:data_baptismo, '%d-%m-%Y'), :paroquia_baptismo, STR_TO_DATE(:data_comunhao, '%d-%m-%Y'), :paroquia_comunhao, :autorizacoesSaidaMenores, :ultimo_catecismo, NULL);";
 
             $stm = $this->_connection->prepare($sql);
 
@@ -2674,7 +2674,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch(PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -2736,7 +2736,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch(PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -2763,7 +2763,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch(PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -2796,7 +2796,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch(PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -2824,7 +2824,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch(PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -2854,7 +2854,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -2883,7 +2883,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -2927,7 +2927,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
 
@@ -2968,7 +2968,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
 
@@ -3068,7 +3068,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -3113,7 +3113,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -3143,7 +3143,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -3195,7 +3195,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -3268,7 +3268,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
             }
             catch (PDOException $e)
             {
-                //echo $e->getMessage();
+                error_log($e->getMessage());
                 throw new Exception("Falha interna ao tentar aceder à base de dados.");
             }
         }
@@ -3328,7 +3328,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -3357,7 +3357,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -3391,7 +3391,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -3425,7 +3425,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -3458,7 +3458,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -3497,7 +3497,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -3527,7 +3527,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -3567,7 +3567,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -3604,7 +3604,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
 
@@ -3642,7 +3642,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -3670,7 +3670,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -3728,7 +3728,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -3897,7 +3897,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -3958,7 +3958,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             $this->rollBack();
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
@@ -4019,7 +4019,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -4057,7 +4057,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -4087,7 +4087,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -4118,7 +4118,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
         catch (Exception $e)
@@ -4152,7 +4152,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
         catch (Exception $e)
@@ -4249,7 +4249,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -4290,7 +4290,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -4323,7 +4323,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -4357,7 +4357,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -4390,7 +4390,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -4419,7 +4419,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -4453,7 +4453,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -4629,7 +4629,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -4738,7 +4738,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -4779,7 +4779,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
 
@@ -4818,7 +4818,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
 
@@ -4867,7 +4867,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
 
@@ -4909,7 +4909,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
 
@@ -4957,7 +4957,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
 
@@ -4999,7 +4999,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
 
@@ -5038,7 +5038,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -5076,7 +5076,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -5112,7 +5112,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -5203,7 +5203,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
 
@@ -5271,7 +5271,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
 
@@ -5314,7 +5314,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -5354,7 +5354,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -5413,7 +5413,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
 
@@ -5453,7 +5453,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -5515,7 +5515,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -5545,7 +5545,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -5575,7 +5575,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -5607,7 +5607,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -5635,7 +5635,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -5665,7 +5665,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -5693,7 +5693,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -5727,7 +5727,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
@@ -5753,7 +5753,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         }
         catch (PDOException $e)
         {
-            //echo $e->getMessage();
+            error_log($e->getMessage());
             throw new Exception("Falha interna ao tentar aceder à base de dados.");
         }
     }
