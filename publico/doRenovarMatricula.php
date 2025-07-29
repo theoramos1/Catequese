@@ -42,7 +42,7 @@ if(!$periodo_activo)
 
 
 // Instantiate a widget manager
-$pageUI = new WidgetManager("../");
+$pageUI = new WidgetManager();
 
 // Add widgets
 $navbar = new MinimalNavbar();
