@@ -4,6 +4,9 @@
 namespace catechesis\gui
 {
     require_once(__DIR__ . '/Widget.php');
+    require_once(__DIR__ . '/../../core/Configurator.php');
+
+    use catechesis\Configurator;
 
 
     /**
@@ -150,7 +153,7 @@ namespace catechesis\gui
          */
         public function renderJS()
         {
-            $rendered_js = array(); //Auxiliary array to check and avoid including duplicate dependencies
+            $dependencies = array();
 
             // Gather additional dependencies directly declared in this manager
             foreach($this->_additional_js_dependencies as $path)
@@ -161,11 +164,12 @@ namespace catechesis\gui
 
             // Gather JS dependencies of all the registered widgets
             foreach($this->_widgets as $widget)
+
             {
-                // Include dependencies declared by this widget
-                foreach($widget->getJSDependencies() as $path)
+                foreach ($widget->getJSDependencies() as $path)
                 {
                     $fullPath = $this->_path_prefix . $path;
+
                     if (!in_array($fullPath, $rendered_js))
                         $rendered_js[] = $fullPath;
                 }
@@ -206,12 +210,13 @@ namespace catechesis\gui
                 $sorted_js[] = $p;
 
             foreach($sorted_js as $path)
+
             {
                 echo("<script src=\"$path\"></script>");
             }
 
             // Render JS inline code produced by all the registered widgets
-            foreach($this->_widgets as $widget)
+            foreach ($this->_widgets as $widget)
             {
                 $widget->renderJS();
             }

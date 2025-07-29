@@ -1,4 +1,5 @@
 <?php
+
 namespace catechesis\gui {
     require_once __DIR__ . '/../gui/widgets/Widget.php';
     class DummyWidget extends Widget
@@ -47,6 +48,7 @@ namespace {
 
             $this->assertEquals($expected, $output);
         }
+
     }
 }
 ?>
