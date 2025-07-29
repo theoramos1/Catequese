@@ -155,40 +155,62 @@ namespace catechesis\gui
         {
             $dependencies = array();
 
-            // Collect additional dependencies
-            foreach ($this->_additional_js_dependencies as $path)
+            // Gather additional dependencies directly declared in this manager
+            foreach($this->_additional_js_dependencies as $path)
             {
-                if(!in_array($path, $dependencies))
-                    $dependencies[] = $path;
+                if(!in_array($path, $rendered_js))
+                    $rendered_js[] = $path;
             }
 
-            // Collect dependencies from all registered widgets
-            foreach ($this->_widgets as $widget)
+            // Gather JS dependencies of all the registered widgets
+            foreach($this->_widgets as $widget)
+
             {
                 foreach ($widget->getJSDependencies() as $path)
                 {
                     $fullPath = $this->_path_prefix . $path;
-                    if(!in_array($fullPath, $dependencies))
-                        $dependencies[] = $fullPath;
+
+                    if (!in_array($fullPath, $rendered_js))
+                        $rendered_js[] = $fullPath;
                 }
             }
 
-            // Ensure jQuery and Bootstrap are present before others
-            $jqueryPath = $this->_path_prefix . Configurator::JQUERY_LIB_PATH;
-            $bootstrapPath = $this->_path_prefix . Configurator::BOOTSTRAP_BUNDLE_PATH;
+            // Sort so jQuery comes first, Bootstrap second, remaining keep registration order
+            $jquery = null;
+            $bootstrap = null;
+            $others = array();
 
-            // Remove if already collected to avoid duplicates
-            if(($idx = array_search($jqueryPath, $dependencies)) !== false)
-                unset($dependencies[$idx]);
-            if(($idx = array_search($bootstrapPath, $dependencies)) !== false)
-                unset($dependencies[$idx]);
+            foreach($rendered_js as $path)
+            {
+                $basename = basename($path);
+                if(stripos($basename, 'jquery.min.js') !== false)
+                {
+                    $jquery = $path;
+                }
+                elseif(stripos($basename, 'bootstrap.bundle.min.js') !== false || stripos($basename, 'bootstrap.min.js') !== false)
+                {
+                    // Keep the first bootstrap variant found
+                    if($bootstrap === null)
+                        $bootstrap = $path;
+                    else
+                        $others[] = $path;
+                }
+                else
+                {
+                    $others[] = $path;
+                }
+            }
 
-            // Output core scripts first
-            echo("<script src=\"$jqueryPath\"></script>");
-            echo("<script src=\"$bootstrapPath\"></script>");
+            $sorted_js = array();
+            if($jquery !== null)
+                $sorted_js[] = $jquery;
+            if($bootstrap !== null)
+                $sorted_js[] = $bootstrap;
+            foreach($others as $p)
+                $sorted_js[] = $p;
 
-            // Output remaining dependencies
-            foreach ($dependencies as $path)
+            foreach($sorted_js as $path)
+
             {
                 echo("<script src=\"$path\"></script>");
             }
