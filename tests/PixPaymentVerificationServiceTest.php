@@ -5,13 +5,14 @@ namespace catechesis {
     }
 }
 
-use catechesis\PixPaymentVerificationService;
-use PHPUnit\Framework\TestCase;
+namespace {
+    use catechesis\PixPaymentVerificationService;
+    use PHPUnit\Framework\TestCase;
 
-require_once __DIR__ . '/../core/PixPaymentVerificationService.php';
+    require_once __DIR__ . '/../core/PixPaymentVerificationService.php';
 
-class PixPaymentVerificationServiceTest extends TestCase
-{
+    class PixPaymentVerificationServiceTest extends TestCase
+    {
     public static $mockResponse;
 
     public function testVerifyPaymentSuccess(): void
@@ -45,5 +46,7 @@ class PixPaymentVerificationServiceTest extends TestCase
         $this->expectExceptionMessage('Invalid response from Pix provider.');
         $service->verifyPayment(1, 'key', 10);
     }
+    }
 }
-?>
+
+
