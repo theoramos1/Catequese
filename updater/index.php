@@ -31,7 +31,7 @@ if(!Authenticator::isAdmin())
 }
 
 // Instantiate a widget manager
-$pageUI = new WidgetManager("../");
+$pageUI = new WidgetManager();
 
 // Add dependencies
 $pageUI->addCSSDependency('css/bootstrap.min.css');
