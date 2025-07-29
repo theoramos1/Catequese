@@ -4,6 +4,9 @@
 namespace catechesis\gui
 {
     require_once(__DIR__ . '/Widget.php');
+    require_once(__DIR__ . '/../../core/Configurator.php');
+
+    use catechesis\Configurator;
 
 
     /**
@@ -156,34 +159,70 @@ namespace catechesis\gui
          */
         public function renderJS()
         {
-            $rendered_js = array(); //Auxiliary array to check and avoid including duplicate dependencies
+            $dependencies = array();
 
-            // Include additional dependencies directly declared in this manager
+            // Gather additional dependencies directly declared in this manager
             foreach($this->_additional_js_dependencies as $path)
             {
                 if(!in_array($path, $rendered_js))
-                {
-                    echo("<script src=\"$path\"></script>");
                     $rendered_js[] = $path;
+            }
+
+            // Gather JS dependencies of all the registered widgets
+            foreach($this->_widgets as $widget)
+
+            {
+                foreach ($widget->getJSDependencies() as $path)
+                {
+                    $fullPath = $this->_path_prefix . $path;
+
+                    if (!in_array($fullPath, $rendered_js))
+                        $rendered_js[] = $fullPath;
                 }
             }
 
-            // Include JS dependencies of all the registered widgets
-            foreach($this->_widgets as $widget)
+            // Sort so jQuery comes first, Bootstrap second, remaining keep registration order
+            $jquery = null;
+            $bootstrap = null;
+            $others = array();
+
+            foreach($rendered_js as $path)
             {
-                // Include dependencies declared by this widget
-                foreach($widget->getJSDependencies() as $path)
+                $basename = basename($path);
+                if(stripos($basename, 'jquery.min.js') !== false)
                 {
-                    if (!in_array($this->_path_prefix . $path, $rendered_js))
-                    {
-                        echo("<script src=\"" . $this->_path_prefix . $path . "\"></script>");
-                        $rendered_js[] = $this->_path_prefix . $path;
-                    }
+                    $jquery = $path;
                 }
+                elseif(stripos($basename, 'bootstrap.bundle.min.js') !== false || stripos($basename, 'bootstrap.min.js') !== false)
+                {
+                    // Keep the first bootstrap variant found
+                    if($bootstrap === null)
+                        $bootstrap = $path;
+                    else
+                        $others[] = $path;
+                }
+                else
+                {
+                    $others[] = $path;
+                }
+            }
+
+            $sorted_js = array();
+            if($jquery !== null)
+                $sorted_js[] = $jquery;
+            if($bootstrap !== null)
+                $sorted_js[] = $bootstrap;
+            foreach($others as $p)
+                $sorted_js[] = $p;
+
+            foreach($sorted_js as $path)
+
+            {
+                echo("<script src=\"$path\"></script>");
             }
 
             // Render JS inline code produced by all the registered widgets
-            foreach($this->_widgets as $widget)
+            foreach ($this->_widgets as $widget)
             {
                 $widget->renderJS();
             }

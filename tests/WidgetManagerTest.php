@@ -1,4 +1,5 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\MinimalNavbar;
@@ -24,6 +25,7 @@ class WidgetManagerTest extends TestCase
             '<script src="' . $expectedPrefix . 'js/jquery.min.js"></script>',
             $output
         );
+
     }
 }
 ?>
