@@ -55,15 +55,15 @@ interface PdoDatabaseManagerInterface extends DatabaseManager
     public function getCatechumensByNameAndBirthdate(string $name, string $birth_date);
     public function findCatechumensByNameAndBirthdate(string $name, string $birth_date, int $catecheticalYear);
     public function getCatechumensByCatechismWithFilters(int $currentCatecheticalYear,
-                                                         int $searchCatecheticalYear = null, int $catechism = null,
-                                                         string $group = null,
+                                                         ?int $searchCatecheticalYear = null, ?int $catechism = null,
+                                                         ?string $group = null,
                                                          bool $includeAchievementRecord = false,
                                                          int $orderBy = OrderCatechumensBy::NAME_BIRTHDATE,
                                                          int $baptism = SacramentFilter::IRRELEVANT,
                                                          int $communion = SacramentFilter::IRRELEVANT,
                                                          array $excludedCatechisms = array());
     public function getCatechumensByCatechistWithFilters(int $currentCatecheticalYear,
-                                                         int $searchCatecheticalYear = null, string $catechist = null,
+                                                         ?int $searchCatecheticalYear = null, ?string $catechist = null,
                                                          int $orderBy = OrderCatechumensBy::NAME_BIRTHDATE,
                                                          int $baptism = SacramentFilter::IRRELEVANT,
                                                          int $communion = SacramentFilter::IRRELEVANT,
@@ -80,12 +80,12 @@ interface PdoDatabaseManagerInterface extends DatabaseManager
                                      $father_fid, $mother_fid, int $responsible_fid,
                                      string $responsible_relationship, string $photo, int $numSiblings,
                                      bool $isScout, bool $photosAllowed);
-    public function setCatechumenObservationsFields(int $cid, string $observations=null);
+    public function setCatechumenObservationsFields(int $cid, ?string $observations=null);
     public function deleteCatechumen(int $cid);
     public function getCatechumenCatecheticalRecord(int $cid);
     public function getCatechumenSchoolingRecord(int $cid);
     public function insertCatechumenSchoolingRecord(int $cid, int $catecheticalYear, string $schoolYear);
-    public function deleteCatechumenSchoolingRecord(int $cid, int $catecheticalYear=null);
+    public function deleteCatechumenSchoolingRecord(int $cid, ?int $catecheticalYear=null);
     public function getScouts(int $catecheticalYear);
     public function getTodaysGroupBirthdays(int $catecheticalYear, int $catechism, string $group);
     public function updateCatechumenAchievement(int $cid, int $catecheticalYear, int $catechism, string $group,
@@ -102,15 +102,15 @@ interface PdoDatabaseManagerInterface extends DatabaseManager
     public function getMarriageInformation(int $fid1, int $fid2);
     public function addMarriageInformation(int $fid1, int $fid2, int $union_type);
     public function deleteMarriage(int $fid1, int $fid2);
-    public function createFamilyMember(string $name, string $job=null, string $address=null, string $zipCode=null,
-                                       string $phone=null, string $cellPhone=null, string $email=null,
+    public function createFamilyMember(string $name, ?string $job=null, ?string $address=null, ?string $zipCode=null,
+                                       ?string $phone=null, ?string $cellPhone=null, ?string $email=null,
                                        bool $signedRGPD=false);
     public function deleteFamilyMember(int $fid);
     public function updateFamilyMemberName(int $fid, string $name);
     public function updateFamilyMemberJob(int $fid, string $job);
     public function updateFamilyMemberAllFields(int $fid, string $name, string $job, string $address,
-                                                string $zipCode, string $phone=null, string $cellPhone=null,
-                                                string $email=null, bool $signedRGPD=false);
+                                                string $zipCode, ?string $phone=null, ?string $cellPhone=null,
+                                                ?string $email=null, bool $signedRGPD=false);
     public function getCatechumenAuthorizationList(int $cid);
     public function addFamilyMemberToCatechumenAuthorizationlist(int $cid, int $fid, string $relationship);
     public function removeFamilyMemberFromCatechumenAuthorizationList(int $cid, int $fid);
@@ -122,32 +122,32 @@ interface PdoDatabaseManagerInterface extends DatabaseManager
     // Online enrollments
     public function getCatechumensEnrollmentRenewalCandidateList(int $previousCatecheticalYear, int $previousCatechism,
                                                                  string $previousGroup, int $enrollmentCatecheticalYear);
-    public function getRenewalSubmissions(int $catecheticalYear, int $catechism = null);
+    public function getRenewalSubmissions(int $catecheticalYear, ?int $catechism = null);
     public function getRenewalSubmission(int $rid);
     public function getEnrollmentSubmissions(int $catecheticalYear);
     public function getEnrollmentSubmission(int $eid);
-    public function getNumberOfPendingRenewals(int $catecheticalYear = null);
-    public function getNumberOfPendingEnrollments(int $catecheticalYear = null);
+    public function getNumberOfPendingRenewals(?int $catecheticalYear = null);
+    public function getNumberOfPendingEnrollments(?int $catecheticalYear = null);
     public function postRenewalOrder(string $applicantName, string $phone, string $catechumenName, int $lastCatechism,
-                                     string $ipAddress, string $email = null, string $obs = null);
+                                     string $ipAddress, ?string $email = null, ?string $obs = null);
     public function postEnrollmentOrder(string $catechumenName, string $birthDay, string $birthPlace, int $nSiblings,
                                         string $address, string $postalCode,
                                         int $responsibleIndex, string $ipAddress,
                                         bool $scout, bool $photosAllowed, bool $exitAllowed, array $exitAuthorizations,
-                                        string $photo = null, string $obs = null,
-                                        string $responsibleName = null, string $responsibleJob = null,
-                                        string $responsibleRelationship = null,
-                                        string $fatherName = null, string $fatherJob = null,
-                                        string $motherName = null, string $motherJob = null,
-                                        int $marriageType = null,
-                                        string $phone = null, string $cellPhone = null, string $email = null,
-                                        string $baptismDate = null, string $baptismParish = null,
-                                        string $comunionDate = null, string $comunionParish = null,
-                                        int $lastCatechism = null);
-    public function updateRenewalOrderStatus(int $rid, int $status, int $enrollmentCatecheticalYear = null,
-                                             int $enrollmentCatechism = null, string $enrollmentGroup = null);
+                                        ?string $photo = null, ?string $obs = null,
+                                        ?string $responsibleName = null, ?string $responsibleJob = null,
+                                        ?string $responsibleRelationship = null,
+                                        ?string $fatherName = null, ?string $fatherJob = null,
+                                        ?string $motherName = null, ?string $motherJob = null,
+                                        ?int $marriageType = null,
+                                        ?string $phone = null, ?string $cellPhone = null, ?string $email = null,
+                                        ?string $baptismDate = null, ?string $baptismParish = null,
+                                        ?string $comunionDate = null, ?string $comunionParish = null,
+                                        ?int $lastCatechism = null);
+    public function updateRenewalOrderStatus(int $rid, int $status, ?int $enrollmentCatecheticalYear = null,
+                                             ?int $enrollmentCatechism = null, ?string $enrollmentGroup = null);
     public function deleteRenewalOrder(int $rid);
-    public function updateEnrollmentOrderFile(int $eid, int $cid = null);
+    public function updateEnrollmentOrderFile(int $eid, ?int $cid = null);
     public function deleteEnrollmentOrder(int $eid);
 
 
@@ -178,12 +178,12 @@ interface PdoDatabaseManagerInterface extends DatabaseManager
 
     // Catechesis
     public function getCatecheticalYears();
-    public function getCatechisms(int $catecheticalYear = null);
+    public function getCatechisms(?int $catecheticalYear = null);
     public function getCatechismGroups(int $catecheticalYear, int $catechism);
-    public function getCatechismsAndGroups(int $catecheticalYear = null);
+    public function getCatechismsAndGroups(?int $catecheticalYear = null);
     public function getCatechismsAndGroupsFromLatestYear();
     public function hasCatechism(int $catecheticalYear, int $catechism);
-    public function getGroupLetters(int $catecheticalYear = null);
+    public function getGroupLetters(?int $catecheticalYear = null);
     public function createCatechismGroup(int $catecheticalYear, int $catechism, string $group);
     public function deleteCatechismGroup(int $catecheticalYear, int $catechism, string $group);
     public function enrollCatechumenInGroup(int $cid, int $catecheticalYear, int $catechism, string $group,
@@ -206,7 +206,7 @@ interface PdoDatabaseManagerInterface extends DatabaseManager
     public function getSacramentsCivilYears(int $sacrament);
     public function getDistinctParishes(int $sacrament);
     public function getAllDistinctParishes();
-    public function getCatechumensBySacrament(int $sacrament, int $civilYear = null, string $parish = null,
+    public function getCatechumensBySacrament(int $sacrament, ?int $civilYear = null, ?string $parish = null,
                                               int $orderBy = OrderCatechumensBy::NAME_BIRTHDATE);
     public function getCatechumensWithAndWithoutSacramentByCatechismAndGroup(int $sacrament, int $catecheticalYear,
                                                                              int $catechism, string $group);
@@ -214,7 +214,7 @@ interface PdoDatabaseManagerInterface extends DatabaseManager
     public function insertSacramentRecord(int $cid, int $sacrament, string $date, string $parish);
     public function updateSacramentRecord(int $cid, int $sacrament, string $date, string $parish);
     public function deleteSacramentRecord(int $cid, int $sacrament);
-    public function setSacramentProofDocument(int $cid, int $sacrament, string $proof=null);
+    public function setSacramentProofDocument(int $cid, int $sacrament, ?string $proof=null);
 
 
     // Decision support system
@@ -222,8 +222,8 @@ interface PdoDatabaseManagerInterface extends DatabaseManager
     public function getFirstCommunionAnalysis(int $catecheticalYear, bool $admin, string $username);
     public function getChrismationAnalysis(int $catecheticalYear, bool $admin, string $username);
     public function getDataDumpForInconsistencyAnalysis(string $username, bool $admin, int $currentCatecheticalYear,
-                                                        int $catecheticalYear = null, int $catechism = null,
-                                                        string $group = null);
+                                                        ?int $catecheticalYear = null, ?int $catechism = null,
+                                                        ?string $group = null);
 
     // Statistics
     public function isDataSufficientForResidentsStatistic();
@@ -238,16 +238,16 @@ interface PdoDatabaseManagerInterface extends DatabaseManager
     public function getCatechumensByCatechistAndYear(bool $accumulated);
 
     // Virtual catechesis
-    public function getVirtualCatechesisSessionDates(int $catechism = null, string $group = null, bool $recursive = true,
-                                                     int $limit = 0, string $afterDate = null, string $beforeDate = null);
-    public function getVirtualCatechesisContent(string $sessionDate, int $catechism = null, string $group = null,
+    public function getVirtualCatechesisSessionDates(?int $catechism = null, ?string $group = null, bool $recursive = true,
+                                                     int $limit = 0, ?string $afterDate = null, ?string $beforeDate = null);
+    public function getVirtualCatechesisContent(string $sessionDate, ?int $catechism = null, ?string $group = null,
                                                 bool $recursive = true);
     public function postVirtualCatechesisContent(string $contents, string $username, string $sessionDate,
-                                                 int $catechism = null, string $group = null);
+                                                 ?int $catechism = null, ?string $group = null);
     public function insertLockInVirtualCatechesis(string $username, string $sessionDate,
-                                                  int $catechism = null, string $group = null);
-    public function getListOfVirtualCatechesisObservers(string $sessionDate, int $timeThreshold, int $catechism = null,
-                                                        string $group = null, string $excludeUsername = null);
+                                                  ?int $catechism = null, ?string $group = null);
+    public function getListOfVirtualCatechesisObservers(string $sessionDate, int $timeThreshold, ?int $catechism = null,
+                                                        ?string $group = null, ?string $excludeUsername = null);
 
 
     // Settings
@@ -630,8 +630,8 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @throws Exception
      */
     public function getCatechumensByCatechismWithFilters(int $currentCatecheticalYear, 
-                                                         int $searchCatecheticalYear = null, int $catechism = null,
-                                                         string $group = null,
+                                                         ?int $searchCatecheticalYear = null, ?int $catechism = null,
+                                                         ?string $group = null,
                                                          bool $includeAchievementRecord = false,
                                                          int $orderBy = OrderCatechumensBy::NAME_BIRTHDATE,
                                                          int $baptism = SacramentFilter::IRRELEVANT,
@@ -707,7 +707,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @throws Exception
      */
     public function getCatechumensByCatechistWithFilters(int $currentCatecheticalYear,
-                                                         int $searchCatecheticalYear = null, string $catechist = null,
+                                                         ?int $searchCatecheticalYear = null, ?string $catechist = null,
                                                          int $orderBy = OrderCatechumensBy::NAME_BIRTHDATE,
                                                          int $baptism = SacramentFilter::IRRELEVANT,
                                                          int $communion = SacramentFilter::IRRELEVANT,
@@ -764,7 +764,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @return string
      * @throws Exception
      */
-    private function generateQueryWithFilters(string $baseQuery, int $searchCatecheticalYear = null,
+    private function generateQueryWithFilters(string $baseQuery, ?int $searchCatecheticalYear = null,
                                               int $baptism = SacramentFilter::IRRELEVANT,
                                               int $communion = SacramentFilter::IRRELEVANT,
                                               array $excludedCatechisms = array(),
@@ -1085,7 +1085,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @param int $cid
      * @param string|null $observations
      */
-    public function setCatechumenObservationsFields(int $cid, string $observations=null)
+    public function setCatechumenObservationsFields(int $cid, ?string $observations=null)
     {
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_EDIT))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
@@ -1237,7 +1237,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @param int $cid
      * @param int $catecheticalYear
      */
-    public function deleteCatechumenSchoolingRecord(int $cid, int $catecheticalYear=null)
+    public function deleteCatechumenSchoolingRecord(int $cid, ?int $catecheticalYear=null)
     {
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_DELETE))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
@@ -1673,8 +1673,8 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @param string $name
      * @param string $phone
      */
-    public function createFamilyMember(string $name, string $job=null, string $address=null, string $zipCode=null,
-                                       string $phone=null, string $cellPhone=null, string $email=null,
+    public function createFamilyMember(string $name, ?string $job=null, ?string $address=null, ?string $zipCode=null,
+                                       ?string $phone=null, ?string $cellPhone=null, ?string $email=null,
                                        bool $signedRGPD=false)
     {
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_EDIT))
@@ -1868,8 +1868,8 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @param bool $signedRGPD
      */
     public function updateFamilyMemberAllFields(int $fid, string $name, string $job, string $address,
-                                                string $zipCode, string $phone=null, string $cellPhone=null,
-                                                string $email=null, bool $signedRGPD=false)
+                                                string $zipCode, ?string $phone=null, ?string $cellPhone=null,
+                                                ?string $email=null, bool $signedRGPD=false)
     {
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_EDIT))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
@@ -2148,7 +2148,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @param null $catechism
      * @return bool|PDOStatement|null
      */
-    public function getRenewalSubmissions(int $catecheticalYear, int $catechism = null)
+    public function getRenewalSubmissions(int $catecheticalYear, ?int $catechism = null)
     {
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
@@ -2323,7 +2323,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @param int $catecheticalYear
      * @return bool
      */
-    public function getNumberOfPendingRenewals(int $catecheticalYear = null)
+    public function getNumberOfPendingRenewals(?int $catecheticalYear = null)
     {
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
@@ -2374,7 +2374,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @param int $catecheticalYear
      * @return bool
      */
-    public function getNumberOfPendingEnrollments(int $catecheticalYear = null)
+    public function getNumberOfPendingEnrollments(?int $catecheticalYear = null)
     {
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
@@ -2430,7 +2430,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @return string|null
      */
     public function postRenewalOrder(string $applicantName, string $phone, string $catechumenName, int $lastCatechism,
-                                     string $ipAddress, string $email = null, string $obs = null)
+                                     string $ipAddress, ?string $email = null, ?string $obs = null)
     {
         if(!$this->connectAsNeeded(DatabaseAccessMode::ONLINE_ENROLLMENT))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
@@ -2509,16 +2509,16 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
                                         string $address, string $postalCode,
                                         int $responsibleIndex, string $ipAddress,
                                         bool $scout, bool $photosAllowed, bool $exitAllowed, array $exitAuthorizations,
-                                        string $photo = null, string $obs = null,
-                                        string $responsibleName = null, string $responsibleJob = null,
-                                        string $responsibleRelationship = null,
-                                        string $fatherName = null, string $fatherJob = null,
-                                        string $motherName = null, string $motherJob = null,
-                                        int $marriageType = null,
-                                        string $phone = null, string $cellPhone = null, string $email = null,
-                                        string $baptismDate = null, string $baptismParish = null,
-                                        string $comunionDate = null, string $comunionParish = null,
-                                        int $lastCatechism = null)
+                                        ?string $photo = null, ?string $obs = null,
+                                        ?string $responsibleName = null, ?string $responsibleJob = null,
+                                        ?string $responsibleRelationship = null,
+                                        ?string $fatherName = null, ?string $fatherJob = null,
+                                        ?string $motherName = null, ?string $motherJob = null,
+                                        ?int $marriageType = null,
+                                        ?string $phone = null, ?string $cellPhone = null, ?string $email = null,
+                                        ?string $baptismDate = null, ?string $baptismParish = null,
+                                        ?string $comunionDate = null, ?string $comunionParish = null,
+                                        ?int $lastCatechism = null)
     {
         if(!$this->connectAsNeeded(DatabaseAccessMode::ONLINE_ENROLLMENT))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
@@ -2688,8 +2688,8 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @param int $status - One of the constants defined in the domain class EnrollmentStatus
      * @return bool
      */
-    public function updateRenewalOrderStatus(int $rid, int $status, int $enrollmentCatecheticalYear = null,
-                                             int $enrollmentCatechism = null, string $enrollmentGroup = null)
+    public function updateRenewalOrderStatus(int $rid, int $status, ?int $enrollmentCatecheticalYear = null,
+                                             ?int $enrollmentCatechism = null, ?string $enrollmentGroup = null)
     {
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_EDIT))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
@@ -2775,7 +2775,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @param $eid - Enrollment order ID
      * @param $cid - ID of the catechumen file to associate with the processed order, or null
      */
-    public function updateEnrollmentOrderFile(int $eid, int $cid = null)
+    public function updateEnrollmentOrderFile(int $eid, ?int $cid = null)
     {
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_EDIT))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
@@ -3540,7 +3540,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @return mixed
      * @throws Exception
      */
-    public function getCatechisms(int $catecheticalYear = null)
+    public function getCatechisms(?int $catecheticalYear = null)
     {
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
@@ -3616,7 +3616,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * Returns all distinct pairs of (catechism, group).
      * @param int|null $catecheticalYear
      */
-    public function getCatechismsAndGroups(int $catecheticalYear = null)
+    public function getCatechismsAndGroups(?int $catecheticalYear = null)
     {
 
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
@@ -3703,7 +3703,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @return mixed
      * @throws Exception
      */
-    public function getGroupLetters(int $catecheticalYear = null)
+    public function getGroupLetters(?int $catecheticalYear = null)
     {
 
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
@@ -4207,7 +4207,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @return mixed
      * @throws Exception
      */
-    public function getCatechumensBySacrament(int $sacrament, int $civilYear = null, string $parish = null,
+    public function getCatechumensBySacrament(int $sacrament, ?int $civilYear = null, ?string $parish = null,
                                               int $orderBy = OrderCatechumensBy::NAME_BIRTHDATE)
     {
 
@@ -4431,7 +4431,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @param int $sacrament
      * @param string|null $proof
      */
-    public function setSacramentProofDocument(int $cid, int $sacrament, string $proof=null)
+    public function setSacramentProofDocument(int $cid, int $sacrament, ?string $proof=null)
     {
         if (!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_EDIT))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
@@ -4608,7 +4608,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @return mixed
      * @throws Exception
      */
-    private function genericDecisionSupportAnalysisQuery(string $sql, int $catecheticalYear, bool $admin, string $username = null)
+    private function genericDecisionSupportAnalysisQuery(string $sql, int $catecheticalYear, bool $admin, ?string $username = null)
     {
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
@@ -4646,7 +4646,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @param string|null $group
      * @throws Exception
      */
-    public function getDataDumpForInconsistencyAnalysis(string $username, bool $admin, int $currentCatecheticalYear, int $catecheticalYear = null, int $catechism = null, string $group = null)
+    public function getDataDumpForInconsistencyAnalysis(string $username, bool $admin, int $currentCatecheticalYear, ?int $catecheticalYear = null, ?int $catechism = null, ?string $group = null)
     {
 
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
@@ -5135,8 +5135,8 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @return array
      * @throws Exception
      */
-    public function getVirtualCatechesisSessionDates(int $catechism = null, string $group = null, bool $recursive = true,
-                                                     int $limit = 0, string $afterDate = null, string $beforeDate = null)
+    public function getVirtualCatechesisSessionDates(?int $catechism = null, ?string $group = null, bool $recursive = true,
+                                                     int $limit = 0, ?string $afterDate = null, ?string $beforeDate = null)
     {
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
@@ -5221,7 +5221,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @return string|string[]|null
      * @throws Exception
      */
-    public function getVirtualCatechesisContent(string $sessionDate, int $catechism = null, string $group = null, bool $recursive = true)
+    public function getVirtualCatechesisContent(string $sessionDate, ?int $catechism = null, ?string $group = null, bool $recursive = true)
     {
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
@@ -5288,7 +5288,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @throws Exception
      */
     public function postVirtualCatechesisContent(string $contents, string $username, string $sessionDate,
-                                                 int $catechism = null, string $group = null)
+                                                 ?int $catechism = null, ?string $group = null)
     {
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_EDIT))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
@@ -5329,7 +5329,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @throws Exception
      */
     public function insertLockInVirtualCatechesis(string $username, string $sessionDate,
-                                                  int $catechism = null, string $group = null)
+                                                  ?int $catechism = null, ?string $group = null)
     {
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_EDIT))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
@@ -5370,7 +5370,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @param $timeThreshold
      */
     public function getListOfVirtualCatechesisObservers(string $sessionDate, int $timeThreshold,
-                                                        int $catechism = null, string $group = null, string $excludeUsername = null)
+                                                        ?int $catechism = null, ?string $group = null, ?string $excludeUsername = null)
     {
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_EDIT))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
