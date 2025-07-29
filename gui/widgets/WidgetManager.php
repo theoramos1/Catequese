@@ -165,48 +165,46 @@ namespace catechesis\gui
          * Renders all the JS 'script' include lines and inline code declared as dependencies by all the registered widgets,
          * and also any additional dependencies directly declared through this manager.
          */
-        public function renderJS()
-        {
-            $rendered_js = [];
+public function renderJS()
+{
+    $rendered_js = array();
 
-            // Start with the essential scripts
-            foreach (self::ESSENTIAL_JS as $path) {
-                $fullPath = $this->_path_prefix . $path;
-                if (!in_array($fullPath, $rendered_js)) {
-                    $rendered_js[] = $fullPath;
-                }
-            }
+    // Adiciona scripts essenciais (sempre!)
+    foreach (self::ESSENTIAL_JS as $path) {
+        $fullPath = $this->_path_prefix . $path;
+        if (!in_array($fullPath, $rendered_js)) {
+            $rendered_js[] = $fullPath;
+        }
+    }
 
-            // Gather additional dependencies directly declared in this manager
-            foreach ($this->_additional_js_dependencies as $path) {
-                if (!in_array($path, $rendered_js)) {
-                    $rendered_js[] = $path;
-                }
-            }
+    // Adiciona dependências JS adicionais declaradas manualmente
+    foreach ($this->_additional_js_dependencies as $path) {
+        if (!in_array($path, $rendered_js)) {
+            $rendered_js[] = $path;
+        }
+    }
 
-            // Gather JS dependencies of all the registered widgets
-            foreach ($this->_widgets as $widget) {
-                foreach ($widget->getJSDependencies() as $path) {
-                    $fullPath = $this->_path_prefix . $path;
-                    if (!in_array($fullPath, $rendered_js)) {
-                        $rendered_js[] = $fullPath;
-                    }
-                }
-            }
-
-            // Output in order
-            foreach ($rendered_js as $path) {
-                echo("<script src=\"$path\"></script>");
-            }
-
-            // Render JS inline code produced by all the registered widgets
-            foreach ($this->_widgets as $widget)
-            {
-                $widget->renderJS();
+    // Adiciona dependências JS dos widgets registrados
+    foreach ($this->_widgets as $widget) {
+        foreach ($widget->getJSDependencies() as $path) {
+            $fullPath = $this->_path_prefix . $path;
+            if (!in_array($fullPath, $rendered_js)) {
+                $rendered_js[] = $fullPath;
             }
         }
-
-
     }
+
+    // Imprime todos os scripts na ordem correta
+    foreach ($rendered_js as $path) {
+        echo("<script src=\"$path\"></script>");
+    }
+
+    // Renderiza JS inline dos widgets (se houver)
+    foreach ($this->_widgets as $widget)
+    {
+        $widget->renderJS();
+    }
+}
+
 
 }
