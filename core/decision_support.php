@@ -121,7 +121,7 @@ use catechesis\Utils;
 			reportar($candidato, $nivel, "A data de baptismo não foi preenchida.");
 			return false;
 		}
-		else if(!DataValidationUtils::validateDate(date("d-m-Y", strtotime($catequizando['data_baptismo']))))
+		else if(!DataValidationUtils::validateDate(date("d/m/Y", strtotime($catequizando['data_baptismo']))))
 		{
 			reportar($candidato, $nivel, "A data de baptismo é inválida.");
 			return false;
@@ -146,7 +146,7 @@ use catechesis\Utils;
 			reportar($candidato, $nivel, "A data da Primeira Comunhão não foi preenchida.");
 			return false;
 		}
-		else if(!DataValidationUtils::validateDate(date("d-m-Y", strtotime($catequizando['data_comunhao']))))
+		else if(!DataValidationUtils::validateDate(date("d/m/Y", strtotime($catequizando['data_comunhao']))))
 		{
 			reportar($candidato, $nivel, "A data da Primeira Comunhão é inválida.");
 			return false;
@@ -169,7 +169,7 @@ use catechesis\Utils;
 			reportar($candidato, $nivel, "A data do Crisma não foi preenchida.");
 			return false;
 		}
-		else if(!DataValidationUtils::validateDate(date("d-m-Y", strtotime($catequizando['data_crisma']))))
+		else if(!DataValidationUtils::validateDate(date("d/m/Y", strtotime($catequizando['data_crisma']))))
 		{
 			reportar($candidato, $nivel, "A data do Crisma é inválida.");
 			return false;
@@ -356,7 +356,7 @@ use catechesis\Utils;
 			reportar($candidato, $nivel, "A data de nascimento não foi preenchida.");
 			return false;
 		}
-		else if(!DataValidationUtils::validateDate(date("d-m-Y", strtotime($catequizando['data_nasc']))))
+		else if(!DataValidationUtils::validateDate(date("d/m/Y", strtotime($catequizando['data_nasc']))))
 		{
 			reportar($candidato, $nivel, "A data de nascimento é inválida.");
 			return false;

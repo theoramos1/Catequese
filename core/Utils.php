@@ -147,7 +147,7 @@ class Utils
 
         if(!is_null($date))
         {
-            $dateObj = DateTime::createFromFormat("d-m-Y", $date);
+            $dateObj = DateTime::createFromFormat("d/m/Y", $date);
             $ano_actual = $dateObj->format("Y");
             $mes_actual = $dateObj->format("m");
         }
