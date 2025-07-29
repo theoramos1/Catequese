@@ -36,7 +36,7 @@ namespace catechesis\gui
          *
          * @param string|null $id
          */
-        public function __construct(string $id = null)
+        public function __construct(?string $id = null)
         {
             if (!isset($id))
             {
@@ -62,7 +62,7 @@ namespace catechesis\gui
          * produce unique IDs to each part of the report.
          * @return string|null
          */
-        public function getID(int $part = null)
+        public function getID(?int $part = null)
         {
             if(is_null($part))
                 return $this->_id;
