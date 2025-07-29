@@ -1061,8 +1061,10 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
 
 
 		//Registar autorizacao de saida de menores
-        foreach($autorizacoes_saida_menores as $familiar)
+        if (is_array($autorizacoes_saida_menores) || is_object($autorizacoes_saida_menores))
         {
+            foreach($autorizacoes_saida_menores as $familiar)
+            {
             $name = $familiar->nome;
             $relationship = $familiar->parentesco;
             $phone = $familiar->telefone;
@@ -1090,6 +1092,7 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
 
             //Adiciona a' lista de familiares que podem vir buscar o catequizando
             addAuthorizationToList($cid, $name, $relationship, $phone);
+        }
         }
 
 
