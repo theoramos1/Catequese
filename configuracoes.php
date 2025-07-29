@@ -244,9 +244,13 @@ if (sidebar) {
         (function (link) {
             link.addEventListener('click', function (ev) {
                 var href = link.getAttribute('href');
-                if (href && href.startsWith('#')) {
+                if (href && href.charAt(0) === '#') {
                     ev.preventDefault();
-                    history.pushState(null, '', href);
+                    if (history.pushState) {
+                        history.pushState(null, '', href);
+                    } else {
+                        window.location.hash = href;
+                    }
                     showPanel(href);
                 }
             });
