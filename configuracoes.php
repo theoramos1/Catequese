@@ -214,9 +214,9 @@ $pageUI->renderJS(); // Render the widgets' JS code
                 link.addEventListener('click', function (ev) {
                     var href = link.getAttribute('href');
                     if (href && href.startsWith('#')) {
-                        ev.preventDefault();
                         var target = document.querySelector(href);
                         if (target) {
+                            ev.preventDefault();
                             history.pushState(null, '', href);
                             target.scrollIntoView({behavior: 'smooth'});
                         }
