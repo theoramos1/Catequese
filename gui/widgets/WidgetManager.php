@@ -35,6 +35,12 @@ namespace catechesis\gui
          */
         public function __construct(string $pathPrefix = "")
         {
+            if ($pathPrefix === "") {
+                $pathPrefix = defined('CATECHESIS_BASE_URL')
+                    ? constant('CATECHESIS_BASE_URL') . '/'
+                    : '';
+            }
+
             $this->setPathPrefix($pathPrefix);
         }
 

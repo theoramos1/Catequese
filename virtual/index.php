@@ -24,7 +24,7 @@ Authenticator::startSecureSession();
 
 
 // Instantiate a widget manager
-$pageUI = new WidgetManager("../");
+$pageUI = new WidgetManager();
 
 // Add widgets
 $footer = new SimpleFooter(null, false);
