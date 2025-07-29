@@ -108,8 +108,13 @@ $menu->renderHTML();
 <?php
 
 	//Criar conta
-	if(isset($_POST['op']) && $_POST['op']=="criar")
-	{
+        if(isset($_POST['op']) && $_POST['op']=="criar")
+        {
+                if(!Utils::verifyCSRFToken($_POST['csrf_token'] ?? null))
+                {
+                        echo("<div class=\"alert alert-danger\"><strong>Erro!</strong> Pedido inválido.</div>");
+                        die();
+                }
 
 		$un = Utils::sanitizeInput($_POST['un']);
 		$nome = Utils::sanitizeInput($_POST['nome']);
