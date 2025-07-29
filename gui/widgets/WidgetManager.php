@@ -159,7 +159,7 @@ namespace catechesis\gui
          */
         public function renderJS()
         {
-            $dependencies = array();
+            $rendered_js = array();
 
             // Gather additional dependencies directly declared in this manager
             foreach($this->_additional_js_dependencies as $path)
