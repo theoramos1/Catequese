@@ -100,7 +100,7 @@ class DataValidationUtils
             // Brazilian zip code without locality
             $pattern = '/^[0-9]{5}-[0-9]{3}$/';
 
-        return (preg_match($pattern, $postal));
+        return preg_match($pattern, $postal) === 1;
     }
 
     /**
