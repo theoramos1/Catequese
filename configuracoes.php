@@ -235,18 +235,19 @@ $pageUI->renderJS(); // Render the widgets' JS code
             }
         }
 
-        if (sidebar) {
-            sidebar.querySelectorAll('a').forEach(function (link) {
-                link.addEventListener('click', function (ev) {
-                    var href = link.getAttribute('href');
-                    if (href && href.startsWith('#')) {
-                        ev.preventDefault();
-                        history.pushState(null, '', href);
-                        showPanel(href);
-                    }
-                });
-            });
-        }
+if (sidebar) {
+    sidebar.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function (ev) {
+            var href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                ev.preventDefault();
+                history.pushState(null, '', href);
+                showPanel(href);
+            }
+        });
+    });
+}
+
 
         window.addEventListener('hashchange', function () {
             showPanel(window.location.hash);

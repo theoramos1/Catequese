@@ -5,14 +5,15 @@ namespace catechesis {
     }
 }
 
-use catechesis\PaymentVerificationService;
-use PHPUnit\Framework\TestCase;
+namespace {
+    use catechesis\PaymentVerificationService;
+    use PHPUnit\Framework\TestCase;
 
-require_once __DIR__ . '/../core/PaymentVerificationService.php';
+    require_once __DIR__ . '/../core/PaymentVerificationService.php';
 
-class PaymentVerificationServiceTest extends TestCase
-{
-    public static $mockResponse;
+    class PaymentVerificationServiceTest extends TestCase
+    {
+        public static $mockResponse;
 
     public function testVerifyPaymentSuccess(): void
     {
@@ -45,5 +46,6 @@ class PaymentVerificationServiceTest extends TestCase
         $this->expectExceptionMessage('Invalid response from payment provider.');
         $service->verifyPayment(1, '123', 10);
     }
+    }
 }
-?>
+

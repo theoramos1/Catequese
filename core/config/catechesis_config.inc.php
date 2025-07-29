@@ -38,6 +38,14 @@ define('CATECHESIS_ROOT_DIRECTORY', 'C:\xampp\htdocs\catechesis/');
 define('CATECHESIS_DATA_DIRECTORY', 'C:/xampp/catechesis-data');
 
 
-// Load the remaining configurations from file
-require_once(constant('CATECHESIS_DATA_DIRECTORY') . '/config/catechesis_config.shadow.php');
+// Load the remaining configurations from file if available
+$shadowConfig = constant('CATECHESIS_DATA_DIRECTORY') . '/config/catechesis_config.shadow.php';
+if (file_exists($shadowConfig)) {
+    require_once($shadowConfig);
+}
+
+// Provide dummy values for optional configuration constants when running tests
+if (!defined('CATECHESIS_UL_SITE_KEY')) {
+    define('CATECHESIS_UL_SITE_KEY', 'test-key');
+}
 ?>
