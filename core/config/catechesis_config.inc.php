@@ -29,7 +29,9 @@ define('CATECHESIS_BASE_URL', 'https://localhost/catechesis');
 //	The server directory where the Catechesis root is located.
 // NOTE! Please also set the .htaccess file in the CatecheSis root to point to the page 'erro404.php'
 // with a path relative to Apache's document root (NOT CatecheSis document root) and beginning with '/'.
-define('CATECHESIS_ROOT_DIRECTORY', 'C:\xampp\htdocs\catechesis/');
+if (!defined('CATECHESIS_ROOT_DIRECTORY')) {
+    define('CATECHESIS_ROOT_DIRECTORY', realpath(__DIR__ . '/../../') . '/');
+}
 
 
 //CatecheSis data directory
@@ -43,6 +45,43 @@ $shadowConfig = constant('CATECHESIS_DATA_DIRECTORY') . '/config/catechesis_conf
 if (file_exists($shadowConfig)) {
     require_once($shadowConfig);
 }
+
+// ---------------------------------------------------------------------------
+// Provide dummy values for configuration constants when running tests
+// ---------------------------------------------------------------------------
+if (!defined('CATECHESIS_HOST')) define('CATECHESIS_HOST', 'localhost');
+if (!defined('CATECHESIS_DB'))   define('CATECHESIS_DB',   'catechesis');
+
+if (!defined('USER_DEFAULT_READ'))    define('USER_DEFAULT_READ',    'test');
+if (!defined('PASS_DEFAULT_READ'))    define('PASS_DEFAULT_READ',    'test');
+if (!defined('USER_DEFAULT_EDIT'))    define('USER_DEFAULT_EDIT',    'test');
+if (!defined('PASS_DEFAULT_EDIT'))    define('PASS_DEFAULT_EDIT',    'test');
+if (!defined('USER_DEFAULT_DELETE'))  define('USER_DEFAULT_DELETE',  'test');
+if (!defined('PASS_DEFAULT_DELETE'))  define('PASS_DEFAULT_DELETE',  'test');
+if (!defined('USER_GROUP_MANAGEMENT')) define('USER_GROUP_MANAGEMENT', 'test');
+if (!defined('PASS_GROUP_MANAGEMENT')) define('PASS_GROUP_MANAGEMENT', 'test');
+if (!defined('USER_USER_MANAGEMENT'))  define('USER_USER_MANAGEMENT',  'test');
+if (!defined('PASS_USER_MANAGEMENT'))  define('PASS_USER_MANAGEMENT',  'test');
+if (!defined('USER_LOG'))              define('USER_LOG',              'test');
+if (!defined('PASS_LOG'))              define('PASS_LOG',              'test');
+if (!defined('USER_LOG_CLEAN'))        define('USER_LOG_CLEAN',        'test');
+if (!defined('PASS_LOG_CLEAN'))        define('PASS_LOG_CLEAN',        'test');
+if (!defined('USER_CONFIG'))           define('USER_CONFIG',           'test');
+if (!defined('PASS_CONFIG'))           define('PASS_CONFIG',           'test');
+if (!defined('USER_ONLINE_ENROLLMENT')) define('USER_ONLINE_ENROLLMENT', 'test');
+if (!defined('PASS_ONLINE_ENROLLMENT')) define('PASS_ONLINE_ENROLLMENT', 'test');
+if (!defined('USER_CAPTCHA'))          define('USER_CAPTCHA',          'test');
+if (!defined('PASS_CAPTCHA'))          define('PASS_CAPTCHA',          'test');
+if (!defined('USER_UL_AUTH'))          define('USER_UL_AUTH',          'test');
+if (!defined('PASS_UL_AUTH'))          define('PASS_UL_AUTH',          'test');
+if (!defined('USER_UL_UPDATE'))        define('USER_UL_UPDATE',        'test');
+if (!defined('PASS_UL_UPDATE'))        define('PASS_UL_UPDATE',        'test');
+if (!defined('USER_UL_DELETE'))        define('USER_UL_DELETE',        'test');
+if (!defined('PASS_UL_DELETE'))        define('PASS_UL_DELETE',        'test');
+if (!defined('USER_UL_SESSION'))       define('USER_UL_SESSION',       'test');
+if (!defined('PASS_UL_SESSION'))       define('PASS_UL_SESSION',       'test');
+if (!defined('USER_UL_LOG'))           define('USER_UL_LOG',           'test');
+if (!defined('PASS_UL_LOG'))           define('PASS_UL_LOG',           'test');
 
 // Provide dummy values for optional configuration constants when running tests
 if (!defined('CATECHESIS_UL_SITE_KEY')) {
