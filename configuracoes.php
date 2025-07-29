@@ -209,28 +209,51 @@ $pageUI->renderJS(); // Render the widgets' JS code
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var sidebar = document.getElementById('sideMenuScrollspy');
-        if (sidebar) {
-            sidebar.querySelectorAll('a').forEach(function (link) {
-                link.addEventListener('click', function (ev) {
-                    var href = link.getAttribute('href');
-                    if (href && href.startsWith('#')) {
-                        var target = document.querySelector(href);
-                        if (target) {
-                            ev.preventDefault();
-                            history.pushState(null, '', href);
-                            target.scrollIntoView({behavior: 'smooth'});
-                        }
+        var panels = Array.prototype.slice.call(document.querySelectorAll('.settings_panel_widget'));
+
+        function showPanel(hash) {
+            if (!hash) {
+                hash = panels.length > 0 ? '#' + panels[0].id : '';
+            }
+            var id = hash.replace(/^#/, '');
+            var target = document.getElementById(id);
+            if (!target) return;
+
+            panels.forEach(function (p) {
+                p.style.display = (p === target) ? '' : 'none';
+            });
+
+            if (sidebar) {
+                sidebar.querySelectorAll('li').forEach(function (li) {
+                    var a = li.querySelector('a');
+                    if (a && a.getAttribute('href') === hash) {
+                        li.classList.add('active');
+                    } else {
+                        li.classList.remove('active');
                     }
                 });
-            });
-        }
-
-        if (window.location.hash) {
-            var initial = document.querySelector(window.location.hash);
-            if (initial) {
-                initial.scrollIntoView({behavior: 'smooth'});
             }
         }
+
+if (sidebar) {
+    sidebar.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function (ev) {
+            var href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                ev.preventDefault();
+                history.pushState(null, '', href);
+                showPanel(href);
+            }
+        });
+    });
+}
+
+
+        window.addEventListener('hashchange', function () {
+            showPanel(window.location.hash);
+        });
+
+        showPanel(window.location.hash);
     });
 </script>
 
