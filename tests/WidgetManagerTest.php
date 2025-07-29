@@ -27,5 +27,23 @@ class WidgetManagerTest extends TestCase
         );
 
     }
+
+    public function testRenderJSOutputsCoreScriptsWithoutWidgets(): void
+    {
+        $manager = new WidgetManager();
+
+        ob_start();
+        $manager->renderJS();
+        $output = ob_get_clean();
+
+        $prefix = constant('CATECHESIS_BASE_URL') . '/';
+        $expected = [
+            '<script src="' . $prefix . 'js/jquery.min.js"></script>',
+            '<script src="' . $prefix . 'js/bootstrap.min.js"></script>',
+            '<script src="' . $prefix . 'js/index.js"></script>',
+        ];
+
+        $this->assertSame(implode('', $expected), $output);
+    }
 }
 ?>

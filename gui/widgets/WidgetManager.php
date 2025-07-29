@@ -19,6 +19,14 @@ namespace catechesis\gui
      */
     class WidgetManager
     {
+        /**
+         * Core JS scripts that should always be included.
+         */
+        private const ESSENTIAL_JS = [
+            'js/jquery.min.js',
+            'js/bootstrap.min.js',
+            'js/index.js'
+        ];
 
         // (Note: typed properties are only allowed in PHP 7.4+, so types are commented in the meanwhile...)
         private /*array*/  $_widgets = array();                        // List of widgets added to this manager
@@ -159,65 +167,35 @@ namespace catechesis\gui
          */
         public function renderJS()
         {
-            $dependencies = array();
+            $rendered_js = [];
+
+            // Start with the essential scripts
+            foreach (self::ESSENTIAL_JS as $path) {
+                $fullPath = $this->_path_prefix . $path;
+                if (!in_array($fullPath, $rendered_js)) {
+                    $rendered_js[] = $fullPath;
+                }
+            }
 
             // Gather additional dependencies directly declared in this manager
-            foreach($this->_additional_js_dependencies as $path)
-            {
-                if(!in_array($path, $rendered_js))
+            foreach ($this->_additional_js_dependencies as $path) {
+                if (!in_array($path, $rendered_js)) {
                     $rendered_js[] = $path;
+                }
             }
 
             // Gather JS dependencies of all the registered widgets
-            foreach($this->_widgets as $widget)
-
-            {
-                foreach ($widget->getJSDependencies() as $path)
-                {
+            foreach ($this->_widgets as $widget) {
+                foreach ($widget->getJSDependencies() as $path) {
                     $fullPath = $this->_path_prefix . $path;
-
-                    if (!in_array($fullPath, $rendered_js))
+                    if (!in_array($fullPath, $rendered_js)) {
                         $rendered_js[] = $fullPath;
+                    }
                 }
             }
 
-            // Sort so jQuery comes first, Bootstrap second, remaining keep registration order
-            $jquery = null;
-            $bootstrap = null;
-            $others = array();
-
-            foreach($rendered_js as $path)
-            {
-                $basename = basename($path);
-                if(stripos($basename, 'jquery.min.js') !== false)
-                {
-                    $jquery = $path;
-                }
-                elseif(stripos($basename, 'bootstrap.bundle.min.js') !== false || stripos($basename, 'bootstrap.min.js') !== false)
-                {
-                    // Keep the first bootstrap variant found
-                    if($bootstrap === null)
-                        $bootstrap = $path;
-                    else
-                        $others[] = $path;
-                }
-                else
-                {
-                    $others[] = $path;
-                }
-            }
-
-            $sorted_js = array();
-            if($jquery !== null)
-                $sorted_js[] = $jquery;
-            if($bootstrap !== null)
-                $sorted_js[] = $bootstrap;
-            foreach($others as $p)
-                $sorted_js[] = $p;
-
-            foreach($sorted_js as $path)
-
-            {
+            // Output in order
+            foreach ($rendered_js as $path) {
                 echo("<script src=\"$path\"></script>");
             }
 
