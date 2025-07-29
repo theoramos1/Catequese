@@ -152,28 +152,62 @@ namespace catechesis\gui
         {
             $rendered_js = array(); //Auxiliary array to check and avoid including duplicate dependencies
 
-            // Include additional dependencies directly declared in this manager
+            // Gather additional dependencies directly declared in this manager
             foreach($this->_additional_js_dependencies as $path)
             {
                 if(!in_array($path, $rendered_js))
-                {
-                    echo("<script src=\"$path\"></script>");
                     $rendered_js[] = $path;
-                }
             }
 
-            // Include JS dependencies of all the registered widgets
+            // Gather JS dependencies of all the registered widgets
             foreach($this->_widgets as $widget)
             {
                 // Include dependencies declared by this widget
                 foreach($widget->getJSDependencies() as $path)
                 {
-                    if (!in_array($this->_path_prefix . $path, $rendered_js))
-                    {
-                        echo("<script src=\"" . $this->_path_prefix . $path . "\"></script>");
-                        $rendered_js[] = $this->_path_prefix . $path;
-                    }
+                    $fullPath = $this->_path_prefix . $path;
+                    if (!in_array($fullPath, $rendered_js))
+                        $rendered_js[] = $fullPath;
                 }
+            }
+
+            // Sort so jQuery comes first, Bootstrap second, remaining keep registration order
+            $jquery = null;
+            $bootstrap = null;
+            $others = array();
+
+            foreach($rendered_js as $path)
+            {
+                $basename = basename($path);
+                if(stripos($basename, 'jquery.min.js') !== false)
+                {
+                    $jquery = $path;
+                }
+                elseif(stripos($basename, 'bootstrap.bundle.min.js') !== false || stripos($basename, 'bootstrap.min.js') !== false)
+                {
+                    // Keep the first bootstrap variant found
+                    if($bootstrap === null)
+                        $bootstrap = $path;
+                    else
+                        $others[] = $path;
+                }
+                else
+                {
+                    $others[] = $path;
+                }
+            }
+
+            $sorted_js = array();
+            if($jquery !== null)
+                $sorted_js[] = $jquery;
+            if($bootstrap !== null)
+                $sorted_js[] = $bootstrap;
+            foreach($others as $p)
+                $sorted_js[] = $p;
+
+            foreach($sorted_js as $path)
+            {
+                echo("<script src=\"$path\"></script>");
             }
 
             // Render JS inline code produced by all the registered widgets
