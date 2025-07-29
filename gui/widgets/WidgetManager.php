@@ -4,6 +4,9 @@
 namespace catechesis\gui
 {
     require_once(__DIR__ . '/Widget.php');
+    require_once(__DIR__ . '/../../core/Configurator.php');
+
+    use catechesis\Configurator;
 
 
     /**
@@ -150,34 +153,48 @@ namespace catechesis\gui
          */
         public function renderJS()
         {
-            $rendered_js = array(); //Auxiliary array to check and avoid including duplicate dependencies
+            $dependencies = array();
 
-            // Include additional dependencies directly declared in this manager
-            foreach($this->_additional_js_dependencies as $path)
+            // Collect additional dependencies
+            foreach ($this->_additional_js_dependencies as $path)
             {
-                if(!in_array($path, $rendered_js))
+                if(!in_array($path, $dependencies))
+                    $dependencies[] = $path;
+            }
+
+            // Collect dependencies from all registered widgets
+            foreach ($this->_widgets as $widget)
+            {
+                foreach ($widget->getJSDependencies() as $path)
                 {
-                    echo("<script src=\"$path\"></script>");
-                    $rendered_js[] = $path;
+                    $fullPath = $this->_path_prefix . $path;
+                    if(!in_array($fullPath, $dependencies))
+                        $dependencies[] = $fullPath;
                 }
             }
 
-            // Include JS dependencies of all the registered widgets
-            foreach($this->_widgets as $widget)
+            // Ensure jQuery and Bootstrap are present before others
+            $jqueryPath = $this->_path_prefix . Configurator::JQUERY_LIB_PATH;
+            $bootstrapPath = $this->_path_prefix . Configurator::BOOTSTRAP_BUNDLE_PATH;
+
+            // Remove if already collected to avoid duplicates
+            if(($idx = array_search($jqueryPath, $dependencies)) !== false)
+                unset($dependencies[$idx]);
+            if(($idx = array_search($bootstrapPath, $dependencies)) !== false)
+                unset($dependencies[$idx]);
+
+            // Output core scripts first
+            echo("<script src=\"$jqueryPath\"></script>");
+            echo("<script src=\"$bootstrapPath\"></script>");
+
+            // Output remaining dependencies
+            foreach ($dependencies as $path)
             {
-                // Include dependencies declared by this widget
-                foreach($widget->getJSDependencies() as $path)
-                {
-                    if (!in_array($this->_path_prefix . $path, $rendered_js))
-                    {
-                        echo("<script src=\"" . $this->_path_prefix . $path . "\"></script>");
-                        $rendered_js[] = $this->_path_prefix . $path;
-                    }
-                }
+                echo("<script src=\"$path\"></script>");
             }
 
             // Render JS inline code produced by all the registered widgets
-            foreach($this->_widgets as $widget)
+            foreach ($this->_widgets as $widget)
             {
                 $widget->renderJS();
             }

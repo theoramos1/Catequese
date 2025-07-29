@@ -142,6 +142,10 @@ class Configurator
 
     const KEY_MAINTENANCE_MODE = "MAINTENANCE_MODE";                                                                    //Enabling the maintenance mode forbids logins and shows the error 500 page on the landing page
 
+    // Common library paths
+    const JQUERY_LIB_PATH = 'js/jquery.min.js';
+    const BOOTSTRAP_BUNDLE_PATH = 'js/bootstrap.bundle.min.js';
+
     private static $CONFIGURATIONS = null; //Stores the configuration objects
 
 

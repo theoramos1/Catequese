@@ -5832,7 +5832,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
 
         try
         {
-            $sql = "SELECT pid, cid, valor, estado, data_pagamento FROM pagamentos WHERE cid=:cid ORDER BY data_pagamento DESC;";
+            $sql = "SELECT pid, cid, valor, estado, data_pagamento FROM pagamentos WHERE cid=:cid ORDER BY data_pagamento DESC, pid DESC;";
             $stm = $this->_connection->prepare($sql);
 
             $stm->bindParam(':cid', $cid, PDO::PARAM_INT);
