@@ -5,10 +5,14 @@ namespace catechesis\gui;
 require_once(__DIR__ . '/../AbstractSettingsPanel/AbstractSettingsPanelWidget.php');
 require_once(__DIR__ . '/../../../../authentication/Authenticator.php');
 require_once(__DIR__ . '/../../../../core/PdoDatabaseManager.php');
+require_once(__DIR__ . '/../../../../core/Configurator.php');
+require_once(__DIR__ . '/../../../../core/domain/Locale.php');
 require_once(__DIR__ . '/../../../../core/Utils.php');
 
 use catechesis\Authenticator;
+use catechesis\Configurator;
 use catechesis\PdoDatabaseManager;
+use core\domain\Locale;
 use catechesis\Utils;
 use uLogin;
 
