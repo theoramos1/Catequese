@@ -5,6 +5,9 @@ require_once(__DIR__ . '/authentication/utils/authentication_verify.php');
 require_once(__DIR__ . '/authentication/Authenticator.php');
 require_once(__DIR__ . '/core/log_functions.php'); //Para poder escrever no log
 require_once(__DIR__ . '/core/Utils.php');
+require_once(__DIR__ . '/core/DataValidationUtils.php');
+require_once(__DIR__ . '/core/Configurator.php');
+require_once(__DIR__ . '/core/domain/Locale.php');
 require_once(__DIR__ . "/core/PdoDatabaseManager.php");
 require_once(__DIR__ . '/gui/widgets/WidgetManager.php');
 require_once(__DIR__ . '/gui/widgets/Navbar/MainNavbar.php');
@@ -22,6 +25,9 @@ use catechesis\gui\ModalDialogWidget;
 use catechesis\gui\UserAccountConfigurationPanelWidget;
 use catechesis\gui\Button;
 use catechesis\gui\ButtonType;
+use catechesis\Configurator;
+use catechesis\DataValidationUtils;
+use core\domain\Locale;
 
 
 $db = new PdoDatabaseManager();
@@ -111,35 +117,64 @@ $menu->renderHTML();
 	if(isset($_POST['op']) && $_POST['op']=="criar")
 	{
 
-		$un = Utils::sanitizeInput($_POST['un']);
-		$nome = Utils::sanitizeInput($_POST['nome']);
-	
-		$tel = NULL;
-		if(isset($_POST['telefone']) && $_POST['telefone']!="")
-			$tel = intval($_POST['telefone']);
-	
-		$email = NULL;
-		if(isset($_POST['email']) && $_POST['email']!="")
-			$email = Utils::sanitizeInput($_POST['email']);
-	
-		$password_user = Utils::sanitizeInput($_POST['password1']);
-		$catequista = Utils::sanitizeInput($_POST['catequista']);
-		$administrador = intval($_POST['admin']);
+                $un = Utils::sanitizeInput($_POST['un']);
+                $nome = Utils::sanitizeInput($_POST['nome']);
+
+                $rawTel = NULL;
+                if(isset($_POST['telefone']) && $_POST['telefone']!="")
+                        $rawTel = Utils::sanitizeInput($_POST['telefone']);
+
+                $tel = isset($rawTel)?preg_replace('/\D/', '', $rawTel) : NULL;
+
+                $email = NULL;
+                if(isset($_POST['email']) && $_POST['email']!="")
+                        $email = Utils::sanitizeInput($_POST['email']);
+
+                $password_user = Utils::sanitizeInput($_POST['password1']);
+                $catequista = Utils::sanitizeInput($_POST['catequista']);
+                $administrador = intval($_POST['admin']);
 
         $isAdmin = ($administrador==1);
         $isCatechist = ($catequista=="activo" || $catequista=="inactivo");
         $isCatechistActive = ($catequista=="activo");
-	
-	
-		if(!$password_user || $password_user=="")
-		{
-			echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> As password é inválida. Falha ao criar conta de utilizador.</div>");
-		}
-		else
-		{
-			try
-			{
-			    if($db->createUserAccount($un, $nome, $password_user, $isAdmin, $isCatechist, $isCatechistActive, $tel, $email))
+
+                $locale = Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE);
+
+                $inputs_invalidos = false;
+
+                if(!DataValidationUtils::validateUsername($un))
+                {
+                        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O nome de utilizador é inválido. Deve conter apenas letras e/ou dígitos, sem espaços.</div>");
+                        $inputs_invalidos = true;
+                }
+
+                if(!DataValidationUtils::validatePassword($password_user))
+                {
+                        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> A palavra-passe é inválida. Deve conter letras e dígitos e não deve ser inferior a 10 caracteres.</div>");
+                        $inputs_invalidos = true;
+                }
+
+                if(isset($email) && $email!="" && !DataValidationUtils::validateEmail($email))
+                {
+                        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> O e-mail que introduziu é inválido.</div>");
+                        $inputs_invalidos = true;
+                }
+
+                if(isset($rawTel) && $rawTel!="" && !DataValidationUtils::validatePhoneNumber($rawTel, $locale))
+                {
+                        if($locale == Locale::PORTUGAL)
+                                $msg = "O número de telefone que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 dígitos.";
+                        else
+                                $msg = "O número de telefone que introduziu é inválido. Deve estar no formato '(99) 3333-4444'.";
+                        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> $msg</div>");
+                        $inputs_invalidos = true;
+                }
+
+                if(!$inputs_invalidos)
+                {
+                        try
+                        {
+                            if($db->createUserAccount($un, $nome, $password_user, $isAdmin, $isCatechist, $isCatechistActive, $tel, $email))
                 {
 
                     if($isCatechist)
@@ -153,17 +188,17 @@ $menu->renderHTML();
                         echo("<div class=\"alert alert-success\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Sucesso!</strong> Conta do utilizador " . $un . " criada.</div>");
                     }
                 }
-			    else
+                else
                 {
                     echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> Falha ao criar conta de utilizador.</div>");
                 }
-			}
+                        }
             catch (Exception $e)
             {
                 echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> " . $e->getMessage() . "</div>");
             }
-		}
-	}
+                }
+        }
 	
 	
 	
