@@ -176,8 +176,11 @@ $menu->renderHTML();
                         <?php
 
                         // Handle POSTs to change settings
-                        foreach($settingsPanels as $panel)
-                            $panel->handlePost();
+                        if($_SERVER['REQUEST_METHOD'] === 'POST')
+                        {
+                            foreach($settingsPanels as $panel)
+                                $panel->handlePost();
+                        }
 
                         // Render settings panels
                         foreach($settingsPanels as $panel)
