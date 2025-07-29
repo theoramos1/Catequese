@@ -206,6 +206,33 @@ $menu->renderHTML();
 $pageUI->renderJS(); // Render the widgets' JS code
 ?>
 <script src="js/rowlink.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var sidebar = document.getElementById('sideMenuScrollspy');
+        if (sidebar) {
+            sidebar.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', function (ev) {
+                    var href = link.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        ev.preventDefault();
+                        var target = document.querySelector(href);
+                        if (target) {
+                            history.pushState(null, '', href);
+                            target.scrollIntoView({behavior: 'smooth'});
+                        }
+                    }
+                });
+            });
+        }
+
+        if (window.location.hash) {
+            var initial = document.querySelector(window.location.hash);
+            if (initial) {
+                initial.scrollIntoView({behavior: 'smooth'});
+            }
+        }
+    });
+</script>
 
 </body>
 </html>
