@@ -123,7 +123,8 @@ $menu->renderHTML();
 	    <div class="row" style="margin-bottom:20px; "></div>
 	    
 	    
-	    <form role="form" action="gerirUtilizadores.php" method="post" onsubmit="return valida_form();" id="form_criar_utilizador">
+            <form role="form" action="gerirUtilizadores.php" method="post" onsubmit="return valida_form();" id="form_criar_utilizador">
+                    <input type="hidden" name="csrf_token" value="<?= \catechesis\Utils::getCSRFToken() ?>">
 	    
 		    <!--nome-->
 		    <div class="form-group">
