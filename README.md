@@ -26,7 +26,7 @@ CatecheSis requires a standard LAMP stack. Recommended software versions are:
 
 These requirements are listed in the installation manual which ships with the project.
 
-After cloning the repository run `composer install` from the project root to fetch the PHP dependencies. The installed packages include PHPUnit for running the test suite.
+After cloning the repository run `composer install` from the project root to fetch the PHP dependencies. This installs all required libraries, including PHPUnit for running the test suite.
 
 ## Configuration files
 
