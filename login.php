@@ -238,6 +238,8 @@ $pageUI->addWidget($footer);
                         <button id="login_button" type="submit" class="btn btn-primary"><strong>Iniciar sessão</strong></button>
                     </form>
 
+                    <a class="register_help_text" href="register.php">Ainda não tem conta? Cadastre-se aqui!</a>
+
                     <div class="row" style="margin-bottom: 80px;"></div>
                 </div>
 

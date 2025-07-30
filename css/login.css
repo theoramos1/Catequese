@@ -179,3 +179,14 @@ input::placeholder
     font-weight: bold;
     background-color: rgb(20, 85, 148);
 }
+
+.register_help_text
+{
+    font-family: Nexa, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    font-size: small;
+    color: #008fcf;
+    display: block;
+    margin-top: 20px;
+}
