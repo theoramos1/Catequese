@@ -26,10 +26,7 @@ CatecheSis requires a standard LAMP stack. Recommended software versions are:
 
 These requirements are listed in the installation manual which ships with the project.
 
-After cloning the repository run `composer install` from the project root to
-fetch the PHP dependencies. The installed packages include the QR code library
-and PHPUnit which are required for generating payment QR codes and running the
-test suite.
+After cloning the repository run `composer install` from the project root to fetch the PHP dependencies. The installed packages include PHPUnit for running the test suite.
 
 ## Configuration files
 
@@ -62,19 +59,14 @@ These settings are stored in the table `configuracoes` and can also be updated m
 Brazilian donors may contribute using Pix. Configure the following keys in the **Configurações** page:
 
 - `PIX_KEY` – Pix key associated with the parish
-- `PIX_RECEIVER` – name of the receiver shown on the QR code
+- `PIX_RECEIVER` – name of the receiver
 - `PIX_CITY` – receiver city required by the Pix standard
 - `PIX_DESCRIPTION` – text description included in the payment data
 - `PIX_TXID` – default transaction identifier
-- `PIX_API_URL` – optional endpoint used to generate the QR code
-- `PIX_API_TOKEN` – token for the Pix API
-- `PIX_API_TIMEOUT` – timeout in seconds when calling the API
 
 
 
-Call `PixQRCode::generatePixQRCode($amount)` to generate the QR image for the desired amount. The `$amount` parameter is optional; pass `null` to omit the value from the generated code. If the QR generation library is not available, the method returns `null`. When used for enrollments this amount usually corresponds to `ENROLLMENT_PAYMENT_AMOUNT` (default R$100).
-
-
+Call `PixQRCode::generatePixPayload($amount)` to obtain the Pix payload string for copy and paste. The `$amount` parameter is optional; pass `null` to omit the value. When used for enrollments this amount usually corresponds to `ENROLLMENT_PAYMENT_AMOUNT` (default R$100).
 
 Payment confirmation can optionally be automated with `PaymentVerificationService`, which expects the provider endpoint, token and timeout to be set via `PIX_PROVIDER_URL`, `PIX_PROVIDER_TOKEN` and `PIX_PROVIDER_TIMEOUT`.
 
