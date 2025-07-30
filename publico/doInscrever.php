@@ -518,8 +518,10 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
                     }
                     if ($pixAvailable) {
                         try {
-                            $pixImg = PixQRCode::generatePixQRCode(null);
-                            $pixPayload = PixQRCode::generatePixPayload(null);
+                            $amount = Configurator::getConfigurationValueOrDefault(
+                                Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT);
+                            $pixImg = PixQRCode::generatePixQRCode($amount);
+                            $pixPayload = PixQRCode::generatePixPayload($amount);
                         } catch (Exception $e) {
                             $pixImg = null;
                             $pixPayload = null;
