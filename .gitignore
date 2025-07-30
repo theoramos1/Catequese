@@ -1,2 +1,6 @@
 /vendor/
 .phpunit.result.cache
+
+debug_login.txt
+debug_nonce.log
+teste_hash.php
