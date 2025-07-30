@@ -131,7 +131,8 @@ $menu->renderHTML();
       }
       catch(Exception $e)
       {
-          echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> " . $e->getMessage() . "</div>");
+          error_log($e->getMessage());
+          echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> Ocorreu um erro ao obter os dados necessários.</div>");
           die();
       }
  ?>
@@ -295,7 +296,8 @@ $("#grafico1").bind("plothover", function (event, pos, item) {
 	}
     catch (Exception $e)
     {
-        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> " . $e->getMessage() . "</div>");
+        error_log($e->getMessage());
+        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> Não foi possível gerar o gráfico.</div>");
         die();
     }
 
@@ -431,11 +433,12 @@ $("#grafico2").bind("plothover", function (event, pos, item) {
 	
 <?php
 	}
-	catch(Exception $e)
+        catch(Exception $e)
     {
-        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> " . $e->getMessage() . "</div>");
+        error_log($e->getMessage());
+        echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> Não foi possível gerar o gráfico.</div>");
         die();
-	}	    
+        }
 		    
 		    
 	//Libertar recursos
