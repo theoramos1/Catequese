@@ -35,7 +35,13 @@ define('CATECHESIS_ROOT_DIRECTORY', '<CATECHESIS_ROOT_DIRECTORY>');
 //CatecheSis data directory
 //  The server directory where user-generated data is stored.
 //  This directory should be outside the public_html folder, to guarantee it is NOT accessible through a browser.
-define('CATECHESIS_DATA_DIRECTORY', '<CATECHESIS_DATA_DIRECTORY>');
+if (!defined('CATECHESIS_DATA_DIRECTORY')) {
+    $dataDir = getenv('CATECHESIS_DATA_DIRECTORY');
+    if ($dataDir === false || $dataDir === '') {
+        $dataDir = '<CATECHESIS_DATA_DIRECTORY>';
+    }
+    define('CATECHESIS_DATA_DIRECTORY', $dataDir);
+}
 
 
 // Load the remaining configurations from file
