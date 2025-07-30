@@ -1,4 +1,5 @@
 <?php
+require_once(__DIR__ . '/core/config/catechesis_config.inc.php');
 require_once(__DIR__ . '/core/session_init.php');
 require_once(__DIR__ . '/authentication/Authenticator.php');
 require_once(__DIR__ . '/core/Configurator.php');
