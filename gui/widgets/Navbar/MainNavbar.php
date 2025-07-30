@@ -240,7 +240,7 @@ class MainNavbar extends Widget
                     <ul class="nav navbar-nav navbar-right">
 
                         <?php
-                        if($_SESSION['IS_UPDATE_AVAILABLE'])
+                        if(isset($_SESSION['IS_UPDATE_AVAILABLE']) && $_SESSION['IS_UPDATE_AVAILABLE'])
                         {
                         ?>
                         <!-- Updates available -->
@@ -285,7 +285,7 @@ class MainNavbar extends Widget
 
         $this->aboutDialog->renderHTML();
 
-        if($_SESSION['IS_UPDATE_AVAILABLE'])
+        if(isset($_SESSION['IS_UPDATE_AVAILABLE']) && $_SESSION['IS_UPDATE_AVAILABLE'])
         {
             $this->updateDialog->renderHTML();
         }
