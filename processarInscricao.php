@@ -1160,10 +1160,23 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
         if($_REQUEST['modo']!="editar")
         {
                 $pixPayload = strtoupper(Utils::secureRandomString(20));
-                echo("<p><strong>Taxa de inscrição: R$ " . number_format($payment_amount, 2, ',', '.') . "</strong></p>");
-                echo("<p>Pix \"copia e cola\" para pagamento:</p>");
-                echo("<pre style=\"white-space: pre-wrap; word-wrap: break-word;\">" . $pixPayload . "</pre>");
-                echo("<p>Você pode pagar qualquer valor agora e completar depois acessando o menu \"Pagamento\". O sistema atualizará automaticamente o valor restante e o status do seu pagamento.</p>");
+                echo('<div class="panel panel-info" style="margin-top:15px;">');
+                echo('  <div class="panel-heading"><strong>Pagamento da inscrição</strong></div>');
+                echo('  <div class="panel-body">');
+                echo('    <p><strong>Valor da taxa:</strong> R$ ' . number_format($payment_amount, 2, ',', '.') . '</p>');
+                echo('    <p><strong>Chave Pix "copia e cola":</strong></p>');
+                echo('    <div class="input-group">');
+                echo('      <input type="text" id="pixKey" class="form-control" value="' . $pixPayload . '" readonly>');
+                echo('      <span class="input-group-btn">');
+                echo('        <button class="btn btn-default" type="button" onclick="copiarPix()">Copiar</button>');
+                echo('      </span>');
+                echo('    </div>');
+                echo('    <ul style="margin-top:10px;">');
+                echo('      <li>Você pode pagar qualquer valor agora ou completar depois pelo menu <strong>Pagamento</strong>.</li>');
+                echo('      <li>O sistema mostrará seu status e o valor restante.</li>');
+                echo('    </ul>');
+                echo('  </div>');
+                echo('</div>');
         }
 	
 	
@@ -1171,20 +1184,16 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
 	
 	
 	
-	if($_REQUEST['modo']!="editar" && $_REQUEST['modo']!="aprovar")
-	{
-		//Link para nova inscricao
-		echo("<p><a href=\"inscricao.php\">Inscrever um novo catequizando</a></p>");
-
-		//Sugerir inscrever um irmao
-		echo("<p>Talvez queira <a href=\"inscricao.php?modo=irmao\">inscrever um irmão</a> deste catequizando.</p>");
-	}
-	
-	//Link para a ficha
-	echo("<p><a href=\"mostrarFicha.php?cid=" . $cid . "\">Mostrar ficha do catequizando</a></p>");
-	
-	//Link para o arquivo
-	echo("<p><a href=\"mostrarArquivo.php?cid=" . $cid . "\">Mostrar/actualizar arquivo do catequizando</a></p>");
+        echo('<div class="actions text-center" style="margin-top:20px;">');
+        if($_REQUEST['modo']!="editar" && $_REQUEST['modo']!="aprovar")
+        {
+                echo('<a href="inscricao.php" class="btn btn-primary" style="margin-right:5px;">Inscrever novo catequizando</a>');
+                echo('<a href="inscricao.php?modo=irmao" class="btn btn-default" style="margin-right:5px;">Inscrever irmão</a>');
+        }
+        echo('<a href="mostrarFicha.php?cid=' . $cid . '" class="btn btn-default" style="margin-right:5px;">Mostrar ficha</a>');
+        echo('<a href="mostrarArquivo.php?cid=' . $cid . '" class="btn btn-default">Mostrar/actualizar arquivo</a>');
+        echo('</div>');
+        echo('<script>function copiarPix(){var i=document.getElementById("pixKey");if(i){i.select();document.execCommand("copy");}}</script>');
 	
 
 	
