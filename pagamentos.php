@@ -6,6 +6,7 @@ require_once(__DIR__ . '/core/Utils.php');
 require_once(__DIR__ . '/core/DataValidationUtils.php');
 require_once(__DIR__ . '/core/PdoDatabaseManager.php');
 require_once(__DIR__ . '/core/Configurator.php');
+require_once(__DIR__ . '/core/PixQRCode.php');
 require_once(__DIR__ . '/gui/widgets/WidgetManager.php');
 require_once(__DIR__ . '/gui/widgets/Navbar/MainNavbar.php');
 
@@ -15,9 +16,11 @@ use catechesis\Utils;
 use catechesis\DataValidationUtils;
 use catechesis\Configurator;
 use catechesis\DatabaseAccessMode;
+use catechesis\PixQRCode;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\MainNavbar;
 use catechesis\gui\MainNavbar\MENU_OPTION;
+use Exception;
 
 // Create the widgets manager
 $pageUI = new WidgetManager();
@@ -167,15 +170,45 @@ $menu->renderHTML();
       });
     </script>
   <?php } else {
-      $total_paid = 0.0;
-      foreach($payments as $p) { $total_paid += floatval($p['valor']); }
+      $total_confirmed = 0.0;
+      foreach($payments as $p) {
+          if($p['estado'] === 'confirmado')
+              $total_confirmed += floatval($p['valor']);
+      }
       $price = floatval(Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT));
-      $balance = $price - $total_paid;
+      $balance = $price - $total_confirmed;
       if($balance < 0) $balance = 0.0;
+      $situation = $balance > 0 ? 'Em débito' : 'Pago';
+      $pixPayload = null;
+      try {
+          $pixPayload = PixQRCode::generatePixPayload($balance > 0 ? $balance : null);
+      } catch (Exception $e) {
+          $pixPayload = null;
+      }
   ?>
-    <p>O valor da inscrição é R$<?= number_format($price, 2, ',', '.') ?></p>
+    <table class="table table-striped">
+      <thead>
+        <tr><th>Data</th><th>Valor</th><th>Situação</th></tr>
+      </thead>
+      <tbody>
+      <?php foreach($payments as $row) { ?>
+        <tr>
+          <td><?= Utils::sanitizeOutput($row['data_pagamento']) ?></td>
+          <td>R$<?= number_format(floatval($row['valor']), 2, ',', '.') ?></td>
+          <td><?= Utils::sanitizeOutput(ucfirst($row['estado'])) ?></td>
+        </tr>
+      <?php } ?>
+      </tbody>
+    </table>
+    <p>Situação: <?= $situation ?></p>
+    <p>Total pago: R$<?= number_format($total_confirmed, 2, ',', '.') ?></p>
     <p>Valor em aberto: R$<?= number_format($balance, 2, ',', '.') ?></p>
-    <p>Pix para pagamento: 00000000000</p>
+    <?php if($balance > 0 && $pixPayload) { ?>
+        <div style="margin-top:20px;text-align:center;">
+            <p>Pix copia e cola:</p>
+            <pre style="white-space: pre-wrap; word-wrap: break-word;"><?= $pixPayload ?></pre>
+        </div>
+    <?php } ?>
   <?php } ?>
 
 <?php $pageUI->renderJS(); ?>

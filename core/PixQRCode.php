@@ -2,9 +2,6 @@
 namespace catechesis;
 
 require_once(__DIR__.'/Configurator.php');
-require_once(__DIR__.'/../resources/phpqrcode/QrCode.php');
-
-use resources\phpqrcode\QrCode;
 use Exception;
 
 class PixQRCode{
@@ -54,11 +51,11 @@ class PixQRCode{
     }
 
 
-    public static function generatePixQRCode(?float $amount): string{
+    public static function generatePixQRCode(?float $amount): ?string{
 
         $key  = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_KEY);
-        $name = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_MERCHANT_NAME);
-        $city = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_MERCHANT_CITY);
+        $name = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_RECEIVER);
+        $city = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_CITY);
         $desc = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_DESCRIPTION) ?? '';
         $txid = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_TXID) ?? '***';
 
@@ -68,25 +65,37 @@ class PixQRCode{
 
         $payload = self::buildPayload($key, $name, $city, $txid, $amount, $desc);
 
+        // Load QR code generator on demand if dependencies are installed
+        if (!class_exists('\\resources\\phpqrcode\\QrCode')) {
+            $qrLib = __DIR__ . '/../resources/phpqrcode/QrCode.php';
+            $autoload = __DIR__ . '/../vendor/autoload.php';
+            if (is_readable($qrLib) && is_readable($autoload)) {
+                require_once $qrLib;
+            }
+        }
+        if (!class_exists('\\resources\\phpqrcode\\QrCode')) {
+            return null;
+        }
+
         $tmp = tempnam(sys_get_temp_dir(), 'pixqr_');
         $file = $tmp . '.png';
         unlink($tmp);
 
-        QrCode::png($payload, $file, 300, 0);
+        \resources\phpqrcode\QrCode::png($payload, $file, 300, 0);
         if(is_readable($file)){
             return $file;
         }
 
         ob_start();
-        QrCode::png($payload, null, 300, 0);
+        \resources\phpqrcode\QrCode::png($payload, null, 300, 0);
         $data = ob_get_clean();
         return 'data:image/png;base64,'.base64_encode($data);
     }
 
     public static function generatePixPayload(?float $amount): string{
         $key  = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_KEY);
-        $name = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_MERCHANT_NAME);
-        $city = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_MERCHANT_CITY);
+        $name = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_RECEIVER);
+        $city = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_CITY);
         $desc = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_DESCRIPTION) ?? '';
         $txid = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_TXID) ?? '***';
 
