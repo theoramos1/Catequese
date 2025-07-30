@@ -65,23 +65,28 @@ class PixQRCode{
 
     $payload = self::buildPayload($key, $name, $city, $txid, $amount, $desc);
 
-    // Load QR code generator on demand if dependencies are installed
-    if (!class_exists('\\resources\\phpqrcode\\QrCode')) {
-        $qrLib = __DIR__ . '/../resources/phpqrcode/QrCode.php';
-        $autoload = __DIR__ . '/../vendor/autoload.php';
-        if (is_readable($qrLib) && is_readable($autoload)) {
-            require_once $qrLib;
+        // Load QR code generator on demand if dependencies are installed
+        if (!class_exists('\\Endroid\\QrCode\\Builder\\Builder')) {
+            $autoload = __DIR__ . '/../vendor/autoload.php';
+            if (is_readable($autoload)) {
+                require_once $autoload;
+            }
         }
-    }
-    if (!class_exists('\\resources\\phpqrcode\\QrCode')) {
-        return null;
-    }
+        if (!class_exists('\\Endroid\\QrCode\\Builder\\Builder')) {
+            return null;
+        }
 
-    $tmp = tempnam(sys_get_temp_dir(), 'pixqr_');
-    $file = $tmp . '.png';
-    unlink($tmp);
+        $tmp = tempnam(sys_get_temp_dir(), 'pixqr_');
+        $file = $tmp . '.png';
+        unlink($tmp);
 
-    \resources\phpqrcode\QrCode::png($payload, $file, 300, 0);
+        $result = \Endroid\QrCode\Builder\Builder::create()
+            ->writer(new \Endroid\QrCode\Writer\PngWriter())
+            ->data($payload)
+            ->size(300)
+            ->margin(0)
+            ->build();
+        $result->saveToFile($file);
     if(is_readable($file)){
         return $file;
     }
