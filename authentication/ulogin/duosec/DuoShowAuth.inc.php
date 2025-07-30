@@ -23,8 +23,8 @@ $sig_request = Duo::signRequest(UL_DUOSEC_IKEY, UL_DUOSEC_SKEY, UL_DUOSEC_AKEY, 
 <script>
 Duo.init({
 	'host':'<?php echo(UL_DUOSEC_HOST); ?>',
-	'post_action':'<?php echo($returnUrl);?>',
-	'sig_request':'<?php echo($sig_request); ?>'
+        'post_action':'<?php echo(Utils::sanitizeOutput($returnUrl));?>',
+        'sig_request':'<?php echo(Utils::sanitizeOutput($sig_request)); ?>'
 });
 </script>
 

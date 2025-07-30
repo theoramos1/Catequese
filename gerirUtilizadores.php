@@ -661,9 +661,9 @@ function submete_admin()
 <script src="js/btn-group-hover.js"></script>
 
 <script>
-	document.getElementById('numero_catequistas').innerHTML = "<?php echo($num_catequistas); ?>";
-	document.getElementById('numero_utilizadores').innerHTML = "<?php echo($num_utilizadores); ?>";
-	document.getElementById('numero_contas').innerHTML = "<?php echo($num_contas); ?>";
+        document.getElementById('numero_catequistas').innerHTML = "<?php echo(Utils::sanitizeOutput($num_catequistas)); ?>";
+        document.getElementById('numero_utilizadores').innerHTML = "<?php echo(Utils::sanitizeOutput($num_utilizadores)); ?>";
+        document.getElementById('numero_contas').innerHTML = "<?php echo(Utils::sanitizeOutput($num_contas)); ?>";
 </script>
 
 </body>

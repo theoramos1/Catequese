@@ -598,7 +598,7 @@ $menu->renderHTML();
                             </div>
                         </div>
                         <div style="float:left; position:relative; top:-2px; left:0px;" class="no-print">
-                            <form role="form" id="form_sai-sozinho" name="form_sai-sozinho" onsubmit="" action="mostrarAutorizacoes.php?cid=<?php echo($cid); ?>&op=sair-sozinho" method="post">
+                            <form role="form" id="form_sai-sozinho" name="form_sai-sozinho" onsubmit="" action="mostrarAutorizacoes.php?cid=<?php echo(Utils::sanitizeOutput($cid)); ?>&op=sair-sozinho" method="post">
                                 <input type="checkbox" class="checkbox-sai-sozinho" name="checkbox-sai-sozinho" checked>
                             </form>
                         </div>
@@ -611,7 +611,7 @@ $menu->renderHTML();
                             </div>
                         </div>
                         <div style="float:left; position:relative; top:-2px; left:0px;" class="no-print">
-                            <form role="form" id="form_sai-sozinho" name="form_sai-sozinho" onsubmit="" action="mostrarAutorizacoes.php?cid=<?php echo($cid); ?>&op=sair-sozinho" method="post">
+                            <form role="form" id="form_sai-sozinho" name="form_sai-sozinho" onsubmit="" action="mostrarAutorizacoes.php?cid=<?php echo(Utils::sanitizeOutput($cid)); ?>&op=sair-sozinho" method="post">
                                 <input type="checkbox" class="checkbox-sai-sozinho" name="checkbox-sai-sozinho">
                             </form>
                         </div>
@@ -634,9 +634,9 @@ $menu->renderHTML();
                         </thead>
 
                         <tr>
-                            <td><?php echo($nome_ee); ?></td>
-                            <td>Encarregado de educação (<?php echo($enc_edu_quem); ?>)</td>
-                            <td><?php if(!is_null($telemovel_ee) && $telemovel_ee != 0 && $telemovel_ee != "") echo($telemovel_ee); else echo($telefone_ee); ?></td>
+                            <td><?php echo(Utils::sanitizeOutput($nome_ee)); ?></td>
+                            <td>Encarregado de educação (<?php echo(Utils::sanitizeOutput($enc_edu_quem)); ?>)</td>
+                            <td><?php if(!is_null($telemovel_ee) && $telemovel_ee != 0 && $telemovel_ee != "") echo(Utils::sanitizeOutput($telemovel_ee)); else echo(Utils::sanitizeOutput($telefone_ee)); ?></td>
                             <td></td>
                         </tr>
                         <?php

@@ -105,7 +105,7 @@ $db = new PdoDatabaseManager();
       <div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">&times;</a> Este pedido de inscrição já foi processado.
           <?php if($submission['cid'] >= 0)
           {?>
-              <a href="mostrarFicha.php?cid=<?php echo($submission['cid']);?>">Ver ficha</a>
+              <a href="mostrarFicha.php?cid=<?php echo(Utils::sanitizeOutput($submission['cid']));?>">Ver ficha</a>
               <?php
           }
           ?>
@@ -136,7 +136,7 @@ $db = new PdoDatabaseManager();
             <div class="form-group">
             <div class="col-lg-6">
               <label for="nome">Nome do catequizando:</label>
-              <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome completo do catequizando" value="<?php echo($submission['nome']);?>" readonly required>
+              <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome completo do catequizando" value="<?php echo(Utils::sanitizeOutput($submission['nome']));?>" readonly required>
               <div class="alert alert-danger" id="catequizando_inscrito" style="display:none;"><span class="glyphicon glyphicon-exclamation-sign"></span> Catequizando já inscrito anteriormente!</div>
             </div>
             </div>
@@ -161,7 +161,7 @@ $db = new PdoDatabaseManager();
             <div class="form-group">
             <div class="col-lg-3">
               <label for="localidade">Em:</label>
-              <input type="text" class="form-control" id="localidade" name="localidade" placeholder="Local de nascimento" value="<?php echo($submission['local_nasc']);?>" readonly required>
+              <input type="text" class="form-control" id="localidade" name="localidade" placeholder="Local de nascimento" value="<?php echo(Utils::sanitizeOutput($submission['local_nasc']));?>" readonly required>
             </div>
             </div>
 
@@ -170,7 +170,7 @@ $db = new PdoDatabaseManager();
             <div class="col-lg-1">
             <div id="num_irmaos_div">
               <label for="num_irmaos">Irmãos:</label>
-              <input type="number" min=0 class="form-control" id="num_irmaos" name="num_irmaos" value="<?php echo($submission['num_irmaos']);?>" readonly>
+              <input type="number" min=0 class="form-control" id="num_irmaos" name="num_irmaos" value="<?php echo(Utils::sanitizeOutput($submission['num_irmaos']));?>" readonly>
             </div>
             </div>
             <div class="clearfix"></div>
@@ -203,7 +203,7 @@ $db = new PdoDatabaseManager();
            <div class="form-group collapse <?php  if($submission['enc_edu']==2){ echo('in');} ?>" id="encarregado_educacao_collapse">
                <div class="col-lg-2">
                    <label for="outro_enc_edu_quem"> Parentesco:</label>
-                   <input type="text" class="form-control" id="outro_enc_edu_quem" name="outro_enc_edu_quem" placeholder="Ex: Avó" list="parentesco" onchange="atualiza_tabela_autorizacoes()" value="<?php echo($submission['enc_edu_parentesco']);?>" readonly>
+                   <input type="text" class="form-control" id="outro_enc_edu_quem" name="outro_enc_edu_quem" placeholder="Ex: Avó" list="parentesco" onchange="atualiza_tabela_autorizacoes()" value="<?php echo(Utils::sanitizeOutput($submission['enc_edu_parentesco']));?>" readonly>
                </div>
                <datalist id='parentesco'>
                    <option value='Avô'>
@@ -216,13 +216,13 @@ $db = new PdoDatabaseManager();
                <!--outro encarregado educacao nome-->
                <div class="col-lg-6">
                    <label for="nome_end_edu"> Nome:</label>
-                   <input type="text" class="form-control" id="nome_enc_edu" name="nome_enc_edu" placeholder="Nome completo do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" onchange="atualiza_tabela_autorizacoes()" value="<?php echo($submission['enc_edu_nome']);?>" readonly>
+                   <input type="text" class="form-control" id="nome_enc_edu" name="nome_enc_edu" placeholder="Nome completo do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" onchange="atualiza_tabela_autorizacoes()" value="<?php echo(Utils::sanitizeOutput($submission['enc_edu_nome']));?>" readonly>
                </div>
 
                <!--outro encarregado educacao profissao-->
                <div class="col-lg-4">
                    <label for="prof_enc_edu"> Profissão:</label>
-                   <input type="text" class="form-control" id="prof_enc_edu" name="prof_enc_edu" placeholder="Profissão do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" value="<?php echo($submission['prof_enc_edu']);?>" readonly>
+                   <input type="text" class="form-control" id="prof_enc_edu" name="prof_enc_edu" placeholder="Profissão do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" value="<?php echo(Utils::sanitizeOutput($submission['prof_enc_edu']));?>" readonly>
                </div>
            </div>
            <div class="clearfix"></div>
@@ -237,13 +237,13 @@ $db = new PdoDatabaseManager();
            <div class="form-group">
                <div class="col-lg-8">
                    <label for="pai">Pai:</label>
-                   <input type="text" class="form-control" id="pai" name="pai" placeholder="Nome completo do pai"  onchange="atualiza_tabela_autorizacoes()" value="<?php echo($submission['pai_nome']);?>" readonly>
+              <input type="text" class="form-control" id="pai" name="pai" placeholder="Nome completo do pai"  onchange="atualiza_tabela_autorizacoes()" value="<?php echo(Utils::sanitizeOutput($submission['pai_nome']));?>" readonly>
                </div>
 
                <!--profissao pai-->
                <div class="col-lg-4">
                    <label for="prof_pai">Profissão:</label>
-                   <input type="text" class="form-control" id="prof_pai" name="prof_pai" placeholder="Profissão do pai" value="<?php echo($submission['prof_pai']);?>" readonly>
+                   <input type="text" class="form-control" id="prof_pai" name="prof_pai" placeholder="Profissão do pai" value="<?php echo(Utils::sanitizeOutput($submission['prof_pai']));?>" readonly>
                </div>
            </div>
 
@@ -253,13 +253,13 @@ $db = new PdoDatabaseManager();
            <div class="form-group">
                <div class="col-lg-8">
                    <label for="mae">Mãe:</label>
-                   <input type="text" class="form-control" id="mae" name="mae" placeholder="Nome completo da mãe" onchange="atualiza_tabela_autorizacoes()" value="<?php echo($submission['mae_nome']);?>" readonly>
+                   <input type="text" class="form-control" id="mae" name="mae" placeholder="Nome completo da mãe" onchange="atualiza_tabela_autorizacoes()" value="<?php echo(Utils::sanitizeOutput($submission['mae_nome']));?>" readonly>
                </div>
 
                <!--profissao mae-->
                <div class="col-lg-4">
                    <label for="prof_mae">Profissão:</label>
-                   <input type="text" class="form-control" id="prof_mae" name="prof_mae" placeholder="Profissão da mãe" value="<?php echo($submission['prof_mae']);?>" readonly>
+                   <input type="text" class="form-control" id="prof_mae" name="prof_mae" placeholder="Profissão da mãe" value="<?php echo(Utils::sanitizeOutput($submission['prof_mae']));?>" readonly>
                </div>
                <div class="clearfix"></div>
            </div>
@@ -298,7 +298,7 @@ $db = new PdoDatabaseManager();
             <div class="form-group">
             <div class="col-lg-12">
               <label for="morada">Morada:</label>
-              <input type="text" class="form-control" id="morada" name="morada" placeholder="Morada do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" value="<?php  echo($submission['morada']);?>" readonly required>
+              <input type="text" class="form-control" id="morada" name="morada" placeholder="Morada do <?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação' ?>" value="<?php  echo(Utils::sanitizeOutput($submission['morada']));?>" readonly required>
             </div>
             </div>
 
@@ -315,7 +315,7 @@ $db = new PdoDatabaseManager();
             <input type="text" class="form-control" id="codigo_postal" name="codigo_postal"
                 placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL) ? 'Ex: 00000-000' : 'xxxx-xxx Localidade' ?>"
                 onclick="verifica_codigo_postal()" onchange="verifica_codigo_postal()"
-                value="<?php echo($submission['cod_postal']);?>" readonly required>
+                value="<?php echo(Utils::sanitizeOutput($submission['cod_postal']));?>" readonly required>
             <span id="erro_postal_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
         </div>
     </div>
@@ -327,7 +327,7 @@ $db = new PdoDatabaseManager();
                 <div class="col-lg-2">
                 <div id="telefone_div">
                   <label for="tel">Telefone:</label>
-                    <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (65) 3333-4444':'Telefone do ' . ((Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação') ?>" onclick="verifica_telefone()" onchange="verifica_telefone(); atualiza_tabela_autorizacoes();" value="<?php echo($submission['telefone']);?>" readonly>
+                    <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (65) 3333-4444':'Telefone do ' . ((Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação') ?>" onclick="verifica_telefone()" onchange="verifica_telefone(); atualiza_tabela_autorizacoes();" value="<?php echo(Utils::sanitizeOutput($submission['telefone']));?>" readonly>
                   <span id="erro_telefone_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
                 </div>
                 </div>
@@ -338,7 +338,7 @@ $db = new PdoDatabaseManager();
                 <div class="col-lg-2">
                     <div id="telemovel_div">
                       <label for="telm"><?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?"Celular":"Telemóvel" ?>:</label>
-                        <input type="tel" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (65) 91234-5678':'Telemóvel do ' . ((Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação') ?>" onclick="verifica_telemovel()" onchange="verifica_telemovel(); atualiza_tabela_autorizacoes();" value="<?php echo($submission['telemovel']);?>" readonly>
+                        <input type="tel" class="form-control" id="telemovel" name="telemovel" placeholder="<?= (Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'Ex: (65) 91234-5678':'Telemóvel do ' . ((Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE) == Locale::BRASIL)?'responsável legal':'encarregado de educação') ?>" onclick="verifica_telemovel()" onchange="verifica_telemovel(); atualiza_tabela_autorizacoes();" value="<?php echo(Utils::sanitizeOutput($submission['telemovel']));?>" readonly>
                       <span id="erro_telemovel_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
                     </div>
                     <div class="clearfix"></div>
@@ -353,7 +353,7 @@ $db = new PdoDatabaseManager();
            <div class="form-group">
                <div class="col-lg-12">
                    <label for="email">E-mail:</label>
-                   <input type="email" class="form-control" id="email" name="email" placeholder="endereco@example.com" value="<?php echo($submission['email']);?>" readonly>
+                   <input type="email" class="form-control" id="email" name="email" placeholder="endereco@example.com" value="<?php echo(Utils::sanitizeOutput($submission['email']));?>" readonly>
                    <span>Para que seja informado de notícias e actividades da nossa catequese, indique-nos o seu e-mail. Assim poderá organizar melhor a sua vida e planear a sua agenda.</span>
                </div>
                <div class="clearfix"></div>
@@ -537,22 +537,22 @@ $db = new PdoDatabaseManager();
                                <td><span id="autorizacao_tel_enc_edu"></span></td>
                            </tr>
                            <tr>
-                               <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][0]->nome);?>" readonly></td>
-                               <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][0]->parentesco);?>" readonly></td>
-                                <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][0]->telefone);?>" readonly></td>
+                               <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php echo(Utils::sanitizeOutput($submission['autorizacoesSaidaMenores'][0]->nome));?>" readonly></td>
+                               <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php echo(Utils::sanitizeOutput($submission['autorizacoesSaidaMenores'][0]->parentesco));?>" readonly></td>
+                                <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo(Utils::sanitizeOutput($submission['autorizacoesSaidaMenores'][0]->telefone));?>" readonly></td>
                            </tr>
                            <tr>
-                               <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][1]->nome);?>" readonly></td>
-                               <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][1]->parentesco);?>" readonly></td>
-                                <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][1]->telefone);?>" readonly></td>
+                               <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php echo(Utils::sanitizeOutput($submission['autorizacoesSaidaMenores'][1]->nome));?>" readonly></td>
+                               <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php echo(Utils::sanitizeOutput($submission['autorizacoesSaidaMenores'][1]->parentesco));?>" readonly></td>
+                                <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo(Utils::sanitizeOutput($submission['autorizacoesSaidaMenores'][1]->telefone));?>" readonly></td>
                            </tr><tr>
-                               <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][2]->nome);?>" readonly></td>
-                               <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][2]->parentesco);?>" readonly></td>
-                                <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][2]->telefone);?>" readonly></td>
+                               <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php echo(Utils::sanitizeOutput($submission['autorizacoesSaidaMenores'][2]->nome));?>" readonly></td>
+                               <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php echo(Utils::sanitizeOutput($submission['autorizacoesSaidaMenores'][2]->parentesco));?>" readonly></td>
+                                <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo(Utils::sanitizeOutput($submission['autorizacoesSaidaMenores'][2]->telefone));?>" readonly></td>
                            </tr><tr>
-                               <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][3]->nome);?>" readonly></td>
-                               <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][3]->parentesco);?>" readonly></td>
-                                <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo($submission['autorizacoesSaidaMenores'][3]->telefone);?>" readonly></td>
+                               <td><input type="text" class="form-control" id="autorizacao_nome_1" name="autorizacao_nome[]" placeholder="" value="<?php echo(Utils::sanitizeOutput($submission['autorizacoesSaidaMenores'][3]->nome));?>" readonly></td>
+                               <td><input type="text" class="form-control" id="autorizacao_parentesco_1" name="autorizacao_parentesco[]" placeholder="" value="<?php echo(Utils::sanitizeOutput($submission['autorizacoesSaidaMenores'][3]->parentesco));?>" readonly></td>
+                                <td><input type="tel" class="form-control autorizacao-telefone" id="autorizacao_telefone_1" name="autorizacao_telefone[]" placeholder="" value="<?php echo(Utils::sanitizeOutput($submission['autorizacoesSaidaMenores'][3]->telefone));?>" readonly></td>
                            </tr>
                            </tbody>
                        </table>
@@ -602,8 +602,8 @@ $db = new PdoDatabaseManager();
 
 
     <!-- Inputs ocultos -->
-    <input type="hidden" id="foto_file" name="foto_file" value="<?php echo($submission['foto']);?>">
-    <input type="hidden" id="iid" name="iid" value="<?php echo($submission['iid']);?>">
+    <input type="hidden" id="foto_file" name="foto_file" value="<?php echo(Utils::sanitizeOutput($submission['foto']));?>">
+    <input type="hidden" id="iid" name="iid" value="<?php echo(Utils::sanitizeOutput($submission['iid']));?>">
 
 
 
@@ -678,14 +678,14 @@ if(!isset($submission['cid']))
                             ?>
                         </select>
                         <br>
-                        <span><small><i><b>Recomendado: </b><?php echo($catecismo_recomendado);?>º</i>&nbsp;</small>
+                        <span><small><i><b>Recomendado: </b><?php echo(Utils::sanitizeOutput($catecismo_recomendado));?>º</i>&nbsp;</small>
                             <?php
                             $razoes = "";
                             if(isset($submission['ultimo_catecismo']))
                                 $razoes = $razoes . "Ultimo catecismo frequentado: " . $submission['ultimo_catecismo'] . "º<br>";
                             $razoes = $razoes . "Idade do catequizando: " . date_diff(date_create($submission['data_nasc']), date_create('today'))->y . " anos";
                             ?>
-                        <span class="glyphicon glyphicon-question-sign" data-container="body" data-toggle="popover" data-placement="top" data-content="<?php echo($razoes);?>"></span></span>
+                        <span class="glyphicon glyphicon-question-sign" data-container="body" data-toggle="popover" data-placement="top" data-content="<?php echo(Utils::sanitizeOutput($razoes));?>"></span></span>
                     </div>
 
                     <div class="col-xs-3">

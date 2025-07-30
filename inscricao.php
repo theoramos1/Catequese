@@ -466,7 +466,7 @@ $menu->renderHTML();
     <!-- fotografia tirada com webcam -->
     <input type="hidden" id="foto_data" name="foto_data" value="<?php if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso') && $_SESSION['foto']!="") echo(base64_encode(file_get_contents(UserData::getCatechumensPhotosFolder() . '/' . $_SESSION['foto'])));?>">
     <input type="hidden" id="original_foto_data" name="original_foto_data" value="<?php if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso') && $_SESSION['foto']!="") echo(base64_encode(file_get_contents(UserData::getCatechumensPhotosFolder() . '/' . $_SESSION['foto'])));?>">
-        <input type="hidden" id="debug_foto" name="debug_foto" value="<?php if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso') && $_SESSION['foto']!="") echo($_SESSION['foto']);?>">
+        <input type="hidden" id="debug_foto" name="debug_foto" value="<?php if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso') && $_SESSION['foto']!="") echo(Utils::sanitizeOutput($_SESSION['foto']));?>">
         <input type="hidden" id="debug_base64" name="debug_base64" value="<?php if(($_REQUEST['modo']=='editar' || $_REQUEST['modo']=='regresso') && $_SESSION['foto']!="") echo(base64_encode('abcd'));?>">
 
 

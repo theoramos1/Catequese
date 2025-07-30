@@ -239,7 +239,7 @@ $pageUI->renderJS(); // Render the widgets' JS code
         }
 ?>
 
-var plot = $.plot($("#grafico1"), [ <?php echo($data_labels); ?> ], {
+var plot = $.plot($("#grafico1"), [ <?php echo(Utils::sanitizeOutput($data_labels)); ?> ], {
 			series: {
 				lines: { show: true },
 				points: { show: true }
@@ -265,7 +265,7 @@ var plot = $.plot($("#grafico1"), [ <?php echo($data_labels); ?> ], {
 			yaxis: {
 				ticks: 10,
 				min: 0,
-				max: <?php echo($count_max); ?>,
+                                max: <?php echo(Utils::sanitizeOutput($count_max)); ?>,
 				tickDecimals: 0
 			},
 			grid: {

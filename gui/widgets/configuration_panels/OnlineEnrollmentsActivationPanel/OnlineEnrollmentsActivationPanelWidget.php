@@ -95,7 +95,7 @@ class OnlineEnrollmentsActivationPanelWidget extends AbstractSettingsPanelWidget
                 ?>
                 <div class="clearfix" style="margin-bottom: 20px"></div>
                 <ol class="breadcrumb">
-                    <li><p>As inscrições estão disponíveis para o público no endereço <a target="_blank" rel="noopener noreferrer" href="<?php echo($enrollmentURL);?>"><?php echo($enrollmentURL);?></a></p></li>
+                    <li><p>As inscrições estão disponíveis para o público no endereço <a target="_blank" rel="noopener noreferrer" href="<?php echo(Utils::sanitizeOutput($enrollmentURL));?>"><?php echo(Utils::sanitizeOutput($enrollmentURL));?></a></p></li>
                 </ol>
             <?php
             }?>
