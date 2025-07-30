@@ -88,5 +88,6 @@ class PixQRCode{
 
     return null;
 }
+}
 
 ?>

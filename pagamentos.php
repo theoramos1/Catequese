@@ -22,7 +22,7 @@ use catechesis\PixQRCode;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\MainNavbar;
 use catechesis\gui\MainNavbar\MENU_OPTION;
-use Exception;
+
 
 // Create the widgets manager
 $pageUI = new WidgetManager();
