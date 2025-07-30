@@ -15,12 +15,10 @@ use catechesis\PdoDatabaseManager;
 use catechesis\Utils;
 use catechesis\DataValidationUtils;
 use catechesis\Configurator;
-use catechesis\DatabaseAccessMode;
 use catechesis\PixQRCode;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\MainNavbar;
 use catechesis\gui\MainNavbar\MENU_OPTION;
-use Exception;
 
 // Create the widgets manager
 $pageUI = new WidgetManager();
