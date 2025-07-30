@@ -44,7 +44,7 @@ class MainNavbar extends Widget
     private /*UpdateDialogWidget*/  $updateDialog = null;                   // The update notification window
 
 
-    public function __construct(string $id = null, int $menuOption, bool $allowsSiblingEnrollment=False)
+    public function __construct(?string $id = null, int $menuOption, bool $allowsSiblingEnrollment=False)
     {
         parent::__construct($id);
 

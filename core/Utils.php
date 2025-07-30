@@ -99,7 +99,7 @@ class Utils
      * @param $parish
      * @return int
      */
-    public static function sacramentParish(string $parish = null)
+    public static function sacramentParish(?string $parish = null)
     {
         if ($parish && $parish != "")
         {
@@ -129,7 +129,7 @@ class Utils
      *
      * @return false|float|int|string
      */
-    public static function currentCatecheticalYear(string $date = null)
+    public static function currentCatecheticalYear(?string $date = null)
     {
         return Utils::computeCatecheticalYear(null);
     }
@@ -140,7 +140,7 @@ class Utils
      *
      * @return false|float|int|string
      */
-    public static function computeCatecheticalYear(string $date = null)
+    public static function computeCatecheticalYear(?string $date = null)
     {
         $ano_actual = date("Y");
         $mes_actual = date("m");
@@ -209,7 +209,7 @@ class Utils
      * @param $data
      * @return string
      */
-    public static function sanitizeInput(string $data = null)
+    public static function sanitizeInput(?string $data = null)
     {
         $data = trim($data);
         $data = stripslashes($data);
@@ -223,7 +223,7 @@ class Utils
      * @param $data
      * @return string
      */
-    public static function sanitizeOutput(string $data = null)
+    public static function sanitizeOutput(?string $data = null)
     {
         $data = trim($data);
         $data = stripslashes($data);

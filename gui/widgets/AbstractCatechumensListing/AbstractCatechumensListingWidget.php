@@ -14,7 +14,7 @@ abstract class AbstractCatechumensListingWidget extends Widget
     protected /*string*/ $additional_toolbar_buttons = null;  // Any user-defined HTML buttons to add to the widget toolbar
 
 
-    public function __construct(string $id = null)
+    public function __construct(?string $id = null)
     {
         parent::__construct($id);
 

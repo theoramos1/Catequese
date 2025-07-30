@@ -23,7 +23,7 @@ class NextcloudIntegrationConfigurationPanelWidget extends AbstractSettingsPanel
 {
     public static $ACTION_PARAMETER = "edit_nextcloud_integration";
 
-    public function __construct(string $id = null)
+    public function __construct(?string $id = null)
     {
         parent::__construct($id, true);
 

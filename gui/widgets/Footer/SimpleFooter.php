@@ -14,7 +14,7 @@ class SimpleFooter extends Widget
 {
     private /*bool*/ $_with_background = false;     // Defined whether the footer should have a blue background color (true) or be transparent (false)
 
-    public function __construct(string $id = null, bool $withBackground=false)
+    public function __construct(?string $id = null, bool $withBackground=false)
     {
         parent::__construct($id);
 

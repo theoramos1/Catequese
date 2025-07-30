@@ -24,7 +24,7 @@ class CatechumensProblemsReportSummaryWidget extends Widget
 {
     private /*string*/ $_username;  // The username of the catechist for which this widget will display info
 
-    public function __construct(string $id = null, string $catechistUsername = null)
+    public function __construct(?string $id = null, ?string $catechistUsername = null)
     {
         parent::__construct($id);
 

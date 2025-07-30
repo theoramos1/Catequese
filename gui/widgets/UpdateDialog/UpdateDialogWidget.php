@@ -16,7 +16,7 @@ use catechesis\Authenticator;
 
 class UpdateDialogWidget extends ModalDialogWidget
 {
-    public function __construct(string $id = null)
+    public function __construct(?string $id = null)
     {
         parent::__construct($id);
 

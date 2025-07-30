@@ -13,7 +13,7 @@ require_once(__DIR__ . "/../../../core/version_info.php");
 
 class AboutDialogWidget extends ModalDialogWidget
 {
-    public function __construct(string $id = null)
+    public function __construct(?string $id = null)
     {
         parent::__construct($id);
 
