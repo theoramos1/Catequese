@@ -68,19 +68,10 @@ class PixQRCode{
 
         $payload = self::buildPayload($key, $name, $city, $txid, $amount, $desc);
 
-        $tmp = tempnam(sys_get_temp_dir(), 'pixqr_');
-        $file = $tmp . '.png';
-        unlink($tmp);
-
-        QrCode::png($payload, $file, 300, 0);
-        if(is_readable($file)){
-            return $file;
-        }
-
         ob_start();
         QrCode::png($payload, null, 300, 0);
         $data = ob_get_clean();
-        return 'data:image/png;base64,'.base64_encode($data);
+        return 'data:image/png;base64,' . base64_encode($data);
     }
 
     public static function generatePixPayload(?float $amount): string{
