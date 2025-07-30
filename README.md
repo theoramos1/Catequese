@@ -23,7 +23,7 @@ All configuration lives under `core/config/`:
 - `catechesis_config.inc.template.php` – template used to create the configuration file.
 - `catechesis_config.inc.docker.php` – example configuration used inside containers.
 
-The file defines the base URL, domain name, local paths and the location of the external data directory that stores sensitive data. Copy the template file and adjust the constants to match your environment.
+The file defines the base URL, domain name, local paths and the location of the external data directory that stores sensitive data. Copy the template file and adjust the constants to match your environment.  The data directory can also be configured through the `CATECHESIS_DATA_DIRECTORY` environment variable, which overrides the path defined in the configuration file.
 
 Additional sensitive options are loaded from `CATECHESIS_DATA_DIRECTORY/config/catechesis_config.shadow.php` which should be located outside the web root.
 
