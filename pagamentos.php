@@ -59,7 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cid'])) {
             $message = "<div class='alert alert-success'><strong>Sucesso!</strong> Pagamento registado.</div>";
         } catch (Exception $e) {
             $db->rollBack();
-            $message = "<div class='alert alert-danger'><strong>Erro!</strong> " . $e->getMessage() . "</div>";
+            error_log($e->getMessage());
+            $message = "<div class='alert alert-danger'><strong>Erro!</strong> Não foi possível registar o pagamento.</div>";
         }
 }
 }
@@ -70,14 +71,16 @@ if(Authenticator::isAdmin()) {
         $paymentList = $db->getEnrollmentPaymentStatusList(Utils::currentCatecheticalYear());
     } catch (Exception $e) {
         $paymentList = [];
-        $message = "<div class='alert alert-danger'><strong>Erro!</strong> " . $e->getMessage() . "</div>";
+        error_log($e->getMessage());
+        $message = "<div class='alert alert-danger'><strong>Erro!</strong> Não foi possível obter a lista de pagamentos.</div>";
     }
 } else {
     try {
         $payments = $db->getPaymentsByUser(Authenticator::getUsername());
     } catch (Exception $e) {
         $payments = [];
-        $message = "<div class='alert alert-danger'><strong>Erro!</strong> " . $e->getMessage() . "</div>";
+        error_log($e->getMessage());
+        $message = "<div class='alert alert-danger'><strong>Erro!</strong> Não foi possível obter os pagamentos.</div>";
     }
 }
 
