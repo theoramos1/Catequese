@@ -204,9 +204,10 @@ $menu->renderHTML();
       <?php } ?>
       </tbody>
     </table>
-    <p>Situação: <?= $situation ?></p>
+    <p>Valor da taxa: R$<?= number_format($price, 2, ',', '.') ?></p>
     <p>Total pago: R$<?= number_format($total_confirmed, 2, ',', '.') ?></p>
     <p>Valor em aberto: R$<?= number_format($balance, 2, ',', '.') ?></p>
+    <p>Situação: <?= $situation ?></p>
 
     <?php if($balance > 0 && $pixPayload) { ?>
         <div style="margin-top:20px;text-align:center;">

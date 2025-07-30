@@ -50,6 +50,24 @@ class PixQRCode{
         return $payload;
     }
 
+    /**
+     * Generate and return the Pix payload string for the specified amount.
+     * This helper works even when the QR code library is missing.
+     */
+    public static function generatePixPayload(?float $amount): string
+    {
+        $key  = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_KEY);
+        $name = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_RECEIVER);
+        $city = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_CITY);
+        $desc = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_DESCRIPTION) ?? '';
+        $txid = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_TXID) ?? '***';
+
+        if(!$key || !$name || !$city){
+            throw new Exception('Pix configuration incomplete');
+        }
+
+        return self::buildPayload($key, $name, $city, $txid, $amount, $desc);
+    }
 
  public static function generatePixQRCode(?float $amount): ?string{
 

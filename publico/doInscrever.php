@@ -529,6 +529,7 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
                             <div style="margin-top:20px;text-align:center;">
                                 <p>Pix copia e cola:</p>
                                 <pre style="white-space: pre-wrap; word-wrap: break-word;"><?php echo $pixPayload; ?></pre>
+                                <p class="text-muted">Copie o código acima e realize o pagamento no aplicativo do seu banco. Se preferir, pague parte agora e complete depois em <strong>Pagamentos</strong>.</p>
                             </div>
                             <?php
                         }

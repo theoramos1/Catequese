@@ -12,6 +12,7 @@ require_once(__DIR__ . "/core/DataValidationUtils.php");
 require_once(__DIR__ . '/core/catechist_belongings.php');
 require_once(__DIR__ . "/core/PdoDatabaseManager.php");
 require_once(__DIR__ . '/core/PaymentVerificationService.php');
+require_once(__DIR__ . '/core/PixQRCode.php');
 require_once(__DIR__ . "/core/domain/Sacraments.php");
 require_once(__DIR__ . "/core/domain/Marriage.php");
 require_once(__DIR__ . "/gui/widgets/WidgetManager.php");
@@ -24,6 +25,7 @@ use catechesis\Configurator;
 use catechesis\UserData;
 use catechesis\utils;
 use catechesis\PaymentVerificationService;
+use catechesis\PixQRCode;
 use core\domain\Marriage;
 use core\domain\Sacraments;
 use catechesis\gui\WidgetManager;
@@ -1159,11 +1161,17 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
 
         if($_REQUEST['modo']!="editar")
         {
-                $pixPayload = strtoupper(Utils::secureRandomString(20));
+                try {
+                    $pixPayload = \catechesis\PixQRCode::generatePixPayload($payment_amount);
+                } catch (Exception $e) {
+                    $pixPayload = null;
+                }
                 echo("<p><strong>Taxa de inscrição: R$ " . number_format($payment_amount, 2, ',', '.') . "</strong></p>");
-                echo("<p>Pix \"copia e cola\" para pagamento:</p>");
-                echo("<pre style=\"white-space: pre-wrap; word-wrap: break-word;\">" . $pixPayload . "</pre>");
-                echo("<p>Você pode pagar qualquer valor agora e completar depois acessando o menu \"Pagamento\". O sistema atualizará automaticamente o valor restante e o status do seu pagamento.</p>");
+                if($pixPayload) {
+                    echo("<p>Pix \"copia e cola\" para pagamento:</p>");
+                    echo("<pre style=\"white-space: pre-wrap; word-wrap: break-word;\">" . $pixPayload . "</pre>");
+                }
+                echo("<p>Voce pode pagar parte do valor agora e completar depois acessando o menu \"Pagamentos\". O sistema atualizara automaticamente o restante e o status do pagamento.</p>");
         }
 	
 	

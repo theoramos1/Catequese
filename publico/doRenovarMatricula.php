@@ -207,6 +207,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                                 <pre style="white-space: pre-wrap; word-wrap: break-word;">
                                     <?= $pixPayload ?>
                                 </pre>
+                                <p class="text-muted">Copie o código e pague via Pix. O valor pode ser quitado parcialmente e completado depois em <strong>Pagamentos</strong>.</p>
                             </div>
                             <?php
                         }
@@ -301,18 +302,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 <?php
         }
-        catch(Exception $e)
-        {
-            ?><div class="alert alert-danger"><strong>ERRO!</strong> <?= $e->getMessage() ?>></div><?php
+        catch (Exception $e) {
+            echo "<div class='alert alert-danger'><strong>ERRO!</strong> " . $e->getMessage() . "</div>";
         }
     }
 }
 else
 {
     // No submission found
-    ?>
-    <div class="alert alert-danger"><strong>ERRO!</strong> Não foram submetidos quaisquer dados.</div>
-    <?php
+    echo "<div class='alert alert-danger'><strong>ERRO!</strong> Não foram submetidos quaisquer dados.</div>";
 }
 
 ?>
