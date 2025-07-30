@@ -26,7 +26,7 @@ class CatechesisSettingsPanelWidget extends AbstractSettingsPanelWidget
 {
     public static $ACTION_PARAMETER = "edit_catechesis_operational_settings";
 
-    public function __construct(string $id = null)
+    public function __construct(?string $id = null)
     {
         parent::__construct($id, true);
 

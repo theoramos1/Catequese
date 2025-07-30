@@ -28,7 +28,7 @@ class UserAccountConfigurationPanelWidget extends AbstractSettingsPanelWidget
     private /*string*/ $userAccount = null;                         //Username to edit with this widget
 
 
-    public function __construct(string $id = null)
+    public function __construct(?string $id = null)
     {
         parent::__construct($id, false);
 

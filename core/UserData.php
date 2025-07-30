@@ -118,7 +118,7 @@ class UserData
      * Returns the path of the file where the photo was saved, relative to the CatecheSis user data directory.
      * @throws Exception
      */
-    public static function saveUploadedCatechumenPhoto(string $imageData, string $filename = null)
+    public static function saveUploadedCatechumenPhoto(string $imageData, ?string $filename = null)
     {
         $path = self::saveUploadedPhoto($imageData, self::CATECHUMEN_PHOTOS_DIR, $filename, ["image/jpeg", "image/png"]);
 
@@ -160,7 +160,7 @@ class UserData
      * @return string|null
      * @throws Exception
      */
-    public static function saveUploadedPhoto(string $imageData, string $directory, string $filename = null, array $allowedTypes = ["image/jpeg", "image/png"]): ?string
+    public static function saveUploadedPhoto(string $imageData, string $directory, ?string $filename = null, array $allowedTypes = ["image/jpeg", "image/png"]): ?string
     {
         $MAX_SIZE = 5 * (1024 * 1024); // 5 MB
 

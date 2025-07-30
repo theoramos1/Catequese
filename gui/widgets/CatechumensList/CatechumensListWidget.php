@@ -25,7 +25,7 @@ class CatechumensListWidget extends AbstractCatechumensListingWidget
     private /*PDO result array*/ $catechumens_list;         // Stores the list of catechumens to show in the list widget
     private /*string*/ $entities_name = "resultado";        // Name to use in the results header to refer to the entities in the list (e.g. "results" or "catechumens")
 
-    public function __construct(string $id = null)
+    public function __construct(?string $id = null)
     {
         parent::__construct($id);
         // This widget's dependencies are inherited from AbstractCatechumensListingWidget

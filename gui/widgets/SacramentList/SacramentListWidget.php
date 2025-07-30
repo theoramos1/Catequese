@@ -24,7 +24,7 @@ class SacramentListWidget extends AbstractCatechumensListingWidget
     private /*string*/ $entities_name_singular = "resultado";   // Name to use in the results header to refer to the entities in the list (e.g. "results" or "baptisms")
     private /*string*/ $entities_name_plural = "resultados";    // Plural form of the previous string
 
-    public function __construct(string $id = null)
+    public function __construct(?string $id = null)
     {
         parent::__construct($id);
         // This widget's dependencies are inherited from AbstractCatechumensListingWidget
@@ -56,7 +56,7 @@ class SacramentListWidget extends AbstractCatechumensListingWidget
      * @param string $name
      * @return $this
      */
-    public function setEntitiesName(string $singular, string $plural = null)
+    public function setEntitiesName(string $singular, ?string $plural = null)
     {
         $this->entities_name_singular = $singular;
 

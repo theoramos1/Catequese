@@ -32,7 +32,7 @@ class SacramentRecordPanelWidget extends AbstractSettingsPanelWidget
     private /*string*/ $_proof_file = null;     // Sacrament proof file name
     private $_deleteProofDialog = null;         // Dialog to confirm removal of sacrament proof
 
-    public function __construct(string $id = null)
+    public function __construct(?string $id = null)
     {
         parent::__construct($id, false);
 
@@ -517,7 +517,7 @@ class SacramentRecordPanelWidget extends AbstractSettingsPanelWidget
      * @param string $parish
      * @return void
      */
-    private function updateSacramentSessionData(bool $hasSacrament, string $sacramentDate = null, string $parish = null)
+    private function updateSacramentSessionData(bool $hasSacrament, ?string $sacramentDate = null, ?string $parish = null)
     {
         switch($this->_sacrament)
         {
@@ -560,7 +560,7 @@ class SacramentRecordPanelWidget extends AbstractSettingsPanelWidget
      * @param string|null $sacramentProof
      * @return void
      */
-    private function updateSacramentProofSessionData(string $sacramentProof = null)
+    private function updateSacramentProofSessionData(?string $sacramentProof = null)
     {
         switch($this->_sacrament)
         {

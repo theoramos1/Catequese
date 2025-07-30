@@ -26,7 +26,7 @@ class CatechumensReportWidget extends AbstractCatechumensListingWidget
     private /*array*/  $report_contents;                    // Stores groups of lists of catechumens to show in each of the report widget accordions
 
 
-    public function __construct(string $id = null)
+    public function __construct(?string $id = null)
     {
         parent::__construct($id);
         // This widget's dependencies are inherited from AbstractCatechumensListingWidget
@@ -47,7 +47,7 @@ class CatechumensReportWidget extends AbstractCatechumensListingWidget
     * @param string|null $emptyString - string to be shown in case there are no results in this group
     * @return $this
     */
-    public function addCatechumensList(string $header, array $catechumensList, bool $startExpanded = false, string $emptyString = null)
+    public function addCatechumensList(string $header, array $catechumensList, bool $startExpanded = false, ?string $emptyString = null)
     {
         $reportEntry = array();
         $reportEntry["header"] = $header;

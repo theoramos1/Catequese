@@ -26,7 +26,7 @@ class OnlineEnrollmentsActivationPanelWidget extends AbstractSettingsPanelWidget
     public static $ACTION_CHANGE_DETAILS = "edit_online_enrollments_details";
     private /*bool*/ $showAllSettings = true;
 
-    public function __construct(string $id = null, bool $showAllSettings = true)
+    public function __construct(?string $id = null, bool $showAllSettings = true)
     {
         parent::__construct($id, true);
 

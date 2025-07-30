@@ -27,7 +27,7 @@ use catechesis\UserData;
  * @return bool
  */
 function setRenewalOrderStatus(int $rid, bool $status,
-                               int $enrollmentCatecheticalYear = null, int $enrollmentCatechism = null, string $enrollmentGroup = null)
+                               ?int $enrollmentCatecheticalYear = null, ?int $enrollmentCatechism = null, ?string $enrollmentGroup = null)
 {
     $db = new PdoDatabaseManager();
 
@@ -110,7 +110,7 @@ function deleteRenewalOrder(int $rid)
  * @param $eid - Enrollment order ID
  * @param $cid - ID of the catechumen to associate with the processed order (or null, to process without associating a file)
  */
-function setEnrollmentOrderAsProcessed(int $eid, int $cid = null)
+function setEnrollmentOrderAsProcessed(int $eid, ?int $cid = null)
 {
     $db = new PdoDatabaseManager();
 

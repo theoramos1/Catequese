@@ -17,7 +17,7 @@ abstract class AbstractSettingsPanelWidget extends Widget
     protected /*string*/ $panel_style = "panel-default";    // Bootstrap style to apply to this panel (e.g. 'panel-default', 'panel-success', ...)
     protected /*bool*/   $requires_admin_privileges = true; // Whether this widget can only be shown to admin users
 
-    public function __construct(string $id = null, bool $requires_admin_privileges=true)
+    public function __construct(?string $id = null, bool $requires_admin_privileges=true)
     {
         parent::__construct($id);
 

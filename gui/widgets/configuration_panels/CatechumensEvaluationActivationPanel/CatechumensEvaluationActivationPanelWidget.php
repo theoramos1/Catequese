@@ -23,7 +23,7 @@ class CatechumensEvaluationActivationPanelWidget extends AbstractSettingsPanelWi
 {
     public static $ACTION_PARAMETER = "edit_evaluation_period_status";
 
-    public function __construct(string $id = null)
+    public function __construct(?string $id = null)
     {
         parent::__construct($id, true);
 
