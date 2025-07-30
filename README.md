@@ -70,6 +70,14 @@ application.
 Any whitespace around this value is ignored by the configurator, so
 `LOCALIZATION_CODE` values are normalized automatically.
 
+## Self-service user registration
+
+Users can create their own accounts directly from the web interface using the
+`register.php` page. The form requests a username, full name, password and
+optional contact details. Accounts created through this page are regular user
+accounts without catechist or administrator privileges. After submitting the
+form users may log in using their chosen credentials.
+
 If changing the value through the interface is not possible, update it directly
 in the database:
 
