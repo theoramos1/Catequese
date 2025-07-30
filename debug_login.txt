@@ -1,7 +1,0 @@
-array (
-  'username' => 'theo',
-  'password' => 'theo123456',
-  'action' => 'login',
-  'fortune' => '7',
-  'nonce' => 'QWTDl22W9+PhqPwb1MJfxg==',
-)
