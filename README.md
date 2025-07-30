@@ -71,7 +71,9 @@ Brazilian donors may contribute using Pix. Configure the following keys in the *
 - `PIX_API_TIMEOUT` – timeout in seconds when calling the API
 
 
-Call `PixQRCode::generatePixQRCode($amount)` to generate the QR image for the desired amount. The `$amount` parameter is optional; pass `null` to omit the value from the generated code. The method returns a `data:image/png;base64,` URI that can be embedded directly in an `<img>` tag. When used for enrollments this amount usually corresponds to `ENROLLMENT_PAYMENT_AMOUNT` (default R$100).
+
+Call `PixQRCode::generatePixQRCode($amount)` to generate the QR image for the desired amount. The `$amount` parameter is optional; pass `null` to omit the value from the generated code. If the QR generation library is not available, the method returns `null`. When used for enrollments this amount usually corresponds to `ENROLLMENT_PAYMENT_AMOUNT` (default R$100).
+
 
 
 Payment confirmation can optionally be automated with `PaymentVerificationService`, which expects the provider endpoint, token and timeout to be set via `PIX_PROVIDER_URL`, `PIX_PROVIDER_TOKEN` and `PIX_PROVIDER_TIMEOUT`.

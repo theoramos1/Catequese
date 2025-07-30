@@ -15,10 +15,14 @@ use catechesis\PdoDatabaseManager;
 use catechesis\Utils;
 use catechesis\DataValidationUtils;
 use catechesis\Configurator;
+
+use catechesis\DatabaseAccessMode;
+
 use catechesis\PixQRCode;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\MainNavbar;
 use catechesis\gui\MainNavbar\MENU_OPTION;
+use Exception;
 
 // Create the widgets manager
 $pageUI = new WidgetManager();
@@ -177,13 +181,12 @@ $menu->renderHTML();
       $balance = $price - $total_confirmed;
       if($balance < 0) $balance = 0.0;
       $situation = $balance > 0 ? 'Em débito' : 'Pago';
-      $pixImg = null;
+
       $pixPayload = null;
       try {
-          $pixImg = PixQRCode::generatePixQRCode($balance > 0 ? $balance : null);
           $pixPayload = PixQRCode::generatePixPayload($balance > 0 ? $balance : null);
       } catch (Exception $e) {
-          $pixImg = null;
+
           $pixPayload = null;
       }
   ?>
@@ -204,14 +207,12 @@ $menu->renderHTML();
     <p>Situação: <?= $situation ?></p>
     <p>Total pago: R$<?= number_format($total_confirmed, 2, ',', '.') ?></p>
     <p>Valor em aberto: R$<?= number_format($balance, 2, ',', '.') ?></p>
-    <?php if($balance > 0 && $pixImg) { ?>
+
+    <?php if($balance > 0 && $pixPayload) { ?>
         <div style="margin-top:20px;text-align:center;">
-            <p>Para efetuar o pagamento via <strong>Pix</strong>, utilize o QR code abaixo:</p>
-            <img src="<?= $pixImg ?>" alt="Pix QR Code" />
-            <?php if($pixPayload) { ?>
-                <p style="margin-top:10px;word-break:break-all;">Pix copia e cola:</p>
-                <pre style="white-space: pre-wrap; word-wrap: break-word;"><?= $pixPayload ?></pre>
-            <?php } ?>
+            <p>Pix copia e cola:</p>
+            <pre style="white-space: pre-wrap; word-wrap: break-word;"><?= $pixPayload ?></pre>
+
         </div>
     <?php } ?>
   <?php } ?>
