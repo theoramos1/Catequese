@@ -15,6 +15,11 @@ CatecheSis requires a standard LAMP stack. Recommended software versions are:
 
 These requirements are listed in the installation manual which ships with the project.
 
+After cloning the repository run `composer install` from the project root to
+fetch the PHP dependencies. The installed packages include the QR code library
+and PHPUnit which are required for generating payment QR codes and running the
+test suite.
+
 ## Configuration files
 
 All configuration lives under `core/config/`:
