@@ -8,7 +8,7 @@ if (session_status() === PHP_SESSION_NONE) {
         'path' => '/',
         // NÃO defina 'domain' em localhost, deixe o padrão!
         // 'domain' => '',  // REMOVA ESSA LINHA!
-        'secure' => true, // Se usar https, deve ser true!
+        'secure' => constant('CATECHESIS_HTTPS'), // Se usar https, deve ser true!
         'httponly' => true,
         'samesite' => 'Lax'
     ]);
