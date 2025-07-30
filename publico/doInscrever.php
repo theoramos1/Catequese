@@ -10,7 +10,7 @@ require_once(__DIR__ . '/../authentication/securimage/securimage.php');  //Captc
 require_once(__DIR__ . '/../core/Configurator.php');
 require_once(__DIR__ . '/../core/PdoDatabaseManager.php');
 require_once(__DIR__ . '/../core/domain/Marriage.php');
-require_once(__DIR__ . '/../core/PixQRCode.php');
+require_once(__DIR__ . '/../core/Pix.php');
 require_once(__DIR__ . '/../gui/widgets/WidgetManager.php');
 require_once(__DIR__ . '/../gui/widgets/Navbar/MinimalNavbar.php');
 require_once(__DIR__ . '/../gui/widgets/Footer/SimpleFooter.php');
@@ -24,7 +24,7 @@ use core\domain\Marriage;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\MinimalNavbar;
 use catechesis\gui\SimpleFooter;
-use catechesis\PixQRCode;
+use catechesis\Pix;
 use core\domain\Locale;
 
 $db = new PdoDatabaseManager();
@@ -519,7 +519,7 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
                     if ($pixAvailable) {
                         try {
 
-                            $pixPayload = PixQRCode::generatePixPayload(null);
+                            $pixPayload = Pix::generatePayload(null);
 
                         } catch (Exception $e) {
                             $pixPayload = null;

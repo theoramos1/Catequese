@@ -72,7 +72,7 @@ Brazilian donors may contribute using Pix. Configure the following keys in the *
 
 
 
-Call `PixQRCode::generatePixQRCode($amount)` to generate the QR image for the desired amount. The `$amount` parameter is optional; pass `null` to omit the value from the generated code. If the QR generation library is not available, the method returns `null`. When used for enrollments this amount usually corresponds to `ENROLLMENT_PAYMENT_AMOUNT` (default R$100).
+Call `Pix::generatePayload($amount)` to generate the Pix "copy and paste" code for the desired amount. The `$amount` parameter is optional; pass `null` to omit the value. When used for enrollments this amount usually corresponds to `ENROLLMENT_PAYMENT_AMOUNT` (default R$100).
 
 
 

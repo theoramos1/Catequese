@@ -6,7 +6,7 @@ require_once(__DIR__ . '/core/Utils.php');
 require_once(__DIR__ . '/core/DataValidationUtils.php');
 require_once(__DIR__ . '/core/PdoDatabaseManager.php');
 require_once(__DIR__ . '/core/Configurator.php');
-require_once(__DIR__ . '/core/PixQRCode.php');
+require_once(__DIR__ . '/core/Pix.php');
 require_once(__DIR__ . '/gui/widgets/WidgetManager.php');
 require_once(__DIR__ . '/gui/widgets/Navbar/MainNavbar.php');
 
@@ -18,7 +18,7 @@ use catechesis\Configurator;
 
 use catechesis\DatabaseAccessMode;
 
-use catechesis\PixQRCode;
+use catechesis\Pix;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\MainNavbar;
 use catechesis\gui\MainNavbar\MENU_OPTION;
@@ -184,7 +184,7 @@ $menu->renderHTML();
 
       $pixPayload = null;
       try {
-          $pixPayload = PixQRCode::generatePixPayload($balance > 0 ? $balance : null);
+          $pixPayload = Pix::generatePayload($balance > 0 ? $balance : null);
       } catch (Exception $e) {
 
           $pixPayload = null;

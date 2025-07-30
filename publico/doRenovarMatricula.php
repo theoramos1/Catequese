@@ -10,7 +10,7 @@ require_once(__DIR__ . '/../core/PdoDatabaseManager.php');
 require_once(__DIR__ . '/../gui/widgets/WidgetManager.php');
 require_once(__DIR__ . '/../gui/widgets/Navbar/MinimalNavbar.php');
 require_once(__DIR__ . '/../gui/widgets/Footer/SimpleFooter.php');
-require_once(__DIR__ . '/../core/PixQRCode.php');
+require_once(__DIR__ . '/../core/Pix.php');
 
 
 use catechesis\Configurator;
@@ -20,7 +20,7 @@ use catechesis\Utils;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\MinimalNavbar;
 use catechesis\gui\SimpleFooter;
-use catechesis\PixQRCode;
+use catechesis\Pix;
 
 $db = new PdoDatabaseManager();
 
@@ -196,7 +196,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 }
                     if ($pixAvailable) {
                         try {
-                            $pixPayload = PixQRCode::generatePixPayload(null);
+                            $pixPayload = Pix::generatePayload(null);
                         } catch (Exception $e) {
                             $pixPayload = null;
                         }

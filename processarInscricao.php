@@ -12,6 +12,7 @@ require_once(__DIR__ . "/core/DataValidationUtils.php");
 require_once(__DIR__ . '/core/catechist_belongings.php');
 require_once(__DIR__ . "/core/PdoDatabaseManager.php");
 require_once(__DIR__ . '/core/PaymentVerificationService.php');
+require_once(__DIR__ . '/core/Pix.php');
 require_once(__DIR__ . "/core/domain/Sacraments.php");
 require_once(__DIR__ . "/core/domain/Marriage.php");
 require_once(__DIR__ . "/gui/widgets/WidgetManager.php");
@@ -24,6 +25,7 @@ use catechesis\Configurator;
 use catechesis\UserData;
 use catechesis\utils;
 use catechesis\PaymentVerificationService;
+use catechesis\Pix;
 use core\domain\Marriage;
 use core\domain\Sacraments;
 use catechesis\gui\WidgetManager;
@@ -1159,7 +1161,11 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
 
         if($_REQUEST['modo']!="editar")
         {
-                $pixPayload = strtoupper(Utils::secureRandomString(20));
+                try {
+                    $pixPayload = Pix::generatePayload($payment_amount);
+                } catch (Exception $e) {
+                    $pixPayload = strtoupper(Utils::secureRandomString(20));
+                }
                 echo("<p><strong>Taxa de inscrição: R$ " . number_format($payment_amount, 2, ',', '.') . "</strong></p>");
                 echo("<p>Pix \"copia e cola\" para pagamento:</p>");
                 echo("<pre style=\"white-space: pre-wrap; word-wrap: break-word;\">" . $pixPayload . "</pre>");
