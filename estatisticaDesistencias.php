@@ -239,7 +239,7 @@ var plot = $.plot($("#grafico1"), [ { label: "desistências (frequência absolut
 			yaxis: {
 				ticks: 10,
 				min: 0,
-				max: <?php echo($count_max); ?>,
+                                max: <?php echo(Utils::sanitizeOutput($count_max)); ?>,
 				tickDecimals: 0
 			},
 			grid: {

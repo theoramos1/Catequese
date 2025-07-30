@@ -88,7 +88,7 @@ class SacramentListWidget extends AbstractCatechumensListingWidget
             <div class="btn-group no-print">
                 <?php
                 if(isset($this->additional_toolbar_buttons))
-                    echo($this->additional_toolbar_buttons);
+                    echo(Utils::sanitizeOutput($this->additional_toolbar_buttons));
                 ?>
                 <button type="button" onclick="window.print()" class="btn btn-default no-print"><span class="glyphicon glyphicon-print"></span> Imprimir</button>
                 <div class="btn-group">
@@ -102,8 +102,8 @@ class SacramentListWidget extends AbstractCatechumensListingWidget
 
             <form target="_blank" action="transferirListagemSacramento.php" method="post" id="<?=$this->getID()?>_transferir_form" name="<?=$this->getID()?>_transferir_form">
                 <input type="hidden" name="file_type" id="<?=$this->getID()?>_transferir_tipo" value="xls">
-                <input type="hidden" name="entity_name_singular" id="<?=$this->getID()?>_entity_name_singular" value="<?= $this->entities_name_singular?>">
-                <input type="hidden" name="entity_name_plural" id="<?=$this->getID()?>_entity_name_plural" value="<?= $this->entities_name_plural?>">
+                <input type="hidden" name="entity_name_singular" id="<?=$this->getID()?>_entity_name_singular" value="<?= Utils::sanitizeOutput($this->entities_name_singular) ?>">
+                <input type="hidden" name="entity_name_plural" id="<?=$this->getID()?>_entity_name_plural" value="<?= Utils::sanitizeOutput($this->entities_name_plural) ?>">
                 <?php
                 //Generate list of cid as required by the download script
                 foreach($this->catechumens_list as $catechumen)
@@ -119,7 +119,7 @@ class SacramentListWidget extends AbstractCatechumensListingWidget
             <div class="page-header" style="position:relative; z-index:2;">
                 <div class="row">
                     <div class="col-md-4 pull-left">
-                        <h1 class="results_header"><small><span id="<?=$this->getID()?>_numero_resultados"></span><?php if(count($this->catechumens_list)==0) echo("Sem"); else echo(count($this->catechumens_list));?> <?php if(count($this->catechumens_list)>1) echo($this->entities_name_plural); else echO($this->entities_name_singular); ?></small></h1>
+                        <h1 class="results_header"><small><span id="<?=$this->getID()?>_numero_resultados"></span><?php if(count($this->catechumens_list)==0) echo("Sem"); else echo(count($this->catechumens_list));?> <?php if(count($this->catechumens_list)>1) echo(Utils::sanitizeOutput($this->entities_name_plural)); else echo(Utils::sanitizeOutput($this->entities_name_singular)); ?></small></h1>
                     </div>
                 </div>
                 <div class="clearfix"></div>

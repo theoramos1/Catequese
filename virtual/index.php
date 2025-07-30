@@ -264,7 +264,7 @@ $pageUI->addWidget($footer);
                         <input type="hidden" name="turma" id="turma_input" value="<?= $turma ?>">
                         <input type="hidden" name="data_sessao" id="data_sessao_input">
                     </form>
-                    <button class="btn btn-default btn" id="button" data-date-format="dd/mm/yyyy" data-date="<?php echo($data_sessao);?>"><span class="glyphicon glyphicon-calendar"></span> Selecionar outra data</button>
+                    <button class="btn btn-default btn" id="button" data-date-format="dd/mm/yyyy" data-date="<?php echo(Utils::sanitizeOutput($data_sessao));?>"><span class="glyphicon glyphicon-calendar"></span> Selecionar outra data</button>
                 </div>
 
                 <div class="row" style="margin-bottom:20px; "></div>
@@ -458,7 +458,7 @@ if($on_landing_page)
         todayBtn: true,
         /*daysOfWeekDisabled: "0,1,2,3,4,5",
         daysOfWeekHighlighted: "6",*/
-        endDate: "<?php echo($HOJE); ?>",
+        endDate: "<?php echo(Utils::sanitizeOutput($HOJE)); ?>",
         todayHighlight: true,
         autoclose: true,
         beforeShowDay: function(date) {

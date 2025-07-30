@@ -421,7 +421,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_REQUEST['op']=="guardar" )
 	<div class="col-xs-4">
 	 <label for="turma">Data: </label>
 	 <div class="input-append date" id="data_sacramento_div" data-date="" data-date-format="dd/mm/yyyy">
-	 	<input class="form-control" id="data_sacramento" name="data_sacramento" value="<?php if($data_sacramento!='') echo($data_sacramento); ?>" size="16" type="text" placeholder="dd/mm/aaaa" style="cursor: auto;" onclick="verifica_data_sacramento()" onchange="verifica_data_sacramento()" required>
+                <input class="form-control" id="data_sacramento" name="data_sacramento" value="<?php if($data_sacramento!='') echo(Utils::sanitizeOutput($data_sacramento)); ?>" size="16" type="text" placeholder="dd/mm/aaaa" style="cursor: auto;" onclick="verifica_data_sacramento()" onchange="verifica_data_sacramento()" required>
 	 	<span id="erro_data_sacramento_icon" class="glyphicon glyphicon-remove form-control-feedback" style="display:none;"></span>
 	 </div>
     </div>

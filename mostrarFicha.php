@@ -835,7 +835,7 @@ $pageUI->renderJS(); // Render the widgets' JS code
   	
 	function transferir_ficha()
     {
-		window.open('gerarFichaWord.php?cid=<?php echo($cid); ?>', '_blank');
+                window.open('gerarFichaWord.php?cid=<?php echo(Utils::sanitizeOutput($cid)); ?>', '_blank');
 	}
 	
 	function decisao_impressao()

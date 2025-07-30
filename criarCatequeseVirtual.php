@@ -344,7 +344,7 @@ $menu->renderHTML();
        <label for="data_sessao">Data da sessão:</label>
        <div class="input-group date" id="data_nasc_div" data-date="" data-date-format="dd/mm/yyyy">
          <input class="form-control" id="data_sessao" name="data_sessao" size="16" type="text" onclick="verifica_data()" onchange="verifica_data(); this.form.submit();" \
-                placeholder="dd/mm/aaaa" value="<?php echo($data_sessao); ?>" readonly>
+                placeholder="dd/mm/aaaa" value="<?php echo(Utils::sanitizeOutput($data_sessao)); ?>" readonly>
          <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
      </div>
     </div>
@@ -801,7 +801,7 @@ function validar()
 
     function previsualizar()
     {
-        window.open("<?php echo(constant('CATECHESIS_BASE_URL'));?>/virtual/index.php?catecismo=<?php echo($catecismo);?>&turma=<?php echo($turma);?>&data_sessao=<?php echo($data_sessao);?>", '_blank');
+        window.open("<?php echo(constant('CATECHESIS_BASE_URL'));?>/virtual/index.php?catecismo=<?php echo(Utils::sanitizeOutput($catecismo));?>&turma=<?php echo(Utils::sanitizeOutput($turma));?>&data_sessao=<?php echo(Utils::sanitizeOutput($data_sessao));?>", '_blank');
     }
 
 </script>
