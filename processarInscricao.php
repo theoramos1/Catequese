@@ -12,7 +12,6 @@ require_once(__DIR__ . "/core/DataValidationUtils.php");
 require_once(__DIR__ . '/core/catechist_belongings.php');
 require_once(__DIR__ . "/core/PdoDatabaseManager.php");
 require_once(__DIR__ . '/core/PaymentVerificationService.php');
-require_once(__DIR__ . '/core/PixPaymentVerificationService.php');
 require_once(__DIR__ . "/core/domain/Sacraments.php");
 require_once(__DIR__ . "/core/domain/Marriage.php");
 require_once(__DIR__ . "/gui/widgets/WidgetManager.php");
@@ -25,7 +24,6 @@ use catechesis\Configurator;
 use catechesis\UserData;
 use catechesis\utils;
 use catechesis\PaymentVerificationService;
-use catechesis\PixPaymentVerificationService;
 use core\domain\Marriage;
 use core\domain\Sacraments;
 use catechesis\gui\WidgetManager;
@@ -260,7 +258,7 @@ $menu->renderHTML();
                     try
                     {
                         $pixKey = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_KEY);
-                        $pixVerifier = new PixPaymentVerificationService();
+                        $pixVerifier = new PaymentVerificationService();
                         $payment_confirmed = $pixVerifier->verifyPayment($iid ?? null, $pixKey, $payment_amount);
                     }
                     catch (Exception $e)

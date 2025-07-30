@@ -10,7 +10,6 @@ require_once(__DIR__ . '/core/UserData.php');
 require_once(__DIR__ . "/core/enrollment_functions.php");
 require_once(__DIR__ . "/core/PdoDatabaseManager.php");
 require_once(__DIR__ . '/core/PaymentVerificationService.php');
-require_once(__DIR__ . '/core/PixPaymentVerificationService.php');
 require_once(__DIR__ . '/gui/widgets/WidgetManager.php');
 require_once(__DIR__ . '/gui/widgets/Navbar/MainNavbar.php');
 require_once(__DIR__ . '/gui/widgets/ModalDialog/ModalDialogWidget.php');
@@ -21,7 +20,6 @@ use catechesis\Configurator;
 use catechesis\UserData;
 use catechesis\Utils;
 use catechesis\PaymentVerificationService;
-use catechesis\PixPaymentVerificationService;
 use core\domain\EnrollmentStatus;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\MainNavbar;
@@ -230,9 +228,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_REQUEST['op']=="guardar" )
                     try
                     {
                         $pixKey = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_KEY);
-                        $pixVerifier = new PixPaymentVerificationService();
+                        $pixVerifier = new PaymentVerificationService();
                         $payment_confirmed = $pixVerifier->verifyPayment($cid, $pixKey, $payment_amount);
-                    }
                     catch (Exception $e)
                     {
                         error_log('Pix payment verification failed: ' . $e->getMessage());
