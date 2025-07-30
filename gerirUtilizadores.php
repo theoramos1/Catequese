@@ -165,7 +165,7 @@ $menu->renderHTML();
                         $inputs_invalidos = true;
                 }
 
-                if(isset($rawTel) && $rawTel!="" && !DataValidationUtils::validatePhoneNumber($rawTel, $locale))
+                if(isset($rawTel) && $rawTel!="" && !DataValidationUtils::validatePhoneNumber($tel, Configurator::getConfigurationValueOrDefault(Configurator::KEY_LOCALIZATION_CODE)))
                 {
                         if($locale == Locale::PORTUGAL)
                                 $msg = "O número de telefone que introduziu é inválido. Deve conter 9 dígitos ou iniciar-se com '+xxx ' seguido de 9 dígitos.";
