@@ -57,8 +57,8 @@ class PixQRCode{
     public static function generatePixQRCode(?float $amount): string{
 
         $key  = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_KEY);
-        $name = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_MERCHANT_NAME);
-        $city = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_MERCHANT_CITY);
+        $name = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_RECEIVER);
+        $city = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_CITY);
         $desc = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_DESCRIPTION) ?? '';
         $txid = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_TXID) ?? '***';
 
@@ -85,8 +85,8 @@ class PixQRCode{
 
     public static function generatePixPayload(?float $amount): string{
         $key  = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_KEY);
-        $name = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_MERCHANT_NAME);
-        $city = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_MERCHANT_CITY);
+        $name = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_RECEIVER);
+        $city = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_CITY);
         $desc = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_DESCRIPTION) ?? '';
         $txid = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_TXID) ?? '***';
 
