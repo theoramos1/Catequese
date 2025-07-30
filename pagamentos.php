@@ -15,7 +15,9 @@ use catechesis\PdoDatabaseManager;
 use catechesis\Utils;
 use catechesis\DataValidationUtils;
 use catechesis\Configurator;
+
 use catechesis\DatabaseAccessMode;
+
 use catechesis\PixQRCode;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\MainNavbar;
@@ -179,10 +181,12 @@ $menu->renderHTML();
       $balance = $price - $total_confirmed;
       if($balance < 0) $balance = 0.0;
       $situation = $balance > 0 ? 'Em débito' : 'Pago';
+
       $pixPayload = null;
       try {
           $pixPayload = PixQRCode::generatePixPayload($balance > 0 ? $balance : null);
       } catch (Exception $e) {
+
           $pixPayload = null;
       }
   ?>
@@ -203,10 +207,12 @@ $menu->renderHTML();
     <p>Situação: <?= $situation ?></p>
     <p>Total pago: R$<?= number_format($total_confirmed, 2, ',', '.') ?></p>
     <p>Valor em aberto: R$<?= number_format($balance, 2, ',', '.') ?></p>
+
     <?php if($balance > 0 && $pixPayload) { ?>
         <div style="margin-top:20px;text-align:center;">
             <p>Pix copia e cola:</p>
             <pre style="white-space: pre-wrap; word-wrap: break-word;"><?= $pixPayload ?></pre>
+
         </div>
     <?php } ?>
   <?php } ?>

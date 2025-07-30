@@ -89,12 +89,6 @@ $menu->renderHTML();
     {
         echo("<h2>Matrícula e inscrição na catequese</h2>");
 
-        if(!Authenticator::isAdmin())
-        {
-            echo("<div class=\"alert alert-danger\"><strong>Erro!</strong> Não tem permissões para aceder a este recurso.</div>");
-            echo("</div></body></html>");
-            die();
-        }
     }
 
 
@@ -721,12 +715,14 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
                 {
                     if($marriageAction == "add")
                     {
-                        catechumenFileLog($_SESSION['cid'], "Adicionado registo de casamento dos familiares com ID " . $fid_mae . " e " . $fid_pai . ". As fichas de todos os seus filhos / educandos foram também actualizadas.", true); //Pode afectar fichas de irmaos
+                        if (isset($_SESSION['cid']))
+                            catechumenFileLog($_SESSION['cid'], "Adicionado registo de casamento dos familiares com ID " . $fid_mae . " e " . $fid_pai . ". As fichas de todos os seus filhos / educandos foram também actualizadas.", true); //Pode afectar fichas de irmaos
                         //Note: $_SESSION['cid'] is not defined when we are making or approving a new enrollment, so this log message will not be linked to the catechumen file.
                     }
                     else
                     {
-                        catechumenFileLog($_SESSION['cid'], "Modificado o tipo de registo de casamento dos familiares com ID " . $fid_mae . " e " . $fid_pai . ". As fichas de todos os seus filhos / educandos foram também actualizadas.", true); //Pode afectar fichas de irmaos
+                        if (isset($_SESSION['cid']))
+                            catechumenFileLog($_SESSION['cid'], "Modificado o tipo de registo de casamento dos familiares com ID " . $fid_mae . " e " . $fid_pai . ". As fichas de todos os seus filhos / educandos foram também actualizadas.", true); //Pode afectar fichas de irmaos
                         echo("<div class=\"alert alert-info\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Info!</strong> Modificado o tipo de registo de casamento.</div>");
                     }
                 }
@@ -1157,9 +1153,18 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
 		echo("<div class=\"alert alert-danger\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Erro!</strong> Não foi processada nenhuma inscrição.</div>");
 		//Libertar recursos
 		$db = null;
-		$result = null;
-		die();
-	}
+                $result = null;
+                die();
+        }
+
+        if($_REQUEST['modo']!="editar")
+        {
+                $pixPayload = strtoupper(Utils::secureRandomString(20));
+                echo("<p><strong>Taxa de inscrição: R$ " . number_format($payment_amount, 2, ',', '.') . "</strong></p>");
+                echo("<p>Pix \"copia e cola\" para pagamento:</p>");
+                echo("<pre style=\"white-space: pre-wrap; word-wrap: break-word;\">" . $pixPayload . "</pre>");
+                echo("<p>Você pode pagar qualquer valor agora e completar depois acessando o menu \"Pagamento\". O sistema atualizará automaticamente o valor restante e o status do seu pagamento.</p>");
+        }
 	
 	
 	

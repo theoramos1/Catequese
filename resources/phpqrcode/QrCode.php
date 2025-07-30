@@ -1,7 +1,11 @@
 <?php
 namespace resources\phpqrcode;
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+$autoload = dirname(__DIR__, 2) . '/vendor/autoload.php';
+if (!is_file($autoload)) {
+    throw new \RuntimeException('Dependencies missing. Run "composer install".');
+}
+require_once $autoload;
 
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Writer\PngWriter;

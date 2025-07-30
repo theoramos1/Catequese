@@ -2,6 +2,17 @@
 
 CatecheSis is a web application for managing catechesis records and online enrollments.
 
+## Quick start
+
+Before using the application you must install its PHP dependencies. From the
+project root run:
+
+```bash
+composer install
+```
+
+This command installs the autoloader and all required packages.
+
 ## Prerequisites
 
 CatecheSis requires a standard LAMP stack. Recommended software versions are:
@@ -14,6 +25,11 @@ CatecheSis requires a standard LAMP stack. Recommended software versions are:
 - About 200 MB of free disk space
 
 These requirements are listed in the installation manual which ships with the project.
+
+After cloning the repository run `composer install` from the project root to
+fetch the PHP dependencies. The installed packages include the QR code library
+and PHPUnit which are required for generating payment QR codes and running the
+test suite.
 
 ## Configuration files
 
@@ -55,7 +71,9 @@ Brazilian donors may contribute using Pix. Configure the following keys in the *
 - `PIX_API_TIMEOUT` – timeout in seconds when calling the API
 
 
+
 Call `PixQRCode::generatePixQRCode($amount)` to generate the QR image for the desired amount. The `$amount` parameter is optional; pass `null` to omit the value from the generated code. If the QR generation library is not available, the method returns `null`. When used for enrollments this amount usually corresponds to `ENROLLMENT_PAYMENT_AMOUNT` (default R$100).
+
 
 
 Payment confirmation can optionally be automated with `PaymentVerificationService`, which expects the provider endpoint, token and timeout to be set via `PIX_PROVIDER_URL`, `PIX_PROVIDER_TOKEN` and `PIX_PROVIDER_TIMEOUT`.
@@ -69,6 +87,14 @@ Administrators can select the country used for address and phone formats in
 application.
 Any whitespace around this value is ignored by the configurator, so
 `LOCALIZATION_CODE` values are normalized automatically.
+
+## Self-service user registration
+
+Users can create their own accounts directly from the web interface using the
+`register.php` page. The form requests a username, full name, password and
+optional contact details. Accounts created through this page are regular user
+accounts without catechist or administrator privileges. After submitting the
+form users may log in using their chosen credentials.
 
 If changing the value through the interface is not possible, update it directly
 in the database:

@@ -136,14 +136,6 @@ $menu->renderHTML();
  <div>
 <?php
 
-if(!Authenticator::isAdmin())
-{
-    echo("<div class=\"alert alert-danger\"><strong>Erro!</strong> Não tem permissões para aceder a este recurso.</div>");
-    echo("</div></body></html>");
-    die();
-
-}
-
 
 $username = Authenticator::getUsername();
 $db = new PdoDatabaseManager();

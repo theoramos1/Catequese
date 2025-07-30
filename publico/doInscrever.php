@@ -518,7 +518,9 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
                     }
                     if ($pixAvailable) {
                         try {
+
                             $pixPayload = PixQRCode::generatePixPayload(null);
+
                         } catch (Exception $e) {
                             $pixPayload = null;
                         }
