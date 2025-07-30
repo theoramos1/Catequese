@@ -2,6 +2,17 @@
 
 CatecheSis is a web application for managing catechesis records and online enrollments.
 
+## Quick start
+
+Before using the application you must install its PHP dependencies. From the
+project root run:
+
+```bash
+composer install
+```
+
+This command installs the autoloader and all required packages.
+
 ## Prerequisites
 
 CatecheSis requires a standard LAMP stack. Recommended software versions are:
