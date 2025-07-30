@@ -4,15 +4,19 @@ require_once(__DIR__ . '/core/config/catechesis_config.inc.php');
 require_once(__DIR__ . '/authentication/utils/authentication_verify.php');
 require_once(__DIR__ . '/authentication/Authenticator.php');
 require_once(__DIR__ . '/core/Utils.php');
+require_once(__DIR__ . '/core/Configurator.php');
+require_once(__DIR__ . '/core/domain/Locale.php');
 require_once(__DIR__ . "/core/PdoDatabaseManager.php");
 require_once(__DIR__ . "/gui/widgets/WidgetManager.php");
 require_once(__DIR__ . '/gui/widgets/Navbar/MainNavbar.php');
 
 use catechesis\Authenticator;
+use catechesis\Configurator;
 use catechesis\PdoDatabaseManager;
 use catechesis\gui\WidgetManager;
 use catechesis\gui\MainNavbar;
 use catechesis\gui\MainNavbar\MENU_OPTION;
+use core\domain\Locale;
 
 
 // Create the widgets manager
