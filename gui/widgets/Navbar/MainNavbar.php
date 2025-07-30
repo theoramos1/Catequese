@@ -133,25 +133,20 @@ class MainNavbar extends Widget
                         <!-- Dashboard -->
                         <li<?php if($this->menuOption==MENU_OPTION::HOME) echo(' class="active"'); ?>><a href="dashboard.php"><i class="fas fa-home"></i> </a></li>
 
-                        <?php
-                        if(Authenticator::isAdmin())
-                        {
-                            ?>
-                            <!-- Enrollments -->
-                            <li class="dropdown<?php if($this->menuOption==MENU_OPTION::ENROLMENTS) echo(', active'); ?>"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fas fa-signature"></i> Inscrições <?php if($totalPendingEnrollmentsAndRenewals > 0) echo("<span class=\"badge\">" . $totalPendingEnrollmentsAndRenewals . "</span> ");?><span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li role="presentation" class="dropdown-header"><i class="fas fa-edit"></i> Inscrições e renovações</li>
-                                    <li><a href="inscricao.php">Cadastrar novo catequizando</a></li>
-                                    <li class="<?php if(!$this->allowsSiblingEnrollment) echo('disabled'); ?>"><a href="<?php if($this->allowsSiblingEnrollment) echo('inscricao.php?modo=irmao'); ?>">Inscrever um irmão deste catequizando</a></li>
-                                    <li><a href="renovacaoMatriculas.php">Renovar matrículas <?php if($pendingRenewals > 0) echo("<span class=\"badge\">" . $pendingRenewals . "</span>");?></a></li>
-                                    <li class="divider"></li>
-                                    <li role="presentation" class="dropdown-header"><i class="fas fa-globe-europe"></i> Inscrições online</li>
-                                    <li><a href="processarInscricoesOnline.php">Processar pedidos de inscrição online <?php if($pendingEnrollments > 0) echo("<span class=\"badge\">" . $pendingEnrollments . "</span>");?></a></li>
-                                </ul>
-                            </li>
-                        <?php
-                        }
-                        ?>
+                        <!-- Enrollments -->
+                        <li class="dropdown<?php if($this->menuOption==MENU_OPTION::ENROLMENTS) echo(', active'); ?>"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fas fa-signature"></i> Inscrições <?php if($totalPendingEnrollmentsAndRenewals > 0) echo("<span class=\"badge\">" . $totalPendingEnrollmentsAndRenewals . "</span> ");?><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li role="presentation" class="dropdown-header"><i class="fas fa-edit"></i> Inscrições e renovações</li>
+                                <li><a href="inscricao.php">Cadastrar novo catequizando</a></li>
+                                <li class="<?php if(!$this->allowsSiblingEnrollment) echo('disabled'); ?>"><a href="<?php if($this->allowsSiblingEnrollment) echo('inscricao.php?modo=irmao'); ?>">Inscrever um irmão deste catequizando</a></li>
+                                <li><a href="renovacaoMatriculas.php">Renovar matrículas <?php if($pendingRenewals > 0) echo("<span class=\"badge\">" . $pendingRenewals . "</span>");?></a></li>
+                                <li class="divider"></li>
+                                <li role="presentation" class="dropdown-header"><i class="fas fa-globe-europe"></i> Inscrições online</li>
+                                <?php if(Authenticator::isAdmin()) { ?>
+                                <li><a href="processarInscricoesOnline.php">Processar pedidos de inscrição online <?php if($pendingEnrollments > 0) echo("<span class=\"badge\">" . $pendingEnrollments . "</span>");?></a></li>
+                                <?php } ?>
+                            </ul>
+                        </li>
 
                         <!-- Catechumens -->
                         <li class="dropdown<?php if($this->menuOption==MENU_OPTION::CATECHUMENS) echo(', active'); ?>"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fas fa-search"></i> Catequizandos<span class="caret"></span></a>

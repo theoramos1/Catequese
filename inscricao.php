@@ -80,12 +80,6 @@ $menu->renderHTML();
     {
         echo('<h2>Matrícula e inscrição na catequese</h2>');
 
-        if(!Authenticator::isAdmin())
-        {
-            echo("<div class=\"alert alert-danger\"><strong>Erro!</strong> Não tem permissões para aceder a este recurso.</div>");
-            echo("</div></body></html>");
-            die();
-        }
     }
   	?>
   
