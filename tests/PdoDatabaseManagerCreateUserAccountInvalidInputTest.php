@@ -3,7 +3,7 @@ use catechesis\PdoDatabaseManager;
 use catechesis\DatabaseAccessMode;
 use PHPUnit\Framework\TestCase;
 
-// Provide a stub uLogin class so tests don't require the real authentication backend
+// Ensure the uLogin stub is available
 if (!class_exists('uLogin')) {
     class uLogin
     {
@@ -17,7 +17,7 @@ if (!class_exists('uLogin')) {
 require_once __DIR__ . '/../core/PdoDatabaseManager.php';
 require_once __DIR__ . '/../core/DatabaseManager.php';
 
-class PdoDatabaseManagerCreateUserAccountTest extends TestCase
+class PdoDatabaseManagerCreateUserAccountInvalidInputTest extends TestCase
 {
     private PDO $pdo;
     private PdoDatabaseManager $manager;
@@ -52,16 +52,30 @@ class PdoDatabaseManagerCreateUserAccountTest extends TestCase
         $modeProp->setValue($this->manager, DatabaseAccessMode::DEFAULT_EDIT);
     }
 
-    public function testCreateUserAccountShortPasswordThrows(): void
+    public function testShortPasswordCausesFailure(): void
     {
-        $this->expectException(Exception::class);
-        $this->manager->createUserAccount('shortpwd', 'Short Password', '12345', false, false);
+        try {
+            $this->manager->createUserAccount('user', 'User Name', 'short', false, false);
+            $this->fail('Exception not thrown');
+        } catch (Exception $e) {
+            // expected
+        }
+
+        $count = $this->pdo->query('SELECT COUNT(*) FROM utilizador')->fetchColumn();
+        $this->assertEquals(0, $count);
     }
 
-    public function testCreateUserAccountInvalidEmailThrows(): void
+    public function testInvalidEmailCausesFailure(): void
     {
-        $this->expectException(Exception::class);
-        $this->manager->createUserAccount('bademail', 'Bad Email', 'longenough1', false, false, true, null, 'invalid');
+        try {
+            $this->manager->createUserAccount('user', 'User Name', 'longenough1', false, false, true, null, 'bad');
+            $this->fail('Exception not thrown');
+        } catch (Exception $e) {
+            // expected
+        }
+
+        $count = $this->pdo->query('SELECT COUNT(*) FROM utilizador')->fetchColumn();
+        $this->assertEquals(0, $count);
     }
 }
 ?>
