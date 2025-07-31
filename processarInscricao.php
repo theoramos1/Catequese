@@ -115,10 +115,15 @@ $menu->renderHTML();
 
 
 
-	
-	
-	// Carregamento das variáveis através do metodo POST
-	if ($_SERVER["REQUEST_METHOD"] == "POST")
+        // Helper function to log only when a catechumen id is available
+        function safeCatechumenFileLog($message, $affectsSiblings = false)
+        {
+                if (isset($_SESSION['cid']))
+                        catechumenFileLog($_SESSION['cid'], $message, $affectsSiblings);
+        }
+
+        // Carregamento das variáveis através do metodo POST
+        if ($_SERVER["REQUEST_METHOD"] == "POST")
 	{
                 $nome = Utils::sanitizeInput($_POST['nome'] ?? '');
                 $data_nasc = Utils::sanitizeInput($_POST['data_nasc'] ?? '');
@@ -512,7 +517,7 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
 					{
 						if($db->updateFamilyMemberJob($fid_pai, $prof_pai))
 						{
-                            catechumenFileLog($_SESSION['cid'], "Actualizados dados do pai do catequizando com id=" . $_SESSION['cid'] . ". As fichas de todos os seus filhos / educandos foram também actualizadas.", true); //Pode afectar fichas de irmaos
+                            safeCatechumenFileLog("Actualizados dados do pai do catequizando com id=" . ($_SESSION['cid'] ?? '') . ". As fichas de todos os seus filhos / educandos foram também actualizadas.", true); //Pode afectar fichas de irmaos
                             echo("<div class=\"alert alert-info\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Info!</strong> Os dados do pai foram automaticamente actualizados nas fichas de todos os filhos.</div>");
 						}
 						else
@@ -536,7 +541,7 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
             {
 				if($db->updateFamilyMemberName($fid_pai, $pai) && $db->updateFamilyMemberJob($fid_pai, $prof_pai))
 				{
-				    catechumenFileLog($_SESSION['cid'], "Actualizados dados do pai do catequizando com id=" . $_SESSION['cid'] . ". As fichas de todos os seus filhos / educandos foram também actualizadas.", true); //Pode afectar fichas de irmaos
+                                    safeCatechumenFileLog("Actualizados dados do pai do catequizando com id=" . ($_SESSION['cid'] ?? '') . ". As fichas de todos os seus filhos / educandos foram também actualizadas.", true); //Pode afectar fichas de irmaos
 				    echo("<div class=\"alert alert-success\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Sucesso!</strong> Os dados do pai foram automaticamente actualizados nas fichas de todos os filhos.</div>");
 				}
 				else
@@ -554,7 +559,7 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
 		else if($_REQUEST['modo']=="editar" && (!$pai || $pai=="") && $fid_pai_old)	//Modo edicao - apagou pai
 		{
 			$fid_pai = NULL;
-			catechumenFileLog($_SESSION['cid'], "Removidos dados do pai do catequizando com id=" . $_SESSION['cid'] . ".");
+                        safeCatechumenFileLog("Removidos dados do pai do catequizando com id=" . ($_SESSION['cid'] ?? '') . ".");
 		}
 		
 		
@@ -605,7 +610,7 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
 					{
 						if($db->updateFamilyMemberJob($fid_mae, $prof_mae))
 						{
-                            catechumenFileLog($_SESSION['cid'], "Actualizados dados da mãe do catequizando com id=" . $_SESSION['cid'] . ". As fichas de todos os seus filhos / educandos foram também actualizadas.", true); //Pode afectar fichas de irmaos
+                            safeCatechumenFileLog("Actualizados dados da mãe do catequizando com id=" . ($_SESSION['cid'] ?? '') . ". As fichas de todos os seus filhos / educandos foram também actualizadas.", true); //Pode afectar fichas de irmaos
                             echo("<div class=\"alert alert-info\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Info!</strong> Os dados da mãe foram automaticamente actualizados nas fichas de todos os filhos.</div>");
 						}else
                         {
@@ -628,7 +633,7 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
             {
 				if($db->updateFamilyMemberName($fid_mae, $mae) && $db->updateFamilyMemberJob($fid_mae, $prof_mae))
 				{
-				    catechumenFileLog($_SESSION['cid'], "Actualizados dados da mãe do catequizando com id=" . $_SESSION['cid'] . ". As fichas de todos os seus filhos / educandos foram também actualizadas.", true); //Pode afectar fichas de irmaos
+                                    safeCatechumenFileLog("Actualizados dados da mãe do catequizando com id=" . ($_SESSION['cid'] ?? '') . ". As fichas de todos os seus filhos / educandos foram também actualizadas.", true); //Pode afectar fichas de irmaos
 				    echo("<div class=\"alert alert-success\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Sucesso!</strong> Os dados da mãe foram automaticamente actualizados nas fichas de todos os filhos.</div>");
 				}
 				else
@@ -646,7 +651,7 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
 		else if($_REQUEST['modo']=="editar" && (!$mae || $mae=="") && $fid_mae_old)	//Modo edicao - apagou mae
 		{
 			$fid_mae = NULL;
-			catechumenFileLog($_SESSION['cid'], "Removidos dados da mãe do catequizando com id=" . $_SESSION['cid'] . ".");
+                        safeCatechumenFileLog("Removidos dados da mãe do catequizando com id=" . ($_SESSION['cid'] ?? '') . ".");
 		}
 		
 		
@@ -690,7 +695,7 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
                 {
                     if ($marriageAction == "remove")
                     {
-                        catechumenFileLog($_SESSION['cid'], "Removido registo de casamento dos pais do catequizando com id=" . $_SESSION['cid'] . " (familiares com ID " . $fid_pai_old . " e " . $fid_mae_old . "). As fichas de todos os seus filhos / educandos foram também actualizadas.", true); //Pode afectar fichas de irmaos
+                        safeCatechumenFileLog("Removido registo de casamento dos pais do catequizando com id=" . ($_SESSION['cid'] ?? '') . " (familiares com ID " . $fid_pai_old . " e " . $fid_mae_old . "). As fichas de todos os seus filhos / educandos foram também actualizadas.", true); //Pode afectar fichas de irmaos
                         echo("<div class=\"alert alert-info\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a><strong>Info!</strong> Registo de casamento eliminado.</div>");
                     }
                 }
