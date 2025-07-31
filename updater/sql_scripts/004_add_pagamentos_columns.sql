@@ -7,10 +7,24 @@ SET @exists := (SELECT COUNT(*) FROM information_schema.COLUMNS
 SET @query := IF(@exists = 0, 'ALTER TABLE pagamentos ADD COLUMN comprovante VARCHAR(255) DEFAULT NULL', 'SELECT 1');
 PREPARE stmt FROM @query; EXECUTE stmt; DEALLOCATE PREPARE stmt;
 
--- status column
-SET @exists := (SELECT COUNT(*) FROM information_schema.COLUMNS
-                WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'pagamentos' AND COLUMN_NAME = 'status');
-SET @query := IF(@exists = 0, 'ALTER TABLE pagamentos ADD COLUMN status VARCHAR(32) NOT NULL DEFAULT ''pendente''', 'SELECT 1');
+-- estado column - rename legacy status column if present
+SET @estado_exists := (SELECT COUNT(*) FROM information_schema.COLUMNS
+                       WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'pagamentos' AND COLUMN_NAME = 'estado');
+SET @status_exists := (SELECT COUNT(*) FROM information_schema.COLUMNS
+                       WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'pagamentos' AND COLUMN_NAME = 'status');
+SET @query := IF(@estado_exists = 0 AND @status_exists = 1,
+                 'ALTER TABLE pagamentos CHANGE status estado VARCHAR(32) NOT NULL DEFAULT ''pendente''',
+                 'SELECT 1');
+PREPARE stmt FROM @query; EXECUTE stmt; DEALLOCATE PREPARE stmt;
+
+-- ensure estado column exists if neither estado nor status were found
+SET @estado_exists := (SELECT COUNT(*) FROM information_schema.COLUMNS
+                       WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'pagamentos' AND COLUMN_NAME = 'estado');
+SET @status_exists := (SELECT COUNT(*) FROM information_schema.COLUMNS
+                       WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'pagamentos' AND COLUMN_NAME = 'status');
+SET @query := IF(@estado_exists = 0 AND @status_exists = 0,
+                 'ALTER TABLE pagamentos ADD COLUMN estado VARCHAR(32) NOT NULL DEFAULT ''pendente''',
+                 'SELECT 1');
 PREPARE stmt FROM @query; EXECUTE stmt; DEALLOCATE PREPARE stmt;
 
 -- aprovado_por column
