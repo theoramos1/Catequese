@@ -238,8 +238,16 @@ interface DatabaseManager
     // Payments
     public function getPaymentsByUser(string $username);
                                         // Returns all payment records for the given user
-    public function insertPayment(string $username, int $cid, float $amount, string $status);
+    public function insertPayment(string $username, int $cid, float $amount, string $status,
+                                  ?string $proofFile=null, ?string $obs=null, ?string $approvedBy=null);
                                         // Inserts a new payment record
+    public function updatePaymentStatus(int $pid, string $status, ?string $approvedBy=null,
+                                        ?string $obs=null);
+                                        // Updates the status of a payment
+    public function getPaymentById(int $pid);
+                                        // Returns a payment record given its id
+    public function getRecentPayments(int $limit=20);
+                                        // Returns the most recent payment records
     public function deleteLogEntriesOlderThan(int $lsn);                                                                // Deletes CatecheSis log entries older than the provided LSN
 }
 
