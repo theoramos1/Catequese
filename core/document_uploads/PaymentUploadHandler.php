@@ -2,12 +2,14 @@
 require_once(__DIR__ . '/UploadHandler.php');
 require_once(__DIR__ . '/../Utils.php');
 require_once(__DIR__ . '/../PdoDatabaseManager.php');
+require_once(__DIR__ . '/../DataValidationUtils.php');
 require_once(__DIR__ . '/../../authentication/utils/authentication_verify.php');
 require_once(__DIR__ . '/../../authentication/Authenticator.php');
 
 use catechesis\Utils;
 use catechesis\PdoDatabaseManager;
 use catechesis\Authenticator;
+use catechesis\DataValidationUtils;
 
 class PaymentUploadHandler extends UploadHandler
 {
@@ -27,19 +29,25 @@ class PaymentUploadHandler extends UploadHandler
             $index = null, $content_range = null)
     {
         $cid = intval(Utils::sanitizeInput($_REQUEST['cid'] ?? '0'));
-        $amount = floatval(Utils::sanitizeInput($_REQUEST['amount'] ?? '0'));
+        $amountRaw = Utils::sanitizeInput($_REQUEST['amount'] ?? '0');
+        $amount = floatval($amountRaw);
         $ext = pathinfo($name, PATHINFO_EXTENSION);
         $filename = 'payment_'.$cid.'_'.time().'.'.$ext;
+        $sanitizedFilename = basename($filename);
 
-        $file = parent::handle_file_upload($uploaded_file, $filename, $size, $type, $error,
+        $file = parent::handle_file_upload($uploaded_file, $sanitizedFilename, $size, $type, $error,
                 $index, $content_range);
 
         if (empty($file->error)) {
-            $db = new PdoDatabaseManager();
-            try {
-                $db->insertPayment(Authenticator::getUsername(), $cid, $amount, 'pendente', $file->name);
-            } catch (Exception $e) {
-                $file->error = 'Erro ao registar pagamento.';
+            if($cid > 0 && DataValidationUtils::validatePositiveFloat($amountRaw)) {
+                $db = new PdoDatabaseManager();
+                try {
+                    $db->insertPayment(Authenticator::getUsername(), $cid, $amount, 'pendente', $sanitizedFilename);
+                } catch (Exception $e) {
+                    $file->error = 'Erro ao registar pagamento.';
+                }
+            } else {
+                $file->error = 'Dados de pagamento inválidos.';
             }
         }
         return $file;
