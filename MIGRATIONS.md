@@ -10,4 +10,4 @@ New installations will automatically create the correct table using `updater/sql
 
 ## Payment column additions
 
-Run `updater/sql_scripts/004_add_pagamentos_columns.sql` to add new columns `comprovante`, `estado`, `aprovado_por` and `obs` to the `pagamentos` table. The script also renames an existing `status` column to `estado` if found. These fields are created with default values so the script can be executed safely on existing installations.
+Run `updater/sql_scripts/004_add_pagamentos_columns.sql` to add new columns `comprovativo`, `estado`, `aprovado_por` and `obs` to the `pagamentos` table. The script also renames an existing `status` column to `estado` if found. These fields are created with default values so the script can be executed safely on existing installations.
