@@ -5926,7 +5926,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
 
         try
         {
-            $sql = "UPDATE pagamentos SET estado='confirmado' WHERE pid=:pid";
+            $sql = "UPDATE pagamentos SET estado='aprovado' WHERE pid=:pid";
             $stm = $this->_connection->prepare($sql);
             $stm->bindParam(':pid', $pid, PDO::PARAM_INT);
             return $stm->execute();
