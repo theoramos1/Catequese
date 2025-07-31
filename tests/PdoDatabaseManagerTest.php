@@ -26,17 +26,12 @@ class PdoDatabaseManagerTest extends TestCase
             username TEXT,
             cid INTEGER,
             valor REAL,
-            ficheiro TEXT,
             estado TEXT,
-
-            data_pagamento TEXT,
-            file_path TEXT
-
             comprovativo TEXT,
             obs TEXT,
-            aprovado_por TEXT
-
-
+            aprovado_por TEXT,
+            data_pagamento TEXT,
+            file_path TEXT
         );');
         $this->pdo->exec('CREATE TABLE catequizando (
             cid INTEGER PRIMARY KEY,
@@ -64,23 +59,23 @@ class PdoDatabaseManagerTest extends TestCase
 
     public function testInsertPayment(): void
     {
-        $result = $this->manager->insertPayment('john', 1, 10.5, 'file1.pdf', 'pendente');
+        $result = $this->manager->insertPayment('john', 1, 10.5, 'pendente', 'file1.pdf');
         $this->assertTrue($result);
 
-        $stmt = $this->pdo->query('SELECT username, cid, valor, ficheiro, estado, obs FROM pagamentos');
+        $stmt = $this->pdo->query('SELECT username, cid, valor, comprovativo, estado, obs FROM pagamentos');
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $this->assertEquals('john', $row['username']);
         $this->assertEquals(1, $row['cid']);
         $this->assertEquals(10.5, $row['valor']);
-        $this->assertEquals('file1.pdf', $row['ficheiro']);
+        $this->assertEquals('file1.pdf', $row['comprovativo']);
         $this->assertEquals('pendente', $row['estado']);
     }
 
     public function testGetTotalPaymentsByCatechumen(): void
     {
-        $this->manager->insertPayment('john', 1, 10.5, 'file1.pdf', 'pendente');
-        $this->manager->insertPayment('john', 1, 5.5, 'file2.pdf', 'pendente');
+        $this->manager->insertPayment('john', 1, 10.5, 'pendente', 'file1.pdf');
+        $this->manager->insertPayment('john', 1, 5.5, 'pendente', 'file2.pdf');
 
         $total = $this->manager->getTotalPaymentsByCatechumen(1);
         $this->assertEquals(16.0, $total);
@@ -89,9 +84,9 @@ class PdoDatabaseManagerTest extends TestCase
     public function testListPaymentsWithStatusAndDebt(): void
     {
 
-        $this->manager->insertPayment('john', 1, 15.0, 'confirmado');
+        $this->manager->insertPayment('john', 1, 15.0, 'aprovado');
         $this->manager->insertPayment('john', 1, 20.0, 'pendente');
-        $this->manager->insertPayment('jane', 2, 20.0, 'confirmado');
+        $this->manager->insertPayment('jane', 2, 20.0, 'aprovado');
 
 
         $payments = $this->manager->getPaymentsByCatechumen(1);
@@ -101,7 +96,7 @@ class PdoDatabaseManagerTest extends TestCase
         $this->assertEquals('pendente', $payments[0]['estado']);
         $this->assertEquals(20.0, $payments[0]['valor']);
 
-        $this->assertEquals('confirmado', $payments[1]['estado']);
+        $this->assertEquals('aprovado', $payments[1]['estado']);
         $this->assertEquals(15.0, $payments[1]['valor']);
 
 
@@ -139,12 +134,12 @@ class PdoDatabaseManagerTest extends TestCase
 
     public function testGetPendingPayments(): void
     {
-        $this->manager->insertPayment('john', 1, 10.0, 'p1.pdf', 'pendente');
-        $this->manager->insertPayment('john', 1, 5.0, 'p2.pdf', 'aprovado');
+        $this->manager->insertPayment('john', 1, 10.0, 'pendente', 'p1.pdf');
+        $this->manager->insertPayment('john', 1, 5.0, 'aprovado', 'p2.pdf');
 
         $pending = $this->manager->getPendingPayments();
         $this->assertCount(1, $pending);
-        $this->assertEquals('p1.pdf', $pending[0]['ficheiro']);
+        $this->assertEquals('p1.pdf', $pending[0]['comprovativo']);
     }
 
     public function testInsertPendingPaymentWithFileAndApprove(): void
