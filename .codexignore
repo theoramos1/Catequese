@@ -1,0 +1,22 @@
+# Bibliotecas visuais e arquivos grandes
+/fonts/
+/font-awesome/
+/sound/
+/webcamjs-master/
+
+# Recursos estáticos pesados
+/img/
+/resources/
+
+# Arquivos de log e temporários
+*.log
+*.zip
+*.rar
+*.bak
+*.tmp
+
+# Dependências PHP
+/vendor/
+
+# Qualquer pasta de backup ou duplicada
+/__MACOSX/
