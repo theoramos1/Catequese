@@ -109,6 +109,14 @@ $menu->renderHTML();
   <h2 class="no-print">Pagamentos</h2>
   <?php if ($message) echo $message; ?>
   <?php if(Authenticator::isAdmin()) { ?>
+    <div class="form-group" style="margin:10px 0;">
+      <label for="situacao_select" class="control-label">Filtrar situação:</label>
+      <select id="situacao_select" class="form-control input-sm" style="width:auto; display:inline-block; margin-left:5px;">
+        <option value="">Todos</option>
+        <option>Em débito</option>
+        <option>Pago</option>
+      </select>
+    </div>
     <table id="lista-pagamentos" class="table table-striped table-bordered">
       <thead>
         <tr><th>CID</th><th>Nome</th><th>Situação</th><th>Valor em débito</th><th></th></tr>
@@ -164,10 +172,15 @@ $menu->renderHTML();
         document.getElementById('payment_amount').value = amount.toFixed(2);
       }
       $(document).ready(function(){
-        $('#lista-pagamentos').DataTable({
-            paging: false,
+        var tabela = $('#lista-pagamentos').DataTable({
+            paging: true,
             info: false,
             language: { url: 'js/DataTables/Portuguese.json' }
+        });
+
+        $('#situacao_select').on('change', function(){
+            var val = $(this).val();
+            tabela.column(2).search(val ? '^' + val + '$' : '', true, false).draw();
         });
       });
     </script>
