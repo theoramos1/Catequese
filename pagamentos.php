@@ -34,6 +34,23 @@ $pageUI->addWidget($menu);
 $db = new PdoDatabaseManager();
 $message = null;
 
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pid']) && isset($_POST['action']) && Authenticator::isAdmin()) {
+    if(!Utils::verifyCSRFToken($_POST['csrf_token'] ?? null)) {
+        echo("<div class='alert alert-danger'><strong>ERRO!</strong> Pedido inválido.</div>");
+        die();
+    }
+    $pid = intval(Utils::sanitizeInput($_POST['pid']));
+    $obs = Utils::sanitizeInput($_POST['obs'] ?? '');
+    $status = $_POST['action'] === 'aprovar' ? 'aprovado' : 'rejeitado';
+    try {
+        $db->updatePaymentStatus($pid, $status, Authenticator::getUsername(), $obs);
+        $message = "<div class='alert alert-success'><strong>Sucesso!</strong> Pagamento atualizado.</div>";
+    } catch(Exception $e) {
+        error_log($e->getMessage());
+        $message = "<div class='alert alert-danger'><strong>Erro!</strong> Não foi possível atualizar o pagamento.</div>";
+    }
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cid'])) {
     if(!Utils::verifyCSRFToken($_POST['csrf_token'] ?? null))
     {
@@ -50,24 +67,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cid'])) {
         $message = "<div class='alert alert-danger'><strong>Erro!</strong> Valor inválido.</div>";
     } else {
         $amount = floatval($amountInput);
-        $status = 'confirmado';
+
+        $required = floatval(Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT));
+        $totalPaid = 0.0;
+
         try {
-            $db->beginTransaction();
-            $db->insertPayment(Authenticator::getUsername(), $cid, $amount, $status);
-            $total = $db->getTotalPaymentsByCatechumen($cid);
-            $required = floatval(Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT));
-            if($total >= $required && $catechism > 0 && $group !== '') {
-                $year = Utils::currentCatecheticalYear();
-                $db->updateCatechumenEnrollmentPayment($cid, $year, $catechism, $group, true);
-            }
-            $db->commit();
-            $message = "<div class='alert alert-success'><strong>Sucesso!</strong> Pagamento registado.</div>";
+            $totalPaid = $db->getTotalPaymentsByCatechumen($cid);
         } catch (Exception $e) {
-            $db->rollBack();
             error_log($e->getMessage());
-            $message = "<div class='alert alert-danger'><strong>Erro!</strong> Não foi possível registar o pagamento.</div>";
         }
-}
+        $balance = max($required - $totalPaid, 0.0);
+        if($amount > $required) {
+            $message = "<div class='alert alert-danger'><strong>Erro!</strong> Valor excede a taxa configurada.</div>";
+        } elseif ($amount > $balance) {
+            $message = "<div class='alert alert-danger'><strong>Erro!</strong> Valor excede o saldo em aberto.</div>";
+        } else {
+            $status = 'confirmado';
+            try {
+                $db->beginTransaction();
+                $db->insertPayment(Authenticator::getUsername(), $cid, $amount, $status);
+                $total = $db->getTotalPaymentsByCatechumen($cid);
+                if($total >= $required && $catechism > 0 && $group !== '') {
+                    $year = Utils::currentCatecheticalYear();
+                    $db->updateCatechumenEnrollmentPayment($cid, $year, $catechism, $group, true);
+                }
+                $db->commit();
+                $message = "<div class='alert alert-success'><strong>Sucesso!</strong> Pagamento registado.</div>";
+            } catch (Exception $e) {
+                $db->rollBack();
+                error_log($e->getMessage());
+                $message = "<div class='alert alert-danger'><strong>Erro!</strong> Não foi possível registar o pagamento.</div>";
+            }
+        }
+    }
 }
 
 
@@ -139,6 +171,40 @@ $menu->renderHTML();
       </tbody>
     </table>
 
+    <?php
+      try {
+          $recent = $db->getRecentPayments();
+      } catch (Exception $e) {
+          $recent = [];
+      }
+    ?>
+    <h4>Comprovativos enviados</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr><th>Data</th><th>Nome</th><th>Valor</th><th>Estado</th><th>Comprovativo</th><th>Ação</th></tr>
+      </thead>
+      <tbody>
+      <?php foreach($recent as $r){ ?>
+        <tr>
+          <td><?= Utils::sanitizeOutput($r['data_pagamento']) ?></td>
+          <td><?= Utils::sanitizeOutput($r['nome']) ?></td>
+          <td>R$<?= number_format(floatval($r['valor']),2,',','.') ?></td>
+          <td><?= Utils::sanitizeOutput(ucfirst($r['estado'])) ?></td>
+          <td><?php if($r['comprovativo']){ ?><a href="descarregaComprovativoPagamento.php?pid=<?= intval($r['pid']) ?>" target="_blank">Ver</a><?php } ?></td>
+          <td>
+            <form method="post" action="pagamentos.php" class="form-inline">
+              <input type="hidden" name="csrf_token" value="<?= \catechesis\Utils::getCSRFToken() ?>">
+              <input type="hidden" name="pid" value="<?= intval($r['pid']) ?>">
+              <input type="text" name="obs" class="form-control input-sm" placeholder="Obs">
+              <button name="action" value="aprovar" class="btn btn-xs btn-success">Aprovar</button>
+              <button name="action" value="rejeitar" class="btn btn-xs btn-danger">Rejeitar</button>
+            </form>
+          </td>
+        </tr>
+      <?php } ?>
+      </tbody>
+    </table>
+
     <div class="modal fade" id="registerPaymentModal" tabindex="-1" role="dialog" aria-labelledby="registarLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -190,7 +256,7 @@ $menu->renderHTML();
   <?php } else {
       $total_confirmed = 0.0;
       foreach($payments as $p) {
-          if($p['estado'] === 'confirmado')
+          if($p['estado'] === 'aprovado')
               $total_confirmed += floatval($p['valor']);
       }
       $price = floatval(Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT));
@@ -269,6 +335,25 @@ $menu->renderHTML();
               <button type="button" class="btn btn-default" onclick="copyPix()">Copiar código Pix</button>
             </span>
           </div>
+        </div>
+      </div>
+      <?php } ?>
+      <?php if($balance > 0){
+            $cidForm = isset($payments[0]['cid']) ? intval($payments[0]['cid']) : 0; ?>
+      <div class="panel panel-default" style="margin-top: 20px;">
+        <div class="panel-heading"><strong>Enviar comprovativo de pagamento</strong></div>
+        <div class="panel-body">
+          <form action="carregarComprovativoPagamento.php" method="post" enctype="multipart/form-data" class="form-inline">
+            <input type="hidden" name="cid" value="<?= $cidForm ?>">
+            <div class="form-group">
+              <label class="sr-only" for="valor_pag">Valor</label>
+              <input type="number" step="0.01" name="amount" id="valor_pag" class="form-control" placeholder="Valor" required>
+            </div>
+            <div class="form-group" style="margin-left:10px;">
+              <input type="file" name="files[]" accept="application/pdf,image/jpeg,image/png" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-left:10px;">Enviar</button>
+          </form>
         </div>
       </div>
       <?php } ?>
