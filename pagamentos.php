@@ -50,24 +50,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cid'])) {
         $message = "<div class='alert alert-danger'><strong>Erro!</strong> Valor inválido.</div>";
     } else {
         $amount = floatval($amountInput);
-        $status = 'confirmado';
+        $required = floatval(Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT));
+        $totalPaid = 0.0;
         try {
-            $db->beginTransaction();
-            $db->insertPayment(Authenticator::getUsername(), $cid, $amount, $status);
-            $total = $db->getTotalPaymentsByCatechumen($cid);
-            $required = floatval(Configurator::getConfigurationValueOrDefault(Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT));
-            if($total >= $required && $catechism > 0 && $group !== '') {
-                $year = Utils::currentCatecheticalYear();
-                $db->updateCatechumenEnrollmentPayment($cid, $year, $catechism, $group, true);
-            }
-            $db->commit();
-            $message = "<div class='alert alert-success'><strong>Sucesso!</strong> Pagamento registado.</div>";
+            $totalPaid = $db->getTotalPaymentsByCatechumen($cid);
         } catch (Exception $e) {
-            $db->rollBack();
             error_log($e->getMessage());
-            $message = "<div class='alert alert-danger'><strong>Erro!</strong> Não foi possível registar o pagamento.</div>";
         }
-}
+        $balance = max($required - $totalPaid, 0.0);
+        if($amount > $required) {
+            $message = "<div class='alert alert-danger'><strong>Erro!</strong> Valor excede a taxa configurada.</div>";
+        } elseif ($amount > $balance) {
+            $message = "<div class='alert alert-danger'><strong>Erro!</strong> Valor excede o saldo em aberto.</div>";
+        } else {
+            $status = 'confirmado';
+            try {
+                $db->beginTransaction();
+                $db->insertPayment(Authenticator::getUsername(), $cid, $amount, $status);
+                $total = $db->getTotalPaymentsByCatechumen($cid);
+                if($total >= $required && $catechism > 0 && $group !== '') {
+                    $year = Utils::currentCatecheticalYear();
+                    $db->updateCatechumenEnrollmentPayment($cid, $year, $catechism, $group, true);
+                }
+                $db->commit();
+                $message = "<div class='alert alert-success'><strong>Sucesso!</strong> Pagamento registado.</div>";
+            } catch (Exception $e) {
+                $db->rollBack();
+                error_log($e->getMessage());
+                $message = "<div class='alert alert-danger'><strong>Erro!</strong> Não foi possível registar o pagamento.</div>";
+            }
+        }
+    }
 }
 
 

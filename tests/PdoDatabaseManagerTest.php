@@ -78,9 +78,9 @@ class PdoDatabaseManagerTest extends TestCase
 
     public function testListPaymentsWithStatusAndDebt(): void
     {
-        $this->manager->insertPayment('john', 1, 30.0, 'confirmado');
+        $this->manager->insertPayment('john', 1, 15.0, 'confirmado');
         $this->manager->insertPayment('john', 1, 20.0, 'pendente');
-        $this->manager->insertPayment('jane', 2, 50.0, 'confirmado');
+        $this->manager->insertPayment('jane', 2, 20.0, 'confirmado');
 
         $payments = $this->manager->getPaymentsByCatechumen(1);
         $this->assertCount(2, $payments);
@@ -90,7 +90,7 @@ class PdoDatabaseManagerTest extends TestCase
         $this->assertEquals(20.0, $payments[0]['valor']);
 
         $this->assertEquals('confirmado', $payments[1]['estado']);
-        $this->assertEquals(30.0, $payments[1]['valor']);
+        $this->assertEquals(15.0, $payments[1]['valor']);
 
         $totalConfirmed = 0.0;
         foreach ($payments as $p) {
@@ -101,7 +101,13 @@ class PdoDatabaseManagerTest extends TestCase
 
         $expectedFee = 100.0;
         $debt = max($expectedFee - $totalConfirmed, 0.0);
-        $this->assertEquals(70.0, $debt);
+        $this->assertEquals(85.0, $debt);
+    }
+
+    public function testInsertPaymentRejectsTooHighAmount(): void
+    {
+        $this->expectException(Exception::class);
+        $this->manager->insertPayment('john', 1, 25.0, 'pendente');
     }
 }
 ?>
