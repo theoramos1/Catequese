@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cid'])) {
         } elseif ($amount > $balance) {
             $message = "<div class='alert alert-danger'><strong>Erro!</strong> Valor excede o saldo em aberto.</div>";
         } else {
-            $status = 'confirmado';
+            $status = 'aprovado';
             try {
                 $db->beginTransaction();
                 $db->insertPayment(Authenticator::getUsername(), $cid, $amount, $status);

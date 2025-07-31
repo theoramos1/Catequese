@@ -161,7 +161,7 @@ class PdoDatabaseManagerTest extends TestCase
         $this->assertTrue($this->manager->approvePayment($pid));
 
         $status = $this->pdo->query("SELECT estado FROM pagamentos WHERE pid=$pid")->fetchColumn();
-        $this->assertEquals('confirmado', $status);
+        $this->assertEquals('aprovado', $status);
     }
 
     public function testInsertPendingPaymentInvalidAmount(): void
