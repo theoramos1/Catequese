@@ -198,7 +198,8 @@ interface PdoDatabaseManagerInterface extends DatabaseManager
 
     // Payments
 
-    public function insertPayment(string $username, int $cid, float $amount, string $status);
+    public function insertPayment(string $username, int $cid, float $amount, string $status,
+                                  ?string $proofFile=null, ?string $obs=null, ?string $approvedBy=null);
     public function insertPendingPayment(string $username, int $cid, float $amount, string $filePath);
     public function approvePayment(int $pid);
 
