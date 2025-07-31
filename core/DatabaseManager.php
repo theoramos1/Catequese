@@ -237,9 +237,14 @@ interface DatabaseManager
     public function getOldestLSNtoKeep(int $maxRecords);                                                                // Returns the oldest LSN to keep when doing a cleanup, maintaining the most recent $maxRecords records
     // Payments
     public function getPaymentsByUser(string $username);
-                                        // Returns all payment records for the given user
-    public function insertPayment(string $username, int $cid, float $amount, string $status);
-                                        // Inserts a new payment record
+                                          // Returns all payment records for the given user
+    public function insertPayment(string $username, int $cid, float $amount, string $filePath,
+                                  string $status, ?string $obs = null);
+                                          // Inserts a new payment record
+    public function setPaymentStatus(int $pid, string $status, ?string $obs = null);
+                                          // Updates the status of a payment
+    public function getPendingPayments();
+                                          // Lists all payments waiting for approval
     public function deleteLogEntriesOlderThan(int $lsn);                                                                // Deletes CatecheSis log entries older than the provided LSN
 }
 

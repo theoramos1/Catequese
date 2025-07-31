@@ -195,7 +195,10 @@ interface PdoDatabaseManagerInterface extends DatabaseManager
     public function getCatecheticalYearsWhereCatechumenIsNotEnrolled(int $cid);
 
     // Payments
-    public function insertPayment(string $username, int $cid, float $amount, string $status);
+    public function insertPayment(string $username, int $cid, float $amount, string $filePath,
+                                  string $status, ?string $obs = null);
+    public function setPaymentStatus(int $pid, string $status, ?string $obs = null);
+    public function getPendingPayments();
     public function getPaymentsByUser(string $username);
     public function getPaymentsByCatechumen(int $cid);
     public function getTotalPaymentsByCatechumen(int $cid);
@@ -5772,7 +5775,8 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
 
         try
         {
-            $sql = "SELECT pid, cid, valor, estado, data_pagamento FROM pagamentos WHERE username=:username ORDER BY data_pagamento DESC;";
+            $sql = "SELECT pid, cid, valor, ficheiro, estado, obs, data_pagamento " .
+                   "FROM pagamentos WHERE username=:username ORDER BY data_pagamento DESC;";
             $stm = $this->_connection->prepare($sql);
             $stm->bindParam(':username', $username);
 
@@ -5792,26 +5796,88 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @param string $username
      * @param int $cid
      * @param float $amount
+     * @param string $filePath
      * @param string $status
+     * @param string|null $obs
      * @return bool
      * @throws Exception
      */
-    public function insertPayment(string $username, int $cid, float $amount, string $status)
+    public function insertPayment(string $username, int $cid, float $amount, string $filePath,
+                                  string $status, ?string $obs = null)
     {
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_EDIT))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
 
         try
         {
-            $sql = "INSERT INTO pagamentos(username, cid, valor, estado, data_pagamento) VALUES (:username, :cid, :valor, :estado, NOW());";
+            $sql = "INSERT INTO pagamentos(username, cid, valor, ficheiro, estado, obs, data_pagamento) " .
+                   "VALUES (:username, :cid, :valor, :ficheiro, :estado, :obs, NOW());";
             $stm = $this->_connection->prepare($sql);
 
             $stm->bindParam(':username', $username);
             $stm->bindParam(':cid', $cid, PDO::PARAM_INT);
             $stm->bindParam(':valor', $amount);
+            $stm->bindParam(':ficheiro', $filePath);
             $stm->bindParam(':estado', $status);
+            $stm->bindParam(':obs', $obs);
 
             return $stm->execute();
+        }
+        catch(PDOException $e)
+        {
+            throw new Exception('Falha interna ao tentar aceder à base de dados.');
+        }
+    }
+
+    /**
+     * Updates the status of a payment record.
+     * @param int $pid
+     * @param string $status
+     * @param string|null $obs
+     * @return bool
+     * @throws Exception
+     */
+    public function setPaymentStatus(int $pid, string $status, ?string $obs = null)
+    {
+        if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_EDIT))
+            throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
+
+        try
+        {
+            $sql = "UPDATE pagamentos SET estado=:estado, obs=:obs WHERE pid=:pid;";
+            $stm = $this->_connection->prepare($sql);
+
+            $stm->bindParam(':estado', $status);
+            $stm->bindParam(':obs', $obs);
+            $stm->bindParam(':pid', $pid, PDO::PARAM_INT);
+
+            return $stm->execute();
+        }
+        catch(PDOException $e)
+        {
+            throw new Exception('Falha interna ao tentar aceder à base de dados.');
+        }
+    }
+
+    /**
+     * Returns the list of pending payments with file information.
+     * @return array
+     * @throws Exception
+     */
+    public function getPendingPayments()
+    {
+        if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
+            throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
+
+        try
+        {
+            $sql = "SELECT pid, cid, valor, ficheiro, obs, data_pagamento FROM pagamentos WHERE estado='pendente' ORDER BY data_pagamento ASC;";
+            $stm = $this->_connection->prepare($sql);
+
+            if($stm->execute())
+                return $stm->fetchAll();
+            else
+                throw new Exception('Falha ao obter pagamentos pendentes.');
         }
         catch(PDOException $e)
         {
@@ -5832,7 +5898,8 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
 
         try
         {
-            $sql = "SELECT pid, cid, valor, estado, data_pagamento FROM pagamentos WHERE cid=:cid ORDER BY data_pagamento DESC, pid DESC;";
+            $sql = "SELECT pid, cid, valor, ficheiro, estado, obs, data_pagamento " .
+                   "FROM pagamentos WHERE cid=:cid ORDER BY data_pagamento DESC, pid DESC;";
             $stm = $this->_connection->prepare($sql);
 
             $stm->bindParam(':cid', $cid, PDO::PARAM_INT);
