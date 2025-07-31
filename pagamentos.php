@@ -206,10 +206,26 @@ $menu->renderHTML();
       <?php } ?>
       </tbody>
     </table>
-    <p>Valor da taxa: R$<?= number_format($price, 2, ',', '.') ?></p>
-    <p>Total pago: R$<?= number_format($total_confirmed, 2, ',', '.') ?></p>
-    <p>Valor em aberto: R$<?= number_format($balance, 2, ',', '.') ?></p>
-    <p>Situação: <?= $situation ?></p>
+    <div class="panel panel-default" style="max-width: 400px;">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6"><strong>Valor da taxa</strong></div>
+                <div class="col-xs-6 text-right">R$<?= number_format($price, 2, ',', '.') ?></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6"><strong>Total pago</strong></div>
+                <div class="col-xs-6 text-right">R$<?= number_format($total_confirmed, 2, ',', '.') ?></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6"><strong>Valor em aberto</strong></div>
+                <div class="col-xs-6 text-right">R$<?= number_format($balance, 2, ',', '.') ?></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6"><strong>Situação</strong></div>
+                <div class="col-xs-6 text-right"><?= $situation ?></div>
+            </div>
+        </div>
+    </div>
 
     <?php if($balance > 0 && $pixPayload) { ?>
         <div style="margin-top:20px;text-align:center;">
