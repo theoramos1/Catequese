@@ -200,54 +200,92 @@ $menu->renderHTML();
 
       $pixPayload = null;
       try {
-          $pixPayload = PixQRCode::generatePixPayload($balance > 0 ? $balance : null);
+          // Generate Pix payload without amount so the user can pay any value
+          $pixPayload = PixQRCode::generatePixPayload(null);
       } catch (Exception $e) {
-
           $pixPayload = null;
       }
   ?>
-    <table class="table table-striped">
-      <thead>
-        <tr><th>Data</th><th>Valor</th><th>Situação</th></tr>
-      </thead>
-      <tbody>
-      <?php foreach($payments as $row) { ?>
-        <tr>
-          <td><?= Utils::sanitizeOutput($row['data_pagamento']) ?></td>
-          <td>R$<?= number_format(floatval($row['valor']), 2, ',', '.') ?></td>
-          <td><?= Utils::sanitizeOutput(ucfirst($row['estado'])) ?></td>
-        </tr>
-      <?php } ?>
-      </tbody>
-    </table>
-    <div class="panel panel-default" style="max-width: 400px;">
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-xs-6"><strong>Valor da taxa</strong></div>
-                <div class="col-xs-6 text-right">R$<?= number_format($price, 2, ',', '.') ?></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6"><strong>Total pago</strong></div>
-                <div class="col-xs-6 text-right">R$<?= number_format($total_confirmed, 2, ',', '.') ?></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6"><strong>Valor em aberto</strong></div>
-                <div class="col-xs-6 text-right">R$<?= number_format($balance, 2, ',', '.') ?></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6"><strong>Situação</strong></div>
-                <div class="col-xs-6 text-right"><?= $situation ?></div>
-            </div>
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading"><strong>Histórico de pagamentos</strong></div>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr><th>Data</th><th>Valor</th><th>Situação</th></tr>
+            </thead>
+            <tbody>
+              <?php if(count($payments) === 0){ ?>
+                <tr><td colspan="3" class="text-center">Nenhum pagamento registrado ainda</td></tr>
+              <?php } else { foreach($payments as $row) { ?>
+                <tr>
+                  <td><?= Utils::sanitizeOutput($row['data_pagamento']) ?></td>
+                  <td>R$<?= number_format(floatval($row['valor']), 2, ',', '.') ?></td>
+                  <td><?= Utils::sanitizeOutput(ucfirst($row['estado'])) ?></td>
+                </tr>
+              <?php }} ?>
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
-
-    <?php if($balance > 0 && $pixPayload) { ?>
-        <div style="margin-top:20px;text-align:center;">
-            <p>Pix copia e cola:</p>
-            <pre style="white-space: pre-wrap; word-wrap: break-word;"><?= $pixPayload ?></pre>
-
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading"><strong>Resumo financeiro</strong></div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-6">Valor da taxa</div>
+            <div class="col-xs-6 text-right">R$<?= number_format($price, 2, ',', '.') ?></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">Total pago</div>
+            <div class="col-xs-6 text-right">R$<?= number_format($total_confirmed, 2, ',', '.') ?></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">Valor em aberto</div>
+            <div class="col-xs-6 text-right">R$<?= number_format($balance, 2, ',', '.') ?></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">Situação</div>
+            <div class="col-xs-6 text-right">
+              <?php if($balance > 0){ ?>
+                <span class="text-danger">Em débito</span>
+              <?php } else { ?>
+                <span class="text-success">Pago</span>
+              <?php } ?>
+            </div>
+          </div>
         </div>
-    <?php } ?>
+      </div>
+      <?php if($pixPayload){ ?>
+      <div class="panel panel-default" style="margin-top: 20px;">
+        <div class="panel-heading"><strong>Pix "copia e cola"</strong></div>
+        <div class="panel-body">
+          <p>Use o código Pix abaixo para realizar o pagamento. Você pode pagar o valor total ou parcial e retornar aqui para completar o pagamento restante posteriormente.</p>
+          <div class="input-group">
+            <input type="text" class="form-control" id="pixCode" value="<?= $pixPayload ?>" readonly>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" onclick="copyPix()">Copiar código Pix</button>
+            </span>
+          </div>
+        </div>
+      </div>
+      <?php } ?>
+    </div>
+  </div>
+  <script type="text/javascript">
+    function copyPix(){
+      var field = document.getElementById('pixCode');
+      field.select();
+      field.setSelectionRange(0, 99999);
+      if(navigator.clipboard){
+        navigator.clipboard.writeText(field.value);
+      } else {
+        document.execCommand('copy');
+      }
+    }
+  </script>
   <?php } ?>
 
 <?php $pageUI->renderJS(); ?>
