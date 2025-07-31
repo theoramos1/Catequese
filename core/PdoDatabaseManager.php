@@ -5806,8 +5806,8 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
      * @param string $username
      * @param int $cid
      * @param float $amount
-     * @param string $filePath
      * @param string $status
+     * @param string|null $proofFile
      * @param string|null $obs
      * @return bool
      * @throws Exception
@@ -5851,7 +5851,6 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
             $stm->bindParam(':username', $username);
             $stm->bindParam(':cid', $cid, PDO::PARAM_INT);
             $stm->bindParam(':valor', $amount);
-            $stm->bindParam(':ficheiro', $filePath);
             $stm->bindParam(':estado', $status);
 
             $stm->bindParam(':comprovativo', $proofFile);
@@ -5952,7 +5951,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
 
         try
         {
-            $sql = "SELECT pid, cid, valor, ficheiro, obs, data_pagamento FROM pagamentos WHERE estado='pendente' ORDER BY data_pagamento ASC;";
+            $sql = "SELECT pid, cid, valor, comprovativo, obs, data_pagamento FROM pagamentos WHERE estado='pendente' ORDER BY data_pagamento ASC;";
             $stm = $this->_connection->prepare($sql);
 
             if($stm->execute())
