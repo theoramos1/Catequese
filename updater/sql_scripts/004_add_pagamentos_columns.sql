@@ -1,10 +1,10 @@
 -- Add new columns to pagamentos table if they don't already exist
 -- This script is safe to run multiple times.
 
--- comprovante column
+-- comprovativo column
 SET @exists := (SELECT COUNT(*) FROM information_schema.COLUMNS
-                WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'pagamentos' AND COLUMN_NAME = 'comprovante');
-SET @query := IF(@exists = 0, 'ALTER TABLE pagamentos ADD COLUMN comprovante VARCHAR(255) DEFAULT NULL', 'SELECT 1');
+                WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'pagamentos' AND COLUMN_NAME = 'comprovativo');
+SET @query := IF(@exists = 0, 'ALTER TABLE pagamentos ADD COLUMN comprovativo VARCHAR(255) DEFAULT NULL', 'SELECT 1');
 PREPARE stmt FROM @query; EXECUTE stmt; DEALLOCATE PREPARE stmt;
 
 -- estado column - rename legacy status column if present
