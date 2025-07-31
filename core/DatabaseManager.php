@@ -240,6 +240,10 @@ interface DatabaseManager
                                         // Returns all payment records for the given user
     public function insertPayment(string $username, int $cid, float $amount, string $status);
                                         // Inserts a new payment record
+    public function insertPendingPayment(string $username, int $cid, float $amount, string $filePath);
+                                        // Inserts a pending payment with proof file
+    public function approvePayment(int $pid);
+                                        // Marks a pending payment as approved
     public function deleteLogEntriesOlderThan(int $lsn);                                                                // Deletes CatecheSis log entries older than the provided LSN
 }
 

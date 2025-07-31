@@ -10,6 +10,7 @@ require_once(__DIR__ . "/domain/Sacraments.php");
 require_once(__DIR__ . "/domain/Marriage.php");
 require_once(__DIR__ . "/domain/VirtualRoom.php");
 require_once(__DIR__ . "/domain/EnrollmentOrder.php");
+require_once(__DIR__ . "/DataValidationUtils.php");
 require_once(__DIR__ . '/../authentication/ulogin/config/all.inc.php');
 require_once(__DIR__ . '/../authentication/ulogin/main.inc.php');
 
@@ -20,6 +21,7 @@ use core\domain\Sacraments;
 use core\domain\VirtualRoomStatus;
 use catechesis\Configurator;
 use catechesis\Utils;
+use catechesis\DataValidationUtils;
 use Exception;
 use PDO;
 use PDOException;
@@ -196,6 +198,8 @@ interface PdoDatabaseManagerInterface extends DatabaseManager
 
     // Payments
     public function insertPayment(string $username, int $cid, float $amount, string $status);
+    public function insertPendingPayment(string $username, int $cid, float $amount, string $filePath);
+    public function approvePayment(int $pid);
     public function getPaymentsByUser(string $username);
     public function getPaymentsByCatechumen(int $cid);
     public function getTotalPaymentsByCatechumen(int $cid);
@@ -5811,6 +5815,50 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
             $stm->bindParam(':valor', $amount);
             $stm->bindParam(':estado', $status);
 
+            return $stm->execute();
+        }
+        catch(PDOException $e)
+        {
+            throw new Exception('Falha interna ao tentar aceder à base de dados.');
+        }
+    }
+
+    public function insertPendingPayment(string $username, int $cid, float $amount, string $filePath)
+    {
+        if(!DataValidationUtils::validatePositiveFloat(strval($amount)))
+            throw new Exception('Valor inválido.');
+
+        if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_EDIT))
+            throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
+
+        try
+        {
+            $sql = "INSERT INTO pagamentos(username, cid, valor, estado, data_pagamento, file_path) VALUES (:username, :cid, :valor, 'pendente', NOW(), :file);";
+            $stm = $this->_connection->prepare($sql);
+
+            $stm->bindParam(':username', $username);
+            $stm->bindParam(':cid', $cid, PDO::PARAM_INT);
+            $stm->bindParam(':valor', $amount);
+            $stm->bindParam(':file', $filePath);
+
+            return $stm->execute();
+        }
+        catch(PDOException $e)
+        {
+            throw new Exception('Falha interna ao tentar aceder à base de dados.');
+        }
+    }
+
+    public function approvePayment(int $pid)
+    {
+        if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_EDIT))
+            throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
+
+        try
+        {
+            $sql = "UPDATE pagamentos SET estado='confirmado' WHERE pid=:pid";
+            $stm = $this->_connection->prepare($sql);
+            $stm->bindParam(':pid', $pid, PDO::PARAM_INT);
             return $stm->execute();
         }
         catch(PDOException $e)
