@@ -207,6 +207,7 @@ interface PdoDatabaseManagerInterface extends DatabaseManager
     public function getPaymentById(int $pid);
 
     public function getPaymentsByUser(string $username);
+    public function getUserEnrollmentCid(string $username, int $catecheticalYear);
     public function getRecentPayments(int $limit=20);
     public function getPaymentsByCatechumen(int $cid);
     public function getTotalPaymentsByCatechumen(int $cid);
@@ -5794,6 +5795,39 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
                 return $stm->fetchAll();
             else
                 throw new Exception('Falha ao obter pagamentos.');
+        }
+        catch(PDOException $e)
+        {
+            throw new Exception('Falha interna ao tentar aceder à base de dados.');
+        }
+    }
+
+    /**
+     * Returns the catechumen ID enrolled by the given user in a catechetical year.
+     * @param string $username
+     * @param int $catecheticalYear
+     * @return int|null
+     * @throws Exception
+     */
+    public function getUserEnrollmentCid(string $username, int $catecheticalYear)
+    {
+        if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
+            throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
+
+        try
+        {
+            $sql = "SELECT cid FROM inscreve WHERE username=:username AND ano_lectivo=:ano LIMIT 1;";
+            $stm = $this->_connection->prepare($sql);
+            $stm->bindParam(':username', $username);
+            $stm->bindParam(':ano', $catecheticalYear, PDO::PARAM_INT);
+
+            if($stm->execute())
+            {
+                $row = $stm->fetch();
+                return $row ? intval($row['cid']) : null;
+            }
+            else
+                throw new Exception('Falha ao obter inscrição.');
         }
         catch(PDOException $e)
         {

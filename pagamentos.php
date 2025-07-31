@@ -339,7 +339,14 @@ $menu->renderHTML();
       </div>
       <?php } ?>
       <?php if($balance > 0){
-            $cidForm = isset($payments[0]['cid']) ? intval($payments[0]['cid']) : 0; ?>
+            try {
+                $cidForm = $db->getUserEnrollmentCid(Authenticator::getUsername(), Utils::currentCatecheticalYear());
+            } catch(Exception $e) {
+                $cidForm = null;
+            }
+            if(!$cidForm && isset($payments[0]['cid']))
+                $cidForm = intval($payments[0]['cid']);
+            if($cidForm){ ?>
       <div class="panel panel-default" style="margin-top: 20px;">
         <div class="panel-heading"><strong>Enviar comprovativo de pagamento</strong></div>
         <div class="panel-body">
@@ -356,7 +363,9 @@ $menu->renderHTML();
           </form>
         </div>
       </div>
-      <?php } ?>
+      <?php } else { ?>
+      <div class="alert alert-danger"><strong>Erro!</strong> Não foi possível determinar a ficha do catequizando para associar o comprovativo.</div>
+      <?php }} ?>
     </div>
   </div>
   <script type="text/javascript">
