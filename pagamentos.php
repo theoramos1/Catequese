@@ -111,7 +111,7 @@ $menu->renderHTML();
   <?php if(Authenticator::isAdmin()) { ?>
     <table id="lista-pagamentos" class="table table-striped table-bordered">
       <thead>
-        <tr><th>CID</th><th>Nome</th><th>Situação</th><th>Valor em débito</th><th></th></tr>
+        <tr><th>CID</th><th>Nome</th><th>Situação</th><th>Valor em aberto</th><th>Total pago</th><th></th></tr>
       </thead>
       <tbody>
       <?php foreach($paymentList as $row) {
@@ -124,6 +124,7 @@ $menu->renderHTML();
           <td><?= Utils::sanitizeOutput($row['nome']) ?></td>
           <td><?= $situacao ?></td>
           <td>R$<?= number_format($debt, 2, ',', '.') ?></td>
+          <td>R$<?= number_format(floatval($row['total_pago']), 2, ',', '.') ?></td>
           <td><button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#registerPaymentModal" onclick="preparePayment(<?= intval($row['cid']) ?>, <?= intval($row['ano_catecismo']) ?>, <?= json_encode($row['turma']) ?>, <?= $debt ?>)">Registar</button></td>
         </tr>
       <?php } ?>
@@ -165,7 +166,8 @@ $menu->renderHTML();
       }
       $(document).ready(function(){
         $('#lista-pagamentos').DataTable({
-            paging: false,
+            paging: true,
+            pageLength: 10,
             info: false,
             language: { url: 'js/DataTables/Portuguese.json' }
         });
