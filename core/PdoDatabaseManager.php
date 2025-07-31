@@ -5814,6 +5814,23 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
         if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_EDIT))
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
 
+        $max = 0.0;
+        try {
+            $sqlMax = "SELECT valor FROM configuracoes WHERE chave=:chave;";
+            $stmMax = $this->_connection->prepare($sqlMax);
+            $key = Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT;
+            $stmMax->bindParam(':chave', $key);
+            if($stmMax->execute()) {
+                $row = $stmMax->fetch();
+                if($row && isset($row['valor']))
+                    $max = floatval($row['valor']);
+            }
+        } catch (Exception $e) {
+            // ignore and keep max at 0
+        }
+        if($amount > $max)
+            throw new Exception('Valor do pagamento excede a taxa configurada.');
+
         try
         {
 
