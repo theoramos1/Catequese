@@ -119,7 +119,7 @@ $menu->renderHTML();
     </div>
     <table id="lista-pagamentos" class="table table-striped table-bordered">
       <thead>
-        <tr><th>CID</th><th>Nome</th><th>Situação</th><th>Valor em débito</th><th></th></tr>
+        <tr><th>CID</th><th>Nome</th><th>Situação</th><th>Valor em aberto</th><th>Total pago</th><th></th></tr>
       </thead>
       <tbody>
       <?php foreach($paymentList as $row) {
@@ -132,6 +132,7 @@ $menu->renderHTML();
           <td><?= Utils::sanitizeOutput($row['nome']) ?></td>
           <td><?= $situacao ?></td>
           <td>R$<?= number_format($debt, 2, ',', '.') ?></td>
+          <td>R$<?= number_format(floatval($row['total_pago']), 2, ',', '.') ?></td>
           <td><button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#registerPaymentModal" onclick="preparePayment(<?= intval($row['cid']) ?>, <?= intval($row['ano_catecismo']) ?>, <?= json_encode($row['turma']) ?>, <?= $debt ?>)">Registar</button></td>
         </tr>
       <?php } ?>
@@ -172,8 +173,10 @@ $menu->renderHTML();
         document.getElementById('payment_amount').value = amount.toFixed(2);
       }
       $(document).ready(function(){
+        
         var tabela = $('#lista-pagamentos').DataTable({
             paging: true,
+            pageLength: 10,
             info: false,
             language: { url: 'js/DataTables/Portuguese.json' }
         });
@@ -217,10 +220,26 @@ $menu->renderHTML();
       <?php } ?>
       </tbody>
     </table>
-    <p>Valor da taxa: R$<?= number_format($price, 2, ',', '.') ?></p>
-    <p>Total pago: R$<?= number_format($total_confirmed, 2, ',', '.') ?></p>
-    <p>Valor em aberto: R$<?= number_format($balance, 2, ',', '.') ?></p>
-    <p>Situação: <?= $situation ?></p>
+    <div class="panel panel-default" style="max-width: 400px;">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6"><strong>Valor da taxa</strong></div>
+                <div class="col-xs-6 text-right">R$<?= number_format($price, 2, ',', '.') ?></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6"><strong>Total pago</strong></div>
+                <div class="col-xs-6 text-right">R$<?= number_format($total_confirmed, 2, ',', '.') ?></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6"><strong>Valor em aberto</strong></div>
+                <div class="col-xs-6 text-right">R$<?= number_format($balance, 2, ',', '.') ?></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6"><strong>Situação</strong></div>
+                <div class="col-xs-6 text-right"><?= $situation ?></div>
+            </div>
+        </div>
+    </div>
 
     <?php if($balance > 0 && $pixPayload) { ?>
         <div style="margin-top:20px;text-align:center;">
