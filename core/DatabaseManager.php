@@ -237,6 +237,7 @@ interface DatabaseManager
     public function getOldestLSNtoKeep(int $maxRecords);                                                                // Returns the oldest LSN to keep when doing a cleanup, maintaining the most recent $maxRecords records
     // Payments
     public function getPaymentsByUser(string $username);
+    public function getUserEnrollmentCid(string $username, int $catecheticalYear);
 
                                         // Returns all payment records for the given user
     public function insertPayment(string $username, int $cid, float $amount, string $status,
