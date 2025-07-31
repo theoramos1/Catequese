@@ -255,7 +255,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_REQUEST['op']=="guardar" )
                         if($ins_pago) {
                             catechumenArchiveLog($cid, "Pagamento do catequizando com id=" . $cid . " referente ao catecismo " . $ins_catecismo . "º" . $ins_turma . " do ano catequético de " . Utils::formatCatecheticalYear($ins_ano_catequetico) . ".");
                             try {
-                                $db->insertPayment(Authenticator::getUsername(), $cid, $payment_amount, 'confirmado');
+                                $db->insertPayment(Authenticator::getUsername(), $cid, $payment_amount, 'aprovado');
                             } catch (Exception $e) {
                                 error_log('Failed to record payment: ' . $e->getMessage());
                             }

@@ -28,7 +28,10 @@ class PdoDatabaseManagerTest extends TestCase
             valor REAL,
             ficheiro TEXT,
             estado TEXT,
+            comprovativo TEXT,
             obs TEXT,
+            aprovado_por TEXT,
+
             data_pagamento TEXT
         );');
         $this->pdo->exec('CREATE TABLE catequizando (
@@ -81,9 +84,11 @@ class PdoDatabaseManagerTest extends TestCase
 
     public function testListPaymentsWithStatusAndDebt(): void
     {
-        $this->manager->insertPayment('john', 1, 30.0, 'rec1.pdf', 'aprovado');
-        $this->manager->insertPayment('john', 1, 20.0, 'rec2.pdf', 'pendente');
-        $this->manager->insertPayment('jane', 2, 50.0, 'rec3.pdf', 'aprovado');
+
+        $this->manager->insertPayment('john', 1, 30.0, 'aprovado');
+        $this->manager->insertPayment('john', 1, 20.0, 'pendente');
+        $this->manager->insertPayment('jane', 2, 50.0, 'aprovado');
+
 
         $payments = $this->manager->getPaymentsByCatechumen(1);
         $this->assertCount(2, $payments);
