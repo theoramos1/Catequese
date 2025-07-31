@@ -28,11 +28,15 @@ class PdoDatabaseManagerTest extends TestCase
             valor REAL,
             ficheiro TEXT,
             estado TEXT,
+
+            data_pagamento TEXT,
+            file_path TEXT
+
             comprovativo TEXT,
             obs TEXT,
-            aprovado_por TEXT,
+            aprovado_por TEXT
 
-            data_pagamento TEXT
+
         );');
         $this->pdo->exec('CREATE TABLE catequizando (
             cid INTEGER PRIMARY KEY,
@@ -141,6 +145,29 @@ class PdoDatabaseManagerTest extends TestCase
         $pending = $this->manager->getPendingPayments();
         $this->assertCount(1, $pending);
         $this->assertEquals('p1.pdf', $pending[0]['ficheiro']);
+    }
+
+    public function testInsertPendingPaymentWithFileAndApprove(): void
+    {
+        $result = $this->manager->insertPendingPayment('john', 1, 15.0, '/tmp/doc.pdf');
+        $this->assertTrue($result);
+
+        $stmt = $this->pdo->query('SELECT pid, file_path, estado FROM pagamentos');
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $this->assertEquals('pendente', $row['estado']);
+        $this->assertEquals('/tmp/doc.pdf', $row['file_path']);
+
+        $pid = intval($row['pid']);
+        $this->assertTrue($this->manager->approvePayment($pid));
+
+        $status = $this->pdo->query("SELECT estado FROM pagamentos WHERE pid=$pid")->fetchColumn();
+        $this->assertEquals('confirmado', $status);
+    }
+
+    public function testInsertPendingPaymentInvalidAmount(): void
+    {
+        $this->expectException(Exception::class);
+        $this->manager->insertPendingPayment('john', 1, -5, 'file');
     }
 }
 ?>

@@ -242,13 +242,19 @@ interface DatabaseManager
     public function insertPayment(string $username, int $cid, float $amount, string $status,
                                   ?string $proofFile=null, ?string $obs=null, ?string $approvedBy=null);
                                         // Inserts a new payment record
+
+    public function insertPendingPayment(string $username, int $cid, float $amount, string $filePath);
+                                        // Inserts a pending payment with proof file
+    public function approvePayment(int $pid);
+                                        // Marks a pending payment as approved
+
     public function updatePaymentStatus(int $pid, string $status, ?string $approvedBy=null,
                                         ?string $obs=null);
                                         // Updates the status of a payment
     public function getPaymentById(int $pid);
                                         // Returns a payment record given its id
     public function getRecentPayments(int $limit=20);
-                                        // Returns the most recent payment records
+
     public function deleteLogEntriesOlderThan(int $lsn);                                                                // Deletes CatecheSis log entries older than the provided LSN
 }
 
