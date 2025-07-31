@@ -5828,8 +5828,11 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
             $stmMax->bindParam(':chave', $key);
             if($stmMax->execute()) {
                 $row = $stmMax->fetch();
-                if($row && isset($row['valor']))
+                if($row && isset($row['valor'])) {
                     $max = floatval($row['valor']);
+                } else {
+                    $max = Configurator::getConfigurationValueOrDefault($key);
+                }
             }
         } catch (Exception $e) {
             // ignore and keep max at 0
