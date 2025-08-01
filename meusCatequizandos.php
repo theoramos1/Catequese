@@ -66,6 +66,7 @@ else
     try {
         $createdList = $db->getCreatedCatechumensPaymentStatus($username);
         if($createdList && count($createdList) > 0) {
+            $error_msg = null;
             foreach($createdList as &$c) {
                 try {
                     $details = $db->getCatechumenById(intval($c['cid']));
