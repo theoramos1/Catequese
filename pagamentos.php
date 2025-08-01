@@ -116,7 +116,10 @@ if(Authenticator::isAdmin()) {
         $payments = $db->getPaymentsByUser(Authenticator::getUsername());
         $childrenStatus = $db->getUserCatechumensPaymentStatus(Authenticator::getUsername(), Utils::currentCatecheticalYear());
         if(count($childrenStatus) === 0) {
+            error_log('raw username: "' . $_SESSION['username'] . '"');
+            error_log('getCreatedCatechumensPaymentStatus SQL: SELECT c.cid, c.nome, IFNULL(SUM(CASE WHEN p.estado=\'aprovado\' THEN p.valor ELSE 0 END),0) AS total_pago FROM catequizando c LEFT JOIN pagamentos p ON p.cid=c.cid WHERE c.criado_por=:username GROUP BY c.cid, c.nome ORDER BY c.nome;');
             $childrenStatus = $db->getCreatedCatechumensPaymentStatus(Authenticator::getUsername());
+            error_log(print_r($childrenStatus, true));
         }
     } catch (Exception $e) {
         $payments = [];
