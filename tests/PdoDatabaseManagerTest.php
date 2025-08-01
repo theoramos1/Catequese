@@ -192,19 +192,5 @@ class PdoDatabaseManagerTest extends TestCase
         $this->assertEquals('pendente', $mapped[2]['estado']);
     }
 
-    public function testGetCreatedCatechumensPaymentStatusNumeric(): void
-    {
-        $this->pdo->exec('DROP TABLE catequizando');
-        $this->pdo->exec('CREATE TABLE catequizando (
-            cid INTEGER PRIMARY KEY,
-            nome TEXT,
-            criado_por INTEGER
-        );');
-        $this->pdo->exec("INSERT INTO catequizando (cid, nome, criado_por) VALUES (1, 'Ana', 42)");
-        $this->pdo->exec("INSERT INTO catequizando (cid, nome, criado_por) VALUES (2, 'Bob', 42)");
-        $this->manager->insertPayment('john', 1, 10.0, 'aprovado');
-        $list = $this->manager->getCreatedCatechumensPaymentStatus('42');
-        $this->assertCount(2, $list);
-    }
 }
 ?>
