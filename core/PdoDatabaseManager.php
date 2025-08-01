@@ -472,7 +472,9 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
 
 
         //Build query
-        $sql = "SELECT c.nome AS nome, data_nasc, local_nasc, num_irmaos, escuteiro, autorizou_fotos, autorizou_saida_sozinho, pai, mae, enc_edu, enc_edu_quem, foto, obs, criado_por, DATE(criado_em) AS criado_em, u.nome AS criado_por_nome, lastLSN_ficha, lastLSN_arquivo, lastLSN_autorizacoes FROM catequizando c, utilizador u WHERE c.cid = :cid AND c.criado_por=u.username;";
+        $sql = "SELECT c.nome AS nome, data_nasc, local_nasc, num_irmaos, escuteiro, autorizou_fotos, autorizou_saida_sozinho, pai, mae, enc_edu, enc_edu_quem, foto, obs, criado_por, DATE(criado_em) AS criado_em, u.nome AS criado_por_nome, lastLSN_ficha, lastLSN_arquivo, lastLSN_autorizacoes " .
+               "FROM catequizando c LEFT JOIN utilizador u ON c.criado_por = u.username " .
+               "WHERE c.cid = :cid;";
 
         try
         {
