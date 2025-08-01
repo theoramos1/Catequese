@@ -114,8 +114,10 @@ if(Authenticator::isAdmin()) {
 } else {
     try {
         $payments = $db->getPaymentsByUser(Authenticator::getUsername());
+        $childrenStatus = $db->getUserCatechumensPaymentStatus(Authenticator::getUsername(), Utils::currentCatecheticalYear());
     } catch (Exception $e) {
         $payments = [];
+        $childrenStatus = [];
         error_log($e->getMessage());
         $message = "<div class='alert alert-danger'><strong>Erro!</strong> Não foi possível obter os pagamentos.</div>";
     }
@@ -264,13 +266,7 @@ $menu->renderHTML();
       if($balance < 0) $balance = 0.0;
       $situation = $balance > 0 ? 'Em débito' : 'Pago';
 
-      $pixPayload = null;
-      try {
-          // Generate Pix payload without amount so the user can pay any value
-          $pixPayload = PixQRCode::generatePixPayload(null);
-      } catch (Exception $e) {
-          $pixPayload = null;
-      }
+      $pixKey = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_KEY);
   ?>
   <div class="row" style="margin-top: 20px;">
     <div class="col-md-6">
@@ -298,6 +294,27 @@ $menu->renderHTML();
     </div>
     <div class="col-md-6">
       <div class="panel panel-default">
+        <div class="panel-heading"><strong>Meus catequizandos</strong></div>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr><th>Nome</th><th>Situação</th><th>Total pago</th></tr>
+            </thead>
+            <tbody>
+            <?php if(count($childrenStatus) === 0){ ?>
+              <tr><td colspan="3" class="text-center">Nenhum catequizando inscrito</td></tr>
+            <?php } else { foreach($childrenStatus as $c){ ?>
+              <tr>
+                <td><?= Utils::sanitizeOutput($c['nome']) ?></td>
+                <td><?php if($c['estado']==='pago'){ ?><span class="text-success">Pago</span><?php } else { ?><span class="text-danger">Pendente</span><?php } ?></td>
+                <td>R$<?= number_format(floatval($c['total_pago']),2,',','.') ?></td>
+              </tr>
+            <?php }} ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="panel panel-default">
         <div class="panel-heading"><strong>Resumo financeiro</strong></div>
         <div class="panel-body">
           <div class="row">
@@ -324,13 +341,13 @@ $menu->renderHTML();
           </div>
         </div>
       </div>
-      <?php if($pixPayload){ ?>
+      <?php if($pixKey){ ?>
       <div class="panel panel-default" style="margin-top: 20px;">
         <div class="panel-heading"><strong>Pix "copia e cola"</strong></div>
         <div class="panel-body">
-          <p>Use o código Pix abaixo para realizar o pagamento. Você pode pagar o valor total ou parcial e retornar aqui para completar o pagamento restante posteriormente.</p>
+          <p>Efetue o pagamento utilizando a chave Pix abaixo. Caso não possa pagar agora, retorne a esta página mais tarde.</p>
           <div class="input-group">
-            <input type="text" class="form-control" id="pixCode" value="<?= $pixPayload ?>" readonly>
+            <input type="text" class="form-control" id="pixCode" value="<?= Utils::sanitizeOutput($pixKey) ?>" readonly>
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" onclick="copyPix()">Copiar código Pix</button>
             </span>
@@ -338,20 +355,19 @@ $menu->renderHTML();
         </div>
       </div>
       <?php } ?>
-      <?php if($balance > 0){
-            try {
-                $cidForm = $db->getUserEnrollmentCid(Authenticator::getUsername(), Utils::currentCatecheticalYear());
-            } catch(Exception $e) {
-                $cidForm = null;
-            }
-            if(!$cidForm && isset($payments[0]['cid']))
-                $cidForm = intval($payments[0]['cid']);
-            if($cidForm){ ?>
+      <?php if(count($childrenStatus) > 0){ ?>
       <div class="panel panel-default" style="margin-top: 20px;">
         <div class="panel-heading"><strong>Enviar comprovativo de pagamento</strong></div>
         <div class="panel-body">
           <form action="carregarComprovativoPagamento.php" method="post" enctype="multipart/form-data" class="form-inline">
-            <input type="hidden" name="cid" value="<?= $cidForm ?>">
+            <div class="form-group">
+              <label class="sr-only" for="cid_select">Catequizando</label>
+              <select name="cid" id="cid_select" class="form-control">
+                <?php foreach($childrenStatus as $c){ ?>
+                  <option value="<?= intval($c['cid']) ?>"><?= Utils::sanitizeOutput($c['nome']) ?></option>
+                <?php } ?>
+              </select>
+            </div>
             <div class="form-group">
               <label class="sr-only" for="valor_pag">Valor</label>
               <input type="number" step="0.01" name="amount" id="valor_pag" class="form-control" placeholder="Valor" required>
@@ -363,9 +379,7 @@ $menu->renderHTML();
           </form>
         </div>
       </div>
-      <?php } else { ?>
-      <div class="alert alert-danger"><strong>Erro!</strong> Não foi possível determinar a ficha do catequizando para associar o comprovativo.</div>
-      <?php }} ?>
+      <?php } ?>
     </div>
   </div>
   <script type="text/javascript">
