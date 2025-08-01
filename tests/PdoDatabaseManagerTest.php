@@ -37,7 +37,8 @@ class PdoDatabaseManagerTest extends TestCase
         );');
         $this->pdo->exec('CREATE TABLE catequizando (
             cid INTEGER PRIMARY KEY,
-            nome TEXT
+            nome TEXT,
+            criado_por TEXT
         );');
         $this->pdo->exec('CREATE TABLE inscreve (
             cid INTEGER,
@@ -165,6 +166,30 @@ class PdoDatabaseManagerTest extends TestCase
     {
         $this->expectException(Exception::class);
         $this->manager->insertPendingPayment('john', 1, -5, 'file');
+    }
+
+    public function testGetCreatedCatechumensPaymentStatus(): void
+    {
+        $this->pdo->exec("INSERT INTO catequizando (cid, nome, criado_por) VALUES (1, 'Ana', 'john')");
+        $this->pdo->exec("INSERT INTO catequizando (cid, nome, criado_por) VALUES (2, 'Bob', 'john')");
+        $this->manager->insertPayment('john', 1, 10.0, 'aprovado');
+        $this->manager->insertPayment('john', 2, 5.0, 'pendente');
+
+        $list = $this->manager->getCreatedCatechumensPaymentStatus('john');
+        $this->assertCount(2, $list);
+
+        $mapped = [];
+        foreach ($list as $row) {
+            $mapped[$row['cid']] = $row;
+        }
+
+        $this->assertEquals(10.0, $mapped[1]['total_pago']);
+        $this->assertEquals(10.0, $mapped[1]['saldo']);
+        $this->assertEquals('pendente', $mapped[1]['estado']);
+
+        $this->assertEquals(0.0, $mapped[2]['total_pago']);
+        $this->assertEquals(20.0, $mapped[2]['saldo']);
+        $this->assertEquals('pendente', $mapped[2]['estado']);
     }
 }
 ?>

@@ -115,6 +115,9 @@ if(Authenticator::isAdmin()) {
     try {
         $payments = $db->getPaymentsByUser(Authenticator::getUsername());
         $childrenStatus = $db->getUserCatechumensPaymentStatus(Authenticator::getUsername(), Utils::currentCatecheticalYear());
+        if(count($childrenStatus) === 0) {
+            $childrenStatus = $db->getCreatedCatechumensPaymentStatus(Authenticator::getUsername());
+        }
     } catch (Exception $e) {
         $payments = [];
         $childrenStatus = [];
@@ -302,7 +305,7 @@ $menu->renderHTML();
             </thead>
             <tbody>
             <?php if(count($childrenStatus) === 0){ ?>
-              <tr><td colspan="3" class="text-center">Nenhum catequizando inscrito</td></tr>
+              <tr><td colspan="3" class="text-center">Nenhum catequizando registado</td></tr>
             <?php } else { foreach($childrenStatus as $c){ ?>
               <tr>
                 <td><?= Utils::sanitizeOutput($c['nome']) ?></td>
