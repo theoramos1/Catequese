@@ -26,6 +26,7 @@ $db = new PdoDatabaseManager();
 
 //Get group(s) where the catechist teaches in the current catechetical year
 $result = null;
+$createdList = null;
 $error_msg = null;
 try
 {
@@ -54,11 +55,41 @@ if($result && count($result) > 0)
 {
     foreach ($result as $row)
     {
-        // Instantiate a catechumens list widget per group
         $searchResults = new CatechumensListWidget();
         $searchResults->setEntitiesName("catequizando");
         $pageUI->addWidget($searchResults);
         $catechumensListWidgets[] = $searchResults;
+    }
+}
+else
+{
+    try {
+        $createdList = $db->getCreatedCatechumensPaymentStatus($username);
+        if($createdList && count($createdList) > 0) {
+            foreach($createdList as &$c) {
+                try {
+                    $details = $db->getCatechumenById(intval($c['cid']));
+                    $c = array_merge($details, [
+                        'ano_catecismo'=>null,
+                        'turma'=>'',
+                        'paroquia_batismo'=>'',
+                        'comprovativo_batismo'=>null,
+                        'paroquia_comunhao'=>'',
+                        'comprovativo_comunhao'=>null,
+                        'paroquia_crisma'=>'',
+                        'comprovativo_crisma'=>null
+                    ]);
+                } catch(Exception $e) {
+                    // ignore individual failures
+                }
+            }
+            $searchResults = new CatechumensListWidget();
+            $searchResults->setEntitiesName("catequizando");
+            $pageUI->addWidget($searchResults);
+            $catechumensListWidgets[] = $searchResults;
+        }
+    } catch(Exception $e) {
+        $error_msg = $e->getMessage();
     }
 }
 
@@ -256,12 +287,17 @@ $menu->renderHTML();
 			<?php
 			}
 		}
-	}
-	else
-	{
-		echo("<div class=\"well well-lg\">\n");
-		echo("<p>Não tem catequizandos neste ano catequético.</p>\n");
-	}
+        }
+        else if($createdList && count($createdList) > 0)
+        {
+                $catechumensListWidgets[0]->setCatechumensList($createdList);
+                $catechumensListWidgets[0]->renderHTML();
+        }
+        else
+        {
+                echo("<div class=\"well well-lg\">\n");
+                echo("<p>Não tem catequizandos registados.</p>\n");
+        }
 	
 
 	//Libertar recursos

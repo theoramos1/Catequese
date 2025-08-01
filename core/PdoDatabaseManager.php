@@ -212,6 +212,7 @@ interface PdoDatabaseManagerInterface extends DatabaseManager
     public function getPaymentsByCatechumen(int $cid);
     public function getTotalPaymentsByCatechumen(int $cid);
     public function getUserCatechumensPaymentStatus(string $username, int $catecheticalYear);
+    public function getCreatedCatechumensPaymentStatus(string $username);
     public function getPaymentsSummaryByCatecheticalYear(int $catecheticalYear);
 
 
@@ -6167,6 +6168,53 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
             $stm = $this->_connection->prepare($sql);
             $stm->bindParam(':username', $username);
             $stm->bindParam(':ano', $catecheticalYear, PDO::PARAM_INT);
+
+            if($stm->execute())
+            {
+                $rows = $stm->fetchAll();
+                foreach($rows as &$r){
+                    $total = floatval($r['total_pago']);
+                    $saldo = $expected - $total;
+                    if($saldo < 0) $saldo = 0.0;
+                    $r['saldo'] = $saldo;
+                    $r['estado'] = $saldo > 0 ? 'pendente' : 'pago';
+                }
+                return $rows;
+            }
+            else
+                throw new Exception('Falha ao obter informação de pagamentos.');
+        }
+        catch(PDOException $e)
+        {
+            throw new Exception('Falha interna ao tentar aceder à base de dados.');
+        }
+    }
+
+    /**
+     * Returns payment status for catechumens created by a specific user.
+     * Each entry contains cid, nome, total_pago, saldo and estado.
+     */
+    public function getCreatedCatechumensPaymentStatus(string $username)
+    {
+        if(!$this->connectAsNeeded(DatabaseAccessMode::DEFAULT_READ))
+            throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
+
+        try
+        {
+            $key = Configurator::KEY_ENROLLMENT_PAYMENT_AMOUNT;
+            $sqlAmount = "SELECT valor FROM configuracoes WHERE chave=:chave;";
+            $stmAmount = $this->_connection->prepare($sqlAmount);
+            $stmAmount->bindParam(':chave', $key);
+            $stmAmount->execute();
+            $amountRow = $stmAmount->fetch();
+            $expected = $amountRow ? floatval($amountRow['valor']) : 0.0;
+
+            $sql = "SELECT c.cid, c.nome, IFNULL(SUM(CASE WHEN p.estado='aprovado' THEN p.valor ELSE 0 END),0) AS total_pago " .
+                   "FROM catequizando c LEFT JOIN pagamentos p ON p.cid=c.cid " .
+                   "WHERE c.criado_por=:username GROUP BY c.cid, c.nome ORDER BY c.nome;";
+
+            $stm = $this->_connection->prepare($sql);
+            $stm->bindParam(':username', $username);
 
             if($stm->execute())
             {
