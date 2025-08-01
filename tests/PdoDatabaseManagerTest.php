@@ -206,5 +206,26 @@ class PdoDatabaseManagerTest extends TestCase
         $list = $this->manager->getCreatedCatechumensPaymentStatus('42');
         $this->assertCount(2, $list);
     }
+
+    public function testGetCatechumenByIdNumericCreator(): void
+    {
+        $this->pdo->exec('CREATE TABLE utilizador (
+            id INTEGER PRIMARY KEY,
+            username TEXT,
+            nome TEXT
+        );');
+        $this->pdo->exec('DROP TABLE catequizando');
+        $this->pdo->exec('CREATE TABLE catequizando (
+            cid INTEGER PRIMARY KEY,
+            nome TEXT,
+            criado_por INTEGER,
+            criado_em TEXT
+        );');
+        $this->pdo->exec("INSERT INTO utilizador (id, username, nome) VALUES (42, 'luiz', 'Luiz Silva')");
+        $this->pdo->exec("INSERT INTO catequizando (cid, nome, criado_por, criado_em) VALUES (1, 'Ana', 42, '2025-01-01')");
+        $result = $this->manager->getCatechumenById(1);
+        $this->assertEquals('Ana', $result['nome']);
+        $this->assertEquals('Luiz Silva', $result['criado_por_nome']);
+    }
 }
 ?>

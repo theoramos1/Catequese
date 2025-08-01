@@ -471,8 +471,7 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
             throw new Exception('Não foi possível estabelecer uma ligação à base de dados.');
 
 
-        //Build query
-        $sql = "SELECT c.nome AS nome, data_nasc, local_nasc, num_irmaos, escuteiro, autorizou_fotos, autorizou_saida_sozinho, pai, mae, enc_edu, enc_edu_quem, foto, obs, criado_por, DATE(criado_em) AS criado_em, u.nome AS criado_por_nome, lastLSN_ficha, lastLSN_arquivo, lastLSN_autorizacoes FROM catequizando c, utilizador u WHERE c.cid = :cid AND c.criado_por=u.username;";
+        $sql = "SELECT * FROM catequizando WHERE cid=:cid;";
 
         try
         {
@@ -483,7 +482,47 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
 
             if ($stm->execute())
             {
-                return $stm->fetch();
+                $row = $stm->fetch(PDO::FETCH_ASSOC);
+                if(!$row)
+                    throw new Exception("Catequizando não encontrado.");
+
+                $creator = $row['criado_por'] ?? null;
+                $row['criado_por_nome'] = null;
+                if(isset($creator))
+                {
+                    if(ctype_digit(strval($creator)))
+                    {
+                        $sqlUser = "SELECT nome FROM utilizador WHERE id=:uid;";
+                        try {
+                            $userStm = $this->_connection->prepare($sqlUser);
+                            $userStm->bindParam(':uid', $creator, PDO::PARAM_INT);
+                            if($userStm->execute())
+                            {
+                                $u = $userStm->fetch(PDO::FETCH_ASSOC);
+                                if($u) $row['criado_por_nome'] = $u['nome'];
+                            }
+                        } catch(PDOException $e) {
+                            // Ignore if column does not exist
+                        }
+                    }
+                    else
+                    {
+                        $sqlUser = "SELECT nome FROM utilizador WHERE username=:username;";
+                        try {
+                            $userStm = $this->_connection->prepare($sqlUser);
+                            $userStm->bindParam(':username', $creator);
+                            if($userStm->execute())
+                            {
+                                $u = $userStm->fetch(PDO::FETCH_ASSOC);
+                                if($u) $row['criado_por_nome'] = $u['nome'];
+                            }
+                        } catch(PDOException $e) {
+                            // Ignore if table not available
+                        }
+                    }
+                }
+
+                return $row;
             }
             else
             {
