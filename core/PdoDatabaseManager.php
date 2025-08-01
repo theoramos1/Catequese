@@ -6209,12 +6209,22 @@ class PdoDatabaseManager implements PdoDatabaseManagerInterface
             $amountRow = $stmAmount->fetch();
             $expected = $amountRow ? floatval($amountRow['valor']) : 0.0;
 
-            $sql = "SELECT c.cid, c.nome, IFNULL(SUM(CASE WHEN p.estado='aprovado' THEN p.valor ELSE 0 END),0) AS total_pago " .
-                   "FROM catequizando c LEFT JOIN pagamentos p ON p.cid=c.cid " .
-                   "WHERE c.criado_por=:username GROUP BY c.cid, c.nome ORDER BY c.nome;";
+            $numeric = ctype_digit($username);
+            if($numeric) {
+                $sql = "SELECT c.cid, c.nome, IFNULL(SUM(CASE WHEN p.estado='aprovado' THEN p.valor ELSE 0 END),0) AS total_pago " .
+                       "FROM catequizando c LEFT JOIN pagamentos p ON p.cid=c.cid " .
+                       "WHERE c.criado_por=:uid GROUP BY c.cid, c.nome ORDER BY c.nome;";
+            } else {
+                $sql = "SELECT c.cid, c.nome, IFNULL(SUM(CASE WHEN p.estado='aprovado' THEN p.valor ELSE 0 END),0) AS total_pago " .
+                       "FROM catequizando c LEFT JOIN pagamentos p ON p.cid=c.cid " .
+                       "WHERE c.criado_por=:username GROUP BY c.cid, c.nome ORDER BY c.nome;";
+            }
 
             $stm = $this->_connection->prepare($sql);
-            $stm->bindParam(':username', $username);
+            if($numeric)
+                $stm->bindParam(':uid', $username, PDO::PARAM_INT);
+            else
+                $stm->bindParam(':username', $username);
 
             if($stm->execute())
             {
