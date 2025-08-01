@@ -1166,9 +1166,8 @@ if(!DataValidationUtils::validateZipCode($codigo_postal, Configurator::getConfig
 
         if($_REQUEST['modo']!="editar")
         {
-                $pixKey = \catechesis\Configurator::getConfigurationValueOrDefault(\catechesis\Configurator::KEY_PIX_KEY) ?? '000000000000';
+                $pixKey = \catechesis\Configurator::getConfigurationValueOrDefault(\catechesis\Configurator::KEY_PIX_KEY) ?? '123e4567-e89b-12d3-a456-426614174000';
                 echo("<p><strong>Efetuar pagamento da taxa de inscrição de R$ " . number_format($payment_amount, 2, ',', '.') . "</strong></p>");
-                echo("<p>Chave Pix:</p>");
                 echo("<pre style=\"white-space: pre-wrap; word-wrap: break-word;\">" . \catechesis\Utils::sanitizeOutput($pixKey) . "</pre>");
                 echo("<p>Se não puder pagar agora, poderá fazê-lo depois na página \"Pagamentos\".</p>");
         }

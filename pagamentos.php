@@ -267,6 +267,8 @@ $menu->renderHTML();
       $situation = $balance > 0 ? 'Em débito' : 'Pago';
 
       $pixKey = Configurator::getConfigurationValueOrDefault(Configurator::KEY_PIX_KEY);
+      if(!$pixKey)
+          $pixKey = '123e4567-e89b-12d3-a456-426614174000';
   ?>
   <div class="row" style="margin-top: 20px;">
     <div class="col-md-6">
@@ -341,11 +343,11 @@ $menu->renderHTML();
           </div>
         </div>
       </div>
-      <?php if($pixKey){ ?>
       <div class="panel panel-default" style="margin-top: 20px;">
         <div class="panel-heading"><strong>Pix "copia e cola"</strong></div>
         <div class="panel-body">
-          <p>Efetue o pagamento utilizando a chave Pix abaixo. Caso não possa pagar agora, retorne a esta página mais tarde.</p>
+          <p><strong>Efetuar pagamento da taxa de inscrição de R$ <?= number_format($price, 2, ',', '.') ?></strong></p>
+          <p class="small">Se não puder pagar agora, retorne a esta página mais tarde.</p>
           <div class="input-group">
             <input type="text" class="form-control" id="pixCode" value="<?= Utils::sanitizeOutput($pixKey) ?>" readonly>
             <span class="input-group-btn">
@@ -354,7 +356,6 @@ $menu->renderHTML();
           </div>
         </div>
       </div>
-      <?php } ?>
       <?php if(count($childrenStatus) > 0){ ?>
       <div class="panel panel-default" style="margin-top: 20px;">
         <div class="panel-heading"><strong>Enviar comprovativo de pagamento</strong></div>
